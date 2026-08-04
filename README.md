@@ -27,7 +27,7 @@ Useful scripts:
 | `npm run typecheck` | `tsc --noEmit` (no `any`, strict) |
 | `npm run lint` | ESLint (Next core-web-vitals) |
 | `npm run seed` | Seed the database (needs service role key) |
-| `npm run check:no-guaranteed-profit` | Fails if the phrase "guaranteed profit" appears anywhere |
+| `npm run check:no-guaranteed-profit` | Fails if the banned earnings-guarantee phrase appears anywhere |
 | `npm run check:no-service-key-leak` | Fails if the service role key is referenced in a client component |
 
 ---

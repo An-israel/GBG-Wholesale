@@ -1,4 +1,5 @@
 import { DEFAULT_SETTINGS, PENDING, PUBLIC_SETTING_KEYS, type SettingKey } from "@/lib/settings";
+import { SettingRow } from "@/components/admin/setting-row";
 
 /**
  * Settings screen — the mechanism by which the site launches without blocking on
@@ -26,27 +27,21 @@ export default function AdminSettings() {
       )}
 
       <div className="mt-6 overflow-x-auto rounded-[var(--radius-card)] border border-line bg-surface">
-        <table className="w-full min-w-[720px] text-sm">
+        <table className="w-full min-w-[760px] text-sm">
           <thead className="border-b border-line text-left text-ink-50">
-            <tr><th className="p-3">Key</th><th>Value</th><th>Public</th><th>Status</th></tr>
+            <tr><th className="p-3">Key</th><th>Value</th><th>Public</th><th>Status</th><th></th></tr>
           </thead>
           <tbody>
             {keys.map((k) => {
               const raw = JSON.stringify(DEFAULT_SETTINGS[k]);
-              const isPending = raw.includes(PENDING);
               return (
-                <tr key={k} className="border-b border-line last:border-0 align-top">
-                  <td className="p-3 font-mono text-xs">{k}</td>
-                  <td className="p-3 max-w-md truncate text-ink-70">{raw}</td>
-                  <td className="p-3">{PUBLIC_SETTING_KEYS.includes(k) ? "yes" : "no"}</td>
-                  <td className="p-3">
-                    {isPending ? (
-                      <span className="rounded bg-danger/10 px-1.5 py-0.5 text-xs text-danger">PENDING</span>
-                    ) : (
-                      <span className="rounded bg-profit/10 px-1.5 py-0.5 text-xs text-profit">set</span>
-                    )}
-                  </td>
-                </tr>
+                <SettingRow
+                  key={k}
+                  settingKey={k}
+                  value={raw}
+                  isPublic={PUBLIC_SETTING_KEYS.includes(k)}
+                  pending={raw.includes(PENDING)}
+                />
               );
             })}
           </tbody>

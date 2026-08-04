@@ -52,7 +52,7 @@ correctly in code but require live Supabase + Stripe credentials (and
 | 28 | Zero horizontal scroll at 320px | ✅ (overflow-x contained) |
 | 29 | Keyboard-only purchase | 🟡 (semantic + focus rings; verify with live checkout) |
 | 30 | axe: no serious/critical | ⬜ (add axe to CI) |
-| 31 | "guaranteed profit" appears nowhere | ✅ (CI guard passes) |
+| 31 | The banned earnings-guarantee phrase appears nowhere | ✅ (CI guard passes) |
 | 32 | Every PENDING_LAMI editable in admin, none hard-coded | ✅ (Settings screen) |
 
 ## Build gates (run now)

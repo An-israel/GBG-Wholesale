@@ -16,7 +16,12 @@ const lineSchema = z.object({
   variantId: z.string().nullable(),
   quantity: z.number().int().positive(),
 });
-const inputSchema = z.object({ lines: z.array(lineSchema).min(1) });
+const inputSchema = z.object({
+  lines: z.array(lineSchema).min(1),
+  email: z.string().email().optional(),
+  shippingCountry: z.string().length(2).optional(),
+  customerNote: z.string().max(500).optional(),
+});
 
 export type CheckoutResult = ActionResult<{ url?: string; checkoutDisabled?: boolean }>;
 
@@ -72,6 +77,7 @@ export async function createCheckout(input: unknown): Promise<CheckoutResult> {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       currency: "gbp",
+      customer_email: parsed.data.email,
       line_items: rebuilt.map((l) => ({
         quantity: l.quantity,
         price_data: {

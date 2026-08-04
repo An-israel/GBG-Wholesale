@@ -4,6 +4,7 @@ import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import { Container, Eyebrow, Chip } from "@/components/ui/primitives";
 import { ButtonLink } from "@/components/ui/button";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import { ReorderButton } from "@/components/commerce/reorder-button";
 import { formatPence, formatDate } from "@/lib/utils/format";
 
 export const dynamic = "force-dynamic";
@@ -72,7 +73,8 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ or
             <div className="flex justify-between font-medium"><dt>Total</dt><dd>{formatPence(order.total_pence)}</dd></div>
           </dl>
 
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <ReorderButton orderNumber={order.order_number} />
             {order.tracking_url && <ButtonLink href={order.tracking_url} variant="outline">Track shipment</ButtonLink>}
             <Link href="/contact?reason=order_issue" className="self-center text-sm text-navy underline">Problem with this order?</Link>
           </div>

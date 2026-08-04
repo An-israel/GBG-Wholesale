@@ -18,7 +18,7 @@ export default function AdminProducts() {
         <table className="w-full min-w-[820px] text-sm">
           <thead className="border-b border-line text-left text-ink-50">
             <tr>
-              <th className="p-3">Product</th><th>SKU</th><th>Category</th><th>Price</th><th>Unit</th><th>Stock</th><th>MOQ</th><th>Status</th>
+              <th className="p-3">Product</th><th>SKU</th><th>Category</th><th>Price</th><th>Unit</th><th>Stock</th><th>MOQ</th><th>Status</th><th></th>
             </tr>
           </thead>
           <tbody>
@@ -45,6 +45,7 @@ export default function AdminProducts() {
                       {p.status}
                     </span>
                   </td>
+                  <td><Link href={`/admin/products/${p.id}/edit`} className="text-navy underline">Edit</Link></td>
                 </tr>
               );
             })}

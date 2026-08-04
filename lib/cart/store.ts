@@ -2,6 +2,7 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import type { CartLineData } from "./types";
 
 /**
  * Client cart UI state (Zustand — the only place we use it, per Part 2.1).
@@ -9,18 +10,7 @@ import { persist } from "zustand/middleware";
  * restart (acceptance #1). The server remains the authority on price, MOQ and
  * stock at checkout; these prices are display-only and revalidated server-side.
  */
-export type CartLine = {
-  productSlug: string;
-  productName: string;
-  sku: string;
-  variantId: string | null;
-  variantName: string | null;
-  imageUrl: string;
-  unitPricePence: number;
-  packQuantity: number;
-  moq: number;
-  quantity: number;
-};
+export type CartLine = CartLineData;
 
 type CartState = {
   lines: CartLine[];

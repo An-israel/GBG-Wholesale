@@ -2,6 +2,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import type Stripe from "stripe";
 import { getStripe } from "@/lib/stripe/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { sendEmail } from "@/lib/email/send";
+import { orderConfirmationEmail } from "@/emails/templates";
 
 // Must run on the Node runtime and read the raw body (Part 8.2).
 export const runtime = "nodejs";
@@ -61,6 +63,28 @@ export async function POST(req: NextRequest) {
               stripe_payment_intent_id: (session.payment_intent as string) ?? null,
             })
             .eq("id", orderId);
+
+          // Send the confirmation email with the Hub unlock or path.
+          const { data: full } = await supabase
+            .from("orders")
+            .select("order_number, email, total_pence, user_id, order_items(product_name_snapshot, quantity, line_total_pence)")
+            .eq("id", orderId)
+            .single();
+          if (full?.email) {
+            let hubUnlocked = false;
+            if (full.user_id) {
+              const { data: profile } = await supabase.from("profiles").select("is_verified_buyer").eq("id", full.user_id).single();
+              hubUnlocked = !!profile?.is_verified_buyer;
+            }
+            const items = (full.order_items ?? []) as { product_name_snapshot: string; quantity: number; line_total_pence: number }[];
+            const tpl = orderConfirmationEmail({
+              orderNumber: full.order_number,
+              items: items.map((i) => ({ name: i.product_name_snapshot, quantity: i.quantity, lineTotalPence: i.line_total_pence })),
+              totalPence: full.total_pence,
+              hubUnlocked,
+            });
+            await sendEmail({ to: full.email, subject: tpl.subject, template: "order_confirmation", html: tpl.html, text: tpl.text });
+          }
         }
         break;
       }

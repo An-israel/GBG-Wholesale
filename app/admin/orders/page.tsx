@@ -1,13 +1,14 @@
+import Link from "next/link";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import { formatPence, formatDate } from "@/lib/utils/format";
 
-type OrderRow = { order_number: string; email: string; status: string; payment_status: string; total_pence: number; created_at: string };
+type OrderRow = { id: string; order_number: string; email: string; status: string; payment_status: string; total_pence: number; created_at: string };
 
 export default async function AdminOrders() {
   let orders: OrderRow[] = [];
   if (isSupabaseConfigured) {
     const supabase = await createClient();
-    const { data } = await supabase.from("orders").select("order_number,email,status,payment_status,total_pence,created_at").order("created_at", { ascending: false }).limit(50);
+    const { data } = await supabase.from("orders").select("id,order_number,email,status,payment_status,total_pence,created_at").order("created_at", { ascending: false }).limit(50);
     orders = data ?? [];
   }
 
@@ -27,7 +28,7 @@ export default async function AdminOrders() {
             <tbody>
               {orders.map((o) => (
                 <tr key={o.order_number} className="border-b border-line last:border-0">
-                  <td className="p-3 font-mono">{o.order_number}</td>
+                  <td className="p-3 font-mono"><Link href={`/admin/orders/${o.id}`} className="text-navy underline">{o.order_number}</Link></td>
                   <td>{o.email}</td>
                   <td className="capitalize">{o.status}</td>
                   <td className="capitalize">{o.payment_status}</td>
