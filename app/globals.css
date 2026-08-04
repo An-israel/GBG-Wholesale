@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   GBG Wholesale Hub — design tokens (Part 3)
+   Never write a raw hex value in a component. Reference these tokens only.
+   --------------------------------------------------------------------------- */
+@theme {
+  /* Brand */
+  --color-navy: #0d1b2a;
+  --color-navy-hover: #16283b;
+  --color-cream: #fffdd0;
+  --color-gold: #c9a84c;
+  --color-gold-hover: #b3933e;
+  --color-gold-pale: #fbf4e0;
+  --color-profit: #1a7a4a;
+  --color-danger: #c0392b;
+
+  /* Neutral ramp derived from navy */
+  --color-ink: #0d1b2a;
+  --color-ink-70: #46525f;
+  --color-ink-50: #7b8590;
+  --color-ink-25: #c3c9ce;
+  --color-line: #e6e3da;
+  --color-surface: #ffffff;
+  --color-surface-alt: #fbf9f4;
+
+  /* Typography */
+  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-body: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono), "DM Mono", ui-monospace, monospace;
+
+  /* Radii */
+  --radius-input: 4px;
+  --radius-card: 8px;
+  --radius-modal: 12px;
+
+  /* Shadows — two only */
+  --shadow-card: 0 1px 2px rgba(13, 27, 42, 0.06), 0 8px 24px rgba(13, 27, 42, 0.08);
+  --shadow-overlay: 0 8px 40px rgba(13, 27, 42, 0.18);
+
+  /* Container */
+  --breakpoint-3xl: 1280px;
+}
+
+:root {
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  color: var(--color-ink);
+}
+
+/* Fluid type scale (Part 3.2) */
+.text-display { font-size: clamp(2.5rem, 6vw, 4rem); }
+.text-h1 { font-size: clamp(2rem, 5vw, 3rem); }
+.text-h2 { font-size: clamp(1.625rem, 4vw, 2.25rem); }
+.text-h3 { font-size: clamp(1.3125rem, 3vw, 1.625rem); }
+.text-body-lg { font-size: 1.0625rem; }
+.text-micro {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Article measure cap */
+.prose-measure { max-width: 68ch; }
+
+/* Accessible focus ring — visible gold ring on every interactive element */
+a, button, input, select, textarea, [tabindex]:not([tabindex="-1"]) {
+  outline: none;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Entrance motion — fade + 8px rise, respecting reduced motion */
+@keyframes gbg-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise {
+  animation: gbg-rise 250ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--color-navy);
+  color: var(--color-cream);
+  padding: 12px 20px;
+  border-radius: 0 0 8px 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* Hide scrollbar on horizontal scroll rows while keeping function */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
