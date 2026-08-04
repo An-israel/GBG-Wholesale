@@ -22,7 +22,7 @@ export function JourneyCard({
     >
       <h3 className="text-h3 font-display">{title}</h3>
       <p className="mt-2 flex-1 text-sm text-ink-70">{body}</p>
-      <span className="mt-4 text-sm font-medium text-gold group-hover:text-gold-hover">
+      <span className="mt-4 text-sm font-medium text-gold-ink group-hover:text-navy">
         {cta} →
       </span>
     </Link>
@@ -57,7 +57,7 @@ export function ArticleCard({ article, className }: { article: Article; classNam
       href={`/learn/${article.pillar_slug}/${article.slug}`}
       className={cn("group flex flex-col rounded-[var(--radius-card)] border border-line bg-surface p-5 transition-shadow hover:shadow-[var(--shadow-card)]", className)}
     >
-      <p className="text-micro text-gold">{article.reading_minutes} min read</p>
+      <p className="text-micro text-gold-ink">{article.reading_minutes} min read</p>
       <h3 className="mt-2 text-h3 font-display leading-snug">{article.title}</h3>
       <p className="mt-2 flex-1 text-sm text-ink-70">{article.excerpt}</p>
       <span className="mt-4 text-sm font-medium text-navy group-hover:text-gold">Read guide →</span>
@@ -68,7 +68,7 @@ export function ArticleCard({ article, className }: { article: Article; classNam
 export function StoryCard({ story }: { story: SuccessStory }) {
   return (
     <div className="flex flex-col rounded-[var(--radius-card)] border border-line bg-surface p-5">
-      <p className="text-micro text-gold">{story.platform}</p>
+      <p className="text-micro text-gold-ink">{story.platform}</p>
       <h3 className="mt-2 text-h3 font-display leading-snug">{story.headline}</h3>
       <dl className="mt-3 space-y-2 text-sm">
         <div>

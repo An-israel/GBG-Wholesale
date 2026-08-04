@@ -174,7 +174,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </div>
             {guide && (
               <Link href={`/learn/${guide.pillar_slug}/${guide.slug}`} className="block rounded-[var(--radius-card)] border border-line p-4 hover:border-gold">
-                <p className="text-micro text-gold">Related guide</p>
+                <p className="text-micro text-gold-ink">Related guide</p>
                 <p className="mt-1 font-display text-lg leading-snug">{guide.title}</p>
                 <p className="mt-1 text-sm text-ink-70">{guide.excerpt}</p>
               </Link>

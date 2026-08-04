@@ -25,7 +25,8 @@ export function Section({
 }
 
 export function Eyebrow({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <p className={cn("text-micro text-gold mb-3", className)}>{children}</p>;
+  // Default dark-gold passes contrast on light; navy-section usages override with text-gold.
+  return <p className={cn("text-micro text-gold-ink mb-3", className)}>{children}</p>;
 }
 
 const badgeStyles: Record<string, string> = {

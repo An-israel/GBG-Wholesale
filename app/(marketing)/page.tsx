@@ -181,7 +181,7 @@ export default async function HomePage() {
             </ul>
           </div>
           <div className="rounded-[var(--radius-card)] border border-gold bg-gold-pale p-6">
-            <p className="text-micro text-gold">With GBG</p>
+            <p className="text-micro text-gold-ink">With GBG</p>
             <ul className="mt-3 space-y-2 text-sm text-ink">
               <li>Prices and stock shown openly — no DM required</li>
               <li>Low minimums so you can test without risk</li>

@@ -9,6 +9,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "seed": "tsx supabase/seed.ts",
+    "test:a11y": "playwright test",
     "check:no-guaranteed-profit": "tsx scripts/check-forbidden-phrases.ts",
     "check:no-service-key-leak": "tsx scripts/check-service-key-leak.ts"
   },
@@ -28,7 +29,9 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
     "@eslint/eslintrc": "^3.2.0",
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^22.10.7",
     "@types/react": "^19.0.7",

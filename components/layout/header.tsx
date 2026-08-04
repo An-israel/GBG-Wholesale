@@ -62,7 +62,7 @@ export function Header({ categories }: { categories: Category[] }) {
           className="flex-1 text-center font-display text-2xl font-bold tracking-tight text-navy md:flex-none md:text-left"
         >
           GBG
-          <span className="ml-1 hidden align-middle text-micro text-gold sm:inline">Wholesale</span>
+          <span className="ml-1 hidden align-middle text-micro text-gold-ink sm:inline">Wholesale</span>
         </Link>
 
         {/* Desktop nav */}

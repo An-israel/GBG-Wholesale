@@ -12,13 +12,15 @@
   --color-gold: #c9a84c;
   --color-gold-hover: #b3933e;
   --color-gold-pale: #fbf4e0;
+  /* Accessible dark gold for small text on light backgrounds (≥4.5:1). */
+  --color-gold-ink: #7a611f;
   --color-profit: #1a7a4a;
   --color-danger: #c0392b;
 
   /* Neutral ramp derived from navy */
   --color-ink: #0d1b2a;
   --color-ink-70: #46525f;
-  --color-ink-50: #7b8590;
+  --color-ink-50: #5c6670;
   --color-ink-25: #c3c9ce;
   --color-line: #e6e3da;
   --color-surface: #ffffff;
