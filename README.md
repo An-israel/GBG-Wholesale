@@ -118,6 +118,9 @@ idempotent via the `stripe_events` table.
 
 ## Deployment (Vercel)
 
+> **Full step-by-step:** see [`DEPLOYMENT.md`](DEPLOYMENT.md) for the complete
+> Supabase + Stripe + Vercel walkthrough (one-paste DB setup included).
+
 - Import the repo; set all env vars in the Vercel project.
 - Point the Stripe webhook at `https://<prod>/api/stripe/webhook`.
 - Apply migrations with the Supabase CLI against the production project.

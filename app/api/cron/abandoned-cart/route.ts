@@ -10,11 +10,11 @@ export const runtime = "nodejs";
  * Sends at most one email per cart and respects marketing consent.
  */
 export async function GET(req: NextRequest) {
-  if (req.headers.get("authorization") !== `Bearer ${process.env.REVALIDATE_SECRET}`) {
-    // Vercel cron can be secured with a header; reuse the shared secret.
-    if (process.env.NODE_ENV === "production") {
-      return NextResponse.json({ ok: false }, { status: 401 });
-    }
+  // Vercel Cron sends `Authorization: Bearer <CRON_SECRET>` automatically when
+  // CRON_SECRET is set. Fall back to REVALIDATE_SECRET for manual invocation.
+  const secret = process.env.CRON_SECRET ?? process.env.REVALIDATE_SECRET;
+  if (process.env.NODE_ENV === "production" && req.headers.get("authorization") !== `Bearer ${secret}`) {
+    return NextResponse.json({ ok: false }, { status: 401 });
   }
   if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
     return NextResponse.json({ ok: true, skipped: "no db" });

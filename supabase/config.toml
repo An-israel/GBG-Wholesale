@@ -1,0 +1,16 @@
+# Supabase CLI configuration.
+# Link the local project to the hosted one with:
+#   supabase link --project-ref lnhieoutyyisgjsuksol
+# then apply migrations with:
+#   supabase db push
+project_id = "lnhieoutyyisgjsuksol"
+
+[db]
+# Local dev DB port (only used by `supabase start`); the hosted project is
+# reached via `supabase link` above.
+port = 54322
+
+[auth]
+site_url = "http://localhost:3000"
+# Add your production URL here (and in the Supabase dashboard) before launch:
+additional_redirect_urls = ["http://localhost:3000/**"]
