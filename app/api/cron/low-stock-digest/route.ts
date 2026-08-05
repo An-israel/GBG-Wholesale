@@ -6,7 +6,9 @@ export const runtime = "nodejs";
 
 /** Daily low-stock digest to the admin (Part 15). */
 export async function GET(req: NextRequest) {
-  if (process.env.NODE_ENV === "production" && req.headers.get("authorization") !== `Bearer ${process.env.REVALIDATE_SECRET}`) {
+  // Vercel Cron sends `Authorization: Bearer <CRON_SECRET>` automatically.
+  const secret = process.env.CRON_SECRET ?? process.env.REVALIDATE_SECRET;
+  if (process.env.NODE_ENV === "production" && req.headers.get("authorization") !== `Bearer ${secret}`) {
     return NextResponse.json({ ok: false }, { status: 401 });
   }
   if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
