@@ -958,12 +958,22 @@ returns trigger language plpgsql security definer set search_path = public as $$
 declare
   actor uuid := auth.uid();
   actor_email text;
+  rec jsonb;
+  eid uuid;
 begin
   select email into actor_email from profiles where id = actor;
+  -- Derive the entity id from the row as JSON, so this works for any audited
+  -- table regardless of its primary key. Tables without a uuid `id` column
+  -- (e.g. site_settings, keyed by `key`) simply record a null entity_id.
+  rec := case when tg_op = 'DELETE' then to_jsonb(old) else to_jsonb(new) end;
+  begin
+    eid := nullif(rec->>'id', '')::uuid;
+  exception when others then
+    eid := null;
+  end;
   insert into admin_audit_log (actor_id, actor_email, action, entity_type, entity_id, before, after)
   values (
-    actor, actor_email, tg_op, tg_table_name,
-    coalesce((case when tg_op = 'DELETE' then old.id else new.id end)),
+    actor, actor_email, tg_op, tg_table_name, eid,
     case when tg_op in ('UPDATE','DELETE') then to_jsonb(old) else null end,
     case when tg_op in ('UPDATE','INSERT') then to_jsonb(new) else null end
   );
