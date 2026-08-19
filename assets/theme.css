@@ -552,6 +552,19 @@ textarea.input {
   margin-top: -0.5rem;
 }
 
+/* Legal / plain page content (legal-content section + default page.liquid fallback) */
+.legal-content__inner {
+  max-width: 68ch;
+}
+
+.legal-content__body {
+  font-size: 1.05rem;
+}
+
+.legal-content__body p {
+  margin-bottom: var(--space-4);
+}
+
 /* 404 + password page */
 .not-found {
   text-align: center;

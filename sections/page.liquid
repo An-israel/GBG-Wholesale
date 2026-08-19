@@ -1,17 +1,13 @@
-{% comment %}
-  This section is used in the page template to render store pages like About us
-  or Contact us.
-
-  https://shopify.dev/docs/storefronts/themes/architecture/templates/page
-{% endcomment %}
-
-<h1>{{ page.title }}</h1>
-
-{{ page.content }}
+<div class="container section legal-content">
+  <div class="legal-content__inner reveal">
+    <h1>{{ page.title }}</h1>
+    <div class="legal-content__body">{{ page.content }}</div>
+  </div>
+</div>
 
 {% schema %}
 {
-  "name": "t:general.page",
+  "name": "Default page",
   "settings": []
 }
 {% endschema %}
