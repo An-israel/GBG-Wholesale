@@ -1,0 +1,276 @@
+{
+  "sections": {
+    "hero-home": {
+      "type": "hero",
+      "settings": {
+        "custom_id": "",
+        "compact": false,
+        "eyebrow": "",
+        "heading": "Real stock. Real margins. A community that actually shows you how.",
+        "body": "<p>Browse the shop if you're ready, or start here if you're not. Either way, you leave with a plan.</p>",
+        "primary_label": "Shop Now",
+        "primary_url": "/collections/all",
+        "secondary_label": "Start Here",
+        "secondary_url": "/pages/start-here",
+        "show_whatsapp_line": true,
+        "whatsapp_line_text": "Not sure what to order? Chat with us on WhatsApp and we'll point you the right way.",
+        "show_stats": true
+      }
+    },
+    "trust-strip": {
+      "type": "badge-strip",
+      "blocks": {
+        "b1": { "type": "badge", "settings": { "text": "UK-Based Warehouse" } },
+        "b2": { "type": "badge", "settings": { "text": "Real Wholesale Prices" } },
+        "b3": { "type": "badge", "settings": { "text": "Lami Answers Personally" } },
+        "b4": { "type": "badge", "settings": { "text": "Easy Checkout" } },
+        "b5": { "type": "badge", "settings": { "text": "Next Day Dispatch" } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4", "b5"],
+      "settings": {}
+    },
+    "choose-journey": {
+      "type": "routing-cards",
+      "settings": {
+        "eyebrow": "ROUTE → CHOOSE YOUR JOURNEY",
+        "heading": "Choose Your Journey"
+      },
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "heading": "New to reselling?",
+            "body": "Start with the basics, a checklist, and a roadmap.",
+            "link_text": "Start Here",
+            "link_url": "/pages/start-here"
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "heading": "Already selling online?",
+            "body": "Skip straight to real wholesale stock.",
+            "link_text": "Shop",
+            "link_url": "/collections/all"
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "heading": "Just want it for yourself?",
+            "body": "No business pitch, just the products.",
+            "link_text": "Shop",
+            "link_url": "/collections/all?ref=direct-buyer"
+          }
+        },
+        "c4": {
+          "type": "card",
+          "settings": {
+            "heading": "Done the course or mentorship?",
+            "body": "Head straight into the full catalogue.",
+            "link_text": "View catalogue",
+            "link_url": "/collections/all"
+          }
+        }
+      },
+      "block_order": ["c1", "c2", "c3", "c4"]
+    },
+    "shop-by-category": {
+      "type": "category-tiles",
+      "settings": {
+        "eyebrow": "SHOP BY CATEGORY",
+        "heading": "Shop By Category"
+      },
+      "blocks": {
+        "t1": { "type": "tile", "settings": { "title": "Jewellery & Accessories", "collection": "jewellery-accessories", "manual_url": "/collections/jewellery-accessories" } },
+        "t2": { "type": "tile", "settings": { "title": "Electronics", "collection": "electronics", "manual_url": "/collections/electronics" } },
+        "t3": { "type": "tile", "settings": { "title": "Fashion", "collection": "fashion", "manual_url": "/collections/fashion" } },
+        "t4": { "type": "tile", "settings": { "title": "Home & Lifestyle", "collection": "home-lifestyle", "manual_url": "/collections/home-lifestyle" } },
+        "t5": { "type": "tile", "settings": { "title": "Starter Boxes", "collection": "starter-boxes", "manual_url": "/collections/starter-boxes" } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4", "t5"]
+    },
+    "how-it-works": {
+      "type": "numbered-steps",
+      "settings": {
+        "on_surface": true,
+        "eyebrow": "THE ROUTE",
+        "heading": "How It Works"
+      },
+      "blocks": {
+        "s1": { "type": "step", "settings": { "text": "Choose your pack — browse the shop or start with a Starter Box." } },
+        "s2": { "type": "step", "settings": { "text": "Order it — checkout in minutes, no DM required." } },
+        "s3": { "type": "step", "settings": { "text": "It ships from our UK warehouse — 1–3 days to your door." } },
+        "s4": { "type": "step", "settings": { "text": "List it, sell it, reorder — the guides in Learn show you how.", "link_text": "Explore the Learn Hub", "link_url": "/pages/learn" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"]
+    },
+    "featured-products": {
+      "type": "featured-products",
+      "settings": {
+        "eyebrow": "TOP SELLING PACKS",
+        "heading": "Featured Products",
+        "collection": "best-sellers",
+        "product_count": 4,
+        "show_cta": true,
+        "cta_text": "See full catalogue",
+        "cta_url": "/collections/all"
+      }
+    },
+    "why-different": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": false,
+        "eyebrow": "WHY GBG",
+        "heading": "We're not just a wholesaler, not just a course. We're both, done properly, with the small scale starters in mind.",
+        "body": "<p>Most wholesalers stop at the invoice. Most courses stop at the theory. GBG is the place that hands you the stock and the roadmap in the same order — real products at low minimum quantities, plus the education and community to actually move them. You're never left holding boxes with no idea what to do next.</p>"
+      }
+    },
+    "success-proof": {
+      "type": "testimonial-blocks",
+      "settings": {
+        "eyebrow": "PROOF → REAL RESULTS",
+        "heading": "Real women, real first sales",
+        "body": "Community wins, shared with names blurred — sold within days, cleared a pack in hours, first Vinted sale in a week."
+      },
+      "blocks": {
+        "w1": { "type": "testimonial", "settings": { "caption": "Sold within days of ordering her first Starter Box." } },
+        "w2": { "type": "testimonial", "settings": { "caption": "Cleared a whole pack in hours on Vinted." } },
+        "w3": { "type": "testimonial", "settings": { "caption": "First Vinted sale in a week — no experience needed." } }
+      },
+      "block_order": ["w1", "w2", "w3"]
+    },
+    "learn-before-buy": {
+      "type": "rich-text",
+      "settings": {
+        "background": "paper",
+        "narrow": true,
+        "eyebrow": "LEARN → BEFORE YOU BUY",
+        "heading": "Never sold online before? Start here, not in the shop.",
+        "body": "<p>Platform guides, a pricing calculator, and a Vinted safety guide — available to help you navigate before you spend a penny.</p>",
+        "primary_label": "Explore the Learn Hub",
+        "primary_link_source": "custom",
+        "primary_url": "/pages/learn"
+      }
+    },
+    "community": {
+      "type": "rich-text",
+      "settings": {
+        "background": "ink",
+        "narrow": true,
+        "eyebrow": "COMMUNITY",
+        "eyebrow_color": "plum",
+        "heading": "Two communities. One journey.",
+        "body": "<p>Start Your Product Business (SYPB) is for anyone still deciding. GBG Wholesale Hub is for buyers, unlocked after your first order. Join SYPB → attend the webinar → make your first purchase → unlock the Hub.</p>",
+        "primary_label": "Join SYPB",
+        "primary_link_source": "sypb_link"
+      }
+    },
+    "academy-preview": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": true,
+        "eyebrow": "ACADEMY",
+        "eyebrow_color": "plum",
+        "heading": "Ready to go deeper than a starter pack?",
+        "body": "<p>For buyers who want structure, not just stock, but a closer look at how to build this into a real, repeatable income.</p>",
+        "primary_label": "Learn About the Academy",
+        "primary_link_source": "custom",
+        "primary_url": "/pages/academy"
+      }
+    },
+    "meet-lami": {
+      "type": "two-column-media",
+      "settings": {
+        "custom_id": "meet-lami",
+        "image_position": "left",
+        "eyebrow": "FOUNDER",
+        "heading": "Meet Lami",
+        "body": "<p>Lami started a bridal accessories business in 2016 with nothing but a bag of stock and a WiFi connection. Years of learning wholesale, sourcing, and reselling the hard way turned into GBG Wholesale Hub — built so the next woman doesn't have to learn alone.</p><p class=\"editorial\">\"Input equals output.\" What you put into your business is what you'll get back. GBG can hand you the stock and the roadmap. The rest is still yours to build.</p>",
+        "link_text": "Read Lami's Story",
+        "link_url": "/pages/about#founder-story"
+      }
+    },
+    "faq-preview": {
+      "type": "faq-accordion",
+      "settings": {
+        "on_surface": true,
+        "group_by_category": false,
+        "eyebrow": "FAQ",
+        "heading": "Frequently Asked Questions",
+        "cta_text": "See All FAQs",
+        "cta_url": "/pages/faq"
+      },
+      "blocks": {
+        "f1": {
+          "type": "question",
+          "settings": {
+            "question": "What is GBG Wholesale Hub?",
+            "answer": "<p>A UK wholesale hub that sells ready-stock products at low minimum order quantities, alongside the education and community to help you actually resell them.</p>",
+            "link_text": "Read our story",
+            "link_url": "/pages/about"
+          }
+        },
+        "f2": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need to join the community to shop?",
+            "answer": "<p>No. You can shop and check out directly with no account or community membership required.</p>",
+            "link_text": "Shop now",
+            "link_url": "/collections/all"
+          }
+        },
+        "f3": {
+          "type": "question",
+          "settings": {
+            "question": "How much do I need to start?",
+            "answer": "<p>Starter Boxes begin at a low entry price, and there's no requirement to buy in bulk beyond each pack's stated MOQ.</p>",
+            "link_text": "See Starter Boxes",
+            "link_url": "/collections/starter-boxes"
+          }
+        },
+        "f4": {
+          "type": "question",
+          "settings": {
+            "question": "What is the Academy and how is it different from the community?",
+            "answer": "<p>The Academy is a structured, paid programme for buyers who want a guided path rather than self-serve learning.</p>",
+            "link_text": "Learn about the Academy",
+            "link_url": "/pages/academy"
+          }
+        }
+      },
+      "block_order": ["f1", "f2", "f3", "f4"]
+    },
+    "final-cta": {
+      "type": "rich-text",
+      "settings": {
+        "background": "ink",
+        "narrow": true,
+        "heading": "Your first sale starts with your first order.",
+        "primary_label": "Shop Now",
+        "primary_link_source": "custom",
+        "primary_url": "/collections/all",
+        "secondary_label": "Join the Community",
+        "secondary_link_source": "sypb_link"
+      }
+    }
+  },
+  "order": [
+    "hero-home",
+    "trust-strip",
+    "choose-journey",
+    "shop-by-category",
+    "how-it-works",
+    "featured-products",
+    "why-different",
+    "success-proof",
+    "learn-before-buy",
+    "community",
+    "academy-preview",
+    "meet-lami",
+    "faq-preview",
+    "final-cta"
+  ]
+}

@@ -1,0 +1,56 @@
+{% doc %}
+  Social icon row. Hides an icon entirely when its URL setting is empty,
+  rather than linking to "#".
+{% enddoc %}
+
+{%- assign has_social = false -%}
+{%- if settings.social_instagram_url != blank or settings.social_facebook_url != blank or settings.social_tiktok_url != blank or settings.social_pinterest_url != blank -%}
+  {%- assign has_social = true -%}
+{%- endif -%}
+
+{%- if has_social -%}
+  <ul class="social-icons">
+    {%- if settings.social_instagram_url != blank -%}
+      <li><a href="{{ settings.social_instagram_url }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a></li>
+    {%- endif -%}
+    {%- if settings.social_facebook_url != blank -%}
+      <li><a href="{{ settings.social_facebook_url }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">FB</a></li>
+    {%- endif -%}
+    {%- if settings.social_tiktok_url != blank -%}
+      <li><a href="{{ settings.social_tiktok_url }}" target="_blank" rel="noopener noreferrer" aria-label="TikTok">TT</a></li>
+    {%- endif -%}
+    {%- if settings.social_pinterest_url != blank -%}
+      <li><a href="{{ settings.social_pinterest_url }}" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">PT</a></li>
+    {%- endif -%}
+  </ul>
+
+  {% stylesheet %}
+    .social-icons {
+      display: flex;
+      gap: var(--space-3);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid color-mix(in srgb, var(--color-paper) 35%, transparent);
+      border-radius: var(--radius);
+      color: var(--color-paper);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .social-icons a:hover {
+      border-color: var(--color-brass);
+      color: var(--color-brass);
+    }
+  {% endstylesheet %}
+{%- endif -%}

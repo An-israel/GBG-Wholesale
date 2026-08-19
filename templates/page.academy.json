@@ -1,0 +1,45 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "compact": true,
+        "eyebrow": "ROUTE → ACADEMY",
+        "eyebrow_color": "plum",
+        "heading": "A guided path, not just stock.",
+        "body": "<p>For buyers who want structure — a closer look at how to build this into a real, repeatable income, not just a one-off pack.</p>"
+      }
+    },
+    "coming-soon": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": true,
+        "eyebrow": "DETAILS COMING SOON",
+        "eyebrow_color": "plum",
+        "heading": "The Academy curriculum, pricing, and enrolment are being finalised.",
+        "body": "<p>The Academy is a structured, paid programme for buyers who want a guided path rather than self-serve learning — the difference between the free community and a step-by-step course. Full curriculum, pricing, and how to enrol are being confirmed with Lami.</p><p>Join SYPB now and you'll be the first to know the moment enrolment opens.</p>",
+        "primary_label": "Join SYPB to be notified",
+        "primary_link_source": "sypb_link",
+        "secondary_label": "Shop in the meantime",
+        "secondary_link_source": "custom",
+        "secondary_url": "/collections/all"
+      }
+    },
+    "what-you-get-instead": {
+      "type": "rich-text",
+      "settings": {
+        "background": "paper",
+        "narrow": true,
+        "heading": "While you wait, here's what's already open to you"
+      },
+      "blocks": {
+        "l1": { "type": "list_item", "settings": { "text": "The free Start Your Product Business (SYPB) community and webinar." } },
+        "l2": { "type": "list_item", "settings": { "text": "The Learn Hub — Platform Guide, Pricing Calculator, Platform Safety Guide, Listings Guide." } },
+        "l3": { "type": "list_item", "settings": { "text": "Real wholesale stock at low MOQs, ready to order today." } }
+      },
+      "block_order": ["l1", "l2", "l3"]
+    }
+  },
+  "order": ["hero", "coming-soon", "what-you-get-instead"]
+}

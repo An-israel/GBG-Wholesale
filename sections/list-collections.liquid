@@ -1,0 +1,76 @@
+<div class="container section list-collections">
+  <div class="section-intro reveal">
+    <span class="route-label">SHOP &rarr; ALL CATEGORIES</span>
+    <h1>{{ 'collections.title' | t }}</h1>
+  </div>
+
+  <div class="grid grid--4">
+    {% for collection in collections %}
+      <a class="list-collections__card card reveal" href="{{ collection.url }}">
+        <div class="list-collections__image">
+          {% if collection.featured_image %}
+            <img
+              src="{{ collection.featured_image | image_url: width: 600 }}"
+              alt="{{ collection.title | escape }}"
+              loading="lazy"
+              width="600"
+              height="600"
+            >
+          {% else %}
+            <div class="list-collections__placeholder" aria-hidden="true"></div>
+          {% endif %}
+        </div>
+        <div class="list-collections__content">
+          <h3>{{ collection.title }}</h3>
+          {% if collection.description != blank %}
+            <p>{{ collection.description | strip_html | truncatewords: 15 }}</p>
+          {% endif %}
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .list-collections__card {
+    text-decoration: none;
+    color: var(--color-ink);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .list-collections__image {
+    aspect-ratio: 1;
+    background: var(--color-paper);
+  }
+
+  .list-collections__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .list-collections__placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-paper), var(--color-border));
+  }
+
+  .list-collections__content {
+    padding: var(--space-4);
+  }
+
+  .list-collections__content p {
+    font-size: 0.85rem;
+    color: color-mix(in srgb, var(--color-ink) 70%, transparent);
+    margin: var(--space-2) 0 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collections list",
+  "settings": []
+}
+{% endschema %}

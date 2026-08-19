@@ -1,0 +1,51 @@
+<section id="{{ section.settings.custom_id | default: section.id }}" class="badge-strip section--tight">
+  <div class="container badge-strip__row">
+    {% for block in section.blocks %}
+      <span class="badge" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+    {% endfor %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .badge-strip {
+    background: var(--color-surface);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .badge-strip__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Badge strip",
+  "settings": [
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "UK-Based Warehouse" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Badge strip",
+      "blocks": [
+        { "type": "badge", "settings": { "text": "UK-Based Warehouse" } },
+        { "type": "badge", "settings": { "text": "Real Wholesale Prices" } },
+        { "type": "badge", "settings": { "text": "Lami Answers Personally" } },
+        { "type": "badge", "settings": { "text": "Easy Checkout" } },
+        { "type": "badge", "settings": { "text": "Next Day Dispatch" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

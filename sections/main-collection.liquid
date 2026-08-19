@@ -1,0 +1,224 @@
+<div class="collection container section">
+  <div class="collection__header reveal">
+    <span class="route-label">SHOP &mdash; {{ collection.title | upcase }}</span>
+    <h1>{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <div class="collection__description">{{ collection.description }}</div>
+    {% endif %}
+  </div>
+
+  <div class="collection__banner card" data-reseller-banner>
+    <p>
+      <strong>Already reselling?</strong> The Learn Hub has platform guides and a pricing calculator built for exactly this.
+      <a href="/pages/learn">Explore the Learn Hub &rarr;</a>
+    </p>
+  </div>
+
+  {% paginate collection.products by 24 %}
+    <div class="collection__toolbar">
+      <details class="collection__filters" {% if collection.current_vendor or collection.current_type %}open{% endif %}>
+        <summary>
+          {% render 'icon', name: 'chevron' %}
+          {{ 'collections.filter' | t }}
+        </summary>
+        <form id="CollectionFilterForm" class="collection__filter-form">
+          {% for filter in collection.filters %}
+            <fieldset class="collection__filter-group">
+              <legend>{{ filter.label }}</legend>
+              {% if filter.type == 'price_range' %}
+                <div class="collection__price-range">
+                  <div class="field">
+                    <label class="field__label" for="FilterPriceMin">Min £</label>
+                    <input
+                      class="input"
+                      type="number"
+                      id="FilterPriceMin"
+                      name="{{ filter.min_value.param_name }}"
+                      value="{{ filter.min_value.value | default: '' }}"
+                      placeholder="0"
+                      min="0"
+                    >
+                  </div>
+                  <div class="field">
+                    <label class="field__label" for="FilterPriceMax">Max £</label>
+                    <input
+                      class="input"
+                      type="number"
+                      id="FilterPriceMax"
+                      name="{{ filter.max_value.param_name }}"
+                      value="{{ filter.max_value.value | default: '' }}"
+                      placeholder="Any"
+                      min="0"
+                    >
+                  </div>
+                </div>
+              {% else %}
+                {% for value in filter.values %}
+                  <label class="collection__filter-checkbox">
+                    <input
+                      type="checkbox"
+                      name="{{ value.param_name }}"
+                      value="{{ value.value }}"
+                      {% if value.active %}checked{% endif %}
+                      {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                    >
+                    {{ value.label }} ({{ value.count }})
+                  </label>
+                {% endfor %}
+              {% endif %}
+            </fieldset>
+          {% endfor %}
+          <button type="submit" class="btn btn--secondary btn--sm">Apply filters</button>
+          {% if collection.filters != empty %}
+            <a href="{{ collection.url }}" class="btn btn--ghost btn--sm">{{ 'collections.clear_filters' | t }}</a>
+          {% endif %}
+        </form>
+      </details>
+
+      <div class="collection__sort">
+        <label class="visually-hidden" for="CollectionSort">{{ 'collections.sort_by' | t }}</label>
+        <select class="input" id="CollectionSort" data-collection-sort>
+          {% for option in collection.sort_options %}
+            <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <p class="collection__count field__hint">{{ 'collections.results_count' | t: count: collection.products_count }}</p>
+
+    {% if collection.products.size > 0 %}
+      <div class="grid grid--4">
+        {% for product in collection.products %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      </div>
+
+      {% if paginate.pages > 1 %}
+        {% render 'pagination', paginate: paginate %}
+      {% endif %}
+    {% else %}
+      <div class="collection__empty">
+        <p>{{ 'collections.no_products' | t }}</p>
+        <p class="field__hint">{{ 'collections.no_products_body' | t }}</p>
+        <a href="{{ collection.url }}" class="btn btn--secondary">{{ 'collections.clear_filters' | t }}</a>
+      </div>
+    {% endif %}
+  {% endpaginate %}
+</div>
+
+{% stylesheet %}
+  .collection__header {
+    margin-bottom: var(--space-5);
+    max-width: 60ch;
+  }
+
+  .collection__header .route-label {
+    margin-bottom: var(--space-3);
+  }
+
+  .collection__banner {
+    padding: var(--space-4);
+    margin-bottom: var(--space-6);
+    background: color-mix(in srgb, var(--color-plum) 6%, var(--color-surface));
+    border-color: var(--color-plum);
+  }
+
+  .collection__banner p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .collection__banner a {
+    color: var(--color-plum);
+    font-weight: 700;
+  }
+
+  .collection__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .collection__filters summary {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 700;
+    list-style: none;
+    min-height: 44px;
+  }
+
+  .collection__filters summary svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .collection__filters[open] summary svg {
+    transform: rotate(180deg);
+  }
+
+  .collection__filter-form {
+    display: grid;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+    padding: var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    max-width: 360px;
+  }
+
+  .collection__filter-group {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .collection__filter-group legend {
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .collection__filter-checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.9rem;
+    padding: var(--space-1) 0;
+  }
+
+  .collection__price-range {
+    display: flex;
+    gap: var(--space-3);
+  }
+
+  .collection__sort select {
+    min-width: 180px;
+  }
+
+  .collection__count {
+    margin-bottom: var(--space-5);
+  }
+
+  .collection__empty {
+    padding: var(--space-8) 0;
+    text-align: center;
+  }
+{% endstylesheet %}
+
+<script src="{{ 'collection.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Collection pages",
+  "settings": []
+}
+{% endschema %}

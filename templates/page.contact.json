@@ -1,0 +1,40 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "compact": true,
+        "eyebrow": "ROUTE → CONTACT",
+        "heading": "Before you message us",
+        "body": "<p>Most questions are already answered somewhere on the site. Check here first — it's faster than waiting on a reply.</p>"
+      }
+    },
+    "quick-links": {
+      "type": "routing-cards",
+      "settings": {
+        "on_surface": true
+      },
+      "blocks": {
+        "q1": { "type": "card", "settings": { "heading": "Order or delivery question", "link_text": "Track Your Order", "link_url": "/pages/track-your-order" } },
+        "q2": { "type": "card", "settings": { "heading": "Pricing, platforms, or how to sell", "link_text": "FAQ", "link_url": "/pages/faq" } },
+        "q3": { "type": "card", "settings": { "heading": "Never sold before", "link_text": "Start Here", "link_url": "/pages/start-here" } }
+      },
+      "block_order": ["q1", "q2", "q3"]
+    },
+    "contact-form": {
+      "type": "contact-form",
+      "settings": {
+        "eyebrow": "GET IN TOUCH",
+        "heading": "What Do You Need Help With?"
+      }
+    },
+    "contact-info": {
+      "type": "contact-info",
+      "settings": {
+        "eyebrow": "STILL NEED US?",
+        "heading": "Still Need Us?"
+      }
+    }
+  },
+  "order": ["hero", "quick-links", "contact-form", "contact-info"]
+}

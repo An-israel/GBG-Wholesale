@@ -1,0 +1,118 @@
+{% liquid
+  assign grouped = section.settings.group_by_category
+  assign categories = '' | split: ','
+  if grouped
+    for block in section.blocks
+      assign cat = block.settings.category | default: 'General'
+      unless categories contains cat
+        assign categories = categories | concat: cat
+      endunless
+    endfor
+  endif
+%}
+
+<section id="{{ section.settings.custom_id | default: section.id }}" class="faq-section section {% if section.settings.on_surface %}section--surface{% endif %}">
+  <div class="container faq-section__inner">
+    {% if section.settings.eyebrow != blank or section.settings.heading != blank %}
+      <div class="section-intro reveal">
+        {% if section.settings.eyebrow != blank %}<span class="route-label">{{ section.settings.eyebrow }}</span>{% endif %}
+        {% if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif %}
+      </div>
+    {% endif %}
+
+    {% if grouped %}
+      {% for cat in categories %}
+        <div class="faq-section__category">
+          <h3 class="faq-section__category-title">{{ cat }}</h3>
+          <div class="accordion">
+            {% for block in section.blocks %}
+              {% liquid
+                assign block_cat = block.settings.category | default: 'General'
+              %}
+              {% if block_cat == cat %}
+                {% render 'faq-item', block: block %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="accordion">
+        {% for block in section.blocks %}
+          {% render 'faq-item', block: block %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.cta_text != blank %}
+      <div class="faq-section__cta">
+        <a href="{{ section.settings.cta_url }}" class="btn btn--secondary">{{ section.settings.cta_text }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .faq-section__category + .faq-section__category {
+    margin-top: var(--space-7);
+  }
+
+  .faq-section__category-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-brass-text);
+    margin-bottom: var(--space-3);
+  }
+
+  .faq-section__cta {
+    text-align: center;
+    margin-top: var(--space-7);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "FAQ accordion",
+  "settings": [
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
+    { "type": "checkbox", "id": "on_surface", "label": "White surface background", "default": false },
+    { "type": "checkbox", "id": "group_by_category", "label": "Group questions under category headings", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Frequently Asked Questions" },
+    { "type": "text", "id": "cta_text", "label": "Bottom CTA text" },
+    { "type": "url", "id": "cta_url", "label": "Bottom CTA link" }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "category", "label": "Category (used when grouping is on)", "default": "General" },
+        { "type": "text", "id": "question", "label": "Question", "default": "What is GBG Wholesale Hub?" },
+        { "type": "richtext", "id": "answer", "label": "Answer" },
+        { "type": "select", "id": "dynamic_append", "label": "Append a live setting value", "options": [
+            { "value": "none", "label": "None" },
+            { "value": "warehouse_location", "label": "Warehouse location" },
+            { "value": "dispatch_timeframe", "label": "Dispatch timeframe" },
+            { "value": "starter_box_min_price", "label": "Starter Box minimum price" },
+            { "value": "next_webinar_date", "label": "Next webinar date" }
+          ], "default": "none" },
+        { "type": "text", "id": "link_text", "label": "Link text (optional)" },
+        { "type": "url", "id": "link_url", "label": "Link (optional)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ accordion",
+      "blocks": [
+        { "type": "question" },
+        { "type": "question" },
+        { "type": "question" },
+        { "type": "question" }
+      ]
+    }
+  ]
+}
+{% endschema %}

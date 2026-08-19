@@ -1,0 +1,172 @@
+<section id="{{ section.settings.custom_id | default: section.id }}" class="contact-form-section section section--surface">
+  <div class="container">
+    <div class="section-intro reveal">
+      {% if section.settings.eyebrow != blank %}<span class="route-label">{{ section.settings.eyebrow }}</span>{% endif %}
+      {% if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif %}
+    </div>
+
+    {% form 'contact', id: 'ContactForm', class: 'contact-form card' %}
+      <div class="field">
+        <label class="field__label" for="ContactReason">What do you need help with?</label>
+        <select class="input" id="ContactReason" name="contact[Reason]" data-contact-reason required>
+          <option value="">Choose a reason&hellip;</option>
+          <option value="Order issue">Order issue</option>
+          <option value="Product question">Product question</option>
+          <option value="Reseller support">Reseller support</option>
+          <option value="Academy or Community">Academy or Community</option>
+          <option value="Something else">Something else</option>
+        </select>
+      </div>
+
+      <div class="contact-form__grid">
+        <div class="field">
+          <label class="field__label" for="ContactName">Name</label>
+          <input class="input" type="text" id="ContactName" name="contact[name]" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label class="field__label" for="ContactEmail">Email</label>
+          <input class="input" type="email" id="ContactEmail" name="contact[email]" autocomplete="email" value="{{ form.email }}" required>
+        </div>
+      </div>
+
+      <div class="contact-form__group" data-contact-group="Order issue" hidden>
+        <div class="contact-form__grid">
+          <div class="field">
+            <label class="field__label" for="ContactOrderNumber">Order number</label>
+            <input class="input" type="text" id="ContactOrderNumber" name="contact[Order number]" data-conditional-field>
+          </div>
+          <div class="field">
+            <label class="field__label" for="ContactOrderEmail">Order email (if different)</label>
+            <input class="input" type="email" id="ContactOrderEmail" name="contact[Order email]" data-conditional-field>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field__label" for="ContactIssueType">Issue type</label>
+          <select class="input" id="ContactIssueType" name="contact[Issue type]" data-conditional-field>
+            <option value="Wrong item">Wrong item</option>
+            <option value="Damaged item">Damaged item</option>
+            <option value="Missing item">Missing item</option>
+            <option value="Delayed delivery">Delayed delivery</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="contact-form__group" data-contact-group="Product question" hidden>
+        <div class="field">
+          <label class="field__label" for="ContactProduct">Which product?</label>
+          <input class="input" type="text" id="ContactProduct" name="contact[Product]" data-conditional-field>
+        </div>
+        <div class="field">
+          <label class="field__label" for="ContactQuestion">Your question</label>
+          <textarea class="input" id="ContactQuestion" name="contact[Question]" rows="3" data-conditional-field></textarea>
+        </div>
+      </div>
+
+      <div class="contact-form__group" data-contact-group="Reseller support" hidden>
+        <div class="field">
+          <label class="field__label" for="ContactPlatform">Platform you sell on</label>
+          <select class="input" id="ContactPlatform" name="contact[Platform]" data-conditional-field>
+            <option value="Vinted">Vinted</option>
+            <option value="eBay">eBay</option>
+            <option value="TikTok Shop">TikTok Shop</option>
+            <option value="Facebook Marketplace">Facebook Marketplace</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="ContactStage">What stage are you stuck at?</label>
+          <textarea class="input" id="ContactStage" name="contact[Stage]" rows="3" data-conditional-field></textarea>
+        </div>
+      </div>
+
+      <div class="contact-form__group" data-contact-group="Academy or Community" hidden>
+        <div class="field">
+          <label class="field__label" for="ContactWhich">Which one?</label>
+          <select class="input" id="ContactWhich" name="contact[Which]" data-conditional-field>
+            <option value="Academy">Academy</option>
+            <option value="SYPB">SYPB</option>
+            <option value="Wholesale Hub">Wholesale Hub</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="ContactCommunityDetails">What do you need to know?</label>
+          <textarea class="input" id="ContactCommunityDetails" name="contact[Details]" rows="3" data-conditional-field></textarea>
+        </div>
+      </div>
+
+      <div class="contact-form__group" data-contact-group="Something else" hidden>
+        <div class="field">
+          <label class="field__label" for="ContactSomethingElse">Tell us more</label>
+          <textarea class="input" id="ContactSomethingElse" name="contact[Message]" rows="4" data-conditional-field></textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="ContactBody">Additional details (optional)</label>
+        <textarea class="input" id="ContactBody" name="contact[body]" rows="3"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn--primary">Send message</button>
+
+      <div class="form-status" {% if form.posted_successfully? %}data-state="success"{% elsif form.errors %}data-state="error"{% endif %}>
+        {% if form.posted_successfully? %}
+          Thanks — your message is in. We reply within 24 hours everyday except Fridays and Sundays.
+        {% elsif form.errors %}
+          {{ 'forms.error_generic' | t }}
+          <ul>
+            {% for field in form.errors %}
+              <li>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    {% endform %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .contact-form {
+    max-width: 640px;
+    padding: var(--space-6);
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .contact-form__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  @media (max-width: 480px) {
+    .contact-form__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .contact-form__group[hidden] {
+    display: none;
+  }
+
+  .contact-form .form-status ul {
+    margin: var(--space-2) 0 0;
+    padding-left: 1.2em;
+  }
+{% endstylesheet %}
+
+<script src="{{ 'contact-form.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Contact form",
+  "settings": [
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label", "default": "GET IN TOUCH" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What Do You Need Help With?" }
+  ],
+  "presets": [
+    { "name": "Contact form" }
+  ]
+}
+{% endschema %}

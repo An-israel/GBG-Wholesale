@@ -1,0 +1,91 @@
+<section id="{{ section.settings.custom_id | default: section.id }}" class="two-col section {% if section.settings.image_position == 'right' %}two-col--image-right{% endif %}">
+  <div class="container two-col__grid">
+    <div class="two-col__media reveal">
+      {% if section.settings.image %}
+        <img
+          src="{{ section.settings.image | image_url: width: 900 }}"
+          srcset="{{ section.settings.image | image_url: width: 500 }} 500w, {{ section.settings.image | image_url: width: 900 }} 900w"
+          sizes="(min-width: 768px) 45vw, 100vw"
+          alt="{{ section.settings.image_alt | default: section.settings.heading | escape }}"
+          loading="lazy"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+        >
+      {% else %}
+        <div class="two-col__placeholder" aria-hidden="true"></div>
+      {% endif %}
+    </div>
+
+    <div class="two-col__content reveal">
+      {% if section.settings.eyebrow != blank %}<span class="route-label">{{ section.settings.eyebrow }}</span>{% endif %}
+      {% if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif %}
+      {% if section.settings.body != blank %}<div class="two-col__body">{{ section.settings.body }}</div>{% endif %}
+      {% if section.settings.link_text != blank %}
+        <a href="{{ section.settings.link_url }}" class="btn btn--secondary">{{ section.settings.link_text }}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .two-col__grid {
+    display: grid;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .two-col__grid {
+      grid-template-columns: 0.85fr 1.15fr;
+    }
+
+    .two-col--image-right .two-col__grid {
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+
+    .two-col--image-right .two-col__media {
+      order: 2;
+    }
+  }
+
+  .two-col__media img,
+  .two-col__placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--color-surface), var(--color-border));
+  }
+
+  .two-col__content .route-label {
+    margin-bottom: var(--space-4);
+  }
+
+  .two-col__body {
+    font-size: 1.05rem;
+    margin-bottom: var(--space-5);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Image with text",
+  "settings": [
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
+    { "type": "select", "id": "image_position", "label": "Image position", "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ], "default": "left" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "image_alt", "label": "Image alt text" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Meet Lami" },
+    { "type": "richtext", "id": "body", "label": "Body" },
+    { "type": "text", "id": "link_text", "label": "Link text" },
+    { "type": "url", "id": "link_url", "label": "Link" }
+  ],
+  "presets": [
+    { "name": "Image with text" }
+  ]
+}
+{% endschema %}

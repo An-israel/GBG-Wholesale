@@ -1,0 +1,79 @@
+<section id="{{ section.settings.custom_id | default: section.id }}" class="contact-info section section--surface">
+  <div class="container">
+    <div class="contact-info__inner reveal">
+      {% if section.settings.eyebrow != blank %}<span class="route-label route-label--forest">{{ section.settings.eyebrow }}</span>{% endif %}
+      <h2>{{ section.settings.heading }}</h2>
+      <p>
+        For anything urgent, or if the form doesn't cover it, message us directly on WhatsApp.
+      </p>
+
+      {% if settings.whatsapp_link != blank %}
+        <a href="{{ settings.whatsapp_link }}" target="_blank" rel="noopener noreferrer" class="btn btn--forest">
+          {% render 'icon', name: 'whatsapp' %}
+          Message us on WhatsApp
+        </a>
+      {% endif %}
+
+      <dl class="contact-info__meta">
+        <div>
+          <dt>Response time</dt>
+          <dd>{{ settings.response_time_text }}</dd>
+        </div>
+        <div>
+          <dt>Support hours</dt>
+          <dd>{{ settings.support_hours_text }}</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .contact-info__inner {
+    max-width: 56ch;
+  }
+
+  .contact-info .route-label {
+    margin-bottom: var(--space-4);
+  }
+
+  .contact-info .btn {
+    margin-top: var(--space-4);
+  }
+
+  .contact-info__meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+    margin: var(--space-7) 0 0;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .contact-info__meta dt {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: color-mix(in srgb, var(--color-ink) 55%, transparent);
+    margin-bottom: var(--space-2);
+  }
+
+  .contact-info__meta dd {
+    margin: 0;
+    font-weight: 700;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Contact info",
+  "settings": [
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label", "default": "STILL NEED US?" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Still Need Us?" }
+  ],
+  "presets": [
+    { "name": "Contact info" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,185 @@
+<section
+  id="{{ section.settings.custom_id | default: section.id }}"
+  class="rich-text section
+    {% if section.settings.background == 'surface' %}section--surface{% elsif section.settings.background == 'ink' %}section--ink{% endif %}
+    {% if section.settings.narrow %}rich-text--narrow{% endif %}"
+>
+  <div class="container">
+    <div class="rich-text__inner reveal">
+      {% if section.settings.eyebrow != blank %}
+        <span class="route-label {% if section.settings.eyebrow_color == 'forest' %}route-label--forest{% elsif section.settings.eyebrow_color == 'plum' %}route-label--plum{% endif %}">
+          {{ section.settings.eyebrow }}
+        </span>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif %}
+
+      {% if section.settings.body != blank %}
+        <div class="rich-text__body {% if section.settings.use_editorial_style %}editorial{% endif %}">
+          {{ section.settings.body }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.attribution != blank %}
+        <p class="rich-text__attribution">{{ section.settings.attribution }}</p>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <ul class="rich-text__list">
+          {% for block in section.blocks %}
+            <li {{ block.shopify_attributes }}>
+              {% render 'icon', name: 'check' %}
+              <span>{{ block.settings.text }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {% liquid
+        assign primary_href = section.settings.primary_url
+        if section.settings.primary_link_source == 'sypb_link'
+          assign primary_href = settings.sypb_link
+        elsif section.settings.primary_link_source == 'whatsapp_link'
+          assign primary_href = settings.whatsapp_link
+        elsif section.settings.primary_link_source == 'wholesale_hub_link'
+          assign primary_href = settings.wholesale_hub_join_link
+        endif
+
+        assign secondary_href = section.settings.secondary_url
+        if section.settings.secondary_link_source == 'sypb_link'
+          assign secondary_href = settings.sypb_link
+        elsif section.settings.secondary_link_source == 'whatsapp_link'
+          assign secondary_href = settings.whatsapp_link
+        elsif section.settings.secondary_link_source == 'wholesale_hub_link'
+          assign secondary_href = settings.wholesale_hub_join_link
+        endif
+
+        assign primary_label = section.settings.primary_label
+        if section.settings.append_webinar_date and primary_label != blank
+          assign webinar = settings.next_webinar_date | default: 'announced inside SYPB'
+          assign primary_label = primary_label | append: ' · Next webinar: ' | append: webinar
+        endif
+      %}
+      {% if section.settings.primary_label != blank or section.settings.secondary_label != blank %}
+        <div class="rich-text__actions">
+          {% if section.settings.primary_label != blank %}
+            <a href="{{ primary_href }}" class="btn btn--primary" {% if section.settings.primary_link_source != 'custom' %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ primary_label }}</a>
+          {% endif %}
+          {% if section.settings.secondary_label != blank %}
+            <a href="{{ secondary_href }}" class="btn btn--secondary" {% if section.settings.secondary_link_source != 'custom' %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ section.settings.secondary_label }}</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .rich-text__inner {
+    max-width: 72ch;
+  }
+
+  .rich-text--narrow .rich-text__inner {
+    max-width: 56ch;
+  }
+
+  .rich-text .route-label {
+    margin-bottom: var(--space-4);
+  }
+
+  .rich-text__body {
+    font-size: 1.05rem;
+  }
+
+  .rich-text__body.editorial {
+    font-size: 1.35rem;
+    line-height: 1.5;
+  }
+
+  .rich-text__list {
+    list-style: none;
+    margin: var(--space-5) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .rich-text__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .rich-text__list svg {
+    width: 18px;
+    height: 18px;
+    color: var(--color-forest);
+    flex-shrink: 0;
+    margin-top: 0.15em;
+  }
+
+  .rich-text__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .section--ink .rich-text__body {
+    color: color-mix(in srgb, var(--color-paper) 90%, transparent);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Rich text",
+  "settings": [
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
+    { "type": "select", "id": "background", "label": "Background", "options": [
+        { "value": "paper", "label": "Paper" },
+        { "value": "surface", "label": "White surface" },
+        { "value": "ink", "label": "Ink (dark)" }
+      ], "default": "paper" },
+    { "type": "checkbox", "id": "narrow", "label": "Narrow column", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label" },
+    { "type": "select", "id": "eyebrow_color", "label": "Eyebrow color", "options": [
+        { "value": "brass", "label": "Brass" },
+        { "value": "forest", "label": "Forest" },
+        { "value": "plum", "label": "Plum" }
+      ], "default": "brass" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "richtext", "id": "body", "label": "Body" },
+    { "type": "checkbox", "id": "use_editorial_style", "label": "Use editorial (Lora) styling for body", "default": false },
+    { "type": "text", "id": "attribution", "label": "Attribution line (e.g. — Lami)" },
+    { "type": "text", "id": "primary_label", "label": "Primary button label" },
+    { "type": "select", "id": "primary_link_source", "label": "Primary button links to", "options": [
+        { "value": "custom", "label": "Custom link (set below)" },
+        { "value": "sypb_link", "label": "Sitewide SYPB link" },
+        { "value": "whatsapp_link", "label": "Sitewide WhatsApp link" },
+        { "value": "wholesale_hub_link", "label": "Sitewide Wholesale Hub link" }
+      ], "default": "custom" },
+    { "type": "url", "id": "primary_url", "label": "Primary button custom link" },
+    { "type": "checkbox", "id": "append_webinar_date", "label": "Append next webinar date to primary button label", "default": false },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button label" },
+    { "type": "select", "id": "secondary_link_source", "label": "Secondary button links to", "options": [
+        { "value": "custom", "label": "Custom link (set below)" },
+        { "value": "sypb_link", "label": "Sitewide SYPB link" },
+        { "value": "whatsapp_link", "label": "Sitewide WhatsApp link" },
+        { "value": "wholesale_hub_link", "label": "Sitewide Wholesale Hub link" }
+      ], "default": "custom" },
+    { "type": "url", "id": "secondary_url", "label": "Secondary button custom link" }
+  ],
+  "blocks": [
+    {
+      "type": "list_item",
+      "name": "List item",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "List item" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Rich text" }
+  ]
+}
+{% endschema %}

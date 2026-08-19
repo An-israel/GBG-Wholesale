@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "compact": true,
+        "eyebrow": "LEARN → LISTINGS GUIDE",
+        "heading": "Listings Guide",
+        "body": "<p>Clear photos, honest titles, and the keywords that actually get you found.</p>"
+      }
+    },
+    "body": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": true,
+        "eyebrow": "COMING SOON",
+        "heading": "This guide is being written",
+        "body": "<p>The full listings walkthrough — photography, titles, descriptions, and keyword placement per platform — is being finalised. In the meantime, the core rule holds everywhere: clear natural-light photos, an honest title with the brand/type/size, and a description that answers the question before it's asked.</p>",
+        "primary_label": "Join SYPB",
+        "primary_link_source": "sypb_link",
+        "secondary_label": "Back to Learn Hub",
+        "secondary_link_source": "custom",
+        "secondary_url": "/pages/learn"
+      }
+    }
+  },
+  "order": ["hero", "body"]
+}

@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "content": {
+      "type": "legal-content",
+      "settings": {
+        "eyebrow": "SUPPORT → TRACKING",
+        "heading": "Track Your Order",
+        "content_source": "track_order_body"
+      }
+    },
+    "lookup": {
+      "type": "order-lookup",
+      "settings": {}
+    }
+  },
+  "order": ["content", "lookup"]
+}

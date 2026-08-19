@@ -1,0 +1,205 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<div class="product container section">
+  <div class="product__grid">
+    <div class="product__gallery">
+      {% if product.media.size > 0 %}
+        <div class="product__gallery-main">
+          <img
+            id="ProductMainImage"
+            src="{{ product.selected_or_first_available_variant.featured_image | default: product.featured_image | image_url: width: 1000 }}"
+            srcset="{{ product.featured_image | image_url: width: 600 }} 600w, {{ product.featured_image | image_url: width: 1000 }} 1000w"
+            sizes="(min-width: 900px) 50vw, 100vw"
+            alt="{{ product.featured_image.alt | default: product.title | escape }}"
+            width="{{ product.featured_image.width }}"
+            height="{{ product.featured_image.height }}"
+            loading="eager"
+          >
+        </div>
+        {% if product.media.size > 1 %}
+          <div class="product__thumbs">
+            {% for media in product.media %}
+              <button
+                type="button"
+                class="product__thumb {% if forloop.first %}is-active{% endif %}"
+                data-product-thumb
+                data-image-url="{{ media.preview_image | image_url: width: 1000 }}"
+                aria-label="Show image {{ forloop.index }}"
+              >
+                <img src="{{ media.preview_image | image_url: width: 200 }}" alt="" width="80" height="80" loading="lazy">
+              </button>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% else %}
+        <div class="product__gallery-placeholder" aria-hidden="true"></div>
+      {% endif %}
+    </div>
+
+    <div class="product__info">
+      <span class="route-label">LOT &mdash; {{ product.handle | upcase | truncate: 18, '' }}</span>
+      <h1>{{ product.title }}</h1>
+
+      {% render 'price', product: product %}
+
+      {% if product.description != blank %}
+        <div class="product__description">{{ product.description }}</div>
+      {% endif %}
+
+      {% form 'product', product, data-cart-add-form: true, class: 'product__form' %}
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <div class="field">
+              <label class="field__label" for="ProductOption-{{ option.position }}">{{ option.name }}</label>
+              <select class="input" id="ProductOption-{{ option.position }}" name="option-{{ option.position }}" data-product-option data-option-index="{{ forloop.index0 }}">
+                {% for value in option.values %}
+                  <option value="{{ value | escape }}" {% if value == option.selected_value %}selected{% endif %}>{{ value }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endfor %}
+          <select class="input u-hidden" name="id" data-product-variant-id>
+            {% for variant in product.variants %}
+              <option
+                value="{{ variant.id }}"
+                data-option-values="{{ variant.options | join: '|||' | escape }}"
+                {% if variant == current_variant %}selected{% endif %}
+              >
+                {{ variant.title }}
+              </option>
+            {% endfor %}
+          </select>
+        {% else %}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+        {% endunless %}
+
+        <div class="field">
+          <label class="field__label" for="ProductQuantity">{{ 'products.quantity' | t }}</label>
+          <div class="qty-stepper qty-stepper--lg">
+            <button type="button" class="qty-stepper__btn" data-qty-decrease aria-label="Decrease quantity">{% render 'icon', name: 'minus' %}</button>
+            <input class="qty-stepper__input" type="number" id="ProductQuantity" name="quantity" min="1" value="1">
+            <button type="button" class="qty-stepper__btn" data-qty-increase aria-label="Increase quantity">{% render 'icon', name: 'plus' %}</button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn--primary btn--block"
+          data-product-submit
+          {% unless current_variant.available %}disabled aria-disabled="true"{% endunless %}
+        >
+          <span data-submit-text>
+            {% if current_variant.available %}{{ 'products.add_to_cart' | t }}{% else %}{{ 'products.sold_out' | t }}{% endif %}
+          </span>
+        </button>
+        <p class="field__error" data-cart-add-error hidden></p>
+      {% endform %}
+
+      {% render 'dm-keyword-note', product: product, text: section.settings.dm_note_text %}
+    </div>
+  </div>
+</div>
+
+<div class="related-products-mount" data-recommendations-url="{{ routes.product_recommendations_url }}?section_id=related-products&product_id={{ product.id }}&limit=4&intent=related"></div>
+
+{% stylesheet %}
+  .product__grid {
+    display: grid;
+    gap: var(--space-7);
+  }
+
+  @media (min-width: 900px) {
+    .product__grid {
+      grid-template-columns: 1.1fr 1fr;
+    }
+  }
+
+  .product__gallery-main {
+    aspect-ratio: 1;
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .product__gallery-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product__gallery-placeholder {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--color-surface), var(--color-border));
+    border-radius: var(--radius);
+  }
+
+  .product__thumbs {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .product__thumb {
+    width: 64px;
+    height: 64px;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+
+  .product__thumb.is-active {
+    border-color: var(--color-brass);
+  }
+
+  .product__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product__info .route-label {
+    margin-bottom: var(--space-3);
+  }
+
+  .product__info .price {
+    font-size: 1.3rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .product__description {
+    margin-bottom: var(--space-5);
+  }
+
+  .product__form {
+    display: grid;
+    gap: var(--space-4);
+    max-width: 380px;
+  }
+
+  .qty-stepper--lg .qty-stepper__btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .qty-stepper--lg {
+    display: inline-flex;
+  }
+
+  .qty-stepper--lg .qty-stepper__input {
+    width: 48px;
+  }
+{% endstylesheet %}
+
+<script src="{{ 'product.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Product information",
+  "settings": [
+    { "type": "textarea", "id": "dm_note_text", "label": "DM keyword backup note text (optional override)" }
+  ]
+}
+{% endschema %}

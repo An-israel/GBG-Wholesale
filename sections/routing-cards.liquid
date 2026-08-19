@@ -1,0 +1,119 @@
+<section id="{{ section.settings.custom_id | default: section.id }}" class="routing-cards section {% if section.settings.on_surface %}section--surface{% endif %}">
+  <div class="container">
+    {% if section.settings.eyebrow != blank or section.settings.heading != blank %}
+      <div class="section-intro reveal">
+        {% if section.settings.eyebrow != blank %}<span class="route-label">{{ section.settings.eyebrow }}</span>{% endif %}
+        {% if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif %}
+      </div>
+    {% endif %}
+
+    <div class="routing-cards__row" style="--card-count: {{ section.blocks.size }};">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link_url }}" class="routing-cards__card card reveal" {{ block.shopify_attributes }}>
+          <span class="routing-cards__index" aria-hidden="true">{{ forloop.index | prepend: '0' | slice: -2, 2 }} &mdash;</span>
+          <h3>{{ block.settings.heading }}</h3>
+          {% if block.settings.body != blank %}<p>{{ block.settings.body }}</p>{% endif %}
+          <span class="routing-cards__cta">
+            {{ block.settings.link_text }}
+            {% render 'icon', name: 'arrow-right' %}
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .routing-cards__row {
+    display: grid;
+    gap: var(--space-4);
+    position: relative;
+  }
+
+  @media (min-width: 768px) {
+    .routing-cards__row {
+      grid-template-columns: repeat(var(--card-count, 4), 1fr);
+      align-items: stretch;
+    }
+  }
+
+  .routing-cards__index {
+    display: block;
+    font-family: 'Public Sans', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: color-mix(in srgb, var(--color-ink) 45%, transparent);
+  }
+
+  .routing-cards__card {
+    padding: var(--space-5);
+    text-decoration: none;
+    color: var(--color-ink);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    border-top: 3px solid var(--color-brass);
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+
+  .routing-cards__card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .routing-cards__card p {
+    margin: 0;
+    color: color-mix(in srgb, var(--color-ink) 75%, transparent);
+    flex: 1;
+  }
+
+  .routing-cards__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 700;
+    color: var(--color-brass-text);
+    font-size: 0.9rem;
+  }
+
+  .routing-cards__cta svg {
+    width: 14px;
+    height: 14px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Routing cards",
+  "settings": [
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
+    { "type": "checkbox", "id": "on_surface", "label": "White surface background", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label" },
+    { "type": "text", "id": "heading", "label": "Heading" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "New to reselling?" },
+        { "type": "textarea", "id": "body", "label": "Body" },
+        { "type": "text", "id": "link_text", "label": "Link text", "default": "Start Here" },
+        { "type": "url", "id": "link_url", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Routing cards",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

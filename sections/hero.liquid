@@ -1,0 +1,145 @@
+<section id="{{ section.settings.custom_id | default: section.id }}" class="hero section {% if section.settings.compact %}hero--compact{% endif %}">
+  <div class="container hero__grid">
+    <div class="hero__content reveal">
+      {% if section.settings.eyebrow != blank %}
+        <span class="route-label">{{ section.settings.eyebrow }}</span>
+      {% endif %}
+      <h1>{{ section.settings.heading }}</h1>
+      {% if section.settings.body != blank %}
+        <div class="hero__body">{{ section.settings.body }}</div>
+      {% endif %}
+
+      <div class="hero__actions">
+        {% if section.settings.primary_label != blank %}
+          <a href="{{ section.settings.primary_url }}" class="btn btn--primary">{{ section.settings.primary_label }}</a>
+        {% endif %}
+        {% if section.settings.secondary_label != blank %}
+          <a href="{{ section.settings.secondary_url }}" class="btn btn--secondary">{{ section.settings.secondary_label }}</a>
+        {% endif %}
+      </div>
+
+      {% if section.settings.show_whatsapp_line and settings.whatsapp_link != blank %}
+        <a href="{{ settings.whatsapp_link }}" target="_blank" rel="noopener noreferrer" class="hero__whatsapp-line">
+          {% render 'icon', name: 'whatsapp' %}
+          {{ section.settings.whatsapp_line_text }}
+        </a>
+      {% endif %}
+
+      {% if section.settings.show_stats %}
+        <ul class="hero__stats">
+          {% if settings.stat_customers_text != blank %}<li>{{ settings.stat_customers_text }}</li>{% endif %}
+          {% if settings.stat_price_text != blank %}<li>{{ settings.stat_price_text }}</li>{% endif %}
+          {% if settings.stat_shipping_text != blank %}<li>{{ settings.stat_shipping_text }}</li>{% endif %}
+        </ul>
+      {% endif %}
+    </div>
+
+    {% if section.settings.image %}
+      <div class="hero__media reveal">
+        <img
+          src="{{ section.settings.image | image_url: width: 1200 }}"
+          srcset="{{ section.settings.image | image_url: width: 600 }} 600w, {{ section.settings.image | image_url: width: 900 }} 900w, {{ section.settings.image | image_url: width: 1200 }} 1200w"
+          sizes="(min-width: 768px) 50vw, 100vw"
+          alt="{{ section.settings.image_alt | default: section.settings.heading | escape }}"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+          loading="eager"
+        >
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .hero__grid {
+    display: grid;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  .hero:not(.hero--compact) .hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 900px) {
+    .hero .hero__grid {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+
+  .hero__content .route-label {
+    margin-bottom: var(--space-4);
+  }
+
+  .hero__body {
+    font-size: 1.1rem;
+    max-width: 52ch;
+    color: color-mix(in srgb, var(--color-ink) 85%, transparent);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  .hero__whatsapp-line {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-5);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    color: var(--color-forest);
+    font-weight: 600;
+  }
+
+  .hero__whatsapp-line svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hero__stats {
+    list-style: none;
+    margin: var(--space-6) 0 0;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-6);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .hero__media img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)", "info": "For linking to this section from a button elsewhere, e.g. \"founder-story\"." },
+    { "type": "checkbox", "id": "compact", "label": "Compact (page hero, no side image)", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Real stock. Real margins. A community that actually shows you how." },
+    { "type": "richtext", "id": "body", "label": "Body" },
+    { "type": "text", "id": "primary_label", "label": "Primary button label", "default": "Shop Now" },
+    { "type": "url", "id": "primary_url", "label": "Primary button link" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button label" },
+    { "type": "url", "id": "secondary_url", "label": "Secondary button link" },
+    { "type": "checkbox", "id": "show_whatsapp_line", "label": "Show WhatsApp personal-shopper line", "default": false },
+    { "type": "text", "id": "whatsapp_line_text", "label": "WhatsApp line text", "default": "Not sure what to order? Chat with us on WhatsApp and we'll point you the right way." },
+    { "type": "checkbox", "id": "show_stats", "label": "Show trust stats row", "default": false },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "image_alt", "label": "Image alt text" }
+  ],
+  "presets": [
+    { "name": "Hero" }
+  ]
+}
+{% endschema %}

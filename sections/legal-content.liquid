@@ -1,0 +1,58 @@
+{% liquid
+  case section.settings.content_source
+    when 'returns_policy_body'
+      assign body = settings.returns_policy_body
+    when 'privacy_policy_body'
+      assign body = settings.privacy_policy_body
+    when 'terms_body'
+      assign body = settings.terms_body
+    when 'track_order_body'
+      assign body = settings.track_order_body
+  endcase
+%}
+
+<section id="{{ section.settings.custom_id | default: section.id }}" class="legal-content section section--surface">
+  <div class="container legal-content__inner reveal">
+    <span class="route-label">{{ section.settings.eyebrow }}</span>
+    <h1>{{ section.settings.heading }}</h1>
+    <div class="legal-content__body">{{ body }}</div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .legal-content__inner {
+    max-width: 68ch;
+  }
+
+  .legal-content .route-label {
+    margin-bottom: var(--space-4);
+  }
+
+  .legal-content__body {
+    font-size: 1.05rem;
+  }
+
+  .legal-content__body p {
+    margin-bottom: var(--space-4);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Legal content",
+  "settings": [
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label", "default": "LEGAL" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Returns Policy" },
+    { "type": "select", "id": "content_source", "label": "Content source (edited in Theme Settings)", "options": [
+        { "value": "returns_policy_body", "label": "Returns policy" },
+        { "value": "privacy_policy_body", "label": "Privacy policy" },
+        { "value": "terms_body", "label": "Terms of service" },
+        { "value": "track_order_body", "label": "Track your order intro" }
+      ], "default": "returns_policy_body" }
+  ],
+  "presets": [
+    { "name": "Legal content" }
+  ]
+}
+{% endschema %}

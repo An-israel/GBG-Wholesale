@@ -1,0 +1,59 @@
+<div class="container section account-page">
+  <div class="account-page__header">
+    <span class="route-label">ACCOUNT</span>
+    <h1>{{ 'customers.account.title' | t }}</h1>
+    <p>Welcome back, {{ customer.first_name | default: customer.email }}.</p>
+  </div>
+
+  {% if customer.orders_count > 0 %}
+    <div class="account-page__hub-banner reveal">
+      <span class="route-label route-label--forest">UNLOCKED</span>
+      <h2>You've unlocked the GBG Wholesale Hub</h2>
+      <p>As a verified buyer, you now have access to deal drops, restock alerts, and the active reseller community.</p>
+      {% if settings.wholesale_hub_join_link != blank %}
+        <a href="{{ settings.wholesale_hub_join_link }}" target="_blank" rel="noopener noreferrer" class="btn btn--forest">Join the Wholesale Hub</a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="account-page__grid account-page__grid--2">
+    <div class="card account-page__card">
+      <h2>{{ 'customers.order.your_orders' | t }}</h2>
+      {% if customer.orders.size > 0 %}
+        <table class="account-page__table">
+          <thead>
+            <tr>
+              <th scope="col">Order</th>
+              <th scope="col">Date</th>
+              <th scope="col">Total</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in customer.orders %}
+              <tr>
+                <td><a href="{{ order.customer_url }}">{{ order.name }}</a></td>
+                <td>{{ order.created_at | date: '%d %b %Y' }}</td>
+                <td>{{ order.total_price | money }}</td>
+                <td>{{ order.fulfillment_status_label }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="field__hint">No orders yet.</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--secondary">Shop now</a>
+      {% endif %}
+    </div>
+
+    <div class="card account-page__card">
+      <h2>{{ 'customers.addresses.title' | t }}</h2>
+      <p class="field__hint">{{ customer.addresses.size }} saved address{{ customer.addresses.size | pluralize: '', 'es' }}.</p>
+      <a href="{{ routes.account_addresses_url }}" class="btn btn--secondary">Manage addresses</a>
+    </div>
+  </div>
+
+  <p class="account-page__meta">
+    <a href="{{ routes.account_logout_url }}">{{ 'customers.account.logout' | t }}</a>
+  </p>
+</div>

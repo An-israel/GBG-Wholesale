@@ -1,0 +1,55 @@
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "settings": {}
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "shop": {
+          "type": "mega_menu",
+          "settings": {
+            "label": "Shop",
+            "url": "/collections/all",
+            "sublink1_label": "New Arrivals",
+            "sublink1_url": "/collections/new-arrivals",
+            "sublink2_label": "Best Sellers",
+            "sublink2_url": "/collections/best-sellers",
+            "sublink3_label": "Jewellery & Accessories",
+            "sublink3_url": "/collections/jewellery-accessories",
+            "sublink4_label": "Electronics",
+            "sublink4_url": "/collections/electronics",
+            "sublink5_label": "Fashion",
+            "sublink5_url": "/collections/fashion",
+            "sublink6_label": "Home & Lifestyle",
+            "sublink6_url": "/collections/home-lifestyle",
+            "sublink7_label": "Starter Boxes",
+            "sublink7_url": "/collections/starter-boxes"
+          }
+        },
+        "start-here": {
+          "type": "link",
+          "settings": { "label": "Start Here", "url": "/pages/start-here" }
+        },
+        "learn": {
+          "type": "link",
+          "settings": { "label": "Learn", "url": "/pages/learn" }
+        },
+        "academy": {
+          "type": "link",
+          "settings": { "label": "Academy", "url": "/pages/academy" }
+        },
+        "about": {
+          "type": "link",
+          "settings": { "label": "About", "url": "/pages/about" }
+        }
+      },
+      "block_order": ["shop", "start-here", "learn", "academy", "about"],
+      "settings": {}
+    }
+  },
+  "order": ["announcement-bar", "header"]
+}

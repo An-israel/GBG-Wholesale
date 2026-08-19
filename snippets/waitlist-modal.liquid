@@ -1,0 +1,115 @@
+{% doc %}
+  Sitewide waitlist signup modal. Opened by any [data-waitlist-trigger] element
+  (announcement bar, "waitlist" mentions elsewhere). Uses Shopify's native
+  customer-creation form, tagged "waitlist", so signups land as real customers
+  with marketing consent — not decorative.
+{% enddoc %}
+
+{%- assign posted = false -%}
+{%- if form.posted_successfully? and form.id == 'WaitlistForm' -%}
+  {%- assign posted = true -%}
+{%- endif -%}
+
+<div
+  id="WaitlistModal"
+  class="waitlist-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="WaitlistModalTitle"
+  hidden
+  {% if posted %}data-autoopen="true"{% endif %}
+>
+  <div class="waitlist-modal__backdrop" data-waitlist-close></div>
+  <div class="waitlist-modal__panel">
+    <button type="button" class="waitlist-modal__close" data-waitlist-close aria-label="{{ 'accessibility.close' | t }}">
+      {% render 'icon', name: 'close' %}
+    </button>
+
+    <span class="route-label">ROUTE &rarr; WAITLIST</span>
+    <h2 id="WaitlistModalTitle">{{ 'waitlist.heading' | t }}</h2>
+    <p>{{ 'waitlist.body' | t }}</p>
+
+    {% form 'customer', id: 'WaitlistForm' %}
+      <input type="hidden" name="contact[tags]" value="waitlist,restock-alerts">
+
+      <div class="field {% if form.errors %}has-error{% endif %}">
+        <label class="field__label visually-hidden" for="WaitlistEmail">{{ 'waitlist.placeholder' | t }}</label>
+        <input
+          class="input"
+          type="email"
+          id="WaitlistEmail"
+          name="contact[email]"
+          placeholder="{{ 'waitlist.placeholder' | t }}"
+          autocomplete="email"
+          required
+        >
+        <span class="field__error">{{ 'forms.invalid_email' | t }}</span>
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--block">{{ 'waitlist.submit' | t }}</button>
+
+      <div class="form-status" {% if posted %}data-state="success"{% elsif form.errors %}data-state="error"{% endif %}>
+        {% if posted %}
+          {{ 'waitlist.success' | t }}
+        {% elsif form.errors %}
+          {{ 'waitlist.error' | t }}
+        {% endif %}
+      </div>
+    {% endform %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .waitlist-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+  }
+
+  .waitlist-modal[hidden] {
+    display: none;
+  }
+
+  .waitlist-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(22, 24, 29, 0.6);
+  }
+
+  .waitlist-modal__panel {
+    position: relative;
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    padding: var(--space-6);
+    max-width: 420px;
+    width: 100%;
+  }
+
+  .waitlist-modal__close {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    background: none;
+    border: none;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .waitlist-modal__close svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .waitlist-modal .route-label {
+    margin-bottom: var(--space-4);
+  }
+{% endstylesheet %}
+
+<script src="{{ 'waitlist-modal.js' | asset_url }}" defer></script>

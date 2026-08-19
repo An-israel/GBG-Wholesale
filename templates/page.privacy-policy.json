@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "content": {
+      "type": "legal-content",
+      "settings": {
+        "eyebrow": "LEGAL → PRIVACY",
+        "heading": "Privacy Policy",
+        "content_source": "privacy_policy_body"
+      }
+    }
+  },
+  "order": ["content"]
+}

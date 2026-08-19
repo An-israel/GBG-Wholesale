@@ -1,0 +1,176 @@
+<div class="cart-page container section" id="MainCart">
+  <span class="route-label">ROUTE &rarr; CART</span>
+  <h1>{{ 'cart.title' | t }}</h1>
+
+  {% if cart.item_count == 0 %}
+    <div class="cart-page__empty">
+      <p>{{ 'cart.empty' | t }}</p>
+      <p class="field__hint">{{ 'cart.empty_body' | t }}</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">{{ 'cart.continue_shopping' | t }}</a>
+    </div>
+  {% else %}
+    <div class="cart-page__layout">
+      <table class="cart-page__table">
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">{{ 'cart.quantity' | t }}</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart.items %}
+            <tr data-cart-line="{{ forloop.index }}">
+              <td>
+                <div class="cart-page__product">
+                  <a href="{{ item.url }}" class="cart-page__image">
+                    {% if item.image %}
+                      <img
+                        src="{{ item.image | image_url: width: 200 }}"
+                        alt="{{ item.image.alt | default: item.title | escape }}"
+                        width="90"
+                        height="{{ 90 | divided_by: item.image.aspect_ratio | default: 90 }}"
+                        loading="lazy"
+                      >
+                    {% endif %}
+                  </a>
+                  <div>
+                    <a href="{{ item.url }}" class="cart-drawer__item-title">{{ item.product.title }}</a>
+                    {% unless item.variant.title == 'Default Title' %}
+                      <p class="cart-drawer__item-variant">{{ item.variant.title }}</p>
+                    {% endunless %}
+                    <p class="cart-drawer__item-price">{{ item.final_price | money }} each</p>
+                    <button type="button" class="cart-drawer__remove cart-page__remove" data-cart-remove data-line="{{ forloop.index }}">
+                      {% render 'icon', name: 'trash' %}
+                      {{ 'cart.remove' | t }}
+                    </button>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="qty-stepper">
+                  <button type="button" class="qty-stepper__btn" data-cart-qty-decrease data-line="{{ forloop.index }}" aria-label="Decrease quantity">
+                    {% render 'icon', name: 'minus' %}
+                  </button>
+                  <input
+                    class="qty-stepper__input"
+                    type="number"
+                    min="0"
+                    value="{{ item.quantity }}"
+                    data-cart-qty-input
+                    data-line="{{ forloop.index }}"
+                    aria-label="{{ 'cart.quantity' | t }}"
+                  >
+                  <button type="button" class="qty-stepper__btn" data-cart-qty-increase data-line="{{ forloop.index }}" aria-label="Increase quantity">
+                    {% render 'icon', name: 'plus' %}
+                  </button>
+                </div>
+              </td>
+              <td class="cart-page__line-total">{{ item.final_line_price | money }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="cart-page__summary card">
+        <div class="cart-drawer__subtotal">
+          <span>{{ 'cart.subtotal' | t }}</span>
+          <span>{{ cart.total_price | money }}</span>
+        </div>
+        <p class="field__hint">Shipping, taxes and discount codes are calculated at checkout.</p>
+        <a href="{{ routes.cart_url }}/checkout" class="btn btn--primary btn--block">{{ 'cart.checkout' | t }}</a>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--ghost">{{ 'cart.continue_shopping' | t }}</a>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .cart-page .route-label {
+    margin-bottom: var(--space-4);
+  }
+
+  .cart-page__empty {
+    padding-block: var(--space-7);
+  }
+
+  .cart-page__layout {
+    display: grid;
+    gap: var(--space-6);
+    margin-top: var(--space-5);
+  }
+
+  @media (min-width: 900px) {
+    .cart-page__layout {
+      grid-template-columns: 2fr 1fr;
+      align-items: start;
+    }
+  }
+
+  .cart-page__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .cart-page__table th {
+    text-align: left;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: color-mix(in srgb, var(--color-ink) 60%, transparent);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .cart-page__table td {
+    padding-block: var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+  }
+
+  .cart-page__product {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: var(--space-4);
+  }
+
+  .cart-page__image {
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: block;
+  }
+
+  .cart-page__remove {
+    width: auto;
+    gap: var(--space-2);
+    padding: 0;
+    margin-top: var(--space-2);
+    font-size: 0.8rem;
+  }
+
+  .cart-page__remove svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .cart-page__line-total {
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .cart-page__summary {
+    padding: var(--space-5);
+    display: grid;
+    gap: var(--space-3);
+    position: sticky;
+    top: var(--space-5);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Main cart",
+  "settings": []
+}
+{% endschema %}

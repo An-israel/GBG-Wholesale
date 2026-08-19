@@ -1,0 +1,212 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "compact": true,
+        "eyebrow": "ROUTE → START HERE",
+        "heading": "New to reselling? Start here — not in the shop.",
+        "body": "<p>You don't need experience, a business plan, or a big budget to begin. You need a starting point. This is it.</p>",
+        "primary_label": "Get Your Roadmap",
+        "primary_url": "#roadmap"
+      }
+    },
+    "where-starting": {
+      "type": "routing-cards",
+      "settings": {
+        "eyebrow": "STEP 01",
+        "heading": "Where Are You Starting From?"
+      },
+      "blocks": {
+        "w1": {
+          "type": "card",
+          "settings": {
+            "heading": "I've never sold anything online",
+            "body": "Show me the basics.",
+            "link_text": "Show me the basics",
+            "link_url": "#wholesale-basics"
+          }
+        },
+        "w2": {
+          "type": "card",
+          "settings": {
+            "heading": "I've sold a little but I'm stuck",
+            "body": "Help me move forward.",
+            "link_text": "Help me move forward",
+            "link_url": "#first-reads"
+          }
+        },
+        "w3": {
+          "type": "card",
+          "settings": {
+            "heading": "I know what I'm doing",
+            "body": "Take me to the catalogue.",
+            "link_text": "Take me to the catalogue",
+            "link_url": "/collections/all"
+          }
+        }
+      },
+      "block_order": ["w1", "w2", "w3"]
+    },
+    "wholesale-basics": {
+      "type": "rich-text",
+      "settings": {
+        "custom_id": "wholesale-basics",
+        "background": "surface",
+        "narrow": true,
+        "eyebrow": "STEP 02",
+        "heading": "What Wholesale Actually Means",
+        "body": "<p>Wholesale simply means buying stock in bulk, at a lower price per unit than you'd pay buying one at a time, so you can resell each item individually for a profit. GBG's minimum order quantities (MOQs) are kept low on purpose with most packs well under what a typical wholesaler asks for, this is so that you're not required to buy hundreds of units to get started.</p>"
+      }
+    },
+    "ready-checklist": {
+      "type": "rich-text",
+      "settings": {
+        "background": "paper",
+        "narrow": true,
+        "eyebrow": "STEP 03",
+        "heading": "Are You Ready? A Quick Checklist"
+      },
+      "blocks": {
+        "r1": { "type": "list_item", "settings": { "text": "You have a small amount set aside to start with — even a single Starter Box." } },
+        "r2": { "type": "list_item", "settings": { "text": "You have (or are willing to set up) an account on at least one selling platform — Vinted, eBay, or TikTok Shop." } },
+        "r3": { "type": "list_item", "settings": { "text": "You can give this a few hours a week — listing, replying to buyers, restocking." } },
+        "r4": { "type": "list_item", "settings": { "text": "You're prepared for your first sale to take longer than your fifth." } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4"]
+    },
+    "choose-by-need": {
+      "type": "routing-cards",
+      "settings": {
+        "on_surface": true,
+        "eyebrow": "STEP 04",
+        "heading": "Choose By What You Need"
+      },
+      "blocks": {
+        "n1": {
+          "type": "card",
+          "settings": {
+            "heading": "I want low risk",
+            "body": "Start with the smallest Starter Box.",
+            "link_text": "Shop Starter Boxes",
+            "link_url": "/collections/starter-boxes"
+          }
+        },
+        "n2": {
+          "type": "card",
+          "settings": {
+            "heading": "I want to sell today",
+            "body": "Go straight to what's in demand right now.",
+            "link_text": "Shop Best Sellers",
+            "link_url": "/collections/best-sellers"
+          }
+        },
+        "n3": {
+          "type": "card",
+          "settings": {
+            "heading": "I want guidance",
+            "body": "Look at the Academy before you order anything.",
+            "link_text": "Explore the Academy",
+            "link_url": "/pages/academy"
+          }
+        }
+      },
+      "block_order": ["n1", "n2", "n3"]
+    },
+    "roadmap": {
+      "type": "numbered-steps",
+      "settings": {
+        "custom_id": "roadmap",
+        "eyebrow": "STEP 05",
+        "heading": "Your Roadmap"
+      },
+      "blocks": {
+        "s1": { "type": "step", "settings": { "text": "Learn — read the basics before you spend anything." } },
+        "s2": { "type": "step", "settings": { "text": "Research — check what's actually selling on your platform." } },
+        "s3": { "type": "step", "settings": { "text": "Choose — pick the pack that matches your budget and your platform." } },
+        "s4": { "type": "step", "settings": { "text": "Buy — order it, no DM required." } },
+        "s5": { "type": "step", "settings": { "text": "List — write listings that sell, using the guides.", "link_text": "Read the Listings Guide", "link_url": "/pages/learn-listings-guide" } },
+        "s6": { "type": "step", "settings": { "text": "Sell — respond fast, ship fast, ask for reviews." } },
+        "s7": { "type": "step", "settings": { "text": "Restock — reorder before you run out, not after." } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7"]
+    },
+    "first-reads": {
+      "type": "routing-cards",
+      "settings": {
+        "custom_id": "first-reads",
+        "on_surface": true,
+        "eyebrow": "STEP 06",
+        "heading": "Recommended First Reads"
+      },
+      "blocks": {
+        "f1": {
+          "type": "card",
+          "settings": {
+            "heading": "Platform Guide",
+            "body": "What tends to sell best, and where.",
+            "link_text": "Read the guide",
+            "link_url": "/pages/learn-platform-guide"
+          }
+        },
+        "f2": {
+          "type": "card",
+          "settings": {
+            "heading": "Pricing Calculator",
+            "body": "Work out your minimum sell price in seconds.",
+            "link_text": "Try the calculator",
+            "link_url": "/pages/faq#pricing-calculator"
+          }
+        },
+        "f3": {
+          "type": "card",
+          "settings": {
+            "heading": "Platform Safety Guide",
+            "body": "Avoid the mistakes that get accounts restricted.",
+            "link_text": "Read the guide",
+            "link_url": "/pages/learn-platform-safety-guide"
+          }
+        }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    },
+    "join-before-buy": {
+      "type": "rich-text",
+      "settings": {
+        "background": "ink",
+        "narrow": true,
+        "eyebrow": "COMMUNITY",
+        "eyebrow_color": "plum",
+        "heading": "Join Before You Buy",
+        "body": "<p>Start Your Product Business (SYPB) is where beginners ask questions before spending anything. It's free, and it's where the next webinar is announced.</p>",
+        "primary_label": "Join SYPB",
+        "primary_link_source": "sypb_link"
+      }
+    },
+    "want-structure": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": true,
+        "eyebrow": "ACADEMY",
+        "eyebrow_color": "plum",
+        "heading": "Want More Structure?",
+        "body": "<p>If a roadmap alone isn't enough and you want a guided programme, the Academy walks you through it step by step.</p>",
+        "primary_label": "Learn About the Academy",
+        "primary_link_source": "custom",
+        "primary_url": "/pages/academy"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "where-starting",
+    "wholesale-basics",
+    "ready-checklist",
+    "choose-by-need",
+    "roadmap",
+    "first-reads",
+    "join-before-buy",
+    "want-structure"
+  ]
+}

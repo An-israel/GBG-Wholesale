@@ -1,0 +1,63 @@
+<div class="container section blog-page">
+  <div class="section-intro reveal">
+    <span class="route-label">LEARN &rarr; BLOG</span>
+    <h1>{{ blog.title }}</h1>
+  </div>
+
+  {% paginate blog.articles by 9 %}
+    <div class="grid grid--3">
+      {% for article in blog.articles %}
+        {% assign published_date = article.published_at | date: '%B %d, %Y' %}
+        <a href="{{ article.url }}" class="blog-page__card card reveal">
+          {% if article.image %}
+            <img
+              src="{{ article.image | image_url: width: 600 }}"
+              alt="{{ article.image.alt | default: article.title | escape }}"
+              loading="lazy"
+              width="{{ article.image.width }}"
+              height="{{ article.image.height }}"
+            >
+          {% endif %}
+          <div class="blog-page__body">
+            <h2>{{ article.title }}</h2>
+            <p class="field__hint">{{ 'blog.article_metadata_html' | t: date: published_date, author: article.author }}</p>
+            <p>{{ article.excerpt | default: article.content | strip_html | truncatewords: 20 }}</p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+
+    {% if paginate.pages > 1 %}
+      {% render 'pagination', paginate: paginate %}
+    {% endif %}
+  {% endpaginate %}
+</div>
+
+{% stylesheet %}
+  .blog-page .route-label {
+    margin-bottom: var(--space-3);
+  }
+
+  .blog-page__card {
+    text-decoration: none;
+    color: var(--color-ink);
+    overflow: hidden;
+  }
+
+  .blog-page__card img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .blog-page__body {
+    padding: var(--space-4);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Blog",
+  "settings": []
+}
+{% endschema %}

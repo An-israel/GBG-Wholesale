@@ -1,0 +1,84 @@
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "shop": {
+          "type": "link_group",
+          "settings": {
+            "heading": "Shop",
+            "link1_label": "Jewellery & Accessories",
+            "link1_url": "/collections/jewellery-accessories",
+            "link2_label": "Electronics",
+            "link2_url": "/collections/electronics",
+            "link3_label": "Fashion",
+            "link3_url": "/collections/fashion",
+            "link4_label": "Home & Lifestyle",
+            "link4_url": "/collections/home-lifestyle",
+            "link5_label": "New Arrivals",
+            "link5_url": "/collections/new-arrivals",
+            "link6_label": "Best Sellers",
+            "link6_url": "/collections/best-sellers"
+          }
+        },
+        "start-learn": {
+          "type": "link_group",
+          "settings": {
+            "heading": "Start & Learn",
+            "link1_label": "Start Here",
+            "link1_url": "/pages/start-here",
+            "link2_label": "Learn Hub",
+            "link2_url": "/pages/learn",
+            "link3_label": "Academy",
+            "link3_url": "/pages/academy",
+            "link4_label": "Starter Boxes",
+            "link4_url": "/collections/starter-boxes"
+          }
+        },
+        "support": {
+          "type": "link_group",
+          "settings": {
+            "heading": "Support",
+            "link1_label": "Contact",
+            "link1_url": "/pages/contact",
+            "link2_label": "FAQ",
+            "link2_url": "/pages/faq",
+            "link3_label": "Track Your Order",
+            "link3_url": "/pages/track-your-order",
+            "link4_label": "Returns Policy",
+            "link4_url": "/pages/returns-policy"
+          }
+        },
+        "about": {
+          "type": "link_group",
+          "settings": {
+            "heading": "About",
+            "link1_label": "About GBG",
+            "link1_url": "/pages/about",
+            "link2_label": "Meet Lami",
+            "link2_url": "/pages/about#founder-story",
+            "link3_label": "Community & Support",
+            "link3_url": "/pages/community"
+          }
+        },
+        "legal": {
+          "type": "link_group",
+          "settings": {
+            "heading": "Legal",
+            "link1_label": "Privacy Policy",
+            "link1_url": "/pages/privacy-policy",
+            "link2_label": "Terms of Service",
+            "link2_url": "/pages/terms-of-service"
+          }
+        }
+      },
+      "block_order": ["shop", "start-learn", "support", "about", "legal"],
+      "settings": {
+        "brand_blurb": "UK wholesale stock at low MOQs, plus the education and community to actually sell it."
+      }
+    }
+  },
+  "order": ["footer"]
+}

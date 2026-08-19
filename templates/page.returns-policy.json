@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "content": {
+      "type": "legal-content",
+      "settings": {
+        "eyebrow": "SUPPORT → RETURNS",
+        "heading": "Returns Policy",
+        "content_source": "returns_policy_body"
+      }
+    }
+  },
+  "order": ["content"]
+}

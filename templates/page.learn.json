@@ -1,0 +1,40 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "compact": true,
+        "eyebrow": "ROUTE → LEARN HUB",
+        "heading": "Everything you need before you spend a penny.",
+        "body": "<p>Platform guides, a pricing calculator, and safety guides — read these before you order, not after.</p>"
+      }
+    },
+    "articles": {
+      "type": "routing-cards",
+      "settings": {
+        "on_surface": true,
+        "eyebrow": "GUIDES"
+      },
+      "blocks": {
+        "a1": { "type": "card", "settings": { "heading": "Platform Guide", "body": "What tends to sell best, and where — Vinted, eBay, TikTok Shop, Facebook Marketplace.", "link_text": "Read the guide", "link_url": "/pages/learn-platform-guide" } },
+        "a2": { "type": "card", "settings": { "heading": "Pricing Calculator", "body": "Work out your minimum sell price in seconds.", "link_text": "Try the calculator", "link_url": "/pages/faq#pricing-calculator" } },
+        "a3": { "type": "card", "settings": { "heading": "Platform Safety Guide", "body": "Avoid the listing patterns that get accounts restricted.", "link_text": "Read the guide", "link_url": "/pages/learn-platform-safety-guide" } },
+        "a4": { "type": "card", "settings": { "heading": "Listings Guide", "body": "Clear photos, honest titles, and the keywords that get you found.", "link_text": "Read the guide", "link_url": "/pages/learn-listings-guide" } }
+      },
+      "block_order": ["a1", "a2", "a3", "a4"]
+    },
+    "start-here-cta": {
+      "type": "rich-text",
+      "settings": {
+        "background": "ink",
+        "narrow": true,
+        "heading": "New to all of this?",
+        "body": "<p>Start Here walks you through the basics, a readiness checklist, and a full roadmap before you touch the shop.</p>",
+        "primary_label": "Go to Start Here",
+        "primary_link_source": "custom",
+        "primary_url": "/pages/start-here"
+      }
+    }
+  },
+  "order": ["hero", "articles", "start-here-cta"]
+}

@@ -1,0 +1,104 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "compact": true,
+        "eyebrow": "ROUTE → ABOUT GBG",
+        "heading": "Built by someone who started with a bag of stock and a WiFi connection.",
+        "body": "<p>GBG — Global Biz Gateway exists because getting into reselling shouldn't require guesswork, gatekeeping, or a supplier who disappears the moment your card is charged.</p>",
+        "primary_label": "Shop the Catalogue",
+        "primary_url": "/collections/all"
+      }
+    },
+    "more-than-wholesaler": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": true,
+        "heading": "More Than a Wholesaler",
+        "body": "<p>A wholesaler sells you stock and moves on to the next order. GBG was built to do more than that. We supply the products but we also supply the map: what to sell it as, where to sell it, and who to ask when you're stuck. The name says it plainly. We're not trying to be the gatekeeper standing between you and a business. We're trying to be the gateway.</p>"
+      }
+    },
+    "why-exists": {
+      "type": "rich-text",
+      "settings": {
+        "background": "paper",
+        "narrow": true,
+        "eyebrow": "WHY GBG EXISTS",
+        "heading": "We've been the beginner too.",
+        "body": "<p>Before GBG, there was a bridal accessories business started from scratch in 2016, and years of learning wholesale, sourcing, and reselling the hard way, one mistake at a time, with no one to ask. GBG exists so the next woman doesn't have to learn alone. Every product, every guide, and every group inside the community comes from that same place: here's what we wish someone had told us.</p>"
+      }
+    },
+    "what-we-provide": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": true,
+        "heading": "What We Provide",
+        "body": "<p>Three things, together, not separately:</p>"
+      },
+      "blocks": {
+        "p1": { "type": "list_item", "settings": { "text": "Real wholesale stock at low minimum order quantities — no need to buy 500 units to start." } },
+        "p2": { "type": "list_item", "settings": { "text": "The education to actually sell it — product selection guidance, platform guides, pricing help, listing tips and more." } },
+        "p3": { "type": "list_item", "settings": { "text": "A community that keeps you accountable and answers the questions Google can't." } }
+      },
+      "block_order": ["p1", "p2", "p3"]
+    },
+    "founder-story": {
+      "type": "rich-text",
+      "settings": {
+        "custom_id": "founder-story",
+        "background": "ink",
+        "narrow": true,
+        "eyebrow": "THE FOUNDER STORY",
+        "eyebrow_color": "plum",
+        "heading": "From a bridal business to a wholesale hub.",
+        "body": "<p>It started in Lagos market when I was young, that was when I first understood the market and how to purchase goods, and in 2016, I started a small bridal accessories business, that was when I started really learning, order by order, what it actually takes to source, price, and sell. That grew into GBL Accessories, and GBL Accessories grew into GBG Wholesale Hub: the same eye for product, built into something bigger — a place where other women could buy the same way, sell the same way, and grow the same way.</p><p class=\"editorial\">\"Input equals output.\" What you put into your business — the time, the consistency, the willingness to learn — is what you'll get back. GBG can hand you the stock and the roadmap. The rest is still yours to build.</p>"
+      }
+    },
+    "who-we-serve": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": true,
+        "heading": "Who GBG Serves"
+      },
+      "blocks": {
+        "w1": { "type": "list_item", "settings": { "text": "The complete beginner who's never sold anything online." } },
+        "w2": { "type": "list_item", "settings": { "text": "The established reseller who needs reliable stock at real margins." } },
+        "w3": { "type": "list_item", "settings": { "text": "The direct buyer who just wants the product, no business pitch attached." } },
+        "w4": { "type": "list_item", "settings": { "text": "The course graduate ready to place their first order." } }
+      },
+      "block_order": ["w1", "w2", "w3", "w4"]
+    },
+    "founders-note": {
+      "type": "founder-note",
+      "settings": {}
+    },
+    "closing": {
+      "type": "rich-text",
+      "settings": {
+        "background": "paper",
+        "narrow": true,
+        "heading": "More Than a Supplier",
+        "body": "<p>We built GBG to be the place you come back to for stock, for guidance, for the next step you didn't know you needed. Welcome to GBG.</p>",
+        "primary_label": "Shop Now",
+        "primary_link_source": "custom",
+        "primary_url": "/collections/all",
+        "secondary_label": "Join the Community",
+        "secondary_link_source": "sypb_link"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "more-than-wholesaler",
+    "why-exists",
+    "what-we-provide",
+    "founder-story",
+    "who-we-serve",
+    "founders-note",
+    "closing"
+  ]
+}

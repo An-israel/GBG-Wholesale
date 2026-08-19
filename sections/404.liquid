@@ -1,0 +1,18 @@
+<div class="container section not-found reveal">
+  <span class="route-label">ROUTE &rarr; 404</span>
+  <h1>{{ '404.heading' | t }}</h1>
+  <p>{{ '404.body' | t }}</p>
+
+  <div class="not-found__actions">
+    <a href="{{ routes.root_url }}" class="btn btn--primary">{{ '404.cta_home' | t }}</a>
+    <a href="{{ routes.all_products_collection_url }}" class="btn btn--secondary">{{ '404.cta_shop' | t }}</a>
+    <a href="/pages/start-here" class="btn btn--secondary">{{ '404.cta_start_here' | t }}</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "404 page",
+  "settings": []
+}
+{% endschema %}

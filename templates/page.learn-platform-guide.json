@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "compact": true,
+        "eyebrow": "LEARN → PLATFORM GUIDE",
+        "heading": "Platform Guide",
+        "body": "<p>What tends to sell best, and where — a breakdown across Vinted, eBay, TikTok Shop, and Facebook Marketplace.</p>"
+      }
+    },
+    "body": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": true,
+        "eyebrow": "COMING SOON",
+        "heading": "This guide is being written",
+        "body": "<p>The full platform-by-platform breakdown is being finalised. In the meantime, the fastest way to get a straight answer for your specific product and platform is to ask directly — Lami and the community answer these questions daily.</p>",
+        "primary_label": "Join SYPB",
+        "primary_link_source": "sypb_link",
+        "secondary_label": "Back to Learn Hub",
+        "secondary_link_source": "custom",
+        "secondary_url": "/pages/learn"
+      }
+    }
+  },
+  "order": ["hero", "body"]
+}

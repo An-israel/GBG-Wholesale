@@ -1,0 +1,51 @@
+{% doc %}
+  @param {object} block - a section block with settings: question, answer, link_text, link_url
+
+  @example
+  {% render 'faq-item', block: block %}
+{% enddoc %}
+
+{%- liquid
+  assign panel_id = 'FaqPanel-' | append: block.id
+  assign trigger_id = 'FaqTrigger-' | append: block.id
+-%}
+
+<div class="accordion__item" {{ block.shopify_attributes }}>
+  <h3>
+    <button
+      type="button"
+      class="accordion__trigger"
+      id="{{ trigger_id }}"
+      aria-expanded="false"
+      aria-controls="{{ panel_id }}"
+      data-accordion-trigger
+    >
+      <span>{{ block.settings.question }}</span>
+      <span class="accordion__icon">{% render 'icon', name: 'chevron' %}</span>
+    </button>
+  </h3>
+  <div
+    class="accordion__panel"
+    id="{{ panel_id }}"
+    role="region"
+    aria-labelledby="{{ trigger_id }}"
+    data-open="false"
+  >
+    <div class="accordion__panel-inner">
+      {{ block.settings.answer }}
+      {% case block.settings.dynamic_append %}
+        {% when 'warehouse_location' %}
+          <p>{{ settings.warehouse_location }}</p>
+        {% when 'dispatch_timeframe' %}
+          <p>{{ settings.dispatch_timeframe }}</p>
+        {% when 'starter_box_min_price' %}
+          <p>Starter Boxes begin at £{{ settings.starter_box_min_price }}.</p>
+        {% when 'next_webinar_date' %}
+          <p>Next webinar: {{ settings.next_webinar_date | default: 'announced inside SYPB' }}.</p>
+      {% endcase %}
+      {% if block.settings.link_text != blank and block.settings.link_url != blank %}
+        <p><a href="{{ block.settings.link_url }}">{{ block.settings.link_text }} &rarr;</a></p>
+      {% endif %}
+    </div>
+  </div>
+</div>

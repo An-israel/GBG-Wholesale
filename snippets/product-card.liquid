@@ -1,0 +1,140 @@
+{% doc %}
+  @param {product} product
+
+  @example
+  {% render 'product-card', product: product %}
+{% enddoc %}
+
+{%- liquid
+  assign resale_low = product.price | times: 1.6 | round
+  assign resale_high = product.price | times: 2.2 | round
+-%}
+
+<div class="product-card card reveal">
+  <a href="{{ product.url }}" class="product-card__image">
+    {% if product.featured_image %}
+      <img
+        src="{{ product.featured_image | image_url: width: 600 }}"
+        srcset="{{ product.featured_image | image_url: width: 400 }} 400w, {{ product.featured_image | image_url: width: 600 }} 600w, {{ product.featured_image | image_url: width: 800 }} 800w"
+        sizes="(min-width: 768px) 25vw, 50vw"
+        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+        width="{{ product.featured_image.width }}"
+        height="{{ product.featured_image.height }}"
+        loading="lazy"
+      >
+    {% else %}
+      <div class="product-card__placeholder" aria-hidden="true"></div>
+    {% endif %}
+    {% if product.available == false %}
+      <span class="product-card__badge">{{ 'products.sold_out' | t }}</span>
+    {% elsif product.compare_at_price > product.price %}
+      <span class="product-card__badge product-card__badge--sale">Sale</span>
+    {% endif %}
+  </a>
+
+  <div class="product-card__body">
+    <a href="{{ product.url }}" class="product-card__title">{{ product.title }}</a>
+
+    <div class="product-card__price">
+      {% render 'price', product: product %}
+    </div>
+
+    <p class="product-card__resale">Typical resale: £{{ resale_low }}&ndash;£{{ resale_high }} <span class="field__hint">(example only, not a promise)</span></p>
+
+    {% form 'product', product, data-cart-add-form: true, class: 'product-card__form' %}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <button
+        type="submit"
+        class="btn btn--primary btn--block btn--sm"
+        {% if product.available == false %}disabled aria-disabled="true"{% endif %}
+      >
+        {% if product.available %}{{ 'products.add_to_cart' | t }}{% else %}{{ 'products.sold_out' | t }}{% endif %}
+      </button>
+      <p class="field__error" data-cart-add-error hidden></p>
+    {% endform %}
+
+    <p class="product-card__dm">
+      Prefer WhatsApp? Message us the keyword <strong>{{ product.handle | upcase | replace: '-', ' ' }}</strong> to order.
+    </p>
+  </div>
+</div>
+
+{% stylesheet %}
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .product-card__image {
+    display: block;
+    position: relative;
+    aspect-ratio: 1;
+    background: var(--color-paper);
+  }
+
+  .product-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-card__placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-paper), var(--color-border));
+  }
+
+  .product-card__badge {
+    position: absolute;
+    top: var(--space-3);
+    left: var(--space-3);
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.3em 0.6em;
+    border-radius: 2px;
+  }
+
+  .product-card__badge--sale {
+    background: var(--color-brass-text);
+  }
+
+  .product-card__body {
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    flex: 1;
+  }
+
+  .product-card__title {
+    font-weight: 700;
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  .product-card__resale {
+    font-size: 0.78rem;
+    color: color-mix(in srgb, var(--color-ink) 60%, transparent);
+    margin: 0;
+  }
+
+  .product-card__resale .field__hint {
+    display: inline;
+    margin: 0;
+  }
+
+  .product-card__form {
+    margin-top: var(--space-2);
+  }
+
+  .product-card__dm {
+    font-size: 0.75rem;
+    color: color-mix(in srgb, var(--color-ink) 55%, transparent);
+    margin: 0;
+  }
+{% endstylesheet %}

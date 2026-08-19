@@ -1,0 +1,131 @@
+<div class="search-overlay" id="SearchOverlay" role="dialog" aria-modal="true" aria-label="{{ 'search.title' | t }}" hidden>
+  <div class="search-overlay__backdrop" data-search-close></div>
+  <div class="search-overlay__panel">
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search-overlay__form" data-predictive-search-form>
+      <input type="hidden" name="type" value="product">
+      {% render 'icon', name: 'search' %}
+      <input
+        type="search"
+        name="q"
+        class="search-overlay__input"
+        placeholder="{{ 'search.placeholder' | t }}"
+        autocomplete="off"
+        aria-label="{{ 'search.placeholder' | t }}"
+        data-predictive-search-input
+      >
+      <button type="button" class="site-header__icon-btn" data-search-close aria-label="{{ 'accessibility.close_search' | t }}">
+        {% render 'icon', name: 'close' %}
+      </button>
+    </form>
+
+    <div class="search-overlay__results" data-predictive-search-results aria-live="polite"></div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .search-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+  }
+
+  .search-overlay[hidden] {
+    display: none;
+  }
+
+  .search-overlay__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(22, 24, 29, 0.5);
+  }
+
+  .search-overlay__panel {
+    position: relative;
+    background: var(--color-paper);
+    max-width: 720px;
+    margin: 8vh auto 0;
+    padding: var(--space-5);
+    border-radius: var(--radius);
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .search-overlay__form {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    border-bottom: 2px solid var(--color-ink);
+    padding-bottom: var(--space-3);
+  }
+
+  .search-overlay__form svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .search-overlay__input {
+    flex: 1;
+    border: none;
+    background: none;
+    font-size: 1.1rem;
+    font-family: var(--font-body);
+    min-height: 44px;
+  }
+
+  .search-overlay__input:focus {
+    outline: none;
+  }
+
+  .search-overlay__results {
+    margin-top: var(--space-5);
+  }
+
+  .search-overlay__group + .search-overlay__group {
+    margin-top: var(--space-5);
+  }
+
+  .search-overlay__group h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: color-mix(in srgb, var(--color-ink) 60%, transparent);
+    margin-bottom: var(--space-3);
+  }
+
+  .search-overlay__product {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+    color: var(--color-ink);
+    padding: var(--space-2) 0;
+  }
+
+  .search-overlay__product img {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    background: var(--color-surface);
+  }
+
+  .search-overlay__product-price {
+    color: var(--color-brass-text);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .search-overlay__page-link {
+    display: block;
+    padding: var(--space-2) 0;
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  .search-overlay__view-all {
+    margin-top: var(--space-4);
+  }
+{% endstylesheet %}
+
+<script src="{{ 'predictive-search.js' | asset_url }}" defer></script>

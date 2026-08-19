@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "content": {
+      "type": "legal-content",
+      "settings": {
+        "eyebrow": "LEGAL → TERMS",
+        "heading": "Terms of Service",
+        "content_source": "terms_body"
+      }
+    }
+  },
+  "order": ["content"]
+}

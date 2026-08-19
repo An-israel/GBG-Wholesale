@@ -1,0 +1,378 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "GBG Wholesale Hub",
+    "theme_version": "1.0.0",
+    "theme_author": "GBG Wholesale Hub",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://support.shopify.com/"
+  },
+  {
+    "name": "Logo",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 80,
+        "max": 260,
+        "step": 5,
+        "unit": "px",
+        "label": "Logo width (desktop)",
+        "default": 150
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "GBG's brand palette. Once a final logo is supplied, adjust these to match — keep one ink, one warm neutral paper, one white surface, and three accents with distinct jobs."
+      },
+      {
+        "type": "header",
+        "content": "Core"
+      },
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Ink (text, headlines)",
+        "default": "#16181D"
+      },
+      {
+        "type": "color",
+        "id": "color_paper",
+        "label": "Paper (page background)",
+        "default": "#EAE6DC"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Surface (cards, product tiles)",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Border / rule lines",
+        "default": "#D6D0C0"
+      },
+      {
+        "type": "header",
+        "content": "Accents"
+      },
+      {
+        "type": "color",
+        "id": "color_brass",
+        "label": "Brass — primary accent (CTAs, links, prices)",
+        "default": "#A9812F"
+      },
+      {
+        "type": "color",
+        "id": "color_forest",
+        "label": "Forest — secondary accent (in-stock, Hub-unlocked states)",
+        "default": "#23492F"
+      },
+      {
+        "type": "color",
+        "id": "color_plum",
+        "label": "Plum — tertiary accent (community/SYPB, Academy tags)",
+        "default": "#5B2A4D"
+      },
+      {
+        "type": "header",
+        "content": "Feedback"
+      },
+      {
+        "type": "color",
+        "id": "color_error",
+        "label": "Error / form validation",
+        "default": "#B3261E"
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "min": 1100,
+        "max": 1600,
+        "step": 20,
+        "unit": "px",
+        "label": "Max page width",
+        "default": 1360
+      },
+      {
+        "type": "range",
+        "id": "corner_radius",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "unit": "px",
+        "label": "Card / button corner radius",
+        "default": 3
+      }
+    ]
+  },
+  {
+    "name": "WhatsApp & community links",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "These links are pulled from a single setting everywhere they're used sitewide — update once here and every WhatsApp button, SYPB link and Wholesale Hub link on the site updates together."
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_link",
+        "label": "WhatsApp link",
+        "info": "Used for every WhatsApp CTA sitewide, including the floating button.",
+        "default": "https://wa.me/message/4JYCM5LR4LZPD1"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_whatsapp_float",
+        "label": "Show floating WhatsApp button",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "sypb_link",
+        "label": "SYPB (Start Your Product Business) join link",
+        "info": "PENDING — confirm the live SYPB join/webinar-registration link with Lami. Placeholder points to WhatsApp so the CTA never breaks.",
+        "default": "https://wa.me/message/4JYCM5LR4LZPD1"
+      },
+      {
+        "type": "text",
+        "id": "wholesale_hub_join_link",
+        "label": "GBG Wholesale Hub link (shown after unlock)",
+        "info": "PENDING — confirm the live Wholesale Hub community link with Lami. This is surfaced on the order/thank-you page after a customer's first purchase — see handoff notes for the Shopify Flow automation this depends on.",
+        "default": "https://wa.me/message/4JYCM5LR4LZPD1"
+      }
+    ]
+  },
+  {
+    "name": "Announcement bar",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_announcement_bar",
+        "label": "Show announcement bar",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "restock_day",
+        "label": "Restock day",
+        "info": "PENDING — confirm the actual weekly restock day with Lami.",
+        "options": [
+          { "value": "Monday", "label": "Monday" },
+          { "value": "Tuesday", "label": "Tuesday" },
+          { "value": "Wednesday", "label": "Wednesday" },
+          { "value": "Thursday", "label": "Thursday" },
+          { "value": "Friday", "label": "Friday" },
+          { "value": "Saturday", "label": "Saturday" },
+          { "value": "Sunday", "label": "Sunday" }
+        ],
+        "default": "Thursday"
+      }
+    ]
+  },
+  {
+    "name": "Trust & business info",
+    "settings": [
+      {
+        "type": "text",
+        "id": "stat_customers_text",
+        "label": "Hero stat — community size",
+        "default": "600+ women building with GBG"
+      },
+      {
+        "type": "text",
+        "id": "stat_price_text",
+        "label": "Hero stat — starting price",
+        "default": "Packs from £50"
+      },
+      {
+        "type": "text",
+        "id": "stat_shipping_text",
+        "label": "Hero stat — dispatch",
+        "default": "Shipped from our UK warehouse"
+      },
+      {
+        "type": "text",
+        "id": "starter_box_min_price",
+        "label": "Starter Box minimum price (£, number only)",
+        "info": "PENDING — the FAQ marks this as TBC while the Home page states \"Packs from £50\" as settled. Defaulted to 50 to match the Home page; confirm with Lami before launch.",
+        "default": "50"
+      },
+      {
+        "type": "text",
+        "id": "dispatch_timeframe",
+        "label": "Dispatch / delivery timeframe",
+        "info": "PENDING — the FAQ marks delivery timing as TBC while the Home page states \"Next Day Dispatch\" as settled. Defaulted to stay consistent with that claim; confirm exact carrier timings with Lami before launch.",
+        "default": "Next day dispatch from our UK warehouse — arrives in 1–3 working days."
+      },
+      {
+        "type": "text",
+        "id": "warehouse_location",
+        "label": "Warehouse location",
+        "info": "PENDING — confirm exact warehouse location/address with Lami for the FAQ answer and structured data.",
+        "default": "United Kingdom"
+      },
+      {
+        "type": "text",
+        "id": "next_webinar_date",
+        "label": "Next SYPB webinar date",
+        "info": "Leave blank to show \"announced inside SYPB\" instead of a date. PENDING — confirm recurring schedule with Lami.",
+        "default": ""
+      }
+    ]
+  },
+  {
+    "name": "Support & contact",
+    "settings": [
+      {
+        "type": "text",
+        "id": "support_email",
+        "label": "Support email",
+        "info": "PENDING — confirm live support inbox with Lami.",
+        "default": "hello@gbgwholesalehub.co.uk"
+      },
+      {
+        "type": "text",
+        "id": "response_time_text",
+        "label": "Response time promise",
+        "default": "Within 24 hours everyday except Fridays and Sundays — those are our rest days."
+      },
+      {
+        "type": "text",
+        "id": "support_hours_text",
+        "label": "Support hours",
+        "default": "9:00am – 5:00pm"
+      }
+    ]
+  },
+  {
+    "name": "Founder",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "founder_photo",
+        "label": "Photo of Lami"
+      },
+      {
+        "type": "richtext",
+        "id": "founder_note_body",
+        "label": "Founder's note (About page + order confirmation)",
+        "info": "PENDING — this is launch-ready copy written in Lami's likely voice. Confirm final wording with Lami before/after launch.",
+        "default": "<p>GBG started because I got tired of watching women give up on reselling, not because they weren't capable, but because nobody could give them a straight answer without gatekeeping. I built this to be the source I needed when I started: real stock, honest prices, and someone who actually answers when you ask a question. Every part of this hub — the shop, the guides, the community — comes from that same place. Thank you for being part of it.</p>"
+      }
+    ]
+  },
+  {
+    "name": "Legal & policy pages",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Interim, structurally-complete copy so these pages never look broken. PENDING final policy wording from Lami before/shortly after launch."
+      },
+      {
+        "type": "richtext",
+        "id": "returns_policy_body",
+        "label": "Returns policy body",
+        "default": "<p>We want you to feel confident ordering from GBG Wholesale Hub. This page will hold our full returns and refund policy — final wording is being confirmed with Lami.</p><p>In the meantime: if an order arrives damaged, faulty, or incorrect, contact us within 48 hours of delivery with your order number and photos, and we'll sort it out. Wholesale stock bought at low MOQs is generally sold as-is once received in good condition.</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "privacy_policy_body",
+        "label": "Privacy policy body",
+        "default": "<p>This page will hold our full privacy policy, confirming exactly what customer data we collect, how it's used, and your rights over it. Final wording is being confirmed with Lami before launch.</p><p>In short: we only use your details to process orders, provide support, and — with your consent — send you restock and community updates. We never sell your data.</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "terms_body",
+        "label": "Terms of service body",
+        "default": "<p>This page will hold our full terms of service. Final wording is being confirmed with Lami before launch.</p><p>In short: GBG Wholesale Hub supplies ready-stock products at low minimum order quantities for resale or personal use. Placing an order means you agree to pay the listed wholesale price and accept stock as described at time of dispatch.</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "track_order_body",
+        "label": "Track your order — intro copy",
+        "default": "<p>Every order ships from our UK warehouse and you'll receive a shipping confirmation email with tracking as soon as it's on its way. Signed in? Your full order history and live tracking links are in your account below. Ordered as a guest? Use the order lookup below, or message us on WhatsApp with your order number.</p>"
+      }
+    ]
+  },
+  {
+    "name": "Organization (SEO / structured data)",
+    "settings": [
+      {
+        "type": "text",
+        "id": "org_legal_name",
+        "label": "Legal / full business name",
+        "default": "Global Biz Gateway (GBG Wholesale Hub)"
+      },
+      {
+        "type": "text",
+        "id": "org_address_line",
+        "label": "Address line (structured data)",
+        "info": "PENDING — confirm exact registered/warehouse address with Lami.",
+        "default": "United Kingdom"
+      },
+      {
+        "type": "text",
+        "id": "org_locality",
+        "label": "City / locality",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "org_postal_code",
+        "label": "Postal code",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "org_country",
+        "label": "Country",
+        "default": "United Kingdom"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram_url",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_url",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_url",
+        "label": "TikTok URL"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_url",
+        "label": "Pinterest URL"
+      }
+    ]
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "compact": true,
+        "eyebrow": "LEARN → PLATFORM SAFETY GUIDE",
+        "heading": "Platform Safety Guide",
+        "body": "<p>How to avoid the listing patterns that get reseller accounts flagged or restricted.</p>"
+      }
+    },
+    "body": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": true,
+        "eyebrow": "COMING SOON",
+        "heading": "This guide is being written",
+        "body": "<p>The full safety guide — covering listing pacing, account patterns, and what to do if you're flagged — is being finalised. If you've already run into a restriction, message us directly and we'll help you work through it.</p>",
+        "primary_label": "Message us on WhatsApp",
+        "primary_link_source": "whatsapp_link",
+        "secondary_label": "Back to Learn Hub",
+        "secondary_link_source": "custom",
+        "secondary_url": "/pages/learn"
+      }
+    }
+  },
+  "order": ["hero", "body"]
+}

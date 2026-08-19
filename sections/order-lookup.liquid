@@ -1,0 +1,57 @@
+<section id="{{ section.settings.custom_id | default: section.id }}" class="order-lookup section">
+  <div class="container order-lookup__inner reveal">
+    {% if customer %}
+      <div class="card order-lookup__card">
+        <span class="route-label route-label--forest">SIGNED IN</span>
+        <h2>Your order history</h2>
+        <p>You're signed in as {{ customer.email }}. Every order and its live status is in your account.</p>
+        <a href="{{ routes.account_url }}" class="btn btn--primary">View my orders</a>
+      </div>
+    {% else %}
+      <div class="card order-lookup__card">
+        <span class="route-label">GUEST ORDER</span>
+        <h2>Track a guest order</h2>
+        <p>Sign in to see full tracking for every order on your account, or message us on WhatsApp with your order number and we'll look it up for you directly.</p>
+        <div class="order-lookup__actions">
+          <a href="{{ routes.account_login_url }}" class="btn btn--primary">Sign in to my account</a>
+          {% if settings.whatsapp_link != blank %}
+            <a href="{{ settings.whatsapp_link }}" target="_blank" rel="noopener noreferrer" class="btn btn--secondary">
+              {% render 'icon', name: 'whatsapp' %}
+              Message us your order number
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .order-lookup__card {
+    max-width: 56ch;
+    padding: var(--space-6);
+  }
+
+  .order-lookup .route-label {
+    margin-bottom: var(--space-3);
+  }
+
+  .order-lookup__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Order lookup",
+  "settings": [
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" }
+  ],
+  "presets": [
+    { "name": "Order lookup" }
+  ]
+}
+{% endschema %}

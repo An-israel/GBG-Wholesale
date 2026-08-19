@@ -1,0 +1,98 @@
+<div class="search-page container section">
+  <span class="route-label">ROUTE &rarr; SEARCH</span>
+  <h1>{{ 'search.title' | t }}</h1>
+
+  <form action="{{ routes.search_url }}" method="get" role="search" class="search-page__form">
+    <input type="hidden" name="type" value="product">
+    <label class="visually-hidden" for="SearchPageInput">{{ 'search.placeholder' | t }}</label>
+    <input
+      class="input"
+      type="search"
+      name="q"
+      id="SearchPageInput"
+      value="{{ search.terms | escape }}"
+      placeholder="{{ 'search.placeholder' | t }}"
+    >
+    <button type="submit" class="btn btn--primary">{{ 'search.submit' | t }}</button>
+  </form>
+
+  {% if search.performed %}
+    <p class="search-page__count">
+      {% if search.results_count > 0 %}
+        {{ 'search.results_for_html' | t: count: search.results_count, terms: search.terms }}
+      {% else %}
+        {{ 'search.no_results_html' | t: terms: search.terms }}
+      {% endif %}
+    </p>
+
+    {% if search.results_count == 0 %}
+      <div class="search-page__empty">
+        <p>Try a different term, or explore these instead:</p>
+        <div class="search-page__empty-links">
+          <a href="{{ routes.all_products_collection_url }}" class="btn btn--secondary">Shop all products</a>
+          <a href="/pages/start-here" class="btn btn--secondary">Start Here</a>
+          <a href="/pages/faq" class="btn btn--secondary">Read the FAQ</a>
+        </div>
+      </div>
+    {% else %}
+      {% paginate search.results by 24 %}
+        <div class="grid grid--3">
+          {% for item in search.results %}
+            {% if item.object_type == 'product' %}
+              {% render 'product-card', product: item %}
+            {% else %}
+              <a href="{{ item.url }}" class="card search-page__result">
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.content | strip_html | truncate: 120 }}</p>
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        {% if paginate.pages > 1 %}
+          {% render 'pagination', paginate: paginate %}
+        {% endif %}
+      {% endpaginate %}
+    {% endif %}
+  {% else %}
+    <p class="field__hint">Search for products, guides, or pages.</p>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .search-page .route-label {
+    margin-bottom: var(--space-4);
+  }
+
+  .search-page__form {
+    display: flex;
+    gap: var(--space-3);
+    max-width: 480px;
+    margin: var(--space-5) 0 var(--space-6);
+  }
+
+  .search-page__count {
+    color: color-mix(in srgb, var(--color-ink) 65%, transparent);
+    margin-bottom: var(--space-5);
+  }
+
+  .search-page__empty-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .search-page__result {
+    padding: var(--space-5);
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Search results",
+  "settings": []
+}
+{% endschema %}
