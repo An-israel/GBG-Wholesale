@@ -37,7 +37,7 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "GBG's brand palette. Once a final logo is supplied, adjust these to match — keep one ink, one warm neutral paper, one white surface, and three accents with distinct jobs."
+        "content": "GBG's brand palette: one ink, one warm neutral paper, one white surface, and three accents. Pick which accent leads sitewide below — the other two stay in reserve for badges, status states, and community tags."
       },
       {
         "type": "header",
@@ -72,21 +72,33 @@
         "content": "Accents"
       },
       {
+        "type": "select",
+        "id": "accent_color",
+        "label": "Primary accent",
+        "info": "Which accent drives buttons, links, prices and highlights sitewide. The other two stay available for secondary use (badges, status states, community tags).",
+        "options": [
+          { "value": "forest", "label": "Forest (green)" },
+          { "value": "brass", "label": "Brass (gold)" },
+          { "value": "plum", "label": "Plum" }
+        ],
+        "default": "forest"
+      },
+      {
         "type": "color",
         "id": "color_brass",
-        "label": "Brass — primary accent (CTAs, links, prices)",
+        "label": "Brass",
         "default": "#A9812F"
       },
       {
         "type": "color",
         "id": "color_forest",
-        "label": "Forest — secondary accent (in-stock, Hub-unlocked states)",
-        "default": "#23492F"
+        "label": "Forest",
+        "default": "#1E7A4C"
       },
       {
         "type": "color",
         "id": "color_plum",
-        "label": "Plum — tertiary accent (community/SYPB, Academy tags)",
+        "label": "Plum",
         "default": "#5B2A4D"
       },
       {

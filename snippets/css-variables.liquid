@@ -1,3 +1,13 @@
+{% liquid
+  case settings.accent_color
+    when 'brass'
+      assign accent_raw = settings.color_brass
+    when 'plum'
+      assign accent_raw = settings.color_plum
+    else
+      assign accent_raw = settings.color_forest
+  endcase
+%}
 {% style %}
   :root {
     --color-ink: {{ settings.color_ink }};
@@ -17,6 +27,14 @@
     --color-brass-text: color-mix(in srgb, var(--color-brass) 75%, black);
     --color-forest-on-dark: color-mix(in srgb, var(--color-forest) 55%, white);
     --color-plum-on-dark: color-mix(in srgb, var(--color-plum) 40%, white);
+
+    /* Primary accent — merchant-selectable (Theme Settings → Colors →
+       Primary accent). Drives buttons, links, prices, highlights sitewide.
+       -text is darkened for safe use as small text or a white-on-accent
+       button background; -on-dark is lightened for use on .section--ink. */
+    --color-accent-raw: {{ accent_raw }};
+    --color-accent: color-mix(in srgb, var(--color-accent-raw) 75%, black);
+    --color-accent-on-dark: color-mix(in srgb, var(--color-accent-raw) 55%, white);
 
     --font-display: 'Space Grotesk', 'Arial Narrow', Helvetica, Arial, sans-serif;
     --font-body: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;

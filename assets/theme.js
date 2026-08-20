@@ -2,41 +2,62 @@
 (function () {
   'use strict';
 
-  /* Reveal-on-scroll: subtle fade + translate, respects prefers-reduced-motion */
+  /* Reveal-on-scroll: subtle fade + translate, respects prefers-reduced-motion.
+     Content is visible by default (see .reveal in theme.css) — this function
+     only ever ADDS a temporary hidden state to elements it can guarantee it
+     will reveal. Anything already on-screen, or any failure of JS/observer,
+     leaves content exactly as visible as if this never ran. Safe to call
+     repeatedly (e.g. after the Shopify theme editor re-renders a section). */
+  var revealObserver = null;
+
   function initReveal() {
-    var items = document.querySelectorAll('.reveal');
+    var items = document.querySelectorAll('.reveal:not([data-reveal-bound])');
     if (!items.length) return;
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
-      items.forEach(function (el) {
-        el.classList.add('is-visible');
-      });
-      return;
-    }
-
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var hasObserver = 'IntersectionObserver' in window;
 
     items.forEach(function (el) {
-      observer.observe(el);
+      el.setAttribute('data-reveal-bound', 'true');
+
+      if (reduceMotion || !hasObserver) return;
+
+      var rect = el.getBoundingClientRect();
+      var alreadyInView = rect.top < window.innerHeight * 0.95 && rect.bottom > 0;
+      if (alreadyInView) return;
+
+      el.classList.add('pre-reveal');
+
+      if (!revealObserver) {
+        revealObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+      }
+      revealObserver.observe(el);
+
+      /* Belt-and-suspenders: force visible after 2.5s no matter what, in
+         case the observer never fires (hidden ancestor, layout edge case). */
+      window.setTimeout(function () {
+        el.classList.add('is-visible');
+      }, 2500);
     });
   }
 
   /* Generic accordion: each item toggles independently (multi-open).
      Works for the FAQ page, FAQ preview, and any [data-accordion] block. */
   function initAccordions() {
-    var triggers = document.querySelectorAll('[data-accordion-trigger]');
+    var triggers = document.querySelectorAll('[data-accordion-trigger]:not([data-bound])');
 
     triggers.forEach(function (trigger) {
+      trigger.setAttribute('data-bound', 'true');
       trigger.addEventListener('click', function () {
         var panelId = trigger.getAttribute('aria-controls');
         var panel = document.getElementById(panelId);
@@ -60,7 +81,8 @@
 
   /* Dismissible banners/floats persisted in sessionStorage */
   function initDismissible() {
-    document.querySelectorAll('[data-dismiss-key]').forEach(function (el) {
+    document.querySelectorAll('[data-dismiss-key]:not([data-bound])').forEach(function (el) {
+      el.setAttribute('data-bound', 'true');
       var key = el.getAttribute('data-dismiss-key');
       if (sessionStorage.getItem(key) === 'dismissed') {
         el.remove();
@@ -120,10 +142,20 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  function initAll() {
     initReveal();
     initAccordions();
     initDismissible();
     initAddressDelete();
-  });
+  }
+
+  document.addEventListener('DOMContentLoaded', initAll);
+
+  /* Shopify theme editor re-renders individual sections via AJAX whenever a
+     merchant edits settings — no DOMContentLoaded fires for that. Without
+     this, anything gated behind a one-time init (reveal-on-scroll, accordion
+     bindings) would silently stop working the moment a section reloads. */
+  document.addEventListener('shopify:section:load', initAll);
+  document.addEventListener('shopify:section:reorder', initAll);
+  document.addEventListener('shopify:block:select', initAll);
 })();

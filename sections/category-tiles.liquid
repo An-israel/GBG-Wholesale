@@ -73,12 +73,22 @@
     border-radius: var(--radius);
     overflow: hidden;
     border: 1px solid var(--color-border);
+    transition: box-shadow 180ms ease;
+  }
+
+  .category-tiles__tile:hover .category-tiles__image {
+    box-shadow: 0 2px 4px rgba(22, 24, 29, 0.05), 0 16px 32px rgba(22, 24, 29, 0.1);
   }
 
   .category-tiles__image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 400ms ease;
+  }
+
+  .category-tiles__tile:hover .category-tiles__image img {
+    transform: scale(1.04);
   }
 
   .category-tiles__placeholder {
@@ -100,7 +110,7 @@
   .category-tiles__label svg {
     width: 14px;
     height: 14px;
-    color: var(--color-brass);
+    color: var(--color-accent);
     flex-shrink: 0;
   }
 {% endstylesheet %}

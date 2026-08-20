@@ -5,6 +5,7 @@
       "settings": {
         "custom_id": "",
         "compact": false,
+        "layout": "overlay",
         "eyebrow": "",
         "heading": "Real stock. Real margins. A community that actually shows you how.",
         "body": "<p>Browse the shop if you're ready, or start here if you're not. Either way, you leave with a plan.</p>",
@@ -155,12 +156,11 @@
       }
     },
     "community": {
-      "type": "rich-text",
+      "type": "image-banner",
       "settings": {
-        "background": "ink",
-        "narrow": true,
+        "height": "compact",
+        "align": "left",
         "eyebrow": "COMMUNITY",
-        "eyebrow_color": "plum",
         "heading": "Two communities. One journey.",
         "body": "<p>Start Your Product Business (SYPB) is for anyone still deciding. GBG Wholesale Hub is for buyers, unlocked after your first order. Join SYPB → attend the webinar → make your first purchase → unlock the Hub.</p>",
         "primary_label": "Join SYPB",

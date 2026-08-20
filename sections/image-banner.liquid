@@ -1,0 +1,156 @@
+{% liquid
+  assign primary_href = section.settings.primary_url
+  if section.settings.primary_link_source == 'sypb_link'
+    assign primary_href = settings.sypb_link
+  elsif section.settings.primary_link_source == 'whatsapp_link'
+    assign primary_href = settings.whatsapp_link
+  elsif section.settings.primary_link_source == 'wholesale_hub_link'
+    assign primary_href = settings.wholesale_hub_join_link
+  endif
+%}
+
+<section
+  id="{{ section.settings.custom_id | default: section.id }}"
+  class="image-banner image-banner--{{ section.settings.height }} image-banner--{{ section.settings.align }}"
+>
+  {% if section.settings.image %}
+    <div class="image-banner__bg">
+      <img
+        src="{{ section.settings.image | image_url: width: 1600 }}"
+        srcset="{{ section.settings.image | image_url: width: 800 }} 800w, {{ section.settings.image | image_url: width: 1200 }} 1200w, {{ section.settings.image | image_url: width: 1600 }} 1600w, {{ section.settings.image | image_url: width: 2000 }} 2000w"
+        sizes="100vw"
+        alt="{{ section.settings.image_alt | default: section.settings.heading | escape }}"
+        width="{{ section.settings.image.width }}"
+        height="{{ section.settings.image.height }}"
+        loading="lazy"
+      >
+      <div class="image-banner__scrim" aria-hidden="true"></div>
+    </div>
+  {% else %}
+    <div class="image-banner__placeholder" aria-hidden="true"></div>
+  {% endif %}
+
+  <div class="container image-banner__inner reveal">
+    {% if section.settings.eyebrow != blank %}
+      <span class="route-label">{{ section.settings.eyebrow }}</span>
+    {% endif %}
+    {% if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif %}
+    {% if section.settings.body != blank %}<div class="image-banner__body">{{ section.settings.body }}</div>{% endif %}
+    {% if section.settings.primary_label != blank %}
+      <a href="{{ primary_href }}" class="btn btn--primary" {% if section.settings.primary_link_source != 'custom' %}target="_blank" rel="noopener noreferrer"{% endif %}>
+        {{ section.settings.primary_label }}
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .image-banner {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    color: var(--color-paper);
+  }
+
+  .image-banner--compact {
+    min-height: 320px;
+  }
+
+  .image-banner--tall {
+    min-height: 460px;
+  }
+
+  @media (min-width: 900px) {
+    .image-banner--tall {
+      min-height: 600px;
+    }
+  }
+
+  .image-banner__bg,
+  .image-banner__placeholder {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .image-banner__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .image-banner__placeholder {
+    background: linear-gradient(135deg, var(--color-ink), var(--color-accent-raw));
+  }
+
+  .image-banner__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      125deg,
+      color-mix(in srgb, var(--color-ink) 78%, transparent) 0%,
+      color-mix(in srgb, var(--color-ink) 40%, transparent) 45%,
+      color-mix(in srgb, var(--color-accent-raw) 55%, transparent) 100%
+    );
+  }
+
+  .image-banner__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 40rem;
+    padding-block: var(--space-8);
+  }
+
+  .image-banner--center .image-banner__inner {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .image-banner .route-label {
+    color: var(--color-paper);
+    border-color: var(--color-paper);
+    background: color-mix(in srgb, var(--color-paper) 12%, transparent);
+    margin-bottom: var(--space-4);
+  }
+
+  .image-banner__body {
+    font-size: 1.1rem;
+    color: color-mix(in srgb, var(--color-paper) 92%, transparent);
+    margin-bottom: var(--space-6);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Image banner",
+  "settings": [
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
+    { "type": "select", "id": "height", "label": "Height", "options": [
+        { "value": "compact", "label": "Compact" },
+        { "value": "tall", "label": "Tall" }
+      ], "default": "compact" },
+    { "type": "select", "id": "align", "label": "Text alignment", "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ], "default": "left" },
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "text", "id": "image_alt", "label": "Image alt text" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Real women, real results" },
+    { "type": "richtext", "id": "body", "label": "Body" },
+    { "type": "text", "id": "primary_label", "label": "Button label" },
+    { "type": "select", "id": "primary_link_source", "label": "Button links to", "options": [
+        { "value": "custom", "label": "Custom link (set below)" },
+        { "value": "sypb_link", "label": "Sitewide SYPB link" },
+        { "value": "whatsapp_link", "label": "Sitewide WhatsApp link" },
+        { "value": "wholesale_hub_link", "label": "Sitewide Wholesale Hub link" }
+      ], "default": "custom" },
+    { "type": "url", "id": "primary_url", "label": "Button custom link" }
+  ],
+  "presets": [
+    { "name": "Image banner" }
+  ]
+}
+{% endschema %}
