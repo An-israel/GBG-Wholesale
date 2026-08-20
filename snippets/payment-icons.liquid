@@ -10,20 +10,20 @@
       <li>{{ type | payment_type_svg_tag: class: 'payment-icons__icon' }}</li>
     {%- endfor -%}
   </ul>
-
-  {% stylesheet %}
-    .payment-icons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-2);
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .payment-icons__icon {
-      height: 22px;
-      width: auto;
-    }
-  {% endstylesheet %}
 {%- endif -%}
+
+{% stylesheet %}
+  .payment-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .payment-icons__icon {
+    height: 22px;
+    width: auto;
+  }
+{% endstylesheet %}

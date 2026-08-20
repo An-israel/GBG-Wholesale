@@ -235,8 +235,7 @@
         "type": "text",
         "id": "next_webinar_date",
         "label": "Next SYPB webinar date",
-        "info": "Leave blank to show \"announced inside SYPB\" instead of a date. PENDING — confirm recurring schedule with Lami.",
-        "default": ""
+        "info": "Leave blank to show \"announced inside SYPB\" instead of a date. PENDING — confirm recurring schedule with Lami."
       }
     ]
   },
@@ -334,13 +333,13 @@
         "type": "text",
         "id": "org_locality",
         "label": "City / locality",
-        "default": ""
+        "info": "PENDING — confirm exact city/locality with Lami."
       },
       {
         "type": "text",
         "id": "org_postal_code",
         "label": "Postal code",
-        "default": ""
+        "info": "PENDING — confirm exact postal code with Lami."
       },
       {
         "type": "text",

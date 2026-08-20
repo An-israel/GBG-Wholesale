@@ -96,6 +96,17 @@
     line-height: 1.5;
   }
 
+  /* Shopify's rich text setting strips custom class attributes, so
+     pull-quote paragraphs use <em> in the stored HTML and get their Lora
+     italic treatment here instead. */
+  .rich-text__body em {
+    font-family: var(--font-editorial);
+    font-style: italic;
+    font-size: 1.2em;
+    line-height: 1.5;
+    display: inline-block;
+  }
+
   .rich-text__list {
     list-style: none;
     margin: var(--space-5) 0 0;

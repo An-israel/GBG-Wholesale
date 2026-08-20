@@ -22,33 +22,33 @@
       <a href="{{ settings.whatsapp_link }}" target="_blank" rel="noopener noreferrer">Message us &rarr;</a>
     </p>
   </div>
-
-  {% stylesheet %}
-    .dm-note {
-      display: flex;
-      gap: var(--space-3);
-      background: color-mix(in srgb, var(--color-forest) 8%, var(--color-surface));
-      border: 1px solid var(--color-forest);
-      border-radius: var(--radius);
-      padding: var(--space-4);
-      margin-top: var(--space-4);
-    }
-
-    .dm-note svg {
-      width: 20px;
-      height: 20px;
-      color: var(--color-forest);
-      flex-shrink: 0;
-    }
-
-    .dm-note p {
-      margin: 0;
-      font-size: 0.85rem;
-    }
-
-    .dm-note a {
-      color: var(--color-forest);
-      font-weight: 700;
-    }
-  {% endstylesheet %}
 {%- endif -%}
+
+{% stylesheet %}
+  .dm-note {
+    display: flex;
+    gap: var(--space-3);
+    background: color-mix(in srgb, var(--color-forest) 8%, var(--color-surface));
+    border: 1px solid var(--color-forest);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .dm-note svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-forest);
+    flex-shrink: 0;
+  }
+
+  .dm-note p {
+    margin: 0;
+    font-size: 0.85rem;
+  }
+
+  .dm-note a {
+    color: var(--color-forest);
+    font-weight: 700;
+  }
+{% endstylesheet %}
