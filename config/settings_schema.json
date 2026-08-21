@@ -47,13 +47,13 @@
         "type": "color",
         "id": "color_ink",
         "label": "Ink (text, headlines)",
-        "default": "#16181D"
+        "default": "#101418"
       },
       {
         "type": "color",
         "id": "color_paper",
         "label": "Paper (page background)",
-        "default": "#EAE6DC"
+        "default": "#F7F6F2"
       },
       {
         "type": "color",
@@ -65,7 +65,7 @@
         "type": "color",
         "id": "color_border",
         "label": "Border / rule lines",
-        "default": "#D6D0C0"
+        "default": "#E5E3DB"
       },
       {
         "type": "header",
@@ -130,11 +130,11 @@
         "type": "range",
         "id": "corner_radius",
         "min": 0,
-        "max": 4,
-        "step": 1,
+        "max": 20,
+        "step": 2,
         "unit": "px",
         "label": "Card / button corner radius",
-        "default": 3
+        "default": 10
       }
     ]
   },

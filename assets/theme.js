@@ -14,6 +14,18 @@
     var items = document.querySelectorAll('.reveal:not([data-reveal-bound])');
     if (!items.length) return;
 
+    /* Never run the hide-then-fade-in inside Shopify's theme editor. The editor
+       swaps section HTML in and out constantly while a merchant edits, and any
+       element left mid-animation reads as a blank section. Content is worth
+       more than the animation, so in design mode we simply skip it. */
+    if (window.Shopify && window.Shopify.designMode) {
+      items.forEach(function (el) {
+        el.setAttribute('data-reveal-bound', 'true');
+        el.classList.remove('pre-reveal');
+      });
+      return;
+    }
+
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var hasObserver = 'IntersectionObserver' in window;
 
