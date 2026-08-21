@@ -77,9 +77,18 @@
         "label": "Primary accent",
         "info": "Which accent drives buttons, links, prices and highlights sitewide. The other two stay available for secondary use (badges, status states, community tags).",
         "options": [
-          { "value": "forest", "label": "Forest (green)" },
-          { "value": "brass", "label": "Brass (gold)" },
-          { "value": "plum", "label": "Plum" }
+          {
+            "value": "forest",
+            "label": "Forest (green)"
+          },
+          {
+            "value": "brass",
+            "label": "Brass (gold)"
+          },
+          {
+            "value": "plum",
+            "label": "Plum"
+          }
         ],
         "default": "forest"
       },
@@ -162,14 +171,14 @@
         "type": "text",
         "id": "sypb_link",
         "label": "SYPB (Start Your Product Business) join link",
-        "info": "PENDING — confirm the live SYPB join/webinar-registration link with Lami. Placeholder points to WhatsApp so the CTA never breaks.",
+        "info": "Confirm with Lami: the live SYPB join / webinar-registration link. Defaults to WhatsApp so the CTA never breaks.",
         "default": "https://wa.me/message/4JYCM5LR4LZPD1"
       },
       {
         "type": "text",
         "id": "wholesale_hub_join_link",
         "label": "GBG Wholesale Hub link (shown after unlock)",
-        "info": "PENDING — confirm the live Wholesale Hub community link with Lami. This is surfaced on the order/thank-you page after a customer's first purchase — see handoff notes for the Shopify Flow automation this depends on.",
+        "info": "Confirm with Lami: the live Wholesale Hub community link. Shown on the order and account pages after a customer's first purchase — see the handoff notes for the Shopify Flow automation this depends on.",
         "default": "https://wa.me/message/4JYCM5LR4LZPD1"
       }
     ]
@@ -187,15 +196,36 @@
         "type": "select",
         "id": "restock_day",
         "label": "Restock day",
-        "info": "PENDING — confirm the actual weekly restock day with Lami.",
+        "info": "Confirm with Lami: the actual weekly restock day.",
         "options": [
-          { "value": "Monday", "label": "Monday" },
-          { "value": "Tuesday", "label": "Tuesday" },
-          { "value": "Wednesday", "label": "Wednesday" },
-          { "value": "Thursday", "label": "Thursday" },
-          { "value": "Friday", "label": "Friday" },
-          { "value": "Saturday", "label": "Saturday" },
-          { "value": "Sunday", "label": "Sunday" }
+          {
+            "value": "Monday",
+            "label": "Monday"
+          },
+          {
+            "value": "Tuesday",
+            "label": "Tuesday"
+          },
+          {
+            "value": "Wednesday",
+            "label": "Wednesday"
+          },
+          {
+            "value": "Thursday",
+            "label": "Thursday"
+          },
+          {
+            "value": "Friday",
+            "label": "Friday"
+          },
+          {
+            "value": "Saturday",
+            "label": "Saturday"
+          },
+          {
+            "value": "Sunday",
+            "label": "Sunday"
+          }
         ],
         "default": "Thursday"
       }
@@ -226,28 +256,28 @@
         "type": "text",
         "id": "starter_box_min_price",
         "label": "Starter Box minimum price (£, number only)",
-        "info": "PENDING — the FAQ marks this as TBC while the Home page states \"Packs from £50\" as settled. Defaulted to 50 to match the Home page; confirm with Lami before launch.",
+        "info": "Confirm with Lami. The brief states \"Packs from £50\" on the Home page but marks the Starter Box price as TBC in the FAQ — defaulted to 50 to match the Home page.",
         "default": "50"
       },
       {
         "type": "text",
         "id": "dispatch_timeframe",
         "label": "Dispatch / delivery timeframe",
-        "info": "PENDING — the FAQ marks delivery timing as TBC while the Home page states \"Next Day Dispatch\" as settled. Defaulted to stay consistent with that claim; confirm exact carrier timings with Lami before launch.",
+        "info": "Confirm with Lami. The brief states \"Next Day Dispatch\" on the Home page but marks delivery timing as TBC in the FAQ — defaulted to match the Home page claim.",
         "default": "Next day dispatch from our UK warehouse — arrives in 1–3 working days."
       },
       {
         "type": "text",
         "id": "warehouse_location",
         "label": "Warehouse location",
-        "info": "PENDING — confirm exact warehouse location/address with Lami for the FAQ answer and structured data.",
+        "info": "Confirm with Lami: the exact warehouse location, used in the FAQ and in structured data.",
         "default": "United Kingdom"
       },
       {
         "type": "text",
         "id": "next_webinar_date",
         "label": "Next SYPB webinar date",
-        "info": "Leave blank to show \"announced inside SYPB\" instead of a date. PENDING — confirm recurring schedule with Lami."
+        "info": "Leave blank to show \"announced inside SYPB\" instead of a date. Confirm the recurring schedule with Lami."
       }
     ]
   },
@@ -258,7 +288,7 @@
         "type": "text",
         "id": "support_email",
         "label": "Support email",
-        "info": "PENDING — confirm live support inbox with Lami.",
+        "info": "Confirm with Lami: the live support inbox.",
         "default": "hello@gbgwholesalehub.co.uk"
       },
       {
@@ -287,41 +317,8 @@
         "type": "richtext",
         "id": "founder_note_body",
         "label": "Founder's note (About page + order confirmation)",
-        "info": "PENDING — this is launch-ready copy written in Lami's likely voice. Confirm final wording with Lami before/after launch.",
+        "info": "Launch-ready copy written in Lami's voice. Confirm the final wording with her.",
         "default": "<p>GBG started because I got tired of watching women give up on reselling, not because they weren't capable, but because nobody could give them a straight answer without gatekeeping. I built this to be the source I needed when I started: real stock, honest prices, and someone who actually answers when you ask a question. Every part of this hub — the shop, the guides, the community — comes from that same place. Thank you for being part of it.</p>"
-      }
-    ]
-  },
-  {
-    "name": "Legal & policy pages",
-    "settings": [
-      {
-        "type": "paragraph",
-        "content": "Interim, structurally-complete copy so these pages never look broken. PENDING final policy wording from Lami before/shortly after launch."
-      },
-      {
-        "type": "richtext",
-        "id": "returns_policy_body",
-        "label": "Returns policy body",
-        "default": "<p>We want you to feel confident ordering from GBG Wholesale Hub. This page will hold our full returns and refund policy — final wording is being confirmed with Lami.</p><p>In the meantime: if an order arrives damaged, faulty, or incorrect, contact us within 48 hours of delivery with your order number and photos, and we'll sort it out. Wholesale stock bought at low MOQs is generally sold as-is once received in good condition.</p>"
-      },
-      {
-        "type": "richtext",
-        "id": "privacy_policy_body",
-        "label": "Privacy policy body",
-        "default": "<p>This page will hold our full privacy policy, confirming exactly what customer data we collect, how it's used, and your rights over it. Final wording is being confirmed with Lami before launch.</p><p>In short: we only use your details to process orders, provide support, and — with your consent — send you restock and community updates. We never sell your data.</p>"
-      },
-      {
-        "type": "richtext",
-        "id": "terms_body",
-        "label": "Terms of service body",
-        "default": "<p>This page will hold our full terms of service. Final wording is being confirmed with Lami before launch.</p><p>In short: GBG Wholesale Hub supplies ready-stock products at low minimum order quantities for resale or personal use. Placing an order means you agree to pay the listed wholesale price and accept stock as described at time of dispatch.</p>"
-      },
-      {
-        "type": "richtext",
-        "id": "track_order_body",
-        "label": "Track your order — intro copy",
-        "default": "<p>Every order ships from our UK warehouse and you'll receive a shipping confirmation email with tracking as soon as it's on its way. Signed in? Your full order history and live tracking links are in your account below. Ordered as a guest? Use the order lookup below, or message us on WhatsApp with your order number.</p>"
       }
     ]
   },
@@ -338,20 +335,20 @@
         "type": "text",
         "id": "org_address_line",
         "label": "Address line (structured data)",
-        "info": "PENDING — confirm exact registered/warehouse address with Lami.",
+        "info": "Confirm with Lami: the registered / warehouse address.",
         "default": "United Kingdom"
       },
       {
         "type": "text",
         "id": "org_locality",
         "label": "City / locality",
-        "info": "PENDING — confirm exact city/locality with Lami."
+        "info": "Confirm with Lami: the city or locality."
       },
       {
         "type": "text",
         "id": "org_postal_code",
         "label": "Postal code",
-        "info": "PENDING — confirm exact postal code with Lami."
+        "info": "Confirm with Lami: the postal code."
       },
       {
         "type": "text",

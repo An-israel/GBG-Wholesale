@@ -1,13 +1,116 @@
 {
   "sections": {
-    "content": {
-      "type": "legal-content",
+    "hero": {
+      "type": "hero",
       "settings": {
+        "compact": true,
         "eyebrow": "LEGAL → TERMS",
         "heading": "Terms of Service",
-        "content_source": "terms_body"
+        "body": "<p>These terms cover using this website and buying from GBG Wholesale Hub. Placing an order means you accept them. They're written to be readable rather than impenetrable — if anything here is unclear, ask us before you order.</p>"
+      }
+    },
+    "who": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": true,
+        "eyebrow": "WHO WE ARE",
+        "heading": "About us",
+        "body": "<p>GBG Wholesale Hub (Global Biz Gateway) is a UK-based wholesale supplier selling ready-stock products at low minimum order quantities, alongside free education and community support for people reselling online.</p><p>Throughout these terms, \"we\" and \"us\" means GBG Wholesale Hub, and \"you\" means the person or business placing the order.</p>"
+      }
+    },
+    "orders": {
+      "type": "rich-text",
+      "settings": {
+        "background": "paper",
+        "narrow": true,
+        "eyebrow": "ORDERING",
+        "heading": "Placing an order",
+        "body": "<p>Adding items to your cart and checking out is an offer to buy. A contract is formed when we send you an order confirmation, not when you pay.</p>"
+      },
+      "blocks": {
+        "o1": { "type": "list_item", "settings": { "text": "We may decline or cancel an order — for example if stock has sold out, if a price was listed in error, or if we suspect fraud. If we do, you get a full refund promptly." } },
+        "o2": { "type": "list_item", "settings": { "text": "Product photographs are representative. Natural variation in colour, finish and exact styling is normal in wholesale stock, particularly in mixed packs." } },
+        "o3": { "type": "list_item", "settings": { "text": "Mixed and Starter packs are sold as a pack. The specific combination of items within them can vary." } },
+        "o4": { "type": "list_item", "settings": { "text": "Each product's stated minimum order quantity applies. You must be 18 or over to order." } }
+      },
+      "block_order": ["o1", "o2", "o3", "o4"]
+    },
+    "prices": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": true,
+        "eyebrow": "PRICES & PAYMENT",
+        "heading": "What you pay",
+        "body": "<p>Prices are shown in pounds sterling on the product page. Delivery is calculated and shown at checkout before you pay, so you always see the full amount first.</p><p>Payment is taken at checkout through Shopify's secure payment providers. We do not see or store your card details. We may correct pricing errors before dispatch; where a price was obviously wrong we'll contact you and you can confirm or cancel.</p><p>Any suggested retail prices shown on this site are illustrative examples of what similar items commonly sell for. They are not a promise of what you will achieve. What you earn depends on your pricing, your platform, your listings and your effort.</p>"
+      }
+    },
+    "delivery": {
+      "type": "rich-text",
+      "settings": {
+        "background": "paper",
+        "narrow": true,
+        "eyebrow": "DISPATCH & DELIVERY",
+        "heading": "Getting your order to you",
+        "body": "<p>Orders ship from our UK warehouse. Dispatch and delivery estimates are shown at checkout and in your confirmation email. Estimates are exactly that — once a parcel is with the carrier, timing is in their hands, though we'll always help you chase it.</p><p>Risk in the goods passes to you on delivery. Please check your order on arrival and tell us within 48 hours if anything is damaged, faulty or missing.</p>",
+        "primary_label": "Track your order",
+        "primary_link_source": "custom",
+        "primary_url": "/pages/track-your-order"
+      }
+    },
+    "reselling": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": true,
+        "eyebrow": "RESELLING",
+        "heading": "Selling on what you buy",
+        "body": "<p>You're free to resell products bought from us, on any platform you choose. That's what we're here for. A few things remain your responsibility as the seller:</p>"
+      },
+      "blocks": {
+        "r1": { "type": "list_item", "settings": { "text": "Complying with the terms of whichever platform you sell on." } },
+        "r2": { "type": "list_item", "settings": { "text": "Describing items accurately and honestly to your own buyers." } },
+        "r3": { "type": "list_item", "settings": { "text": "Handling your own customers' returns, refunds and enquiries — your buyers are your customers, not ours." } },
+        "r4": { "type": "list_item", "settings": { "text": "Meeting your own tax, trading and consumer-law obligations as a seller." } },
+        "r5": { "type": "list_item", "settings": { "text": "Not describing items using a brand name they don't legitimately carry." } },
+        "r6": { "type": "list_item", "settings": { "text": "Not presenting yourself as GBG Wholesale Hub, or as an authorised agent of ours, without written agreement." } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6"]
+    },
+    "site": {
+      "type": "rich-text",
+      "settings": {
+        "background": "paper",
+        "narrow": true,
+        "eyebrow": "USING THIS SITE",
+        "heading": "Acceptable use and our content",
+        "body": "<p>The text, photography, guides and design on this site belong to us and are provided for your personal and business use. You're welcome to apply what you learn; please don't republish our guides or imagery as your own.</p><p>Don't attempt to disrupt the site, access it by automated means, or use it for anything unlawful. We may suspend access where we reasonably believe this is happening.</p><p>Our guides and community content are general educational information, not financial, legal or tax advice. Decisions about your business remain yours.</p>"
+      }
+    },
+    "liability": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": true,
+        "eyebrow": "LIABILITY",
+        "heading": "Our responsibility to you",
+        "body": "<p>We are responsible for loss you suffer that is a foreseeable result of us breaking these terms or failing to use reasonable care. We are not responsible for unforeseeable loss, or for business losses such as lost profit, lost sales or lost opportunity where you are buying for business purposes.</p><p>Nothing in these terms limits our liability for death or personal injury caused by our negligence, for fraud, or for anything else that cannot lawfully be limited. If you are buying as a consumer, your statutory rights are unaffected by anything here.</p>"
+      }
+    },
+    "general": {
+      "type": "rich-text",
+      "settings": {
+        "background": "paper",
+        "narrow": true,
+        "eyebrow": "GENERAL",
+        "heading": "Changes, and the law that applies",
+        "body": "<p>We may update these terms from time to time. The version published when you place your order is the version that applies to that order.</p><p>These terms are governed by the laws of England and Wales, and the courts of England and Wales have jurisdiction over any dispute. If you are a consumer resident elsewhere in the UK, you may bring proceedings in your own jurisdiction.</p><p>If any part of these terms is found unenforceable, the rest continues to apply.</p>",
+        "primary_label": "Questions about these terms?",
+        "primary_link_source": "custom",
+        "primary_url": "/pages/contact"
       }
     }
   },
-  "order": ["content"]
+  "order": ["hero", "who", "orders", "prices", "delivery", "reselling", "site", "liability", "general"]
 }

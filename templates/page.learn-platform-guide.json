@@ -5,25 +5,201 @@
       "settings": {
         "compact": true,
         "eyebrow": "LEARN → PLATFORM GUIDE",
-        "heading": "Platform Guide",
-        "body": "<p>What tends to sell best, and where — a breakdown across Vinted, eBay, TikTok Shop, and Facebook Marketplace.</p>"
+        "heading": "Where to sell what, and why the same item performs differently on each platform",
+        "body": "<p>The product isn't the only variable. The same pack of earrings can fly on one platform and sit dead on another, purely because of who is browsing and how that platform decides what to show them. Here's how the four main UK platforms actually behave.</p>",
+        "primary_label": "Browse the catalogue",
+        "primary_url": "/collections/all",
+        "secondary_label": "Back to Learn Hub",
+        "secondary_url": "/pages/learn"
       }
     },
-    "body": {
+    "principle": {
       "type": "rich-text",
       "settings": {
         "background": "surface",
         "narrow": true,
-        "eyebrow": "COMING SOON",
-        "heading": "This guide is being written",
-        "body": "<p>The full platform-by-platform breakdown is being finalised. In the meantime, the fastest way to get a straight answer for your specific product and platform is to ask directly — Lami and the community answer these questions daily.</p>",
-        "primary_label": "Join SYPB",
-        "primary_link_source": "sypb_link",
-        "secondary_label": "Back to Learn Hub",
-        "secondary_link_source": "custom",
-        "secondary_url": "/pages/learn"
+        "eyebrow": "THE ONE RULE",
+        "heading": "Match the product to the buyer's mood, not just the category",
+        "body": "<p>Every platform attracts people in a particular frame of mind. Someone on eBay usually knows what they want and is comparing prices. Someone on TikTok Shop wasn't shopping at all until three seconds ago. Someone on Vinted is browsing for pleasure, in a fashion mindset, expecting a bargain.</p><p>Get this right and everything else — pricing, photos, titles — becomes easier. Get it wrong and no amount of good listing writing rescues it.</p>"
       }
+    },
+    "platforms": {
+      "type": "content-cards",
+      "settings": {
+        "background": "paper",
+        "columns": "2",
+        "eyebrow": "PLATFORM BY PLATFORM",
+        "heading": "The four that matter in the UK",
+        "body": "<p>Read these as tendencies, not laws. Test with a small batch before you commit a whole pack to one platform.</p>"
+      },
+      "blocks": {
+        "p1": {
+          "type": "card",
+          "settings": {
+            "label": "VINTED",
+            "heading": "Fashion, accessories and jewellery — browsing buyers",
+            "body": "<p><strong>Best for:</strong> clothing, jewellery, hair accessories, bags, small fashion items. Anything that photographs well and reads as a treat.</p><p><strong>Why it works:</strong> no seller fees, huge UK audience, and buyers who browse for enjoyment rather than hunting a specific item. Impulse-friendly price points (roughly £5–£25) move fastest.</p><p><strong>Watch out for:</strong> buyers expect bargains and will haggle. Build your floor price in before you list. Vinted is also the platform most likely to flag accounts that look like scaled reselling — pace your listings and read the Safety Guide before you scale.</p><p><strong>Avoid:</strong> electronics and bulky homeware. Wrong audience entirely.</p>",
+            "link_text": "Read the Safety Guide",
+            "link_url": "/pages/learn-platform-safety-guide"
+          }
+        },
+        "p2": {
+          "type": "card",
+          "settings": {
+            "label": "EBAY",
+            "heading": "Electronics, brands and anything people search by name — intent buyers",
+            "body": "<p><strong>Best for:</strong> electronics, gadgets, tools, homeware, and any product with a model name or number people type into a search box.</p><p><strong>Why it works:</strong> buyers arrive with intent. They already want the thing; they're deciding who to buy it from. That means less persuasion and more competition on price, postage speed and feedback score.</p><p><strong>Watch out for:</strong> seller fees take a real bite — build them into your break-even before you list, not after. Your feedback score matters enormously early on, so your first ten orders are worth over-delivering on.</p><p><strong>Strength:</strong> the sold-listings filter is the single best free demand-research tool in reselling. Use it before you buy stock, not after.</p>",
+            "link_text": "Work out your floor price",
+            "link_url": "/pages/faq#pricing-calculator"
+          }
+        },
+        "p3": {
+          "type": "card",
+          "settings": {
+            "label": "TIKTOK SHOP",
+            "heading": "Visual, demonstrable products — discovery buyers",
+            "body": "<p><strong>Best for:</strong> anything that looks good in motion or has a visible before-and-after. Ring lights, gadgets, beauty accessories, novelty homeware, jewellery with sparkle.</p><p><strong>Why it works:</strong> nobody arrives intending to buy. The video creates the want and the checkout is one tap away. A single video that lands can clear a whole pack in a day.</p><p><strong>Watch out for:</strong> it is content work, not listing work. You need to keep posting, and most videos do nothing. Treat it as a channel that occasionally spikes rather than a steady earner.</p><p><strong>Avoid:</strong> anything that needs explaining in writing or looks flat on camera.</p>"
+          }
+        },
+        "p4": {
+          "type": "card",
+          "settings": {
+            "label": "FACEBOOK MARKETPLACE",
+            "heading": "Bulk, bundles and local pickup — practical buyers",
+            "body": "<p><strong>Best for:</strong> homeware, larger items, job lots and bundles. Also the best place to shift the tail end of a pack that's stopped moving elsewhere.</p><p><strong>Why it works:</strong> no fees, local collection removes postage costs entirely, and buyers are comfortable with bundles rather than single items.</p><p><strong>Watch out for:</strong> more time-wasters than anywhere else. Expect messages that go nowhere and people who don't turn up. Never take payment methods you can't verify, and meet in public places.</p><p><strong>Strength:</strong> genuinely useful as a clearance channel so old stock doesn't tie up your cash.</p>"
+          }
+        }
+      },
+      "block_order": ["p1", "p2", "p3", "p4"]
+    },
+    "matching": {
+      "type": "content-cards",
+      "settings": {
+        "background": "surface",
+        "columns": "3",
+        "eyebrow": "QUICK MATCH",
+        "heading": "If you're holding this, start here",
+        "body": "<p>A shortcut for the categories GBG stocks most often.</p>"
+      },
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "label": "JEWELLERY & ACCESSORIES",
+            "heading": "Vinted first, TikTok Shop second",
+            "body": "<p>Photographs well, sits at an impulse price, and Vinted's audience is already in a fashion mindset. Use TikTok Shop for the pieces with visible sparkle or movement.</p>",
+            "link_text": "Shop the category",
+            "link_url": "/collections/jewellery-accessories"
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "label": "ELECTRONICS",
+            "heading": "eBay first, TikTok Shop second",
+            "body": "<p>People search electronics by name, which is eBay's home ground. Anything demonstrable — ring lights, earbuds — is worth filming for TikTok Shop too.</p>",
+            "link_text": "Shop the category",
+            "link_url": "/collections/electronics"
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "label": "FASHION",
+            "heading": "Vinted, then Marketplace for the leftovers",
+            "body": "<p>Vinted is the fashion platform in the UK. When a size or colour stops moving, bundle the remainder onto Facebook Marketplace rather than sitting on it.</p>",
+            "link_text": "Shop the category",
+            "link_url": "/collections/fashion"
+          }
+        },
+        "c4": {
+          "type": "card",
+          "settings": {
+            "label": "HOME & LIFESTYLE",
+            "heading": "Marketplace and eBay",
+            "body": "<p>Bulkier items where postage hurts your margin do better with local collection. Candles and giftable items also lift sharply in the run-up to Christmas.</p>",
+            "link_text": "Shop the category",
+            "link_url": "/collections/home-lifestyle"
+          }
+        },
+        "c5": {
+          "type": "card",
+          "settings": {
+            "label": "STARTER BOXES",
+            "heading": "Split them across two platforms",
+            "body": "<p>A mixed box is a free experiment. List half on one platform and half on another, then reorder toward whichever cleared faster. That's real data on your own audience.</p>",
+            "link_text": "Shop Starter Boxes",
+            "link_url": "/collections/starter-boxes"
+          }
+        },
+        "c6": {
+          "type": "card",
+          "settings": {
+            "label": "ANY CATEGORY",
+            "heading": "Check demand before you buy",
+            "body": "<p>Search the item on eBay and filter to sold listings. If similar items sold in the last month at a price above your break-even, there's demand. If not, no listing skill will fix it.</p>",
+            "link_text": "Try the Pricing Calculator",
+            "link_url": "/pages/faq#pricing-calculator"
+          }
+        }
+      },
+      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6"]
+    },
+    "method": {
+      "type": "numbered-steps",
+      "settings": {
+        "eyebrow": "THE METHOD",
+        "heading": "How to pick a platform for a new pack"
+      },
+      "blocks": {
+        "s1": { "type": "step", "settings": { "text": "Search the item on eBay and filter to sold listings. This tells you whether anyone is buying it at all, and at what price." } },
+        "s2": { "type": "step", "settings": { "text": "Work out your true break-even: pack cost ÷ units, plus packaging, plus platform fees.", "link_text": "Use the calculator", "link_source": "custom", "link_url": "/pages/faq#pricing-calculator" } },
+        "s3": { "type": "step", "settings": { "text": "Match the product to the buyer mindset above. Browsing and fashion goes to Vinted; searched-for and technical goes to eBay." } },
+        "s4": { "type": "step", "settings": { "text": "List a small batch first — five or six units, not the whole pack. You're testing, not committing." } },
+        "s5": { "type": "step", "settings": { "text": "Give it a fortnight. Track views and saves as well as sales: lots of views and no sales usually means price, few views usually means title or keywords." } },
+        "s6": { "type": "step", "settings": { "text": "Put the rest where the test worked. If nothing moved anywhere, bundle onto Facebook Marketplace to release the cash and learn from it." } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6"]
+    },
+    "next": {
+      "type": "content-cards",
+      "settings": {
+        "background": "paper",
+        "columns": "3",
+        "eyebrow": "READ NEXT",
+        "heading": "Keep going"
+      },
+      "blocks": {
+        "n1": {
+          "type": "card",
+          "settings": {
+            "heading": "Listings Guide",
+            "body": "<p>Now you know where to sell, learn how to write the listing that actually converts.</p>",
+            "link_text": "Read the guide",
+            "link_url": "/pages/learn-listings-guide"
+          }
+        },
+        "n2": {
+          "type": "card",
+          "settings": {
+            "heading": "Platform Safety Guide",
+            "body": "<p>How to scale up without getting your account restricted — especially on Vinted.</p>",
+            "link_text": "Read the guide",
+            "link_url": "/pages/learn-platform-safety-guide"
+          }
+        },
+        "n3": {
+          "type": "card",
+          "settings": {
+            "heading": "Pricing Calculator",
+            "body": "<p>Work out the lowest price you can list at without losing money.</p>",
+            "link_text": "Open the calculator",
+            "link_url": "/pages/faq#pricing-calculator"
+          }
+        }
+      },
+      "block_order": ["n1", "n2", "n3"]
     }
   },
-  "order": ["hero", "body"]
+  "order": ["hero", "principle", "platforms", "matching", "method", "next"]
 }

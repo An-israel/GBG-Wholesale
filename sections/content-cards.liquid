@@ -1,0 +1,172 @@
+<section
+  id="{{ section.settings.custom_id | default: section.id }}"
+  class="content-cards section
+    {% if section.settings.background == 'surface' %}section--surface{% elsif section.settings.background == 'ink' %}section--ink{% endif %}"
+>
+  <div class="container">
+    {% if section.settings.eyebrow != blank or section.settings.heading != blank or section.settings.body != blank %}
+      <div class="section-intro reveal">
+        {% if section.settings.eyebrow != blank %}
+          <span class="route-label {% if section.settings.eyebrow_color == 'plum' %}route-label--plum{% elsif section.settings.eyebrow_color == 'forest' %}route-label--forest{% endif %}">
+            {{ section.settings.eyebrow }}
+          </span>
+        {% endif %}
+        {% if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif %}
+        {% if section.settings.body != blank %}<div class="content-cards__intro">{{ section.settings.body }}</div>{% endif %}
+      </div>
+    {% endif %}
+
+    <div class="content-cards__grid content-cards__grid--{{ section.settings.columns }}">
+      {% for block in section.blocks %}
+        <div class="content-cards__card card reveal" {{ block.shopify_attributes }}>
+          {% if block.settings.label != blank %}
+            <span class="content-cards__label">{{ block.settings.label }}</span>
+          {% endif %}
+          {% if block.settings.heading != blank %}<h3>{{ block.settings.heading }}</h3>{% endif %}
+          {% if block.settings.body != blank %}<div class="content-cards__body">{{ block.settings.body }}</div>{% endif %}
+          {% if block.settings.link_text != blank and block.settings.link_url != blank %}
+            <a href="{{ block.settings.link_url }}" class="content-cards__link">
+              {{ block.settings.link_text }}
+              {% render 'icon', name: 'arrow-right' %}
+            </a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .content-cards__intro {
+    font-size: 1.05rem;
+    color: color-mix(in srgb, var(--color-ink) 80%, transparent);
+  }
+
+  .section--ink .content-cards__intro {
+    color: color-mix(in srgb, var(--color-paper) 85%, transparent);
+  }
+
+  .content-cards__grid {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 700px) {
+    .content-cards__grid--2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 900px) {
+    .content-cards__grid--3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .content-cards__grid--4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .content-cards__grid--4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .content-cards__card {
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .content-cards__label {
+    font-family: 'Public Sans', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .content-cards__card h3 {
+    margin: 0;
+    font-size: 1.15rem;
+  }
+
+  .content-cards__body {
+    color: color-mix(in srgb, var(--color-ink) 78%, transparent);
+    flex: 1;
+  }
+
+  .content-cards__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .content-cards__body ul {
+    margin: 0;
+    padding-left: 1.1em;
+  }
+
+  .content-cards__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--color-accent);
+    text-decoration: none;
+    margin-top: var(--space-2);
+  }
+
+  .content-cards__link svg {
+    width: 14px;
+    height: 14px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Content cards",
+  "settings": [
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
+    { "type": "select", "id": "background", "label": "Background", "options": [
+        { "value": "paper", "label": "Paper" },
+        { "value": "surface", "label": "White surface" },
+        { "value": "ink", "label": "Ink (dark)" }
+      ], "default": "paper" },
+    { "type": "select", "id": "columns", "label": "Columns (desktop)", "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ], "default": "3" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label" },
+    { "type": "select", "id": "eyebrow_color", "label": "Eyebrow colour", "options": [
+        { "value": "accent", "label": "Primary accent" },
+        { "value": "forest", "label": "Forest" },
+        { "value": "plum", "label": "Plum" }
+      ], "default": "accent" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "richtext", "id": "body", "label": "Intro text" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Small label above heading" },
+        { "type": "text", "id": "heading", "label": "Card heading", "default": "Card heading" },
+        { "type": "richtext", "id": "body", "label": "Card text" },
+        { "type": "text", "id": "link_text", "label": "Link text (optional)" },
+        { "type": "url", "id": "link_url", "label": "Link (optional)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Content cards",
+      "blocks": [{ "type": "card" }, { "type": "card" }, { "type": "card" }]
+    }
+  ]
+}
+{% endschema %}

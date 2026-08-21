@@ -4,26 +4,167 @@
       "type": "hero",
       "settings": {
         "compact": true,
-        "eyebrow": "LEARN → PLATFORM SAFETY GUIDE",
-        "heading": "Platform Safety Guide",
-        "body": "<p>How to avoid the listing patterns that get reseller accounts flagged or restricted.</p>"
+        "eyebrow": "LEARN → PLATFORM SAFETY",
+        "heading": "How to grow without getting your account restricted",
+        "body": "<p>Most reseller accounts aren't banned for doing something dishonest. They're restricted because their listing pattern looked automated, or because a payment was taken off-platform. Both are avoidable once you know what the systems are watching for.</p>",
+        "primary_label": "Back to Learn Hub",
+        "primary_url": "/pages/learn"
       }
     },
-    "body": {
+    "why": {
       "type": "rich-text",
       "settings": {
         "background": "surface",
         "narrow": true,
-        "eyebrow": "COMING SOON",
-        "heading": "This guide is being written",
-        "body": "<p>The full safety guide — covering listing pacing, account patterns, and what to do if you're flagged — is being finalised. If you've already run into a restriction, message us directly and we'll help you work through it.</p>",
+        "eyebrow": "WHY IT HAPPENS",
+        "heading": "The platform isn't judging you. It's pattern-matching.",
+        "body": "<p>Vinted in particular is built around the idea of individuals clearing their own wardrobes. When an account starts behaving like a shop — twenty identical items, uploaded in one burst, all brand new with the tags on — automated checks notice. No human decided you were a problem; a pattern did.</p><p>That's good news, because patterns can be changed. Almost everything below is about looking like an enthusiastic individual seller rather than a bulk operation.</p>"
+      }
+    },
+    "triggers": {
+      "type": "content-cards",
+      "settings": {
+        "background": "paper",
+        "columns": "2",
+        "eyebrow": "WHAT TRIGGERS A FLAG",
+        "heading": "The patterns that get accounts restricted",
+        "body": "<p>These are the behaviours that most reliably cause trouble, roughly in order of how often they catch people out.</p>"
+      },
+      "blocks": {
+        "t1": {
+          "type": "card",
+          "settings": {
+            "label": "MOST COMMON",
+            "heading": "Bulk-uploading identical items in one session",
+            "body": "<p>Twenty of the same necklace, posted within an hour, is the single clearest signal that this isn't a personal wardrobe. Spread multiples across days, vary the photo angle and the wording, and list a few genuinely different items in between.</p>"
+          }
+        },
+        "t2": {
+          "type": "card",
+          "settings": {
+            "label": "HIGH RISK",
+            "heading": "Taking payment off-platform",
+            "body": "<p>Someone asks to pay by bank transfer to save fees. It is the most common way sellers lose both the money and the account. You lose all buyer protection and it breaches the terms of every platform here. Keep every transaction on the platform, every time — no exceptions for someone who seems nice.</p>"
+          }
+        },
+        "t3": {
+          "type": "card",
+          "settings": {
+            "label": "HIGH RISK",
+            "heading": "Brand names you can't substantiate",
+            "body": "<p>Using a designer or brand name to describe an item that isn't from that brand — even as \"style\" or \"dupe\" — invites both takedowns and legal trouble. Describe what the item genuinely is. If the pack came without brand authorisation, don't borrow a brand's name to sell it.</p>"
+          }
+        },
+        "t4": {
+          "type": "card",
+          "settings": {
+            "label": "MODERATE",
+            "heading": "Stock photos instead of your own",
+            "body": "<p>Supplier images appear across hundreds of listings, so duplicate-image detection picks them up quickly, and buyers trust them less. Photograph the actual item you're holding. A phone against a plain wall in daylight beats a supplier render every time.</p>"
+          }
+        },
+        "t5": {
+          "type": "card",
+          "settings": {
+            "label": "MODERATE",
+            "heading": "Multiple accounts from one device",
+            "body": "<p>Running a second account to get around a limit is usually detected through the device or connection, and typically costs you both accounts. Grow the one account instead.</p>"
+          }
+        },
+        "t6": {
+          "type": "card",
+          "settings": {
+            "label": "MODERATE",
+            "heading": "Slow dispatch and unanswered messages",
+            "body": "<p>Not a ban risk on its own, but it quietly suppresses how often you're shown, and it drives the negative feedback that does real damage. Answer within a day; post within your stated window.</p>"
+          }
+        }
+      },
+      "block_order": ["t1", "t2", "t3", "t4", "t5", "t6"]
+    },
+    "habits": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": true,
+        "eyebrow": "SAFE HABITS",
+        "heading": "What a healthy reseller account looks like",
+        "body": "<p>None of this is complicated. It's mostly pacing and honesty.</p>"
+      },
+      "blocks": {
+        "h1": { "type": "list_item", "settings": { "text": "List steadily — a handful of items a day beats a hundred on Sunday night." } },
+        "h2": { "type": "list_item", "settings": { "text": "Photograph every item yourself, in daylight, against a plain background." } },
+        "h3": { "type": "list_item", "settings": { "text": "Write each listing fresh. Copy-pasted identical descriptions are easy to spot." } },
+        "h4": { "type": "list_item", "settings": { "text": "Describe condition accurately, including flaws. A disclosed flaw almost never causes a dispute; an undisclosed one always does." } },
+        "h5": { "type": "list_item", "settings": { "text": "Keep every conversation and payment inside the platform." } },
+        "h6": { "type": "list_item", "settings": { "text": "Reply within 24 hours and dispatch within your stated window." } },
+        "h7": { "type": "list_item", "settings": { "text": "Keep your receipts and order confirmations. If you're ever asked to prove your stock is legitimately sourced, you'll want them." } }
+      },
+      "block_order": ["h1", "h2", "h3", "h4", "h5", "h6", "h7"]
+    },
+    "restricted": {
+      "type": "numbered-steps",
+      "settings": {
+        "eyebrow": "IF IT HAPPENS",
+        "heading": "You've been restricted. Do this, in this order."
+      },
+      "blocks": {
+        "s1": { "type": "step", "settings": { "text": "Stop listing immediately. Adding more while under review makes it worse, not better." } },
+        "s2": { "type": "step", "settings": { "text": "Read the notice properly and find the specific reason given. Appeals that don't address the stated reason get rejected." } },
+        "s3": { "type": "step", "settings": { "text": "Gather your proof of purchase — supplier invoices and order confirmations showing the stock is legitimately yours to sell." } },
+        "s4": { "type": "step", "settings": { "text": "Appeal once, calmly and factually. State what you sell, where you source it, and attach the evidence. Do not send several angry messages; it rarely helps and often hurts." } },
+        "s5": { "type": "step", "settings": { "text": "Fulfil any orders you already owe. Leaving buyers stranded turns a temporary restriction into a permanent one." } },
+        "s6": { "type": "step", "settings": { "text": "While you wait, move the stock to another platform rather than sitting idle.", "link_text": "Read the Platform Guide", "link_source": "custom", "link_url": "/pages/learn-platform-guide" } },
+        "s7": { "type": "step", "settings": { "text": "If you're stuck, ask us — we've seen most versions of this.", "link_text": "Message us on WhatsApp", "link_source": "whatsapp_link" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7"]
+    },
+    "buyer-safety": {
+      "type": "content-cards",
+      "settings": {
+        "background": "paper",
+        "columns": "3",
+        "eyebrow": "PROTECTING YOURSELF",
+        "heading": "Staying safe from the other side too",
+        "body": "<p>Sellers get scammed as well. These three cover most of it.</p>"
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "heading": "\"I'll pay by bank transfer\"",
+            "body": "<p>Decline, politely and always. Off-platform payment removes your protection and breaches the rules. The genuine buyers will simply pay the normal way.</p>"
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "heading": "The item-not-received claim",
+            "body": "<p>Always use tracked postage, even when it costs a little more, and keep the proof of postage. Untracked parcels are where sellers lose disputes they should have won.</p>"
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "heading": "Meeting for local collection",
+            "body": "<p>Meet somewhere public and busy in daylight, take someone with you if you can, and accept cash or platform payment only. Never give out your home address in a listing.</p>"
+          }
+        }
+      },
+      "block_order": ["b1", "b2", "b3"]
+    },
+    "next": {
+      "type": "image-banner",
+      "settings": {
+        "height": "compact",
+        "align": "center",
+        "eyebrow": "STUCK RIGHT NOW?",
+        "heading": "Already been restricted? Ask us directly.",
+        "body": "<p>We've helped members work through this before. Send us what the notice actually said and we'll tell you what usually works from here.</p>",
         "primary_label": "Message us on WhatsApp",
-        "primary_link_source": "whatsapp_link",
-        "secondary_label": "Back to Learn Hub",
-        "secondary_link_source": "custom",
-        "secondary_url": "/pages/learn"
+        "primary_link_source": "whatsapp_link"
       }
     }
   },
-  "order": ["hero", "body"]
+  "order": ["hero", "why", "triggers", "habits", "restricted", "buyer-safety", "next"]
 }

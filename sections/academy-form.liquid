@@ -1,0 +1,193 @@
+{%- assign academy_posted = false -%}
+{%- if form.posted_successfully? and form.id == 'AcademyApplicationForm' -%}
+  {%- assign academy_posted = true -%}
+{%- endif -%}
+
+<section id="{{ section.settings.custom_id | default: section.id }}" class="academy-form section section--surface">
+  <div class="container academy-form__layout">
+    <div class="academy-form__intro reveal">
+      {% if section.settings.eyebrow != blank %}
+        <span class="route-label route-label--plum">{{ section.settings.eyebrow }}</span>
+      {% endif %}
+      <h2>{{ section.settings.heading }}</h2>
+      {% if section.settings.body != blank %}<div>{{ section.settings.body }}</div>{% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <ul class="academy-form__points">
+          {% for block in section.blocks %}
+            <li {{ block.shopify_attributes }}>
+              {% render 'icon', name: 'check' %}
+              <span>{{ block.settings.text }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+
+    <div class="academy-form__panel card reveal">
+      {% form 'contact', id: 'AcademyApplicationForm' %}
+        <input type="hidden" name="contact[Enquiry type]" value="Academy application">
+
+        <h3>{{ section.settings.form_heading }}</h3>
+        <p class="field__hint">{{ section.settings.form_hint }}</p>
+
+        <div class="academy-form__grid">
+          <div class="field">
+            <label class="field__label" for="AcademyName">Your name</label>
+            <input class="input" type="text" id="AcademyName" name="contact[name]" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label class="field__label" for="AcademyEmail">Email</label>
+            <input class="input" type="email" id="AcademyEmail" name="contact[email]" autocomplete="email" value="{{ form.email }}" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="AcademyStage">Where are you right now?</label>
+          <select class="input" id="AcademyStage" name="contact[Current stage]" required>
+            <option value="">Choose one&hellip;</option>
+            <option value="Not started yet">I haven't started selling yet</option>
+            <option value="Sold a little">I've sold a little and want to go further</option>
+            <option value="Selling regularly">I'm selling regularly and want to scale</option>
+            <option value="Existing GBG buyer">I've already ordered from GBG</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="AcademyPlatform">Where do you sell (or plan to)?</label>
+          <select class="input" id="AcademyPlatform" name="contact[Platform]">
+            <option value="Not decided yet">Not decided yet</option>
+            <option value="Vinted">Vinted</option>
+            <option value="eBay">eBay</option>
+            <option value="TikTok Shop">TikTok Shop</option>
+            <option value="Facebook Marketplace">Facebook Marketplace</option>
+            <option value="My own shop">My own shop / website</option>
+            <option value="Several">Several of these</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="AcademyGoal">What do you want the Academy to help you do?</label>
+          <textarea class="input" id="AcademyGoal" name="contact[Goal]" rows="4" required></textarea>
+          <span class="field__hint">A sentence or two is plenty — it helps us tell you whether the Academy is genuinely right for you.</span>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--block">{{ section.settings.submit_label }}</button>
+
+        <div class="form-status" {% if academy_posted %}data-state="success"{% elsif form.errors %}data-state="error"{% endif %}>
+          {% if academy_posted %}
+            {{ section.settings.success_message }}
+          {% elsif form.errors %}
+            {{ 'forms.error_generic' | t }}
+          {% endif %}
+        </div>
+
+        <p class="field__hint academy-form__foot">
+          Prefer to ask a question first?
+          {% if settings.whatsapp_link != blank %}
+            <a href="{{ settings.whatsapp_link }}" target="_blank" rel="noopener noreferrer">Message us on WhatsApp</a>.
+          {% else %}
+            <a href="/pages/contact">Get in touch</a>.
+          {% endif %}
+        </p>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .academy-form__layout {
+    display: grid;
+    gap: var(--space-7);
+    align-items: start;
+  }
+
+  @media (min-width: 950px) {
+    .academy-form__layout {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .academy-form__intro .route-label {
+    margin-bottom: var(--space-4);
+  }
+
+  .academy-form__points {
+    list-style: none;
+    margin: var(--space-5) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .academy-form__points li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .academy-form__points svg {
+    width: 18px;
+    height: 18px;
+    color: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 0.15em;
+  }
+
+  .academy-form__panel {
+    padding: var(--space-6);
+  }
+
+  .academy-form__panel h3 {
+    margin-bottom: var(--space-2);
+  }
+
+  .academy-form__grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 560px) {
+    .academy-form__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .academy-form__foot {
+    margin-top: var(--space-4);
+    margin-bottom: 0;
+  }
+
+  .academy-form__foot a {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Academy application",
+  "settings": [
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)", "default": "apply" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label", "default": "APPLY" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Apply for the next Academy intake" },
+    { "type": "richtext", "id": "body", "label": "Intro text" },
+    { "type": "text", "id": "form_heading", "label": "Form heading", "default": "Your application" },
+    { "type": "text", "id": "form_hint", "label": "Form hint", "default": "Takes two minutes. We reply personally with dates, pricing and whether it's the right fit." },
+    { "type": "text", "id": "submit_label", "label": "Submit button label", "default": "Send my application" },
+    { "type": "text", "id": "success_message", "label": "Success message", "default": "Application received. We'll reply personally within 24 hours with dates, pricing and next steps." }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Bullet point",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "A point about the Academy" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Academy application" }
+  ]
+}
+{% endschema %}

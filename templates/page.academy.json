@@ -4,42 +4,299 @@
       "type": "hero",
       "settings": {
         "compact": true,
+        "layout": "overlay",
         "eyebrow": "ROUTE → ACADEMY",
-        "eyebrow_color": "plum",
-        "heading": "A guided path, not just stock.",
-        "body": "<p>For buyers who want structure — a closer look at how to build this into a real, repeatable income, not just a one-off pack.</p>"
+        "heading": "Stop guessing. Build it properly, with someone watching your work.",
+        "body": "<p>The GBG Academy is a guided programme for people who want structure, not just stock. You bring the willingness. We bring the roadmap, the stock, and the feedback on what you're actually doing.</p>",
+        "primary_label": "Apply for the next intake",
+        "primary_url": "#apply",
+        "secondary_label": "See what's covered",
+        "secondary_url": "#curriculum",
+        "show_stats": false
       }
     },
-    "coming-soon": {
+    "who-its-for": {
+      "type": "content-cards",
+      "settings": {
+        "background": "paper",
+        "columns": "3",
+        "eyebrow": "IS THIS YOU?",
+        "eyebrow_color": "plum",
+        "heading": "Who the Academy is built for",
+        "body": "<p>The Academy isn't for everyone, and we'd rather tell you that up front than take your money. It's built for three people in particular.</p>"
+      },
+      "blocks": {
+        "w1": {
+          "type": "card",
+          "settings": {
+            "label": "01",
+            "heading": "You've bought stock and it's sitting there",
+            "body": "<p>You took the leap, the boxes arrived, and then the momentum stopped. You're not short of product — you're short of a system for listing, pricing and moving it. That's the gap the Academy closes first.</p>"
+          }
+        },
+        "w2": {
+          "type": "card",
+          "settings": {
+            "label": "02",
+            "heading": "You're selling, but it's random",
+            "body": "<p>Some weeks you sell, some weeks nothing, and you can't explain the difference. You want to know which levers actually matter so results stop being luck and start being repeatable.</p>"
+          }
+        },
+        "w3": {
+          "type": "card",
+          "settings": {
+            "label": "03",
+            "heading": "You want accountability, not more free content",
+            "body": "<p>You've watched the videos and saved the posts. What you're missing is someone who looks at your listings, your numbers and your choices and tells you the truth about them.</p>"
+          }
+        }
+      },
+      "block_order": ["w1", "w2", "w3"]
+    },
+    "not-for": {
       "type": "rich-text",
       "settings": {
         "background": "surface",
         "narrow": true,
-        "eyebrow": "DETAILS COMING SOON",
-        "eyebrow_color": "plum",
-        "heading": "The Academy curriculum, pricing, and enrolment are being finalised.",
-        "body": "<p>The Academy is a structured, paid programme for buyers who want a guided path rather than self-serve learning — the difference between the free community and a step-by-step course. Full curriculum, pricing, and how to enrol are being confirmed with Lami.</p><p>Join SYPB now and you'll be the first to know the moment enrolment opens.</p>",
-        "primary_label": "Join SYPB to be notified",
-        "primary_link_source": "sypb_link",
-        "secondary_label": "Shop in the meantime",
-        "secondary_link_source": "custom",
-        "secondary_url": "/collections/all"
-      }
-    },
-    "what-you-get-instead": {
-      "type": "rich-text",
-      "settings": {
-        "background": "paper",
-        "narrow": true,
-        "heading": "While you wait, here's what's already open to you"
+        "heading": "Who it's not for",
+        "body": "<p>Being straight with you saves us both time. The Academy is the wrong choice if:</p>"
       },
       "blocks": {
-        "l1": { "type": "list_item", "settings": { "text": "The free Start Your Product Business (SYPB) community and webinar." } },
-        "l2": { "type": "list_item", "settings": { "text": "The Learn Hub — Platform Guide, Pricing Calculator, Platform Safety Guide, Listings Guide." } },
-        "l3": { "type": "list_item", "settings": { "text": "Real wholesale stock at low MOQs, ready to order today." } }
+        "n1": { "type": "list_item", "settings": { "text": "You want guaranteed income. Nobody can promise that, and anyone who does is selling you something else." } },
+        "n2": { "type": "list_item", "settings": { "text": "You want it done for you. We'll show you exactly what to do — you still have to do it." } },
+        "n3": { "type": "list_item", "settings": { "text": "You can't give it a few hours a week. The work is light, but it isn't zero." } },
+        "n4": { "type": "list_item", "settings": { "text": "You just want stock at good prices. That's the shop, and it's open to everyone without a course." } }
       },
-      "block_order": ["l1", "l2", "l3"]
+      "block_order": ["n1", "n2", "n3", "n4"]
+    },
+    "curriculum": {
+      "type": "content-cards",
+      "settings": {
+        "custom_id": "curriculum",
+        "background": "paper",
+        "columns": "2",
+        "eyebrow": "CURRICULUM",
+        "eyebrow_color": "plum",
+        "heading": "What's covered, module by module",
+        "body": "<p>Six modules, worked through in order, because each one depends on the last. You finish with a stocked, listed, live shop — not a folder of notes.</p>"
+      },
+      "blocks": {
+        "m1": {
+          "type": "card",
+          "settings": {
+            "label": "MODULE 01",
+            "heading": "Choosing what to sell",
+            "body": "<p>How to read demand before you spend: reading sold listings rather than active ones, spotting seasonal traps, and judging whether a product has repeat-purchase potential or is a one-off. You leave with a shortlist of categories matched to your budget and your platform.</p>"
+          }
+        },
+        "m2": {
+          "type": "card",
+          "settings": {
+            "label": "MODULE 02",
+            "heading": "Numbers that actually decide profit",
+            "body": "<p>Cost per unit, packaging, platform fees, postage, returns and the ones people forget. We build your real break-even price, set a floor you never sell under, and work out how many units you need to move to make a given month worth it.</p>"
+          }
+        },
+        "m3": {
+          "type": "card",
+          "settings": {
+            "label": "MODULE 03",
+            "heading": "Listings that get found and get bought",
+            "body": "<p>Photography you can do on a phone against a wall, titles built from the words buyers actually search, descriptions that kill objections before they're raised, and how listing order and timing affect what the algorithm shows.</p>"
+          }
+        },
+        "m4": {
+          "type": "card",
+          "settings": {
+            "label": "MODULE 04",
+            "heading": "Platform strategy and staying safe",
+            "body": "<p>Which of your products belong on Vinted, eBay, TikTok Shop or Facebook Marketplace — and why the same item performs differently on each. Plus the listing patterns that get reseller accounts restricted, and how to grow without tripping them.</p>"
+          }
+        },
+        "m5": {
+          "type": "card",
+          "settings": {
+            "label": "MODULE 05",
+            "heading": "Selling, shipping and reviews",
+            "body": "<p>Replying in a way that closes the sale, packing so items arrive intact and look considered, dispatch speed as a ranking factor, handling the difficult buyer, and building the review count that makes every later listing easier to sell.</p>"
+          }
+        },
+        "m6": {
+          "type": "card",
+          "settings": {
+            "label": "MODULE 06",
+            "heading": "Reordering and scaling without chaos",
+            "body": "<p>Reading your own sell-through so you reorder before you run dry, deciding what to drop, when to widen your range versus go deeper on a winner, and the simple record-keeping that keeps this a business rather than a hobby.</p>"
+          }
+        }
+      },
+      "block_order": ["m1", "m2", "m3", "m4", "m5", "m6"]
+    },
+    "how-it-runs": {
+      "type": "numbered-steps",
+      "settings": {
+        "on_surface": true,
+        "eyebrow": "HOW IT RUNS",
+        "heading": "What actually happens when you join"
+      },
+      "blocks": {
+        "s1": { "type": "step", "settings": { "text": "You apply. We read it and reply personally — including telling you if we think it's not right for you yet." } },
+        "s2": { "type": "step", "settings": { "text": "We agree your starting point: your budget, your platform, and what you already have sitting unsold." } },
+        "s3": { "type": "step", "settings": { "text": "You work through the six modules in order, applying each one to your own shop as you go — not in theory." } },
+        "s4": { "type": "step", "settings": { "text": "Your listings, prices and product choices get reviewed and corrected. This is the part free content can't give you." } },
+        "s5": { "type": "step", "settings": { "text": "You place your stock order with a plan already written for how it gets listed and sold.", "link_text": "See the catalogue", "link_source": "custom", "link_url": "/collections/all" } },
+        "s6": { "type": "step", "settings": { "text": "You finish with a live, stocked shop and a reorder routine you can run without us." } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6"]
+    },
+    "vs-community": {
+      "type": "content-cards",
+      "settings": {
+        "background": "paper",
+        "columns": "3",
+        "eyebrow": "HOW IT DIFFERS",
+        "heading": "Academy, SYPB and the Wholesale Hub — the honest difference",
+        "body": "<p>Three different things, often confused. Here's which one you actually need.</p>"
+      },
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "label": "FREE",
+            "heading": "Start Your Product Business (SYPB)",
+            "body": "<p>An open community for anyone still deciding. Education, webinars, and real questions answered — with no purchase required and no pressure. Start here if you're weighing it up.</p>",
+            "link_text": "Read about SYPB",
+            "link_url": "/pages/community"
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "label": "FREE · BUYERS ONLY",
+            "heading": "GBG Wholesale Hub",
+            "body": "<p>Unlocks automatically after your first order. Deal drops, restock alerts and a network of active resellers. It's a community of peers — not a structured course.</p>",
+            "link_text": "How unlocking works",
+            "link_url": "/pages/community"
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "label": "PAID · GUIDED",
+            "heading": "The Academy",
+            "body": "<p>A structured programme with a fixed curriculum and direct feedback on your own work. Choose this when self-serve learning hasn't got you moving and you want someone checking what you're doing.</p>",
+            "link_text": "Apply below",
+            "link_url": "#apply"
+          }
+        }
+      },
+      "block_order": ["c1", "c2", "c3"]
+    },
+    "apply": {
+      "type": "academy-form",
+      "settings": {
+        "custom_id": "apply",
+        "eyebrow": "APPLY",
+        "heading": "Apply for the next Academy intake",
+        "body": "<p>Intakes are kept deliberately small so every application gets read properly and everyone in the group gets real feedback. Tell us where you are and what you want to build, and we'll come back to you personally with dates, pricing and an honest answer on whether it's the right fit.</p>",
+        "form_heading": "Your application",
+        "form_hint": "Takes two minutes. We reply personally within 24 hours with dates, pricing and next steps.",
+        "submit_label": "Send my application",
+        "success_message": "Application received. We'll reply personally within 24 hours with dates, pricing and next steps — check your inbox, and your spam folder just in case."
+      },
+      "blocks": {
+        "p1": { "type": "point", "settings": { "text": "Small intakes, so your work actually gets looked at" } },
+        "p2": { "type": "point", "settings": { "text": "Priced per intake — we quote you directly once we know your starting point" } },
+        "p3": { "type": "point", "settings": { "text": "An honest yes or no: we'll tell you if you'd do better starting with a Starter Box" } },
+        "p4": { "type": "point", "settings": { "text": "Applying costs nothing and commits you to nothing" } }
+      },
+      "block_order": ["p1", "p2", "p3", "p4"]
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "settings": {
+        "on_surface": false,
+        "group_by_category": false,
+        "eyebrow": "ACADEMY FAQ",
+        "heading": "Questions people ask before applying"
+      },
+      "blocks": {
+        "f1": {
+          "type": "question",
+          "settings": {
+            "question": "How much does the Academy cost?",
+            "answer": "<p>Pricing is confirmed per intake, because the group size and the support included change what we can offer. Send an application and we'll come back to you with the exact figure for the next intake before you commit to anything. Applying is free and puts you under no obligation.</p>",
+            "link_text": "Apply and get pricing",
+            "link_url": "#apply"
+          }
+        },
+        "f2": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need to buy stock from GBG to join?",
+            "answer": "<p>No. The Academy teaches sourcing, pricing and selling as skills — they apply to any supplier. Most members do order from GBG because it's convenient and the MOQs are low, but it's genuinely not a condition of joining.</p>",
+            "link_text": "Browse the catalogue",
+            "link_url": "/collections/all"
+          }
+        },
+        "f3": {
+          "type": "question",
+          "settings": {
+            "question": "I've never sold anything online. Should I apply?",
+            "answer": "<p>You can, and complete beginners do well in it. But be honest with yourself first: if you haven't yet decided reselling is for you, start with the free SYPB community and the Learn Hub. They cost nothing and will tell you a lot. If you already know you want to do this and want structure from day one, apply.</p>",
+            "link_text": "Start Here instead",
+            "link_url": "/pages/start-here"
+          }
+        },
+        "f4": {
+          "type": "question",
+          "settings": {
+            "question": "How much time does it take each week?",
+            "answer": "<p>Plan for a few hours a week — enough to work through a module and actually apply it to your own listings. The people who get the most out of it are the ones who do the work between sessions rather than saving it all up.</p>"
+          }
+        },
+        "f5": {
+          "type": "question",
+          "settings": {
+            "question": "What if it's not right for me?",
+            "answer": "<p>Then we'll say so at the application stage rather than take your money. That's the main reason applications are read personally instead of just selling a checkout link. If we think a Starter Box and the free guides would serve you better right now, we'll tell you that.</p>"
+          }
+        },
+        "f6": {
+          "type": "question",
+          "settings": {
+            "question": "Is this the same as the free community?",
+            "answer": "<p>No. SYPB and the Wholesale Hub are communities — peers, questions and alerts. The Academy is a structured curriculum with direct feedback on your own listings and numbers. Many people use both.</p>",
+            "link_text": "Compare the three",
+            "link_url": "/pages/community"
+          }
+        }
+      },
+      "block_order": ["f1", "f2", "f3", "f4", "f5", "f6"]
+    },
+    "closing": {
+      "type": "image-banner",
+      "settings": {
+        "height": "compact",
+        "align": "center",
+        "eyebrow": "NEXT STEP",
+        "heading": "The stock is the easy part. The plan is what you're missing.",
+        "body": "<p>Apply now and we'll reply personally with dates, pricing, and an honest read on whether this is your next step.</p>",
+        "primary_label": "Apply for the Academy",
+        "primary_link_source": "custom",
+        "primary_url": "#apply"
+      }
     }
   },
-  "order": ["hero", "coming-soon", "what-you-get-instead"]
+  "order": [
+    "hero",
+    "who-its-for",
+    "not-for",
+    "curriculum",
+    "how-it-runs",
+    "vs-community",
+    "apply",
+    "faq",
+    "closing"
+  ]
 }
