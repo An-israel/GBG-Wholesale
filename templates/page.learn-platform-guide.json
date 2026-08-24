@@ -4,7 +4,7 @@
       "type": "hero",
       "settings": {
         "compact": true,
-        "eyebrow": "LEARN → PLATFORM GUIDE",
+        "eyebrow": "PLATFORM GUIDE",
         "heading": "Where to sell what, and why the same item performs differently on each platform",
         "body": "<p>The product isn't the only variable. The same pack of earrings can fly on one platform and sit dead on another, purely because of who is browsing and how that platform decides what to show them. Here's how the four main UK platforms actually behave.</p>",
         "primary_label": "Browse the catalogue",
@@ -70,7 +70,12 @@
           }
         }
       },
-      "block_order": ["p1", "p2", "p3", "p4"]
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ]
     },
     "matching": {
       "type": "content-cards",
@@ -143,7 +148,14 @@
           }
         }
       },
-      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6"]
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6"
+      ]
     },
     "method": {
       "type": "numbered-steps",
@@ -152,14 +164,54 @@
         "heading": "How to pick a platform for a new pack"
       },
       "blocks": {
-        "s1": { "type": "step", "settings": { "text": "Search the item on eBay and filter to sold listings. This tells you whether anyone is buying it at all, and at what price." } },
-        "s2": { "type": "step", "settings": { "text": "Work out your true break-even: pack cost ÷ units, plus packaging, plus platform fees.", "link_text": "Use the calculator", "link_source": "custom", "link_url": "/pages/faq#pricing-calculator" } },
-        "s3": { "type": "step", "settings": { "text": "Match the product to the buyer mindset above. Browsing and fashion goes to Vinted; searched-for and technical goes to eBay." } },
-        "s4": { "type": "step", "settings": { "text": "List a small batch first - five or six units, not the whole pack. You're testing, not committing." } },
-        "s5": { "type": "step", "settings": { "text": "Give it a fortnight. Track views and saves as well as sales: lots of views and no sales usually means price, few views usually means title or keywords." } },
-        "s6": { "type": "step", "settings": { "text": "Put the rest where the test worked. If nothing moved anywhere, bundle onto Facebook Marketplace to release the cash and learn from it." } }
+        "s1": {
+          "type": "step",
+          "settings": {
+            "text": "Search the item on eBay and filter to sold listings. This tells you whether anyone is buying it at all, and at what price."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "text": "Work out your true break-even: pack cost ÷ units, plus packaging, plus platform fees.",
+            "link_text": "Use the calculator",
+            "link_source": "custom",
+            "link_url": "/pages/faq#pricing-calculator"
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "text": "Match the product to the buyer mindset above. Browsing and fashion goes to Vinted; searched-for and technical goes to eBay."
+          }
+        },
+        "s4": {
+          "type": "step",
+          "settings": {
+            "text": "List a small batch first - five or six units, not the whole pack. You're testing, not committing."
+          }
+        },
+        "s5": {
+          "type": "step",
+          "settings": {
+            "text": "Give it a fortnight. Track views and saves as well as sales: lots of views and no sales usually means price, few views usually means title or keywords."
+          }
+        },
+        "s6": {
+          "type": "step",
+          "settings": {
+            "text": "Put the rest where the test worked. If nothing moved anywhere, bundle onto Facebook Marketplace to release the cash and learn from it."
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6"]
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ]
     },
     "next": {
       "type": "content-cards",
@@ -198,8 +250,32 @@
           }
         }
       },
-      "block_order": ["n1", "n2", "n3"]
+      "block_order": [
+        "n1",
+        "n2",
+        "n3"
+      ]
+    },
+    "shop-this": {
+      "type": "featured-products",
+      "settings": {
+        "eyebrow": "NOW BUY SOMETHING TO SELL",
+        "heading": "Best sellers, and where each one goes",
+        "collection": "best-sellers",
+        "product_count": 4,
+        "show_cta": true,
+        "cta_text": "Shop everything",
+        "cta_url": "/collections/all"
+      }
     }
   },
-  "order": ["hero", "principle", "platforms", "matching", "method", "next"]
+  "order": [
+    "hero",
+    "principle",
+    "platforms",
+    "matching",
+    "method",
+    "shop-this",
+    "next"
+  ]
 }

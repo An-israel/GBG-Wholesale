@@ -45,7 +45,11 @@
           }
         }
       },
-      "block_order": ["w1", "w2", "w3"]
+      "block_order": [
+        "w1",
+        "w2",
+        "w3"
+      ]
     },
     "curriculum": {
       "type": "content-cards",
@@ -118,7 +122,14 @@
           }
         }
       },
-      "block_order": ["m1", "m2", "m3", "m4", "m5", "m6"]
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5",
+        "m6"
+      ]
     },
     "how-it-runs": {
       "type": "numbered-steps",
@@ -129,14 +140,53 @@
         "heading": "What happens after you join"
       },
       "blocks": {
-        "s1": { "type": "step", "settings": { "text": "You fill in five questions and pay at the checkout. Same as any other order." } },
-        "s2": { "type": "step", "settings": { "text": "Your welcome email arrives with your invite to the private Skool community." } },
-        "s3": { "type": "step", "settings": { "text": "All six modules are waiting inside. Work through them in order, at your pace." } },
-        "s4": { "type": "step", "settings": { "text": "Post your listings, prices and product choices in the group. Lami reviews them and tells you what to change." } },
-        "s5": { "type": "step", "settings": { "text": "Order your stock with a plan already written for how it gets listed and sold.", "link_text": "Shop the stock", "link_url": "/collections/all" } },
-        "s6": { "type": "step", "settings": { "text": "You finish with a live shop and a reorder routine you can run without us." } }
+        "s1": {
+          "type": "step",
+          "settings": {
+            "text": "You fill in five questions and pay at the checkout. Same as any other order."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "text": "Your welcome email arrives with your invite to the private Skool community."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "text": "All six modules are waiting inside. Work through them in order, at your pace."
+          }
+        },
+        "s4": {
+          "type": "step",
+          "settings": {
+            "text": "Post your listings, prices and product choices in the group. Lami reviews them and tells you what to change."
+          }
+        },
+        "s5": {
+          "type": "step",
+          "settings": {
+            "text": "Order your stock with a plan already written for how it gets listed and sold.",
+            "link_text": "Shop the stock",
+            "link_url": "/collections/all"
+          }
+        },
+        "s6": {
+          "type": "step",
+          "settings": {
+            "text": "You finish with a live shop and a reorder routine you can run without us."
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6"]
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ]
     },
     "vs-community": {
       "type": "content-cards",
@@ -179,7 +229,11 @@
           }
         }
       },
-      "block_order": ["c1", "c2", "c3"]
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ]
     },
     "join": {
       "type": "academy-form",
@@ -196,12 +250,37 @@
         "success_message": "You're on the list. We'll email you the moment the next intake opens."
       },
       "blocks": {
-        "p1": { "type": "point", "settings": { "text": "Six modules, available the moment you join" } },
-        "p2": { "type": "point", "settings": { "text": "A private Skool community, not another WhatsApp group" } },
-        "p3": { "type": "point", "settings": { "text": "Lami reviews your real listings and prices" } },
-        "p4": { "type": "point", "settings": { "text": "One payment, no subscription" } }
+        "p1": {
+          "type": "point",
+          "settings": {
+            "text": "Six modules, available the moment you join"
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "text": "A private Skool community, not another WhatsApp group"
+          }
+        },
+        "p3": {
+          "type": "point",
+          "settings": {
+            "text": "Lami reviews your real listings and prices"
+          }
+        },
+        "p4": {
+          "type": "point",
+          "settings": {
+            "text": "One payment, no subscription"
+          }
+        }
       },
-      "block_order": ["p1", "p2", "p3", "p4"]
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ]
     },
     "faq": {
       "type": "faq-accordion",
@@ -256,7 +335,13 @@
           }
         }
       },
-      "block_order": ["f1", "f2", "f3", "f4", "f5"]
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5"
+      ]
     },
     "closing": {
       "type": "image-banner",
@@ -270,7 +355,53 @@
         "primary_link_source": "custom",
         "primary_url": "#join"
       }
+    },
+    "proof": {
+      "type": "testimonial-blocks",
+      "settings": {
+        "eyebrow": "PROOF",
+        "heading": "Members, in their own words",
+        "body": "Screenshots and reviews from members, names blurred."
+      },
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "caption": "Finished the modules and relisted everything.",
+            "rating": 5
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "caption": "Found out her pricing was the problem, not the product.",
+            "rating": 5
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "caption": "First profitable month after module 2.",
+            "rating": 5
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ]
     }
   },
-  "order": ["hero", "who-its-for", "curriculum", "how-it-runs", "vs-community", "join", "faq", "closing"]
+  "order": [
+    "hero",
+    "who-its-for",
+    "curriculum",
+    "how-it-runs",
+    "vs-community",
+    "proof",
+    "join",
+    "faq",
+    "closing"
+  ]
 }

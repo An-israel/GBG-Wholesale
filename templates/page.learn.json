@@ -5,7 +5,7 @@
       "settings": {
         "compact": true,
         "layout": "overlay",
-        "eyebrow": "ROUTE → LEARN HUB",
+        "eyebrow": "LEARN HUB",
         "heading": "Everything you need to know before you spend a penny.",
         "body": "<p>Three full guides and a working calculator, free and open to everyone. No signup, no email required, no upsell at the end. Read them before you order, not after.</p>",
         "primary_label": "Start with the Platform Guide",
@@ -74,7 +74,12 @@
           }
         }
       },
-      "block_order": ["g1", "g2", "g3", "g4"]
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ]
     },
     "next-steps": {
       "type": "content-cards",
@@ -114,7 +119,11 @@
           }
         }
       },
-      "block_order": ["n1", "n2", "n3"]
+      "block_order": [
+        "n1",
+        "n2",
+        "n3"
+      ]
     },
     "cta": {
       "type": "image-banner",
@@ -127,7 +136,26 @@
         "primary_label": "Message us on WhatsApp",
         "primary_link_source": "whatsapp_link"
       }
+    },
+    "shop-this": {
+      "type": "featured-products",
+      "settings": {
+        "eyebrow": "READY?",
+        "heading": "The stock these guides are about",
+        "collection": "best-sellers",
+        "product_count": 4,
+        "show_cta": true,
+        "cta_text": "Shop everything",
+        "cta_url": "/collections/all"
+      }
     }
   },
-  "order": ["hero", "order", "guides", "next-steps", "cta"]
+  "order": [
+    "hero",
+    "order",
+    "guides",
+    "next-steps",
+    "shop-this",
+    "cta"
+  ]
 }

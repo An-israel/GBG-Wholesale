@@ -4,7 +4,7 @@
       "type": "hero",
       "settings": {
         "compact": true,
-        "eyebrow": "ROUTE → CONTACT",
+        "eyebrow": "CONTACT",
         "heading": "Before you message us",
         "body": "<p>Most questions are already answered somewhere on the site. Check here first - it's faster than waiting on a reply.</p>"
       }

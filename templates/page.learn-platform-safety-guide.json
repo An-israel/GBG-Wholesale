@@ -4,7 +4,7 @@
       "type": "hero",
       "settings": {
         "compact": true,
-        "eyebrow": "LEARN → PLATFORM SAFETY",
+        "eyebrow": "PLATFORM SAFETY",
         "heading": "How to grow without getting your account restricted",
         "body": "<p>Most reseller accounts aren't banned for doing something dishonest. They're restricted because their listing pattern looked automated, or because a payment was taken off-platform. Both are avoidable once you know what the systems are watching for.</p>",
         "primary_label": "Back to Learn Hub",
@@ -80,7 +80,14 @@
           }
         }
       },
-      "block_order": ["t1", "t2", "t3", "t4", "t5", "t6"]
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6"
+      ]
     },
     "habits": {
       "type": "rich-text",
@@ -92,15 +99,58 @@
         "body": "<p>None of this is complicated. It's mostly pacing and honesty.</p>"
       },
       "blocks": {
-        "h1": { "type": "list_item", "settings": { "text": "List steadily - a handful of items a day beats a hundred on Sunday night." } },
-        "h2": { "type": "list_item", "settings": { "text": "Photograph every item yourself, in daylight, against a plain background." } },
-        "h3": { "type": "list_item", "settings": { "text": "Write each listing fresh. Copy-pasted identical descriptions are easy to spot." } },
-        "h4": { "type": "list_item", "settings": { "text": "Describe condition accurately, including flaws. A disclosed flaw almost never causes a dispute; an undisclosed one always does." } },
-        "h5": { "type": "list_item", "settings": { "text": "Keep every conversation and payment inside the platform." } },
-        "h6": { "type": "list_item", "settings": { "text": "Reply within 24 hours and dispatch within your stated window." } },
-        "h7": { "type": "list_item", "settings": { "text": "Keep your receipts and order confirmations. If you're ever asked to prove your stock is legitimately sourced, you'll want them." } }
+        "h1": {
+          "type": "list_item",
+          "settings": {
+            "text": "List steadily - a handful of items a day beats a hundred on Sunday night."
+          }
+        },
+        "h2": {
+          "type": "list_item",
+          "settings": {
+            "text": "Photograph every item yourself, in daylight, against a plain background."
+          }
+        },
+        "h3": {
+          "type": "list_item",
+          "settings": {
+            "text": "Write each listing fresh. Copy-pasted identical descriptions are easy to spot."
+          }
+        },
+        "h4": {
+          "type": "list_item",
+          "settings": {
+            "text": "Describe condition accurately, including flaws. A disclosed flaw almost never causes a dispute; an undisclosed one always does."
+          }
+        },
+        "h5": {
+          "type": "list_item",
+          "settings": {
+            "text": "Keep every conversation and payment inside the platform."
+          }
+        },
+        "h6": {
+          "type": "list_item",
+          "settings": {
+            "text": "Reply within 24 hours and dispatch within your stated window."
+          }
+        },
+        "h7": {
+          "type": "list_item",
+          "settings": {
+            "text": "Keep your receipts and order confirmations. If you're ever asked to prove your stock is legitimately sourced, you'll want them."
+          }
+        }
       },
-      "block_order": ["h1", "h2", "h3", "h4", "h5", "h6", "h7"]
+      "block_order": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7"
+      ]
     },
     "restricted": {
       "type": "numbered-steps",
@@ -109,15 +159,63 @@
         "heading": "You've been restricted. Do this, in this order."
       },
       "blocks": {
-        "s1": { "type": "step", "settings": { "text": "Stop listing immediately. Adding more while under review makes it worse, not better." } },
-        "s2": { "type": "step", "settings": { "text": "Read the notice properly and find the specific reason given. Appeals that don't address the stated reason get rejected." } },
-        "s3": { "type": "step", "settings": { "text": "Gather your proof of purchase - supplier invoices and order confirmations showing the stock is legitimately yours to sell." } },
-        "s4": { "type": "step", "settings": { "text": "Appeal once, calmly and factually. State what you sell, where you source it, and attach the evidence. Do not send several angry messages; it rarely helps and often hurts." } },
-        "s5": { "type": "step", "settings": { "text": "Fulfil any orders you already owe. Leaving buyers stranded turns a temporary restriction into a permanent one." } },
-        "s6": { "type": "step", "settings": { "text": "While you wait, move the stock to another platform rather than sitting idle.", "link_text": "Read the Platform Guide", "link_source": "custom", "link_url": "/pages/learn-platform-guide" } },
-        "s7": { "type": "step", "settings": { "text": "If you're stuck, ask us - we've seen most versions of this.", "link_text": "Message us on WhatsApp", "link_source": "whatsapp_link" } }
+        "s1": {
+          "type": "step",
+          "settings": {
+            "text": "Stop listing immediately. Adding more while under review makes it worse, not better."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "text": "Read the notice properly and find the specific reason given. Appeals that don't address the stated reason get rejected."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "text": "Gather your proof of purchase - supplier invoices and order confirmations showing the stock is legitimately yours to sell."
+          }
+        },
+        "s4": {
+          "type": "step",
+          "settings": {
+            "text": "Appeal once, calmly and factually. State what you sell, where you source it, and attach the evidence. Do not send several angry messages; it rarely helps and often hurts."
+          }
+        },
+        "s5": {
+          "type": "step",
+          "settings": {
+            "text": "Fulfil any orders you already owe. Leaving buyers stranded turns a temporary restriction into a permanent one."
+          }
+        },
+        "s6": {
+          "type": "step",
+          "settings": {
+            "text": "While you wait, move the stock to another platform rather than sitting idle.",
+            "link_text": "Read the Platform Guide",
+            "link_source": "custom",
+            "link_url": "/pages/learn-platform-guide"
+          }
+        },
+        "s7": {
+          "type": "step",
+          "settings": {
+            "text": "If you're stuck, ask us - we've seen most versions of this.",
+            "link_text": "Message us on WhatsApp",
+            "link_source": "whatsapp_link"
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7"]
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7"
+      ]
     },
     "buyer-safety": {
       "type": "content-cards",
@@ -151,7 +249,11 @@
           }
         }
       },
-      "block_order": ["b1", "b2", "b3"]
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ]
     },
     "next": {
       "type": "image-banner",
@@ -164,7 +266,28 @@
         "primary_label": "Message us on WhatsApp",
         "primary_link_source": "whatsapp_link"
       }
+    },
+    "shop-this": {
+      "type": "featured-products",
+      "settings": {
+        "eyebrow": "START SMALL, STAY SAFE",
+        "heading": "A Starter Box is the low-risk way back in",
+        "collection": "starter-boxes",
+        "product_count": 4,
+        "show_cta": true,
+        "cta_text": "See all Starter Boxes",
+        "cta_url": "/collections/starter-boxes"
+      }
     }
   },
-  "order": ["hero", "why", "triggers", "habits", "restricted", "buyer-safety", "next"]
+  "order": [
+    "hero",
+    "why",
+    "triggers",
+    "habits",
+    "restricted",
+    "buyer-safety",
+    "shop-this",
+    "next"
+  ]
 }
