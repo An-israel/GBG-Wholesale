@@ -519,6 +519,35 @@ textarea.input {
   font-weight: 700;
 }
 
+.accordion__answer > *:last-child {
+  margin-bottom: 0;
+}
+
+/* An answer with a picture sits beside it on desktop and above it on
+   mobile, where a narrow floated image would squeeze the text. */
+@media (min-width: 800px) {
+  .accordion__panel-inner--with-image {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: var(--space-5);
+    align-items: start;
+  }
+}
+
+.accordion__image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 800px) {
+  .accordion__image {
+    margin-top: 0;
+  }
+}
+
 /* Utility */
 .text-center {
   text-align: center;

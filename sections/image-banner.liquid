@@ -2,6 +2,8 @@
   assign primary_href = section.settings.primary_url
   if section.settings.primary_link_source == 'sypb_link'
     assign primary_href = settings.sypb_link
+  elsif section.settings.primary_link_source == 'sypb_video'
+    assign primary_href = settings.sypb_video_url | default: settings.sypb_link
   elsif section.settings.primary_link_source == 'whatsapp_link'
     assign primary_href = settings.whatsapp_link
   elsif section.settings.primary_link_source == 'wholesale_hub_link'
@@ -144,6 +146,7 @@
     { "type": "select", "id": "primary_link_source", "label": "Button links to", "options": [
         { "value": "custom", "label": "Custom link (set below)" },
         { "value": "sypb_link", "label": "Sitewide SYPB link" },
+            { "value": "sypb_video", "label": "Sitewide SYPB video link" },
         { "value": "whatsapp_link", "label": "Sitewide WhatsApp link" },
         { "value": "wholesale_hub_link", "label": "Sitewide Wholesale Hub link" }
       ], "default": "custom" },

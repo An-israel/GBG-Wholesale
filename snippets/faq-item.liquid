@@ -1,5 +1,5 @@
 {% doc %}
-  @param {object} block - a section block with settings: question, answer, link_text, link_url
+  @param {object} block - a section block with settings: question, answer, link_text, link_url, image, image_alt
 
   @example
   {% render 'faq-item', block: block %}
@@ -31,7 +31,8 @@
     aria-labelledby="{{ trigger_id }}"
     data-open="false"
   >
-    <div class="accordion__panel-inner">
+    <div class="accordion__panel-inner{% if block.settings.image %} accordion__panel-inner--with-image{% endif %}">
+      <div class="accordion__answer">
       {{ block.settings.answer }}
       {% case block.settings.dynamic_append %}
         {% when 'warehouse_location' %}
@@ -40,11 +41,24 @@
           <p>{{ settings.dispatch_timeframe }}</p>
         {% when 'starter_box_min_price' %}
           <p>Starter Boxes begin at £{{ settings.starter_box_min_price }}.</p>
-        {% when 'next_webinar_date' %}
-          <p>Next webinar: {{ settings.next_webinar_date | default: 'announced inside SYPB' }}.</p>
+        {% when 'next_live_date' %}
+          <p>Next live session: {{ settings.next_live_date | default: 'announced inside the group' }}.</p>
       {% endcase %}
       {% if block.settings.link_text != blank and block.settings.link_url != blank %}
         <p><a href="{{ block.settings.link_url }}">{{ block.settings.link_text }} &rarr;</a></p>
+      {% endif %}
+      </div>
+      {% if block.settings.image %}
+        <img
+          class="accordion__image"
+          src="{{ block.settings.image | image_url: width: 600 }}"
+          srcset="{{ block.settings.image | image_url: width: 400 }} 400w, {{ block.settings.image | image_url: width: 600 }} 600w"
+          sizes="(min-width: 800px) 260px, 100vw"
+          alt="{{ block.settings.image_alt | default: block.settings.question | escape }}"
+          width="{{ block.settings.image.width }}"
+          height="{{ block.settings.image.height }}"
+          loading="lazy"
+        >
       {% endif %}
     </div>
   </div>

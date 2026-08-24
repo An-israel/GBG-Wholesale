@@ -39,6 +39,8 @@
         assign primary_href = section.settings.primary_url
         if section.settings.primary_link_source == 'sypb_link'
           assign primary_href = settings.sypb_link
+        elsif section.settings.primary_link_source == 'sypb_video'
+          assign primary_href = settings.sypb_video_url | default: settings.sypb_link
         elsif section.settings.primary_link_source == 'whatsapp_link'
           assign primary_href = settings.whatsapp_link
         elsif section.settings.primary_link_source == 'wholesale_hub_link'
@@ -48,6 +50,8 @@
         assign secondary_href = section.settings.secondary_url
         if section.settings.secondary_link_source == 'sypb_link'
           assign secondary_href = settings.sypb_link
+        elsif section.settings.secondary_link_source == 'sypb_video'
+          assign secondary_href = settings.sypb_video_url | default: settings.sypb_link
         elsif section.settings.secondary_link_source == 'whatsapp_link'
           assign secondary_href = settings.whatsapp_link
         elsif section.settings.secondary_link_source == 'wholesale_hub_link'
@@ -55,9 +59,9 @@
         endif
 
         assign primary_label = section.settings.primary_label
-        if section.settings.append_webinar_date and primary_label != blank
-          assign webinar = settings.next_webinar_date | default: 'announced inside SYPB'
-          assign primary_label = primary_label | append: ' · Next webinar: ' | append: webinar
+        if section.settings.append_live_date and primary_label != blank
+          assign live_date = settings.next_live_date | default: 'announced inside the group'
+          assign primary_label = primary_label | append: ' · Next live: ' | append: live_date
         endif
       %}
       {% if section.settings.primary_label != blank or section.settings.secondary_label != blank %}
@@ -166,15 +170,17 @@
     { "type": "select", "id": "primary_link_source", "label": "Primary button links to", "options": [
         { "value": "custom", "label": "Custom link (set below)" },
         { "value": "sypb_link", "label": "Sitewide SYPB link" },
+            { "value": "sypb_video", "label": "Sitewide SYPB video link" },
         { "value": "whatsapp_link", "label": "Sitewide WhatsApp link" },
         { "value": "wholesale_hub_link", "label": "Sitewide Wholesale Hub link" }
       ], "default": "custom" },
     { "type": "url", "id": "primary_url", "label": "Primary button custom link" },
-    { "type": "checkbox", "id": "append_webinar_date", "label": "Append next webinar date to primary button label", "default": false },
+    { "type": "checkbox", "id": "append_live_date", "label": "Add the next live session date to the primary button", "default": false },
     { "type": "text", "id": "secondary_label", "label": "Secondary button label" },
     { "type": "select", "id": "secondary_link_source", "label": "Secondary button links to", "options": [
         { "value": "custom", "label": "Custom link (set below)" },
         { "value": "sypb_link", "label": "Sitewide SYPB link" },
+            { "value": "sypb_video", "label": "Sitewide SYPB video link" },
         { "value": "whatsapp_link", "label": "Sitewide WhatsApp link" },
         { "value": "wholesale_hub_link", "label": "Sitewide Wholesale Hub link" }
       ], "default": "custom" },

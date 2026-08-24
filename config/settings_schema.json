@@ -156,7 +156,7 @@
     ]
   },
   {
-    "name": "WhatsApp & community links",
+    "name": "Community links",
     "settings": [
       {
         "type": "paragraph",
@@ -181,6 +181,12 @@
         "label": "SYPB community link",
         "info": "The Start Your Product Business WhatsApp group. Used by every SYPB button on the site.",
         "default": "https://chat.whatsapp.com/J8cg43SbFN58hvDQomRpNf?mode=gi_t"
+      },
+      {
+        "type": "text",
+        "id": "sypb_video_url",
+        "label": "SYPB video link",
+        "info": "The video new members are told to watch before they join. Leave blank and the \"watch the video\" buttons fall back to the SYPB group link."
       },
       {
         "type": "text",
@@ -283,9 +289,9 @@
       },
       {
         "type": "text",
-        "id": "next_webinar_date",
-        "label": "Next SYPB live session date",
-        "info": "Leave blank and the site says the date is announced inside the group instead."
+        "id": "next_live_date",
+        "label": "Next SYPB live session",
+        "info": "Optional. Leave blank and the site says sessions are announced inside the group."
       }
     ]
   },

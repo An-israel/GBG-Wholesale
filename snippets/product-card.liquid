@@ -39,7 +39,7 @@
       {% render 'price', product: product %}
     </div>
 
-    <p class="product-card__resale">Typical resale: £{{ resale_low }}&ndash;£{{ resale_high }} <span class="field__hint">(example only, not a promise)</span></p>
+    <p class="product-card__resale">Sells for around £{{ resale_low }}-£{{ resale_high }}</p>
 
     {% form 'product', product, data-cart-add-form: true, class: 'product-card__form' %}
       <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
@@ -52,10 +52,6 @@
       </button>
       <p class="field__error" data-cart-add-error hidden></p>
     {% endform %}
-
-    <p class="product-card__dm">
-      Prefer WhatsApp? Message us the keyword <strong>{{ product.handle | upcase | replace: '-', ' ' }}</strong> to order.
-    </p>
   </div>
 </div>
 
@@ -132,13 +128,9 @@
   }
 
   .product-card__resale {
-    font-size: 0.78rem;
-    color: color-mix(in srgb, var(--color-ink) 60%, transparent);
-    margin: 0;
-  }
-
-  .product-card__resale .field__hint {
-    display: inline;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-muted);
     margin: 0;
   }
 
@@ -146,9 +138,4 @@
     margin-top: var(--space-2);
   }
 
-  .product-card__dm {
-    font-size: 0.75rem;
-    color: color-mix(in srgb, var(--color-ink) 55%, transparent);
-    margin: 0;
-  }
 {% endstylesheet %}

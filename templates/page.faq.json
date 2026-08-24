@@ -4,9 +4,14 @@
       "type": "hero",
       "settings": {
         "compact": true,
-        "eyebrow": "ROUTE → FAQ",
-        "heading": "Frequently Asked Questions",
-        "body": "<p>Answers to everything before you have to DM Lami - grouped so you can find yours fast.</p>"
+        "layout": "overlay",
+        "eyebrow": "FAQ",
+        "heading": "Everything people ask, answered.",
+        "body": "<p>Grouped so you can find yours fast. Still stuck? Message Lami.</p>",
+        "primary_label": "Shop the stock",
+        "primary_url": "/collections/all",
+        "secondary_label": "Message us",
+        "secondary_url": "/pages/contact"
       }
     },
     "faq-full": {
@@ -21,7 +26,7 @@
           "settings": {
             "category": "About GBG",
             "question": "What is GBG Wholesale Hub?",
-            "answer": "<p>A UK wholesale hub that sells ready-stock products at low minimum order quantities, alongside the education and community to help you actually resell them.</p>",
+            "answer": "<p>A UK wholesale hub. Ready stock at low minimum order quantities, plus the guides and community to help you sell it.</p>",
             "link_text": "Read our story",
             "link_url": "/pages/about"
           }
@@ -30,8 +35,8 @@
           "type": "question",
           "settings": {
             "category": "About GBG",
-            "question": "Who is Lami and why did she build this?",
-            "answer": "<p>Lami started reselling with a small bridal accessories business in 2016 and built GBG to be the guide she wishes she'd had.</p>",
+            "question": "Who is Lami?",
+            "answer": "<p>She started reselling bridal accessories in 2016 and built GBG to be the guide she wishes she'd had.</p>",
             "link_text": "Meet Lami",
             "link_url": "/pages/about#founder-story"
           }
@@ -40,8 +45,8 @@
           "type": "question",
           "settings": {
             "category": "About GBG",
-            "question": "Where is the warehouse based?",
-            "answer": "<p>Every order ships from the UK. Exact warehouse location:</p>",
+            "question": "Where do you ship from?",
+            "answer": "<p>Everything ships from the UK.</p>",
             "dynamic_append": "warehouse_location"
           }
         },
@@ -50,172 +55,249 @@
           "settings": {
             "category": "About GBG",
             "question": "Do I need to join the community to shop?",
-            "answer": "<p>No. You can shop and check out directly with no account or community membership required.</p>",
-            "link_text": "Shop now",
+            "answer": "<p>No. Check out directly. No account, no group, no DM.</p>",
+            "link_text": "Shop the stock",
             "link_url": "/collections/all"
           }
         },
         "q5": {
           "type": "question",
           "settings": {
-            "category": "Products and Orders",
-            "question": "How much do I need to start?",
-            "answer": "<p>There's no requirement to buy in bulk beyond each pack's stated MOQ.</p>",
-            "dynamic_append": "starter_box_min_price",
-            "link_text": "See Starter Boxes",
-            "link_url": "/collections/starter-boxes"
+            "category": "About GBG",
+            "question": "Do you sell to businesses outside the UK?",
+            "answer": "<p>Right now everything ships from the UK to UK addresses. If you're elsewhere, message us before ordering and we'll tell you honestly whether we can help yet.</p>",
+            "link_text": "Ask us",
+            "link_url": "/pages/contact"
           }
         },
         "q6": {
           "type": "question",
           "settings": {
-            "category": "Products and Orders",
-            "question": "Can I choose my own sizes or designs?",
-            "answer": "<p>Not on standard packs - wholesale stock is sold as-is. Specific sizes are sometimes available during live auctions.</p>",
-            "link_text": "Join SYPB for auction alerts",
-            "link_url": "/pages/community#sypb"
+            "category": "Products and orders",
+            "question": "How much do I need to start?",
+            "answer": "<p>No bulk requirement beyond each pack's stated MOQ. A Starter Box is the cheapest way in.</p>",
+            "dynamic_append": "starter_box_min_price",
+            "link_text": "See Starter Boxes",
+            "link_url": "/collections/starter-boxes"
           }
         },
         "q7": {
           "type": "question",
           "settings": {
-            "category": "Products and Orders",
-            "question": "How long does delivery take?",
-            "answer": "<p>Current dispatch and delivery timeframe:</p>",
-            "dynamic_append": "dispatch_timeframe"
+            "category": "Products and orders",
+            "question": "What is an MOQ?",
+            "answer": "<p>Minimum order quantity. The smallest number of units we sell a line in. Every product page states its own, and most of ours are deliberately low so you can test a category without committing hundreds of pounds.</p>",
+            "link_text": "Browse by category",
+            "link_url": "/collections/all"
           }
         },
         "q8": {
           "type": "question",
           "settings": {
-            "category": "Products and Orders",
-            "question": "What's your returns and refund policy?",
-            "answer": "<p>Damaged, faulty or incorrect items are always covered - tell us within 48 hours of delivery with photos and we'll replace or refund them in full. If you bought as a consumer rather than for a business, you also have 14 days to change your mind. Wholesale packs bought for resale are sold as-is once received in good condition. The full policy sets out every case.</p>",
-            "link_text": "Full returns policy",
-            "link_url": "/pages/returns-policy"
+            "category": "Products and orders",
+            "question": "Can I choose my own sizes or designs?",
+            "answer": "<p>Not on standard packs. Wholesale stock is sold as-is. Specific sizes come up in live auctions inside the Wholesale Hub.</p>",
+            "link_text": "How the Hub works",
+            "link_url": "/pages/community#wholesale-hub"
           }
         },
         "q9": {
           "type": "question",
           "settings": {
-            "category": "Products and Orders",
-            "question": "Can I reorder after my first purchase?",
-            "answer": "<p>Yes, and once you've made your first purchase, you've automatically unlocked the GBG Wholesale Hub for restock alerts.</p>",
-            "link_text": "Explore the Hub",
-            "link_url": "/pages/community"
+            "category": "Products and orders",
+            "question": "How long does delivery take?",
+            "answer": "<p>Everything ships from the UK.</p>",
+            "dynamic_append": "dispatch_timeframe"
           }
         },
         "q10": {
           "type": "question",
           "settings": {
-            "category": "Selling and Platforms",
-            "question": "Where should I sell GBG products?",
-            "answer": "<p>Depends on the product and your audience - the Platform Guide breaks down what tends to move best on Vinted, eBay, TikTok Shop, and Facebook Marketplace.</p>",
-            "link_text": "Read the Platform Guide",
-            "link_url": "/pages/learn-platform-guide"
+            "category": "Products and orders",
+            "question": "What if something is on preorder?",
+            "answer": "<p>Some packs come in on a batch. If yours is one of them, the product page says so before you buy and we email you the batch date. Nothing goes out later than promised without us telling you first.</p>",
+            "link_text": "Track your order",
+            "link_url": "/pages/track-your-order"
           }
         },
         "q11": {
           "type": "question",
           "settings": {
-            "category": "Selling and Platforms",
-            "question": "Why did my Vinted account get restricted?",
-            "answer": "<p>Usually a listing pattern the algorithm flags as reselling at scale. Our Platform Safety Guide covers how to avoid it.</p>",
-            "link_text": "Read the Safety Guide",
-            "link_url": "/pages/learn-platform-safety-guide"
+            "category": "Products and orders",
+            "question": "How do I track my order?",
+            "answer": "<p>Your dispatch email carries the tracking link. You can also look the order up with your email address and order number.</p>",
+            "link_text": "Track your order",
+            "link_url": "/pages/track-your-order"
           }
         },
         "q12": {
           "type": "question",
           "settings": {
-            "category": "Selling and Platforms",
-            "question": "How do I price my products?",
-            "answer": "<p>Use our pricing calculator below: cost ÷ quantity, plus packaging and platform fees, gives you your minimum sell price.</p>",
-            "link_text": "Try the Pricing Calculator",
-            "link_url": "#pricing-calculator"
+            "category": "Products and orders",
+            "question": "What's the returns policy?",
+            "answer": "<p>Damaged, faulty or wrong items are always covered. Tell us within 48 hours with photos and we replace or refund in full. Buying as a consumer rather than for resale? You also get 14 days to change your mind. Packs bought for resale are sold as-is once they arrive in good condition.</p>",
+            "link_text": "Full returns policy",
+            "link_url": "/pages/returns-policy"
           }
         },
         "q13": {
           "type": "question",
           "settings": {
-            "category": "Selling and Platforms",
-            "question": "How do I write a listing that actually sells?",
-            "answer": "<p>Clear photos, honest titles, and the right keywords for your platform.</p>",
-            "link_text": "Read the Listings Guide",
-            "link_url": "/pages/learn-listings-guide"
+            "category": "Products and orders",
+            "question": "Can I reorder?",
+            "answer": "<p>Yes. And after your first order you're in the Wholesale Hub, where restocks are announced before they hit the shop.</p>",
+            "link_text": "About the Hub",
+            "link_url": "/pages/community#wholesale-hub"
           }
         },
         "q14": {
           "type": "question",
           "settings": {
-            "category": "Community and Course",
-            "question": "What is the Start Your Product Business group?",
-            "answer": "<p>A free group for anyone still deciding - education and webinar access, no purchase required.</p>",
-            "link_text": "Join SYPB",
-            "link_url": "/pages/community#sypb"
+            "category": "Selling and platforms",
+            "question": "Where should I sell GBG products?",
+            "answer": "<p>Depends on the product. The Platform Guide breaks down what moves on Vinted, eBay, TikTok Shop and Facebook Marketplace, category by category.</p>",
+            "link_text": "Read the Platform Guide",
+            "link_url": "/pages/learn-platform-guide"
           }
         },
         "q15": {
           "type": "question",
           "settings": {
-            "category": "Community and Course",
-            "question": "What is the GBG Wholesale Hub community, and how do I get in?",
-            "answer": "<p>It's for verified buyers, unlocked automatically after your first purchase.</p>",
-            "link_text": "Shop to unlock it",
-            "link_url": "/collections/all"
+            "category": "Selling and platforms",
+            "question": "How do I price my products?",
+            "answer": "<p>Pack cost divided by units, plus packaging and platform fees, gives your floor. The calculator below does it for you.</p>",
+            "link_text": "Open the calculator",
+            "link_url": "#pricing-calculator"
           }
         },
         "q16": {
           "type": "question",
           "settings": {
-            "category": "Community and Course",
-            "question": "What is the Academy and how is it different from the community?",
-            "answer": "<p>The Academy is a structured, paid programme with a fixed six-module curriculum and direct feedback on your own listings, prices and product choices. The communities are peers and alerts; the Academy is someone checking your actual work. Intakes are small, so you apply and we reply personally with dates and pricing.</p>",
-            "link_text": "See the curriculum and apply",
-            "link_url": "/pages/academy"
+            "category": "Selling and platforms",
+            "question": "How do I write a listing that actually sells?",
+            "answer": "<p>Clear phone photos, titles built from words buyers search, and a description that answers the question before it's asked.</p>",
+            "link_text": "Read the Listings Guide",
+            "link_url": "/pages/learn-listings-guide"
           }
         },
         "q17": {
           "type": "question",
           "settings": {
-            "category": "Community and Course",
-            "question": "When is the next webinar?",
-            "answer": "",
-            "dynamic_append": "next_webinar_date",
-            "link_text": "Join SYPB for the date",
-            "link_url": "/pages/community#sypb"
+            "category": "Selling and platforms",
+            "question": "Why did my Vinted account get restricted?",
+            "answer": "<p>Usually a listing pattern the algorithm reads as reselling at scale. The Safety Guide covers how to avoid it and what to do if it's already happened.</p>",
+            "link_text": "Read the Safety Guide",
+            "link_url": "/pages/learn-platform-safety-guide"
           }
         },
         "q18": {
           "type": "question",
           "settings": {
-            "category": "Community and Course",
+            "category": "Selling and platforms",
+            "question": "How many units should I buy first?",
+            "answer": "<p>One pack. Sell it, count what you actually made, then decide. Buying three packs of something untested is the most common way new resellers lose money.</p>",
+            "link_text": "Start with a box",
+            "link_url": "/collections/starter-boxes"
+          }
+        },
+        "q19": {
+          "type": "question",
+          "settings": {
+            "category": "Community and Academy",
+            "question": "What is SYPB?",
+            "answer": "<p>Start Your Product Business. A free group for anyone still deciding. Watch the video, join, ask your questions.</p>",
+            "link_text": "Join SYPB",
+            "link_url": "/pages/community#sypb"
+          }
+        },
+        "q20": {
+          "type": "question",
+          "settings": {
+            "category": "Community and Academy",
+            "question": "What is the Wholesale Hub and how do I get in?",
+            "answer": "<p>The buyers-only group. Your first order gets you in, and the invite arrives with your order confirmation.</p>",
+            "link_text": "Shop to unlock it",
+            "link_url": "/collections/all"
+          }
+        },
+        "q21": {
+          "type": "question",
+          "settings": {
+            "category": "Community and Academy",
+            "question": "What is the Academy?",
+            "answer": "<p>A paid six-module programme with direct feedback on your own listings, prices and product choices, plus a private Skool community. No application, no waiting. Join and you're in the same day.</p>",
+            "link_text": "See the modules",
+            "link_url": "/pages/academy#curriculum"
+          }
+        },
+        "q22": {
+          "type": "question",
+          "settings": {
+            "category": "Community and Academy",
+            "question": "How do I get my Skool invite?",
+            "answer": "<p>It's in your welcome email, sent the moment your Academy payment clears. If it hasn't arrived in ten minutes, check spam, then message us.</p>",
+            "link_text": "Join the Academy",
+            "link_url": "/pages/academy#join"
+          }
+        },
+        "q23": {
+          "type": "question",
+          "settings": {
+            "category": "Community and Academy",
+            "question": "When is the next live session?",
+            "answer": "<p>Sessions run inside the group.</p>",
+            "dynamic_append": "next_live_date",
+            "link_text": "Join SYPB",
+            "link_url": "/pages/community#sypb"
+          }
+        },
+        "q24": {
+          "type": "question",
+          "settings": {
+            "category": "Trust and payment",
             "question": "I've been scammed before. How do I know GBG is real?",
-            "answer": "<p>Fair question, and one we'd rather answer than have you wonder. Here's what you can actually check, rather than just taking our word for it:</p><ul><li>Checkout runs on Shopify's own secure payment system. We never see or hold your card details, and you're covered by your card provider's protection.</li><li>Every product photo on this site is of stock we actually hold and ship from the UK - not supplier renders.</li><li>Lami answers questions personally, by name, on WhatsApp and inside the community. You can message her before you spend anything.</li><li>The community is public and active. You can join SYPB free, read what members are saying, and ask them directly about their orders before you buy from us.</li><li>Our returns policy is written out in full, including what we will and won't cover.</li></ul><p>If you're still unsure, start with the smallest Starter Box. Risking a small first order and seeing how we handle it is a far better test than anything we could tell you here.</p>",
-            "link_text": "Read our returns policy",
+            "answer": "<p>Fair question. Here's what you can check rather than take our word for:</p><ul><li>Checkout runs on Shopify's own payment system. We never see your card details, and your card provider's protection still applies.</li><li>Every photo is stock we actually hold and ship from the UK, not supplier renders.</li><li>Lami answers personally, by name, before you spend anything.</li><li>SYPB is free and public. Join it and ask members about their orders.</li><li>The returns policy is written out in full, including what we won't cover.</li></ul><p>Still unsure? Order the smallest Starter Box. How we handle a small order tells you more than anything we could write here.</p>",
+            "link_text": "Read the returns policy",
             "link_url": "/pages/returns-policy"
+          }
+        },
+        "q25": {
+          "type": "question",
+          "settings": {
+            "category": "Trust and payment",
+            "question": "What payment methods do you take?",
+            "answer": "<p>All the usual cards, plus Apple Pay, Google Pay and Shop Pay, through Shopify's checkout. We never handle or store your card details.</p>",
+            "link_text": "Shop the stock",
+            "link_url": "/collections/all"
+          }
+        },
+        "q26": {
+          "type": "question",
+          "settings": {
+            "category": "Trust and payment",
+            "question": "Do I need an account to order?",
+            "answer": "<p>No. Guest checkout works fine. An account just makes reordering and tracking quicker.</p>",
+            "link_text": "Shop the stock",
+            "link_url": "/collections/all"
+          }
+        },
+        "q27": {
+          "type": "question",
+          "settings": {
+            "category": "Trust and payment",
+            "question": "Something's gone wrong with my order. What now?",
+            "answer": "<p>Message us with your order number and photos. Damaged, faulty or wrong items get replaced or refunded in full.</p>",
+            "link_text": "Get in touch",
+            "link_url": "/pages/contact"
           }
         }
       },
       "block_order": [
-        "q1",
-        "q2",
-        "q3",
-        "q4",
-        "q5",
-        "q6",
-        "q7",
-        "q8",
-        "q9",
-        "q10",
-        "q11",
-        "q12",
-        "q13",
-        "q14",
-        "q15",
-        "q16",
-        "q17",
-        "q18"
+        "q1", "q2", "q3", "q4", "q5",
+        "q6", "q7", "q8", "q9", "q10", "q11", "q12", "q13",
+        "q14", "q15", "q16", "q17", "q18",
+        "q19", "q20", "q21", "q22", "q23",
+        "q24", "q25", "q26", "q27"
       ]
     },
     "pricing-calculator": {
@@ -223,14 +305,34 @@
       "settings": {
         "custom_id": "pricing-calculator",
         "eyebrow": "TOOL",
-        "heading": "Pricing Calculator",
-        "body": "Work out your minimum sell price: cost ÷ quantity, plus packaging and platform fees."
+        "heading": "Pricing calculator",
+        "body": "Pack cost divided by units, plus packaging and platform fees. That's your floor."
+      }
+    },
+    "still-stuck": {
+      "type": "image-banner",
+      "settings": {
+        "height": "compact",
+        "align": "center",
+        "eyebrow": "STILL STUCK?",
+        "heading": "Ask before you spend.",
+        "body": "<p>Message us and we'll tell you what we'd actually do.</p>",
+        "primary_label": "Message us on WhatsApp",
+        "primary_link_source": "whatsapp_link"
+      }
+    },
+    "shop-next": {
+      "type": "featured-products",
+      "settings": {
+        "eyebrow": "NEXT STEP",
+        "heading": "Ready? Start here.",
+        "collection": "best-sellers",
+        "product_count": 4,
+        "show_cta": true,
+        "cta_text": "Shop everything",
+        "cta_url": "/collections/all"
       }
     }
   },
-  "order": [
-    "hero",
-    "faq-full",
-    "pricing-calculator"
-  ]
+  "order": ["hero", "faq-full", "pricing-calculator", "still-stuck", "shop-next"]
 }

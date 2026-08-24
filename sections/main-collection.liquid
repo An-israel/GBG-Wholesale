@@ -89,7 +89,12 @@
 
     {% if collection.products.size > 0 %}
       <div class="grid grid--4">
+        {%- comment -%}
+          The Academy is a product so it can be paid for at the normal
+          checkout, but it isn't stock, so it stays out of the shop grid.
+        {%- endcomment -%}
         {% for product in collection.products %}
+          {% if product.tags contains 'academy' %}{% continue %}{% endif %}
           {% render 'product-card', product: product %}
         {% endfor %}
       </div>

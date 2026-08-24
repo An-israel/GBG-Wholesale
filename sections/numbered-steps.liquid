@@ -17,6 +17,8 @@
               assign step_href = block.settings.link_url
               if block.settings.link_source == 'sypb_link'
                 assign step_href = settings.sypb_link
+              elsif block.settings.link_source == 'sypb_video'
+                assign step_href = settings.sypb_video_url | default: settings.sypb_link
               elsif block.settings.link_source == 'whatsapp_link'
                 assign step_href = settings.whatsapp_link
               elsif block.settings.link_source == 'wholesale_hub_link'
@@ -106,6 +108,7 @@
         { "type": "select", "id": "link_source", "label": "Optional link target", "options": [
             { "value": "custom", "label": "Custom link (set below)" },
             { "value": "sypb_link", "label": "Sitewide SYPB link" },
+            { "value": "sypb_video", "label": "Sitewide SYPB video link" },
             { "value": "whatsapp_link", "label": "Sitewide WhatsApp link" },
             { "value": "wholesale_hub_link", "label": "Sitewide Wholesale Hub link" }
           ], "default": "custom" },

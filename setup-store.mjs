@@ -205,6 +205,19 @@ const PRODUCTS = [
     optionName: 'Focus',
   },
   {
+    handle: 'gbg-academy',
+    title: 'GBG Academy',
+    body_html:
+      '<p>Six modules, direct feedback on your own listings and prices, and a private Skool community.</p>' +
+      '<p>Your invite arrives by email the moment your payment goes through.</p>' +
+      '<p><strong>Set the real price in Shopify admin before going live.</strong></p>',
+    product_type: 'Academy',
+    tags: 'academy',
+    price: '297.00',
+    digital: true,
+    alt: 'GBG Academy, six modules and a private community',
+  },
+  {
     handle: 'reseller-starter-box-medium',
     title: 'Reseller Starter Box - Medium',
     body_html: '<p>A bigger first order spanning our top categories, for resellers who want more stock live on day one.</p><p>Ideal if you have already tested a small box and know which categories move for you.</p>',
@@ -308,9 +321,11 @@ async function doProducts() {
           {
             option1: 'Default Title',
             price: p.price,
-            inventory_management: 'shopify',
-            inventory_quantity: p.qty,
-            requires_shipping: true,
+            /* The Academy is access, not a parcel: no stock to count and
+               nothing to post, so Shopify must not ask for an address. */
+            inventory_management: p.digital ? null : 'shopify',
+            inventory_quantity: p.digital ? undefined : p.qty,
+            requires_shipping: !p.digital,
             taxable: true,
           },
         ];

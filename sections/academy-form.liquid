@@ -1,7 +1,27 @@
-{%- assign academy_posted = false -%}
-{%- if form.posted_successfully? and form.id == 'AcademyApplicationForm' -%}
-  {%- assign academy_posted = true -%}
-{%- endif -%}
+{%- comment -%}
+  Academy signup.
+
+  The Academy is sold as an ordinary Shopify product, so the flow is: fill in
+  the five questions, go straight to Shopify's own checkout, pay, and receive
+  the order confirmation email that carries the Skool invite. The answers ride
+  along as line item properties, so they appear on the order in the Shopify
+  admin without needing a separate form submission or any app.
+
+  If the Academy product hasn't been created yet, the section falls back to a
+  plain enquiry form so the page never shows a dead button.
+{%- endcomment -%}
+
+{%- liquid
+  assign academy = all_products[section.settings.product_handle]
+  assign has_product = false
+  if academy != blank and academy.id != blank and academy.available
+    assign has_product = true
+  endif
+  assign academy_posted = false
+  if form.posted_successfully? and form.id == 'AcademyEnquiryForm'
+    assign academy_posted = true
+  endif
+-%}
 
 <section id="{{ section.settings.custom_id | default: section.id }}" class="academy-form section section--surface">
   <div class="container academy-form__layout">
@@ -25,72 +45,108 @@
     </div>
 
     <div class="academy-form__panel card reveal">
-      {% form 'contact', id: 'AcademyApplicationForm' %}
-        <input type="hidden" name="contact[Enquiry type]" value="Academy application">
+      {% if has_product %}
+        <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" class="academy-form__buy">
+          <input type="hidden" name="id" value="{{ academy.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="quantity" value="1">
+          <input type="hidden" name="return_to" value="/checkout">
 
-        <h3>{{ section.settings.form_heading }}</h3>
-        <p class="field__hint">{{ section.settings.form_hint }}</p>
+          <h3>{{ section.settings.form_heading }}</h3>
+          <p class="academy-form__price">
+            {{ academy.price | money }}
+            {% if section.settings.price_note != blank %}
+              <span class="field__hint">{{ section.settings.price_note }}</span>
+            {% endif %}
+          </p>
 
-        <div class="academy-form__grid">
-          <div class="field">
-            <label class="field__label" for="AcademyName">Your name</label>
-            <input class="input" type="text" id="AcademyName" name="contact[name]" autocomplete="name" required>
+          <div class="academy-form__grid">
+            <div class="field">
+              <label class="field__label" for="AcademyName">Your name</label>
+              <input class="input" type="text" id="AcademyName" name="properties[Name]" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label class="field__label" for="AcademyEmail">Email</label>
+              <input class="input" type="email" id="AcademyEmail" name="properties[Email]" autocomplete="email" required>
+              <span class="field__hint">Your Skool invite goes here.</span>
+            </div>
           </div>
+
           <div class="field">
-            <label class="field__label" for="AcademyEmail">Email</label>
-            <input class="input" type="email" id="AcademyEmail" name="contact[email]" autocomplete="email" value="{{ form.email }}" required>
+            <label class="field__label" for="AcademyLocation">Where are you based?</label>
+            <input class="input" type="text" id="AcademyLocation" name="properties[Location]" placeholder="Town or city" autocomplete="address-level2" required>
           </div>
-        </div>
 
-        <div class="field">
-          <label class="field__label" for="AcademyStage">Where are you right now?</label>
-          <select class="input" id="AcademyStage" name="contact[Current stage]" required>
-            <option value="">Choose one&hellip;</option>
-            <option value="Not started yet">I haven't started selling yet</option>
-            <option value="Sold a little">I've sold a little and want to go further</option>
-            <option value="Selling regularly">I'm selling regularly and want to scale</option>
-            <option value="Existing GBG buyer">I've already ordered from GBG</option>
-          </select>
-        </div>
+          <div class="field">
+            <label class="field__label" for="AcademyPlatform">Where do you plan to sell?</label>
+            <input class="input" type="text" id="AcademyPlatform" name="properties[Where you plan to sell]" placeholder="Vinted, eBay, TikTok Shop, in person, not decided yet" required>
+          </div>
 
-        <div class="field">
-          <label class="field__label" for="AcademyPlatform">Where do you sell (or plan to)?</label>
-          <select class="input" id="AcademyPlatform" name="contact[Platform]">
-            <option value="Not decided yet">Not decided yet</option>
-            <option value="Vinted">Vinted</option>
-            <option value="eBay">eBay</option>
-            <option value="TikTok Shop">TikTok Shop</option>
-            <option value="Facebook Marketplace">Facebook Marketplace</option>
-            <option value="My own shop">My own shop / website</option>
-            <option value="Several">Several of these</option>
-          </select>
-        </div>
+          <div class="field">
+            <label class="field__label" for="AcademyGoal">What do you want the Academy to do for you?</label>
+            <textarea class="input" id="AcademyGoal" name="properties[What you want the Academy to do]" rows="4" required></textarea>
+            <span class="field__hint">A sentence is plenty. Lami reads every one.</span>
+          </div>
 
-        <div class="field">
-          <label class="field__label" for="AcademyGoal">What do you want the Academy to help you do?</label>
-          <textarea class="input" id="AcademyGoal" name="contact[Goal]" rows="4" required></textarea>
-          <span class="field__hint">A sentence or two is plenty - it helps us tell you whether the Academy is genuinely right for you.</span>
-        </div>
+          <button type="submit" class="btn btn--primary btn--block">{{ section.settings.submit_label }}</button>
 
-        <button type="submit" class="btn btn--primary btn--block">{{ section.settings.submit_label }}</button>
+          <p class="field__hint academy-form__foot">
+            {{ section.settings.after_pay_note }}
+          </p>
+        </form>
+      {% else %}
+        {% form 'contact', id: 'AcademyEnquiryForm' %}
+          <input type="hidden" name="contact[Enquiry type]" value="Academy">
 
-        <div class="form-status" {% if academy_posted %}data-state="success"{% elsif form.errors %}data-state="error"{% endif %}>
-          {% if academy_posted %}
-            {{ section.settings.success_message }}
-          {% elsif form.errors %}
-            {{ 'forms.error_generic' | t }}
-          {% endif %}
-        </div>
+          <h3>{{ section.settings.form_heading }}</h3>
+          <p class="field__hint">Doors are shut right now. Leave your details and you'll hear the moment they open.</p>
 
-        <p class="field__hint academy-form__foot">
-          Prefer to ask a question first?
-          {% if settings.whatsapp_link != blank %}
-            <a href="{{ settings.whatsapp_link }}" target="_blank" rel="noopener noreferrer">Message us on WhatsApp</a>.
-          {% else %}
-            <a href="/pages/contact">Get in touch</a>.
-          {% endif %}
-        </p>
-      {% endform %}
+          <div class="academy-form__grid">
+            <div class="field">
+              <label class="field__label" for="AcademyNameAlt">Your name</label>
+              <input class="input" type="text" id="AcademyNameAlt" name="contact[name]" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label class="field__label" for="AcademyEmailAlt">Email</label>
+              <input class="input" type="email" id="AcademyEmailAlt" name="contact[email]" autocomplete="email" value="{{ form.email }}" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="AcademyLocationAlt">Where are you based?</label>
+            <input class="input" type="text" id="AcademyLocationAlt" name="contact[Location]" placeholder="Town or city" required>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="AcademyPlatformAlt">Where do you plan to sell?</label>
+            <input class="input" type="text" id="AcademyPlatformAlt" name="contact[Where you plan to sell]" required>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="AcademyGoalAlt">What do you want the Academy to do for you?</label>
+            <textarea class="input" id="AcademyGoalAlt" name="contact[Goal]" rows="4" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--block">Tell me when it opens</button>
+
+          <div class="form-status" {% if academy_posted %}data-state="success"{% elsif form.errors %}data-state="error"{% endif %}>
+            {% if academy_posted %}
+              {{ section.settings.success_message }}
+            {% elsif form.errors %}
+              {{ 'forms.error_generic' | t }}
+            {% endif %}
+          </div>
+        {% endform %}
+      {% endif %}
+
+      <p class="field__hint academy-form__foot">
+        Got a question first?
+        {% if settings.whatsapp_link != blank %}
+          <a href="{{ settings.whatsapp_link }}" target="_blank" rel="noopener noreferrer">Message Lami on WhatsApp</a>.
+        {% else %}
+          <a href="/pages/contact">Get in touch</a>.
+        {% endif %}
+        Not ready yet? <a href="{{ routes.all_products_collection_url }}">Shop the stock instead</a>.
+      </p>
     </div>
   </div>
 </section>
@@ -142,6 +198,25 @@
     margin-bottom: var(--space-2);
   }
 
+  .academy-form__price {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-5);
+  }
+
+  .academy-form__price .field__hint {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--color-muted);
+    margin-top: var(--space-1);
+  }
+
   .academy-form__grid {
     display: grid;
     gap: var(--space-4);
@@ -166,16 +241,19 @@
 
 {% schema %}
 {
-  "name": "Academy application",
+  "name": "Academy signup",
   "settings": [
-    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)", "default": "apply" },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label", "default": "APPLY" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Apply for the next Academy intake" },
+    { "type": "paragraph", "content": "The Academy is sold as a normal Shopify product. Create it in Products, set the price there, then paste its handle below. Members pay at the usual Shopify checkout, and the Skool invite goes out in the order confirmation email (Settings > Notifications > Order confirmation)." },
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)", "default": "join" },
+    { "type": "text", "id": "product_handle", "label": "Academy product handle", "info": "The part of the product URL after /products/. Leave blank, or point it at a product that is out of stock, and the section shows a waiting-list form instead.", "default": "gbg-academy" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label", "default": "JOIN" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Join the Academy now" },
     { "type": "richtext", "id": "body", "label": "Intro text" },
-    { "type": "text", "id": "form_heading", "label": "Form heading", "default": "Your application" },
-    { "type": "text", "id": "form_hint", "label": "Form hint", "default": "Takes two minutes. We reply personally with dates, pricing and whether it's the right fit." },
-    { "type": "text", "id": "submit_label", "label": "Submit button label", "default": "Send my application" },
-    { "type": "text", "id": "success_message", "label": "Success message", "default": "Application received. We'll reply personally within 24 hours with dates, pricing and next steps." }
+    { "type": "text", "id": "form_heading", "label": "Form heading", "default": "Your place in the Academy" },
+    { "type": "text", "id": "price_note", "label": "Note under the price", "default": "One payment. Lifetime access to the modules and the community." },
+    { "type": "text", "id": "submit_label", "label": "Submit button label", "default": "Join the Academy" },
+    { "type": "text", "id": "after_pay_note", "label": "Note under the button", "default": "You'll pay at the usual checkout. Your welcome email arrives straight after, with your invite to the Skool community." },
+    { "type": "text", "id": "success_message", "label": "Waiting-list success message", "default": "You're on the list. We'll email you the moment the next intake opens." }
   ],
   "blocks": [
     {
@@ -187,7 +265,7 @@
     }
   ],
   "presets": [
-    { "name": "Academy application" }
+    { "name": "Academy signup" }
   ]
 }
 {% endschema %}
