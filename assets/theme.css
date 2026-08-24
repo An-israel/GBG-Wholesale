@@ -1,4 +1,4 @@
-/* GBG Wholesale Hub — base design system.
+/* GBG Wholesale Hub - base design system.
    Section-specific layout lives in each section's own {% stylesheet %} block;
    this file holds the shared reset, type scale and component classes so every
    page reads as one system. */
@@ -10,7 +10,7 @@
 }
 
 html {
-  -webkit-text-size-adjust: 100%;
+ -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
 }
 
@@ -36,7 +36,7 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
+ -webkit-font-smoothing: antialiased;
 }
 
 img,
@@ -62,9 +62,16 @@ h5,
 h6 {
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.08;
   margin: 0 0 var(--space-4);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+}
+
+/* The brand identity sets Heavy for the largest type and Bold below it. */
+h1,
+h2 {
+  font-weight: 800;
+  letter-spacing: -0.03em;
 }
 
 h1 {
@@ -88,8 +95,8 @@ p {
 }
 
 .editorial {
-  font-family: var(--font-editorial);
-  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.015em;
 }
 
 /* Layout */
@@ -125,8 +132,8 @@ p {
 }
 
 .section--ink {
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: var(--color-navy);
+  color: #FFFFFF;
 }
 
 .grid {
@@ -195,7 +202,7 @@ p {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  font-family: 'Public Sans', monospace;
+  font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -207,16 +214,16 @@ p {
   background: color-mix(in srgb, var(--color-accent-raw) 8%, transparent);
 }
 
-.route-label--forest {
-  color: var(--color-forest);
-  border-color: var(--color-forest);
-  background: color-mix(in srgb, var(--color-forest) 8%, transparent);
+.route-label--amber {
+  color: var(--color-amber-text);
+  border-color: var(--color-amber-text);
+  background: color-mix(in srgb, var(--color-amber-text) 8%, transparent);
 }
 
-.route-label--plum {
-  color: var(--color-plum);
-  border-color: var(--color-plum);
-  background: color-mix(in srgb, var(--color-plum) 8%, transparent);
+.route-label--navy {
+  color: var(--color-navy);
+  border-color: var(--color-navy);
+  background: color-mix(in srgb, var(--color-navy) 8%, transparent);
 }
 
 .route-label--ink {
@@ -233,14 +240,14 @@ p {
   border-color: var(--color-accent-on-dark);
 }
 
-.section--ink .route-label--forest {
-  color: var(--color-forest-on-dark);
-  border-color: var(--color-forest-on-dark);
+.section--ink .route-label--amber {
+  color: var(--color-amber);
+  border-color: var(--color-amber);
 }
 
-.section--ink .route-label--plum {
-  color: var(--color-plum-on-dark);
-  border-color: var(--color-plum-on-dark);
+.section--ink .route-label--navy {
+  color: var(--color-navy-on-dark);
+  border-color: var(--color-navy-on-dark);
 }
 
 /* Buttons */
@@ -267,13 +274,25 @@ p {
 
 .btn--primary {
   background: var(--color-accent);
-  color: var(--color-surface);
+  color: var(--color-on-accent);
   border-color: var(--color-accent);
 }
 
 .btn--primary:hover {
-  background: color-mix(in srgb, var(--color-accent) 85%, black);
-  border-color: color-mix(in srgb, var(--color-accent) 85%, black);
+  background: color-mix(in srgb, var(--color-accent) 82%, black);
+  border-color: color-mix(in srgb, var(--color-accent) 82%, black);
+}
+
+/* Inside a navy section the navy button disappears, so it flips to amber. */
+.section--ink .btn--primary {
+  background: var(--color-accent-on-dark);
+  color: var(--color-on-accent-dark);
+  border-color: var(--color-accent-on-dark);
+}
+
+.section--ink .btn--primary:hover {
+  background: color-mix(in srgb, var(--color-accent-on-dark) 85%, white);
+  border-color: color-mix(in srgb, var(--color-accent-on-dark) 85%, white);
 }
 
 .btn--secondary {
@@ -299,14 +318,17 @@ p {
   color: var(--color-ink);
 }
 
-.btn--forest {
-  background: var(--color-forest);
-  color: var(--color-surface);
-  border-color: var(--color-forest);
+/* WhatsApp's own green, so the button is recognised for what it is rather
+   than read as another GBG call to action. */
+.btn--whatsapp {
+  background: var(--color-whatsapp);
+  color: #FFFFFF;
+  border-color: var(--color-whatsapp);
 }
 
-.btn--forest:hover {
-  background: color-mix(in srgb, var(--color-forest) 85%, black);
+.btn--whatsapp:hover {
+  background: color-mix(in srgb, var(--color-whatsapp) 85%, black);
+  border-color: color-mix(in srgb, var(--color-whatsapp) 85%, black);
 }
 
 .btn--ghost {
@@ -359,9 +381,9 @@ p {
   background: var(--color-surface);
 }
 
-.badge--forest {
-  color: var(--color-forest);
-  border-color: var(--color-forest);
+.badge--amber {
+  color: var(--color-amber-text);
+  border-color: var(--color-amber-text);
 }
 
 /* Forms */
@@ -433,9 +455,9 @@ textarea.input {
 
 .form-status[data-state='success'] {
   display: block;
-  background: color-mix(in srgb, var(--color-forest) 12%, var(--color-surface));
-  color: var(--color-forest);
-  border: 1px solid var(--color-forest);
+  background: color-mix(in srgb, var(--color-amber-text) 12%, var(--color-surface));
+  color: var(--color-amber-text);
+  border: 1px solid var(--color-amber-text);
 }
 
 .form-status[data-state='error'] {
@@ -515,9 +537,9 @@ textarea.input {
 /* Scroll reveal (subtle, respects reduced-motion).
    IMPORTANT: .reveal is visible by default. JS opts individual elements INTO
    a hidden pre-animation state (.pre-reveal) only once it has successfully
-   attached an observer to them. This way, if JS never runs — blocked script,
+   attached an observer to them. This way, if JS never runs - blocked script,
    Shopify theme-editor re-rendering a section without firing DOMContentLoaded,
-   anything — content simply has no fade-in, it never gets stuck invisible. */
+   anything - content simply has no fade-in, it never gets stuck invisible. */
 .reveal {
   opacity: 1;
   transform: none;
@@ -649,12 +671,12 @@ textarea.input {
 
 .account-page__hub-banner {
   padding: var(--space-5);
-  border: 1px solid var(--color-forest);
-  background: color-mix(in srgb, var(--color-forest) 8%, var(--color-surface));
+  border: 1px solid var(--color-amber-text);
+  background: color-mix(in srgb, var(--color-amber-text) 8%, var(--color-surface));
   border-radius: var(--radius);
   margin-bottom: var(--space-6);
 }
 
 .account-page__hub-banner h2 {
-  color: var(--color-forest);
+  color: var(--color-amber-text);
 }

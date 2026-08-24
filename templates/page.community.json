@@ -16,9 +16,9 @@
         "background": "surface",
         "narrow": true,
         "eyebrow": "SYPB",
-        "eyebrow_color": "plum",
+        "eyebrow_color": "navy",
         "heading": "Start Your Product Business (SYPB)",
-        "body": "<p><strong>What it is:</strong> A free, open group for anyone still deciding whether reselling is for them.</p><p><strong>Who it's for:</strong> Beginners, the curious, anyone who hasn't bought yet.</p><p><strong>What happens inside:</strong> Education, webinar access, real questions answered — no pressure to buy.</p>",
+        "body": "<p><strong>What it is:</strong> A free, open group for anyone still deciding whether reselling is for them.</p><p><strong>Who it's for:</strong> Beginners, the curious, anyone who hasn't bought yet.</p><p><strong>What happens inside:</strong> Education, webinar access, real questions answered - no pressure to buy.</p>",
         "primary_label": "Join SYPB",
         "primary_link_source": "sypb_link",
         "append_webinar_date": true
@@ -30,9 +30,9 @@
         "background": "paper",
         "narrow": true,
         "eyebrow": "WHOLESALE HUB",
-        "eyebrow_color": "forest",
+        "eyebrow_color": "amber",
         "heading": "GBG Wholesale Hub",
-        "body": "<p><strong>What it is:</strong> The members-only community for verified buyers.</p><p><strong>How you unlock it:</strong> Automatically, after your first purchase.</p><p><strong>What members get:</strong> Deal drops, restock alerts, and direct access to a community of active resellers.</p><p><em>Not directly joinable from this page — it's shown as the destination, not the entry point.</em></p>"
+        "body": "<p><strong>What it is:</strong> The members-only community for verified buyers.</p><p><strong>How you unlock it:</strong> Automatically, after your first purchase.</p><p><strong>What members get:</strong> Deal drops, restock alerts, and direct access to a community of active resellers.</p><p><em>Not directly joinable from this page - it's shown as the destination, not the entry point.</em></p>"
       }
     },
     "journey": {
@@ -43,10 +43,10 @@
         "heading": "How You Get From One To The Other"
       },
       "blocks": {
-        "j1": { "type": "step", "settings": { "text": "Join SYPB — free, no pressure, open to anyone deciding.", "link_text": "Join SYPB", "link_source": "sypb_link" } },
-        "j2": { "type": "step", "settings": { "text": "Attend the webinar — see how it works before you spend anything.", "link_text": "Join SYPB for the date", "link_source": "sypb_link" } },
-        "j3": { "type": "step", "settings": { "text": "Make your first purchase — no DM required, straight from the shop.", "link_text": "Shop now", "link_source": "custom", "link_url": "/collections/all" } },
-        "j4": { "type": "step", "settings": { "text": "Unlock the Wholesale Hub — automatically, as a verified buyer." } }
+        "j1": { "type": "step", "settings": { "text": "Join SYPB - free, no pressure, open to anyone deciding.", "link_text": "Join SYPB", "link_source": "sypb_link" } },
+        "j2": { "type": "step", "settings": { "text": "Attend the webinar - see how it works before you spend anything.", "link_text": "Join SYPB for the date", "link_source": "sypb_link" } },
+        "j3": { "type": "step", "settings": { "text": "Make your first purchase - no DM required, straight from the shop.", "link_text": "Shop now", "link_source": "custom", "link_url": "/collections/all" } },
+        "j4": { "type": "step", "settings": { "text": "Unlock the Wholesale Hub - automatically, as a verified buyer." } }
       },
       "block_order": ["j1", "j2", "j3", "j4"]
     },
@@ -59,7 +59,7 @@
       },
       "blocks": {
         "n1": { "type": "list_item", "settings": { "text": "Not a DM helpdesk for questions already answered on the website." } },
-        "n2": { "type": "list_item", "settings": { "text": "Not a guaranteed-profit scheme — what you put in is what you get out." } },
+        "n2": { "type": "list_item", "settings": { "text": "Not a guaranteed-profit scheme - what you put in is what you get out." } },
         "n3": { "type": "list_item", "settings": { "text": "Not a shortcut around doing the listing, the research, and the follow-through yourself." } }
       },
       "block_order": ["n1", "n2", "n3"]
@@ -73,7 +73,7 @@
       },
       "blocks": {
         "m1": { "type": "testimonial", "settings": { "caption": "Split her first order with another member and both sold out." } },
-        "m2": { "type": "testimonial", "settings": { "caption": "First sale within days of joining — asked one question, got a real answer fast." } },
+        "m2": { "type": "testimonial", "settings": { "caption": "First sale within days of joining - asked one question, got a real answer fast." } },
         "m3": { "type": "testimonial", "settings": { "caption": "Restock alert landed and the pack was gone within the hour." } }
       },
       "block_order": ["m1", "m2", "m3"]

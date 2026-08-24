@@ -5,7 +5,7 @@
       "settings": {
         "compact": true,
         "eyebrow": "ROUTE → START HERE",
-        "heading": "New to reselling? Start here — not in the shop.",
+        "heading": "New to reselling? Start here - not in the shop.",
         "body": "<p>You don't need experience, a business plan, or a big budget to begin. You need a starting point. This is it.</p>",
         "primary_label": "Get Your Roadmap",
         "primary_url": "#roadmap"
@@ -68,9 +68,9 @@
         "heading": "Are You Ready? A Quick Checklist"
       },
       "blocks": {
-        "r1": { "type": "list_item", "settings": { "text": "You have a small amount set aside to start with — even a single Starter Box." } },
-        "r2": { "type": "list_item", "settings": { "text": "You have (or are willing to set up) an account on at least one selling platform — Vinted, eBay, or TikTok Shop." } },
-        "r3": { "type": "list_item", "settings": { "text": "You can give this a few hours a week — listing, replying to buyers, restocking." } },
+        "r1": { "type": "list_item", "settings": { "text": "You have a small amount set aside to start with - even a single Starter Box." } },
+        "r2": { "type": "list_item", "settings": { "text": "You have (or are willing to set up) an account on at least one selling platform - Vinted, eBay, or TikTok Shop." } },
+        "r3": { "type": "list_item", "settings": { "text": "You can give this a few hours a week - listing, replying to buyers, restocking." } },
         "r4": { "type": "list_item", "settings": { "text": "You're prepared for your first sale to take longer than your fifth." } }
       },
       "block_order": ["r1", "r2", "r3", "r4"]
@@ -121,13 +121,13 @@
         "heading": "Your Roadmap"
       },
       "blocks": {
-        "s1": { "type": "step", "settings": { "text": "Learn — read the basics before you spend anything." } },
-        "s2": { "type": "step", "settings": { "text": "Research — check what's actually selling on your platform." } },
-        "s3": { "type": "step", "settings": { "text": "Choose — pick the pack that matches your budget and your platform." } },
-        "s4": { "type": "step", "settings": { "text": "Buy — order it, no DM required." } },
-        "s5": { "type": "step", "settings": { "text": "List — write listings that sell, using the guides.", "link_text": "Read the Listings Guide", "link_url": "/pages/learn-listings-guide" } },
-        "s6": { "type": "step", "settings": { "text": "Sell — respond fast, ship fast, ask for reviews." } },
-        "s7": { "type": "step", "settings": { "text": "Restock — reorder before you run out, not after." } }
+        "s1": { "type": "step", "settings": { "text": "Learn - read the basics before you spend anything." } },
+        "s2": { "type": "step", "settings": { "text": "Research - check what's actually selling on your platform." } },
+        "s3": { "type": "step", "settings": { "text": "Choose - pick the pack that matches your budget and your platform." } },
+        "s4": { "type": "step", "settings": { "text": "Buy - order it, no DM required." } },
+        "s5": { "type": "step", "settings": { "text": "List - write listings that sell, using the guides.", "link_text": "Read the Listings Guide", "link_url": "/pages/learn-listings-guide" } },
+        "s6": { "type": "step", "settings": { "text": "Sell - respond fast, ship fast, ask for reviews." } },
+        "s7": { "type": "step", "settings": { "text": "Restock - reorder before you run out, not after." } }
       },
       "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7"]
     },
@@ -176,7 +176,7 @@
         "background": "ink",
         "narrow": true,
         "eyebrow": "COMMUNITY",
-        "eyebrow_color": "plum",
+        "eyebrow_color": "navy",
         "heading": "Join Before You Buy",
         "body": "<p>Start Your Product Business (SYPB) is where beginners ask questions before spending anything. It's free, and it's where the next webinar is announced.</p>",
         "primary_label": "Join SYPB",
@@ -189,7 +189,7 @@
         "background": "surface",
         "narrow": true,
         "eyebrow": "ACADEMY",
-        "eyebrow_color": "plum",
+        "eyebrow_color": "navy",
         "heading": "Want More Structure?",
         "body": "<p>If a roadmap alone isn't enough and you want a guided programme, the Academy walks you through it step by step.</p>",
         "primary_label": "Learn About the Academy",

@@ -6,7 +6,7 @@
         "compact": true,
         "eyebrow": "LEARN → LISTINGS GUIDE",
         "heading": "How to write a listing that gets found, then gets bought",
-        "body": "<p>A listing has two jobs, and they're different. First it has to be found — that's the title and the keywords. Then it has to be believed — that's the photos and the description. Most listings that don't sell are failing at one of the two, and you can tell which from your own stats.</p>",
+        "body": "<p>A listing has two jobs, and they're different. First it has to be found - that's the title and the keywords. Then it has to be believed - that's the photos and the description. Most listings that don't sell are failing at one of the two, and you can tell which from your own stats.</p>",
         "primary_label": "Back to Learn Hub",
         "primary_url": "/pages/learn"
       }
@@ -34,7 +34,7 @@
           "settings": {
             "label": "VIEWS, NO SAVES",
             "heading": "It's found but not wanted",
-            "body": "<p>People are seeing it and scrolling past. That's your main photo doing the work badly — or the price being visibly wrong for what's shown.</p>"
+            "body": "<p>People are seeing it and scrolling past. That's your main photo doing the work badly - or the price being visibly wrong for what's shown.</p>"
           }
         },
         "d3": {
@@ -58,10 +58,10 @@
         "body": "<p>Your title is a list of the words a buyer might type. It is not a place to be clever. \"Gorgeous little treat ✨\" is invisible; \"Gold Chunky Hoop Earrings Statement Large Round\" gets found.</p><p>The reliable formula is: <strong>what it is + the details people search by + the occasion or style</strong>. So: <em>Silver Layered Chain Necklace Set Dainty Minimalist Stacking</em>.</p><p>To find the right words, search your own item on the platform, look at the listings that have already sold, and note which words keep appearing. Those are the words buyers actually type. Use them.</p>"
       },
       "blocks": {
-        "t1": { "type": "list_item", "settings": { "text": "Front-load the most important words — some platforms truncate long titles." } },
+        "t1": { "type": "list_item", "settings": { "text": "Front-load the most important words - some platforms truncate long titles." } },
         "t2": { "type": "list_item", "settings": { "text": "Include colour, size and material if a buyer would filter by them." } },
         "t3": { "type": "list_item", "settings": { "text": "Skip emojis and decorative punctuation. They take up searchable space and add nothing." } },
-        "t4": { "type": "list_item", "settings": { "text": "Never use a brand name for an item that isn't that brand — not even as \"style\" or \"inspired\"." } },
+        "t4": { "type": "list_item", "settings": { "text": "Never use a brand name for an item that isn't that brand - not even as \"style\" or \"inspired\"." } },
         "t5": { "type": "list_item", "settings": { "text": "Choose the most specific category available. The wrong category hides good listings completely." } }
       },
       "block_order": ["t1", "t2", "t3", "t4", "t5"]
@@ -73,15 +73,15 @@
         "narrow": true,
         "eyebrow": "STEP 02",
         "heading": "Photos: your phone is fine, your lighting is the problem",
-        "body": "<p>You don't need a camera or a lightbox. You need daylight and a plain surface. Shoot next to a window during the day, never under a ceiling light at night — indoor bulbs turn silver grey and make white look yellow.</p><p>Photograph the item you're actually holding. Supplier images are used by hundreds of other sellers, buyers recognise them, and duplicate-image detection picks them up.</p>"
+        "body": "<p>You don't need a camera or a lightbox. You need daylight and a plain surface. Shoot next to a window during the day, never under a ceiling light at night - indoor bulbs turn silver grey and make white look yellow.</p><p>Photograph the item you're actually holding. Supplier images are used by hundreds of other sellers, buyers recognise them, and duplicate-image detection picks them up.</p>"
       },
       "blocks": {
         "p1": { "type": "list_item", "settings": { "text": "Main photo: the whole item, filling the frame, plain background, sharp focus. This one photo decides whether anyone taps." } },
-        "p2": { "type": "list_item", "settings": { "text": "Add a scale shot — held in a hand or worn — so nobody is surprised by the size." } },
+        "p2": { "type": "list_item", "settings": { "text": "Add a scale shot - held in a hand or worn - so nobody is surprised by the size." } },
         "p3": { "type": "list_item", "settings": { "text": "Add a close-up of the material, clasp or finish." } },
         "p4": { "type": "list_item", "settings": { "text": "Photograph any flaw deliberately. It prevents nearly every return dispute." } },
         "p5": { "type": "list_item", "settings": { "text": "Use every photo slot the platform gives you. More angles means fewer questions and more confidence." } },
-        "p6": { "type": "list_item", "settings": { "text": "Keep your backgrounds consistent across listings — it makes a browsing buyer's feed look like a shop they can trust." } }
+        "p6": { "type": "list_item", "settings": { "text": "Keep your backgrounds consistent across listings - it makes a browsing buyer's feed look like a shop they can trust." } }
       },
       "block_order": ["p1", "p2", "p3", "p4", "p5", "p6"]
     },
@@ -98,7 +98,7 @@
         "d1": { "type": "list_item", "settings": { "text": "Open with one honest line about what it is and who it suits." } },
         "d2": { "type": "list_item", "settings": { "text": "Then the facts as short lines: size, colour, material, condition." } },
         "d3": { "type": "list_item", "settings": { "text": "State condition plainly. \"New without tags\" is fine and honest; vagueness costs you the sale." } },
-        "d4": { "type": "list_item", "settings": { "text": "Say when you post — \"Dispatched within 1 working day\" removes real hesitation." } },
+        "d4": { "type": "list_item", "settings": { "text": "Say when you post - \"Dispatched within 1 working day\" removes real hesitation." } },
         "d5": { "type": "list_item", "settings": { "text": "Mention if you have more than one, or will combine postage on multiple items. It's the easiest way to raise your average order." } },
         "d6": { "type": "list_item", "settings": { "text": "Don't beg, don't over-explain, and don't apologise for the price." } }
       },
@@ -111,7 +111,7 @@
         "narrow": true,
         "eyebrow": "STEP 04",
         "heading": "Pricing: know your floor before you list anything",
-        "body": "<p>Work out the lowest price you can accept — pack cost divided by units, plus packaging, plus the platform's fee — and never go below it, however politely someone asks. If you don't know that number you'll be talked under it.</p><p>Then price a little above it, so you have room to accept an offer and still make money. Buyers on Vinted especially expect to negotiate; leaving yourself no room means every haggle is a loss.</p>",
+        "body": "<p>Work out the lowest price you can accept - pack cost divided by units, plus packaging, plus the platform's fee - and never go below it, however politely someone asks. If you don't know that number you'll be talked under it.</p><p>Then price a little above it, so you have room to accept an offer and still make money. Buyers on Vinted especially expect to negotiate; leaving yourself no room means every haggle is a loss.</p>",
         "primary_label": "Work out your floor price",
         "primary_link_source": "custom",
         "primary_url": "/pages/faq#pricing-calculator"
@@ -124,7 +124,7 @@
         "heading": "A listing session that actually works"
       },
       "blocks": {
-        "s1": { "type": "step", "settings": { "text": "Photograph everything in one daylight session — it's far faster than shooting item by item." } },
+        "s1": { "type": "step", "settings": { "text": "Photograph everything in one daylight session - it's far faster than shooting item by item." } },
         "s2": { "type": "step", "settings": { "text": "Research titles in a batch: search each item, read the sold listings, note the repeated words." } },
         "s3": { "type": "step", "settings": { "text": "Write each listing individually. Copy-pasting the same description across twenty items is exactly the pattern that gets accounts flagged.", "link_text": "Read the Safety Guide", "link_source": "custom", "link_url": "/pages/learn-platform-safety-guide" } },
         "s4": { "type": "step", "settings": { "text": "Publish a few a day rather than all at once. Steady beats bulk, for the algorithm and for your sanity." } },

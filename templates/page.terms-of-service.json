@@ -6,7 +6,7 @@
         "compact": true,
         "eyebrow": "LEGAL → TERMS",
         "heading": "Terms of Service",
-        "body": "<p>These terms cover using this website and buying from GBG Wholesale Hub. Placing an order means you accept them. They're written to be readable rather than impenetrable — if anything here is unclear, ask us before you order.</p>"
+        "body": "<p>These terms cover using this website and buying from GBG Wholesale Hub. Placing an order means you accept them. They're written to be readable rather than impenetrable - if anything here is unclear, ask us before you order.</p>"
       }
     },
     "who": {
@@ -29,7 +29,7 @@
         "body": "<p>Adding items to your cart and checking out is an offer to buy. A contract is formed when we send you an order confirmation, not when you pay.</p>"
       },
       "blocks": {
-        "o1": { "type": "list_item", "settings": { "text": "We may decline or cancel an order — for example if stock has sold out, if a price was listed in error, or if we suspect fraud. If we do, you get a full refund promptly." } },
+        "o1": { "type": "list_item", "settings": { "text": "We may decline or cancel an order - for example if stock has sold out, if a price was listed in error, or if we suspect fraud. If we do, you get a full refund promptly." } },
         "o2": { "type": "list_item", "settings": { "text": "Product photographs are representative. Natural variation in colour, finish and exact styling is normal in wholesale stock, particularly in mixed packs." } },
         "o3": { "type": "list_item", "settings": { "text": "Mixed and Starter packs are sold as a pack. The specific combination of items within them can vary." } },
         "o4": { "type": "list_item", "settings": { "text": "Each product's stated minimum order quantity applies. You must be 18 or over to order." } }
@@ -53,7 +53,7 @@
         "narrow": true,
         "eyebrow": "DISPATCH & DELIVERY",
         "heading": "Getting your order to you",
-        "body": "<p>Orders ship from our UK warehouse. Dispatch and delivery estimates are shown at checkout and in your confirmation email. Estimates are exactly that — once a parcel is with the carrier, timing is in their hands, though we'll always help you chase it.</p><p>Risk in the goods passes to you on delivery. Please check your order on arrival and tell us within 48 hours if anything is damaged, faulty or missing.</p>",
+        "body": "<p>Orders ship from our UK warehouse. Dispatch and delivery estimates are shown at checkout and in your confirmation email. Estimates are exactly that - once a parcel is with the carrier, timing is in their hands, though we'll always help you chase it.</p><p>Risk in the goods passes to you on delivery. Please check your order on arrival and tell us within 48 hours if anything is damaged, faulty or missing.</p>",
         "primary_label": "Track your order",
         "primary_link_source": "custom",
         "primary_url": "/pages/track-your-order"
@@ -71,7 +71,7 @@
       "blocks": {
         "r1": { "type": "list_item", "settings": { "text": "Complying with the terms of whichever platform you sell on." } },
         "r2": { "type": "list_item", "settings": { "text": "Describing items accurately and honestly to your own buyers." } },
-        "r3": { "type": "list_item", "settings": { "text": "Handling your own customers' returns, refunds and enquiries — your buyers are your customers, not ours." } },
+        "r3": { "type": "list_item", "settings": { "text": "Handling your own customers' returns, refunds and enquiries - your buyers are your customers, not ours." } },
         "r4": { "type": "list_item", "settings": { "text": "Meeting your own tax, trading and consumer-law obligations as a seller." } },
         "r5": { "type": "list_item", "settings": { "text": "Not describing items using a brand name they don't legitimately carry." } },
         "r6": { "type": "list_item", "settings": { "text": "Not presenting yourself as GBG Wholesale Hub, or as an authorised agent of ours, without written agreement." } }

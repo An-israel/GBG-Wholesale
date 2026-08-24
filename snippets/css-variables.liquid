@@ -1,57 +1,76 @@
+{%- comment -%}
+  Brand tokens, generated from Theme Settings.
+
+  GBG's identity is navy plus amber: navy carries authority and is the
+  workhorse for text, dark sections and primary buttons; amber is the arrow in
+  the logo, and it does the pointing here too - prices, highlights, and the
+  primary button wherever the background is navy.
+{%- endcomment -%}
 {% liquid
   case settings.accent_color
-    when 'brass'
-      assign accent_raw = settings.color_brass
-    when 'plum'
-      assign accent_raw = settings.color_plum
+    when 'amber'
+      assign accent_light = settings.color_amber
+      assign accent_dark = settings.color_navy
     else
-      assign accent_raw = settings.color_forest
+      assign accent_light = settings.color_navy
+      assign accent_dark = settings.color_amber
   endcase
 %}
 {% style %}
   :root {
-    --color-ink: {{ settings.color_ink }};
-    --color-paper: {{ settings.color_paper }};
-    --color-surface: {{ settings.color_surface }};
-    --color-border: {{ settings.color_border }};
-    --color-brass: {{ settings.color_brass }};
-    --color-forest: {{ settings.color_forest }};
-    --color-plum: {{ settings.color_plum }};
-    --color-error: {{ settings.color_error }};
+ --color-ink: {{ settings.color_ink }};
+ --color-paper: {{ settings.color_paper }};
+ --color-surface: {{ settings.color_surface }};
+ --color-border: {{ settings.color_border }};
+ --color-muted: {{ settings.color_muted }};
 
-    /* WCAG-AA-safe derived shades: brass is too light to use as small text or
-       white-on-brass buttons on light backgrounds, so it's darkened for those
-       uses; forest/plum are dark enough for light backgrounds already but too
-       dark to read on the ink background, so lightened variants exist for
-       that context (applied automatically inside .section--ink). */
-    --color-brass-text: color-mix(in srgb, var(--color-brass) 75%, black);
-    --color-forest-on-dark: color-mix(in srgb, var(--color-forest) 55%, white);
-    --color-plum-on-dark: color-mix(in srgb, var(--color-plum) 40%, white);
+ --color-navy: {{ settings.color_navy }};
+ --color-amber: {{ settings.color_amber }};
+ --color-amber-soft: {{ settings.color_amber_soft }};
+ --color-aqua: {{ settings.color_aqua }};
+ --color-error: {{ settings.color_error }};
+ --color-whatsapp: #128C7E;
 
-    /* Primary accent — merchant-selectable (Theme Settings → Colors →
-       Primary accent). Drives buttons, links, prices, highlights sitewide.
-       -text is darkened for safe use as small text or a white-on-accent
-       button background; -on-dark is lightened for use on .section--ink. */
-    --color-accent-raw: {{ accent_raw }};
-    --color-accent: color-mix(in srgb, var(--color-accent-raw) 75%, black);
-    --color-accent-on-dark: color-mix(in srgb, var(--color-accent-raw) 55%, white);
+    /* Amber is a light colour. On white it fails contrast as text or as a
+       white-on-amber button, so a darkened variant handles those uses. Navy is
+       the opposite problem: readable on white, invisible on navy, so a
+       lightened variant handles dark sections. */
+ --color-amber-text: color-mix(in srgb, var(--color-amber) 62%, black);
+ --color-navy-on-dark: color-mix(in srgb, var(--color-navy) 30%, white);
 
-    --font-display: 'Space Grotesk', 'Arial Narrow', Helvetica, Arial, sans-serif;
-    --font-body: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-    --font-editorial: 'Lora', Georgia, 'Times New Roman', serif;
+    /* Primary accent, merchant-selectable (Theme settings > Colours). Drives
+       buttons, links, prices and highlights. -on-dark is the shade used inside
+       navy sections, where the light-background shade would disappear. */
+ --color-accent: {{ accent_light }};
+ --color-accent-on-dark: {{ accent_dark }};
+ --color-accent-raw: var(--color-amber);
+ --color-accent-text: color-mix(in srgb, {{ accent_light }} 88%, black);
 
-    --page-width: {{ settings.page_width }}px;
-    --radius: {{ settings.corner_radius }}px;
+    /* Text colour that sits on top of a filled accent button. */
+ --color-on-accent: {% if settings.accent_color == 'amber' %}{{ settings.color_navy }}{% else %}#FFFFFF{% endif %};
+ --color-on-accent-dark: {% if settings.accent_color == 'amber' %}#FFFFFF{% else %}{{ settings.color_navy }}{% endif %};
 
-    --space-1: 0.25rem;
-    --space-2: 0.5rem;
-    --space-3: 0.75rem;
-    --space-4: 1rem;
-    --space-5: 1.5rem;
-    --space-6: 2rem;
-    --space-7: 3rem;
-    --space-8: 4rem;
-    --space-9: 6rem;
+    /* Helvetica Neue is the brand font. It ships on macOS and iOS, so a large
+       share of UK shoppers see the real thing. Inter is loaded from Google
+       Fonts as the cross-platform stand-in: same grotesque skeleton, near
+       identical proportions, and it holds up at Heavy weight the way Arial
+       does not. */
+ --font-display: 'Helvetica Neue', 'HelveticaNeue', Inter, Helvetica, Arial, sans-serif;
+ --font-body: 'Helvetica Neue', 'HelveticaNeue', Inter, Helvetica, Arial, sans-serif;
+ --font-editorial: 'Helvetica Neue', 'HelveticaNeue', Inter, Helvetica, Arial, sans-serif;
+
+ --page-width: {{ settings.page_width }}px;
+ --radius: {{ settings.corner_radius }}px;
+
+ --space-1: 0.25rem;
+ --space-2: 0.5rem;
+ --space-3: 0.75rem;
+ --space-4: 1rem;
+ --space-5: 1.5rem;
+ --space-6: 2rem;
+ --space-7: 3rem;
+ --space-8: 4rem;
+ --space-9: 6rem;
 
     color-scheme: light;
   }

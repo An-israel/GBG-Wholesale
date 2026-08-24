@@ -18,7 +18,7 @@
         "narrow": true,
         "eyebrow": "ALWAYS COVERED",
         "heading": "Damaged, faulty or incorrect items",
-        "body": "<p>This applies to every order, business or personal. If your order arrives damaged in transit, faulty, or containing the wrong items, contact us within <strong>48 hours of delivery</strong> with your order number and clear photographs of the problem — including the outer packaging if the damage happened in transit.</p><p>We will replace the affected items, or refund them in full including the original postage, whichever you prefer. We do not ask you to return damaged goods at your own cost.</p>"
+        "body": "<p>This applies to every order, business or personal. If your order arrives damaged in transit, faulty, or containing the wrong items, contact us within <strong>48 hours of delivery</strong> with your order number and clear photographs of the problem - including the outer packaging if the damage happened in transit.</p><p>We will replace the affected items, or refund them in full including the original postage, whichever you prefer. We do not ask you to return damaged goods at your own cost.</p>"
       }
     },
     "consumer": {
@@ -38,7 +38,7 @@
         "narrow": true,
         "eyebrow": "BUYING TO RESELL",
         "heading": "Wholesale and business orders",
-        "body": "<p>Statutory cancellation rights apply to consumers, not to business purchases. Wholesale packs bought for resale are supplied as described and are sold as-is once received in good condition — we cannot accept returns simply because a pack did not sell as quickly as you hoped.</p><p>This does not affect your rights above: damaged, faulty or incorrectly supplied stock is always covered, whoever you are. If you are unsure whether a pack is right for you, ask us before you order and we will give you an honest answer.</p>",
+        "body": "<p>Statutory cancellation rights apply to consumers, not to business purchases. Wholesale packs bought for resale are supplied as described and are sold as-is once received in good condition - we cannot accept returns simply because a pack did not sell as quickly as you hoped.</p><p>This does not affect your rights above: damaged, faulty or incorrectly supplied stock is always covered, whoever you are. If you are unsure whether a pack is right for you, ask us before you order and we will give you an honest answer.</p>",
         "primary_label": "Ask before you order",
         "primary_link_source": "whatsapp_link"
       }
@@ -51,10 +51,10 @@
       },
       "blocks": {
         "s1": { "type": "step", "settings": { "text": "Contact us within the relevant window with your order number and, for damage or faults, photographs.", "link_text": "Contact us", "link_source": "custom", "link_url": "/pages/contact" } },
-        "s2": { "type": "step", "settings": { "text": "We reply confirming whether to return the items, and to which address — please don't send anything back before this." } },
+        "s2": { "type": "step", "settings": { "text": "We reply confirming whether to return the items, and to which address - please don't send anything back before this." } },
         "s3": { "type": "step", "settings": { "text": "Pack the items securely. Use tracked postage and keep your proof of postage until the refund lands." } },
         "s4": { "type": "step", "settings": { "text": "We inspect on arrival and confirm by email." } },
-        "s5": { "type": "step", "settings": { "text": "Your refund is issued to the original payment method. Banks typically take a further 3–5 working days to show it." } }
+        "s5": { "type": "step", "settings": { "text": "Your refund is issued to the original payment method. Banks typically take a further 3-5 working days to show it." } }
       },
       "block_order": ["s1", "s2", "s3", "s4", "s5"]
     },
@@ -83,7 +83,7 @@
         "align": "center",
         "eyebrow": "NEED A HAND?",
         "heading": "Not sure which of these applies to you?",
-        "body": "<p>Message us with your order number and we'll tell you straight away where you stand — you don't need to work it out yourself.</p>",
+        "body": "<p>Message us with your order number and we'll tell you straight away where you stand - you don't need to work it out yourself.</p>",
         "primary_label": "Message us on WhatsApp",
         "primary_link_source": "whatsapp_link"
       }

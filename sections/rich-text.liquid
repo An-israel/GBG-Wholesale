@@ -7,7 +7,7 @@
   <div class="container">
     <div class="rich-text__inner reveal">
       {% if section.settings.eyebrow != blank %}
-        <span class="route-label {% if section.settings.eyebrow_color == 'forest' %}route-label--forest{% elsif section.settings.eyebrow_color == 'plum' %}route-label--plum{% endif %}">
+        <span class="route-label {% if section.settings.eyebrow_color == 'amber' %}route-label--amber{% elsif section.settings.eyebrow_color == 'navy' %}route-label--navy{% endif %}">
           {{ section.settings.eyebrow }}
         </span>
       {% endif %}
@@ -97,13 +97,13 @@
   }
 
   /* Shopify's rich text setting strips custom class attributes, so
-     pull-quote paragraphs use <em> in the stored HTML and get their Lora
-     italic treatment here instead. */
+     pull-quote paragraphs are marked up with <em> and picked up here. */
   .rich-text__body em {
-    font-family: var(--font-editorial);
-    font-style: italic;
+    font-style: normal;
+    font-weight: 500;
     font-size: 1.2em;
-    line-height: 1.5;
+    line-height: 1.45;
+    letter-spacing: -0.015em;
     display: inline-block;
   }
 
@@ -124,7 +124,7 @@
   .rich-text__list svg {
     width: 18px;
     height: 18px;
-    color: var(--color-forest);
+    color: var(--color-amber-text);
     flex-shrink: 0;
     margin-top: 0.15em;
   }
@@ -153,15 +153,15 @@
       ], "default": "paper" },
     { "type": "checkbox", "id": "narrow", "label": "Narrow column", "default": false },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label" },
-    { "type": "select", "id": "eyebrow_color", "label": "Eyebrow color", "options": [
-        { "value": "brass", "label": "Brass" },
-        { "value": "forest", "label": "Forest" },
-        { "value": "plum", "label": "Plum" }
-      ], "default": "brass" },
+    { "type": "select", "id": "eyebrow_color", "label": "Eyebrow colour", "options": [
+        { "value": "accent", "label": "Primary accent" },
+        { "value": "amber", "label": "Amber" },
+        { "value": "navy", "label": "Navy" }
+      ], "default": "accent" },
     { "type": "text", "id": "heading", "label": "Heading" },
     { "type": "richtext", "id": "body", "label": "Body" },
-    { "type": "checkbox", "id": "use_editorial_style", "label": "Use editorial (Lora) styling for body", "default": false },
-    { "type": "text", "id": "attribution", "label": "Attribution line (e.g. — Lami)" },
+    { "type": "checkbox", "id": "use_editorial_style", "label": "Use large pull-quote styling for body", "default": false },
+    { "type": "text", "id": "attribution", "label": "Attribution line (e.g. - Lami)" },
     { "type": "text", "id": "primary_label", "label": "Primary button label" },
     { "type": "select", "id": "primary_link_source", "label": "Primary button links to", "options": [
         { "value": "custom", "label": "Custom link (set below)" },

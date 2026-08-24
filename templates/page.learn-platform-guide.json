@@ -20,7 +20,7 @@
         "narrow": true,
         "eyebrow": "THE ONE RULE",
         "heading": "Match the product to the buyer's mood, not just the category",
-        "body": "<p>Every platform attracts people in a particular frame of mind. Someone on eBay usually knows what they want and is comparing prices. Someone on TikTok Shop wasn't shopping at all until three seconds ago. Someone on Vinted is browsing for pleasure, in a fashion mindset, expecting a bargain.</p><p>Get this right and everything else — pricing, photos, titles — becomes easier. Get it wrong and no amount of good listing writing rescues it.</p>"
+        "body": "<p>Every platform attracts people in a particular frame of mind. Someone on eBay usually knows what they want and is comparing prices. Someone on TikTok Shop wasn't shopping at all until three seconds ago. Someone on Vinted is browsing for pleasure, in a fashion mindset, expecting a bargain.</p><p>Get this right and everything else - pricing, photos, titles - becomes easier. Get it wrong and no amount of good listing writing rescues it.</p>"
       }
     },
     "platforms": {
@@ -37,8 +37,8 @@
           "type": "card",
           "settings": {
             "label": "VINTED",
-            "heading": "Fashion, accessories and jewellery — browsing buyers",
-            "body": "<p><strong>Best for:</strong> clothing, jewellery, hair accessories, bags, small fashion items. Anything that photographs well and reads as a treat.</p><p><strong>Why it works:</strong> no seller fees, huge UK audience, and buyers who browse for enjoyment rather than hunting a specific item. Impulse-friendly price points (roughly £5–£25) move fastest.</p><p><strong>Watch out for:</strong> buyers expect bargains and will haggle. Build your floor price in before you list. Vinted is also the platform most likely to flag accounts that look like scaled reselling — pace your listings and read the Safety Guide before you scale.</p><p><strong>Avoid:</strong> electronics and bulky homeware. Wrong audience entirely.</p>",
+            "heading": "Fashion, accessories and jewellery - browsing buyers",
+            "body": "<p><strong>Best for:</strong> clothing, jewellery, hair accessories, bags, small fashion items. Anything that photographs well and reads as a treat.</p><p><strong>Why it works:</strong> no seller fees, huge UK audience, and buyers who browse for enjoyment rather than hunting a specific item. Impulse-friendly price points (roughly £5 - £25) move fastest.</p><p><strong>Watch out for:</strong> buyers expect bargains and will haggle. Build your floor price in before you list. Vinted is also the platform most likely to flag accounts that look like scaled reselling - pace your listings and read the Safety Guide before you scale.</p><p><strong>Avoid:</strong> electronics and bulky homeware. Wrong audience entirely.</p>",
             "link_text": "Read the Safety Guide",
             "link_url": "/pages/learn-platform-safety-guide"
           }
@@ -47,8 +47,8 @@
           "type": "card",
           "settings": {
             "label": "EBAY",
-            "heading": "Electronics, brands and anything people search by name — intent buyers",
-            "body": "<p><strong>Best for:</strong> electronics, gadgets, tools, homeware, and any product with a model name or number people type into a search box.</p><p><strong>Why it works:</strong> buyers arrive with intent. They already want the thing; they're deciding who to buy it from. That means less persuasion and more competition on price, postage speed and feedback score.</p><p><strong>Watch out for:</strong> seller fees take a real bite — build them into your break-even before you list, not after. Your feedback score matters enormously early on, so your first ten orders are worth over-delivering on.</p><p><strong>Strength:</strong> the sold-listings filter is the single best free demand-research tool in reselling. Use it before you buy stock, not after.</p>",
+            "heading": "Electronics, brands and anything people search by name - intent buyers",
+            "body": "<p><strong>Best for:</strong> electronics, gadgets, tools, homeware, and any product with a model name or number people type into a search box.</p><p><strong>Why it works:</strong> buyers arrive with intent. They already want the thing; they're deciding who to buy it from. That means less persuasion and more competition on price, postage speed and feedback score.</p><p><strong>Watch out for:</strong> seller fees take a real bite - build them into your break-even before you list, not after. Your feedback score matters enormously early on, so your first ten orders are worth over-delivering on.</p><p><strong>Strength:</strong> the sold-listings filter is the single best free demand-research tool in reselling. Use it before you buy stock, not after.</p>",
             "link_text": "Work out your floor price",
             "link_url": "/pages/faq#pricing-calculator"
           }
@@ -57,7 +57,7 @@
           "type": "card",
           "settings": {
             "label": "TIKTOK SHOP",
-            "heading": "Visual, demonstrable products — discovery buyers",
+            "heading": "Visual, demonstrable products - discovery buyers",
             "body": "<p><strong>Best for:</strong> anything that looks good in motion or has a visible before-and-after. Ring lights, gadgets, beauty accessories, novelty homeware, jewellery with sparkle.</p><p><strong>Why it works:</strong> nobody arrives intending to buy. The video creates the want and the checkout is one tap away. A single video that lands can clear a whole pack in a day.</p><p><strong>Watch out for:</strong> it is content work, not listing work. You need to keep posting, and most videos do nothing. Treat it as a channel that occasionally spikes rather than a steady earner.</p><p><strong>Avoid:</strong> anything that needs explaining in writing or looks flat on camera.</p>"
           }
         },
@@ -65,7 +65,7 @@
           "type": "card",
           "settings": {
             "label": "FACEBOOK MARKETPLACE",
-            "heading": "Bulk, bundles and local pickup — practical buyers",
+            "heading": "Bulk, bundles and local pickup - practical buyers",
             "body": "<p><strong>Best for:</strong> homeware, larger items, job lots and bundles. Also the best place to shift the tail end of a pack that's stopped moving elsewhere.</p><p><strong>Why it works:</strong> no fees, local collection removes postage costs entirely, and buyers are comfortable with bundles rather than single items.</p><p><strong>Watch out for:</strong> more time-wasters than anywhere else. Expect messages that go nowhere and people who don't turn up. Never take payment methods you can't verify, and meet in public places.</p><p><strong>Strength:</strong> genuinely useful as a clearance channel so old stock doesn't tie up your cash.</p>"
           }
         }
@@ -97,7 +97,7 @@
           "settings": {
             "label": "ELECTRONICS",
             "heading": "eBay first, TikTok Shop second",
-            "body": "<p>People search electronics by name, which is eBay's home ground. Anything demonstrable — ring lights, earbuds — is worth filming for TikTok Shop too.</p>",
+            "body": "<p>People search electronics by name, which is eBay's home ground. Anything demonstrable - ring lights, earbuds - is worth filming for TikTok Shop too.</p>",
             "link_text": "Shop the category",
             "link_url": "/collections/electronics"
           }
@@ -155,7 +155,7 @@
         "s1": { "type": "step", "settings": { "text": "Search the item on eBay and filter to sold listings. This tells you whether anyone is buying it at all, and at what price." } },
         "s2": { "type": "step", "settings": { "text": "Work out your true break-even: pack cost ÷ units, plus packaging, plus platform fees.", "link_text": "Use the calculator", "link_source": "custom", "link_url": "/pages/faq#pricing-calculator" } },
         "s3": { "type": "step", "settings": { "text": "Match the product to the buyer mindset above. Browsing and fashion goes to Vinted; searched-for and technical goes to eBay." } },
-        "s4": { "type": "step", "settings": { "text": "List a small batch first — five or six units, not the whole pack. You're testing, not committing." } },
+        "s4": { "type": "step", "settings": { "text": "List a small batch first - five or six units, not the whole pack. You're testing, not committing." } },
         "s5": { "type": "step", "settings": { "text": "Give it a fortnight. Track views and saves as well as sales: lots of views and no sales usually means price, few views usually means title or keywords." } },
         "s6": { "type": "step", "settings": { "text": "Put the rest where the test worked. If nothing moved anywhere, bundle onto Facebook Marketplace to release the cash and learn from it." } }
       },
@@ -183,7 +183,7 @@
           "type": "card",
           "settings": {
             "heading": "Platform Safety Guide",
-            "body": "<p>How to scale up without getting your account restricted — especially on Vinted.</p>",
+            "body": "<p>How to scale up without getting your account restricted - especially on Vinted.</p>",
             "link_text": "Read the guide",
             "link_url": "/pages/learn-platform-safety-guide"
           }

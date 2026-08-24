@@ -9,7 +9,7 @@
     "collections": "Collections",
     "collection_card": "Collection card",
     "collections_grid": "Collections grid",
-    "colors": "Colors",
+    "colors": "Colours",
     "column": "Column",
     "content": "Content",
     "custom_section": "Custom section",
@@ -53,7 +53,7 @@
   "options": {
     "alignment": {
       "left": "Left",
-      "center": "Center",
+      "center": "Centre",
       "right": "Right"
     },
     "direction": {

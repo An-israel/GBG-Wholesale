@@ -21,7 +21,7 @@
         "background": "paper",
         "columns": "3",
         "eyebrow": "IS THIS YOU?",
-        "eyebrow_color": "plum",
+        "eyebrow_color": "navy",
         "heading": "Who the Academy is built for",
         "body": "<p>The Academy isn't for everyone, and we'd rather tell you that up front than take your money. It's built for three people in particular.</p>"
       },
@@ -31,7 +31,7 @@
           "settings": {
             "label": "01",
             "heading": "You've bought stock and it's sitting there",
-            "body": "<p>You took the leap, the boxes arrived, and then the momentum stopped. You're not short of product — you're short of a system for listing, pricing and moving it. That's the gap the Academy closes first.</p>"
+            "body": "<p>You took the leap, the boxes arrived, and then the momentum stopped. You're not short of product - you're short of a system for listing, pricing and moving it. That's the gap the Academy closes first.</p>"
           }
         },
         "w2": {
@@ -63,7 +63,7 @@
       },
       "blocks": {
         "n1": { "type": "list_item", "settings": { "text": "You want guaranteed income. Nobody can promise that, and anyone who does is selling you something else." } },
-        "n2": { "type": "list_item", "settings": { "text": "You want it done for you. We'll show you exactly what to do — you still have to do it." } },
+        "n2": { "type": "list_item", "settings": { "text": "You want it done for you. We'll show you exactly what to do - you still have to do it." } },
         "n3": { "type": "list_item", "settings": { "text": "You can't give it a few hours a week. The work is light, but it isn't zero." } },
         "n4": { "type": "list_item", "settings": { "text": "You just want stock at good prices. That's the shop, and it's open to everyone without a course." } }
       },
@@ -76,9 +76,9 @@
         "background": "paper",
         "columns": "2",
         "eyebrow": "CURRICULUM",
-        "eyebrow_color": "plum",
+        "eyebrow_color": "navy",
         "heading": "What's covered, module by module",
-        "body": "<p>Six modules, worked through in order, because each one depends on the last. You finish with a stocked, listed, live shop — not a folder of notes.</p>"
+        "body": "<p>Six modules, worked through in order, because each one depends on the last. You finish with a stocked, listed, live shop - not a folder of notes.</p>"
       },
       "blocks": {
         "m1": {
@@ -110,7 +110,7 @@
           "settings": {
             "label": "MODULE 04",
             "heading": "Platform strategy and staying safe",
-            "body": "<p>Which of your products belong on Vinted, eBay, TikTok Shop or Facebook Marketplace — and why the same item performs differently on each. Plus the listing patterns that get reseller accounts restricted, and how to grow without tripping them.</p>"
+            "body": "<p>Which of your products belong on Vinted, eBay, TikTok Shop or Facebook Marketplace - and why the same item performs differently on each. Plus the listing patterns that get reseller accounts restricted, and how to grow without tripping them.</p>"
           }
         },
         "m5": {
@@ -140,9 +140,9 @@
         "heading": "What actually happens when you join"
       },
       "blocks": {
-        "s1": { "type": "step", "settings": { "text": "You apply. We read it and reply personally — including telling you if we think it's not right for you yet." } },
+        "s1": { "type": "step", "settings": { "text": "You apply. We read it and reply personally - including telling you if we think it's not right for you yet." } },
         "s2": { "type": "step", "settings": { "text": "We agree your starting point: your budget, your platform, and what you already have sitting unsold." } },
-        "s3": { "type": "step", "settings": { "text": "You work through the six modules in order, applying each one to your own shop as you go — not in theory." } },
+        "s3": { "type": "step", "settings": { "text": "You work through the six modules in order, applying each one to your own shop as you go - not in theory." } },
         "s4": { "type": "step", "settings": { "text": "Your listings, prices and product choices get reviewed and corrected. This is the part free content can't give you." } },
         "s5": { "type": "step", "settings": { "text": "You place your stock order with a plan already written for how it gets listed and sold.", "link_text": "See the catalogue", "link_source": "custom", "link_url": "/collections/all" } },
         "s6": { "type": "step", "settings": { "text": "You finish with a live, stocked shop and a reorder routine you can run without us." } }
@@ -155,7 +155,7 @@
         "background": "paper",
         "columns": "3",
         "eyebrow": "HOW IT DIFFERS",
-        "heading": "Academy, SYPB and the Wholesale Hub — the honest difference",
+        "heading": "Academy, SYPB and the Wholesale Hub - the honest difference",
         "body": "<p>Three different things, often confused. Here's which one you actually need.</p>"
       },
       "blocks": {
@@ -164,7 +164,7 @@
           "settings": {
             "label": "FREE",
             "heading": "Start Your Product Business (SYPB)",
-            "body": "<p>An open community for anyone still deciding. Education, webinars, and real questions answered — with no purchase required and no pressure. Start here if you're weighing it up.</p>",
+            "body": "<p>An open community for anyone still deciding. Education, webinars, and real questions answered - with no purchase required and no pressure. Start here if you're weighing it up.</p>",
             "link_text": "Read about SYPB",
             "link_url": "/pages/community"
           }
@@ -174,7 +174,7 @@
           "settings": {
             "label": "FREE · BUYERS ONLY",
             "heading": "GBG Wholesale Hub",
-            "body": "<p>Unlocks automatically after your first order. Deal drops, restock alerts and a network of active resellers. It's a community of peers — not a structured course.</p>",
+            "body": "<p>Unlocks automatically after your first order. Deal drops, restock alerts and a network of active resellers. It's a community of peers - not a structured course.</p>",
             "link_text": "How unlocking works",
             "link_url": "/pages/community"
           }
@@ -202,11 +202,11 @@
         "form_heading": "Your application",
         "form_hint": "Takes two minutes. We reply personally within 24 hours with dates, pricing and next steps.",
         "submit_label": "Send my application",
-        "success_message": "Application received. We'll reply personally within 24 hours with dates, pricing and next steps — check your inbox, and your spam folder just in case."
+        "success_message": "Application received. We'll reply personally within 24 hours with dates, pricing and next steps - check your inbox, and your spam folder just in case."
       },
       "blocks": {
         "p1": { "type": "point", "settings": { "text": "Small intakes, so your work actually gets looked at" } },
-        "p2": { "type": "point", "settings": { "text": "Priced per intake — we quote you directly once we know your starting point" } },
+        "p2": { "type": "point", "settings": { "text": "Priced per intake - we quote you directly once we know your starting point" } },
         "p3": { "type": "point", "settings": { "text": "An honest yes or no: we'll tell you if you'd do better starting with a Starter Box" } },
         "p4": { "type": "point", "settings": { "text": "Applying costs nothing and commits you to nothing" } }
       },
@@ -234,7 +234,7 @@
           "type": "question",
           "settings": {
             "question": "Do I need to buy stock from GBG to join?",
-            "answer": "<p>No. The Academy teaches sourcing, pricing and selling as skills — they apply to any supplier. Most members do order from GBG because it's convenient and the MOQs are low, but it's genuinely not a condition of joining.</p>",
+            "answer": "<p>No. The Academy teaches sourcing, pricing and selling as skills - they apply to any supplier. Most members do order from GBG because it's convenient and the MOQs are low, but it's genuinely not a condition of joining.</p>",
             "link_text": "Browse the catalogue",
             "link_url": "/collections/all"
           }
@@ -252,7 +252,7 @@
           "type": "question",
           "settings": {
             "question": "How much time does it take each week?",
-            "answer": "<p>Plan for a few hours a week — enough to work through a module and actually apply it to your own listings. The people who get the most out of it are the ones who do the work between sessions rather than saving it all up.</p>"
+            "answer": "<p>Plan for a few hours a week - enough to work through a module and actually apply it to your own listings. The people who get the most out of it are the ones who do the work between sessions rather than saving it all up.</p>"
           }
         },
         "f5": {
@@ -266,7 +266,7 @@
           "type": "question",
           "settings": {
             "question": "Is this the same as the free community?",
-            "answer": "<p>No. SYPB and the Wholesale Hub are communities — peers, questions and alerts. The Academy is a structured curriculum with direct feedback on your own listings and numbers. Many people use both.</p>",
+            "answer": "<p>No. SYPB and the Wholesale Hub are communities - peers, questions and alerts. The Academy is a structured curriculum with direct feedback on your own listings and numbers. Many people use both.</p>",
             "link_text": "Compare the three",
             "link_url": "/pages/community"
           }

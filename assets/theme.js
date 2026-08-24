@@ -1,9 +1,9 @@
-/* GBG Wholesale Hub — shared theme behaviour. Vanilla JS, no dependencies. */
+/* GBG Wholesale Hub - shared theme behaviour. Vanilla JS, no dependencies. */
 (function () {
   'use strict';
 
   /* Reveal-on-scroll: subtle fade + translate, respects prefers-reduced-motion.
-     Content is visible by default (see .reveal in theme.css) — this function
+     Content is visible by default (see .reveal in theme.css) - this function
      only ever ADDS a temporary hidden state to elements it can guarantee it
      will reveal. Anything already on-screen, or any failure of JS/observer,
      leaves content exactly as visible as if this never ran. Safe to call
@@ -164,7 +164,7 @@
   document.addEventListener('DOMContentLoaded', initAll);
 
   /* Shopify theme editor re-renders individual sections via AJAX whenever a
-     merchant edits settings — no DOMContentLoaded fires for that. Without
+     merchant edits settings - no DOMContentLoaded fires for that. Without
      this, anything gated behind a one-time init (reveal-on-scroll, accordion
      bindings) would silently stop working the moment a section reloads. */
   document.addEventListener('shopify:section:load', initAll);

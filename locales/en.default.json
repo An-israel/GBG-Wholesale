@@ -74,7 +74,7 @@
     "filter_price": "Price",
     "clear_filters": "Clear all",
     "no_products": "No products found",
-    "no_products_body": "Try removing a filter, or check back soon — new stock drops regularly.",
+    "no_products_body": "Try removing a filter, or check back soon - new stock drops regularly.",
     "results_count": "{{ count }} products"
   },
   "products": {
@@ -134,15 +134,15 @@
     "required": "Required",
     "invalid_email": "Enter a valid email address",
     "select_option": "Please choose an option",
-    "success_generic": "Thanks — that's been sent.",
+    "success_generic": "Thanks - that's been sent.",
     "error_generic": "Something went wrong. Please try again, or message us on WhatsApp."
   },
   "newsletter": {
     "heading": "Get restock alerts first",
     "placeholder": "Your email address",
     "submit": "Sign up",
-    "success": "You're on the list — watch your inbox.",
-    "error": "That didn't work — check your email address and try again."
+    "success": "You're on the list - watch your inbox.",
+    "error": "That didn't work - check your email address and try again."
   },
   "password": {
     "title": "This shop is private",
@@ -161,7 +161,7 @@
     "body": "Leave your email and we'll message you the moment new stock drops.",
     "placeholder": "Your email address",
     "submit": "Join the waitlist",
-    "success": "You're on the waitlist — we'll be in touch.",
-    "error": "That didn't work — check your email address and try again."
+    "success": "You're on the waitlist - we'll be in touch.",
+    "error": "That didn't work - check your email address and try again."
   }
 }

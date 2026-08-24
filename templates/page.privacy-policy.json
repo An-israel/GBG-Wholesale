@@ -19,10 +19,10 @@
         "body": "<p>We only collect what we need to sell to you and support you:</p>"
       },
       "blocks": {
-        "c1": { "type": "list_item", "settings": { "text": "Order details — your name, email, delivery address, phone number and what you bought." } },
-        "c2": { "type": "list_item", "settings": { "text": "Account details, if you create an account — your name, email and saved addresses." } },
+        "c1": { "type": "list_item", "settings": { "text": "Order details - your name, email, delivery address, phone number and what you bought." } },
+        "c2": { "type": "list_item", "settings": { "text": "Account details, if you create an account - your name, email and saved addresses." } },
         "c3": { "type": "list_item", "settings": { "text": "Messages you send us through the contact form, the waitlist form or WhatsApp." } },
-        "c4": { "type": "list_item", "settings": { "text": "Marketing preferences — whether you've asked to hear about restocks and offers." } },
+        "c4": { "type": "list_item", "settings": { "text": "Marketing preferences - whether you've asked to hear about restocks and offers." } },
         "c5": { "type": "list_item", "settings": { "text": "Technical and usage data collected by our website platform, such as your device type, approximate location and which pages you viewed." } },
         "c6": { "type": "list_item", "settings": { "text": "We never see or store your full card details. Payments are handled entirely by Shopify's payment providers." } }
       },
@@ -35,7 +35,7 @@
         "narrow": true,
         "eyebrow": "WHY WE USE IT",
         "heading": "How your information is used, and our lawful basis",
-        "body": "<p>We use your information to fulfil your order, to provide support, to meet our legal obligations, and — only where you've agreed — to send you marketing.</p>"
+        "body": "<p>We use your information to fulfil your order, to provide support, to meet our legal obligations, and - only where you've agreed - to send you marketing.</p>"
       },
       "blocks": {
         "w1": { "type": "list_item", "settings": { "text": "To process and deliver your order, and to handle returns and refunds. Lawful basis: performance of our contract with you." } },
@@ -103,7 +103,7 @@
         "narrow": true,
         "eyebrow": "COOKIES",
         "heading": "Cookies and tracking",
-        "body": "<p>This store uses cookies that are necessary for it to work — keeping you signed in, remembering what's in your cart, and keeping checkout secure. These cannot be switched off without breaking the site.</p><p>We also use analytics cookies to understand which pages people find useful. You can control non-essential cookies through your browser settings or the cookie preferences available on this store, and blocking them will not stop you shopping.</p>"
+        "body": "<p>This store uses cookies that are necessary for it to work - keeping you signed in, remembering what's in your cart, and keeping checkout secure. These cannot be switched off without breaking the site.</p><p>We also use analytics cookies to understand which pages people find useful. You can control non-essential cookies through your browser settings or the cookie preferences available on this store, and blocking them will not stop you shopping.</p>"
       }
     },
     "contact": {

@@ -33,11 +33,56 @@
     ]
   },
   {
-    "name": "Colors",
+    "name": "Colours",
     "settings": [
       {
         "type": "paragraph",
-        "content": "GBG's brand palette: one ink, one warm neutral paper, one white surface, and three accents. Pick which accent leads sitewide below — the other two stay in reserve for badges, status states, and community tags."
+        "content": "The GBG palette from the brand identity: navy and amber, on white, with black ink for type. Choose which of the two leads on buttons and links below."
+      },
+      {
+        "type": "header",
+        "content": "Brand"
+      },
+      {
+        "type": "color",
+        "id": "color_navy",
+        "label": "Navy (primary brand colour)",
+        "default": "#001A3F"
+      },
+      {
+        "type": "color",
+        "id": "color_amber",
+        "label": "Amber (secondary brand colour)",
+        "default": "#FFB303"
+      },
+      {
+        "type": "color",
+        "id": "color_amber_soft",
+        "label": "Amber tint (soft highlight backgrounds)",
+        "default": "#FFEBBC"
+      },
+      {
+        "type": "color",
+        "id": "color_aqua",
+        "label": "Aqua (rare accent, used sparingly)",
+        "default": "#60FFEF"
+      },
+      {
+        "type": "select",
+        "id": "accent_color",
+        "label": "Lead colour for buttons and links",
+        "info": "Navy reads as authority and is the safer default. Amber is louder and pushes harder on calls to action.",
+        "options": [
+          {
+            "value": "navy",
+            "label": "Navy"
+          },
+          {
+            "value": "amber",
+            "label": "Amber"
+          }
+        ],
+        "default": "navy"
       },
       {
         "type": "header",
@@ -46,14 +91,14 @@
       {
         "type": "color",
         "id": "color_ink",
-        "label": "Ink (text, headlines)",
-        "default": "#101418"
+        "label": "Ink (body text, headlines)",
+        "default": "#121212"
       },
       {
         "type": "color",
         "id": "color_paper",
         "label": "Paper (page background)",
-        "default": "#F7F6F2"
+        "default": "#F4F6F9"
       },
       {
         "type": "color",
@@ -64,51 +109,14 @@
       {
         "type": "color",
         "id": "color_border",
-        "label": "Border / rule lines",
-        "default": "#E5E3DB"
-      },
-      {
-        "type": "header",
-        "content": "Accents"
-      },
-      {
-        "type": "select",
-        "id": "accent_color",
-        "label": "Primary accent",
-        "info": "Which accent drives buttons, links, prices and highlights sitewide. The other two stay available for secondary use (badges, status states, community tags).",
-        "options": [
-          {
-            "value": "forest",
-            "label": "Forest (green)"
-          },
-          {
-            "value": "brass",
-            "label": "Brass (gold)"
-          },
-          {
-            "value": "plum",
-            "label": "Plum"
-          }
-        ],
-        "default": "forest"
+        "label": "Border and rule lines",
+        "default": "#DDE3EA"
       },
       {
         "type": "color",
-        "id": "color_brass",
-        "label": "Brass",
-        "default": "#A9812F"
-      },
-      {
-        "type": "color",
-        "id": "color_forest",
-        "label": "Forest",
-        "default": "#1E7A4C"
-      },
-      {
-        "type": "color",
-        "id": "color_plum",
-        "label": "Plum",
-        "default": "#5B2A4D"
+        "id": "color_muted",
+        "label": "Muted text (captions, meta)",
+        "default": "#565656"
       },
       {
         "type": "header",
@@ -117,7 +125,7 @@
       {
         "type": "color",
         "id": "color_error",
-        "label": "Error / form validation",
+        "label": "Error and form validation",
         "default": "#B3261E"
       }
     ]
@@ -152,13 +160,13 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "These links are pulled from a single setting everywhere they're used sitewide — update once here and every WhatsApp button, SYPB link and Wholesale Hub link on the site updates together."
+        "content": "These links are pulled from a single setting everywhere they're used sitewide - update once here and every WhatsApp button, SYPB link and Wholesale Hub link on the site updates together."
       },
       {
         "type": "text",
         "id": "whatsapp_link",
-        "label": "WhatsApp link",
-        "info": "Used for every WhatsApp CTA sitewide, including the floating button.",
+        "label": "WhatsApp message link (direct to Lami)",
+        "info": "Used for every \"message us\" button, including the floating button. This is a one to one chat, not a group.",
         "default": "https://wa.me/message/4JYCM5LR4LZPD1"
       },
       {
@@ -170,16 +178,16 @@
       {
         "type": "text",
         "id": "sypb_link",
-        "label": "SYPB (Start Your Product Business) join link",
-        "info": "Confirm with Lami: the live SYPB join / webinar-registration link. Defaults to WhatsApp so the CTA never breaks.",
-        "default": "https://wa.me/message/4JYCM5LR4LZPD1"
+        "label": "SYPB community link",
+        "info": "The Start Your Product Business WhatsApp group. Used by every SYPB button on the site.",
+        "default": "https://chat.whatsapp.com/J8cg43SbFN58hvDQomRpNf?mode=gi_t"
       },
       {
         "type": "text",
         "id": "wholesale_hub_join_link",
-        "label": "GBG Wholesale Hub link (shown after unlock)",
-        "info": "Confirm with Lami: the live Wholesale Hub community link. Shown on the order and account pages after a customer's first purchase — see the handoff notes for the Shopify Flow automation this depends on.",
-        "default": "https://wa.me/message/4JYCM5LR4LZPD1"
+        "label": "GBG Wholesale Hub community link",
+        "info": "The buyers-only WhatsApp group. Shown on the order and account pages once a customer has bought.",
+        "default": "https://chat.whatsapp.com/F4UPdAS2IxNGgT5f65Wude?mode=gi_t"
       }
     ]
   },
@@ -237,47 +245,47 @@
       {
         "type": "text",
         "id": "stat_customers_text",
-        "label": "Hero stat — community size",
+        "label": "Hero stat - community size",
         "default": "600+ women building with GBG"
       },
       {
         "type": "text",
         "id": "stat_price_text",
-        "label": "Hero stat — starting price",
+        "label": "Hero stat - starting price",
         "default": "Packs from £50"
       },
       {
         "type": "text",
         "id": "stat_shipping_text",
-        "label": "Hero stat — dispatch",
-        "default": "Shipped from our UK warehouse"
+        "label": "Hero stat: dispatch",
+        "default": "Ships from the UK in 3 days"
       },
       {
         "type": "text",
         "id": "starter_box_min_price",
-        "label": "Starter Box minimum price (£, number only)",
-        "info": "Confirm with Lami. The brief states \"Packs from £50\" on the Home page but marks the Starter Box price as TBC in the FAQ — defaulted to 50 to match the Home page.",
+        "label": "Starter Box minimum price (number only, in pounds)",
+        "info": "Used in the FAQ and on the Start Here page.",
         "default": "50"
       },
       {
         "type": "text",
         "id": "dispatch_timeframe",
-        "label": "Dispatch / delivery timeframe",
-        "info": "Confirm with Lami. The brief states \"Next Day Dispatch\" on the Home page but marks delivery timing as TBC in the FAQ — defaulted to match the Home page claim.",
-        "default": "Next day dispatch from our UK warehouse — arrives in 1–3 working days."
+        "label": "Dispatch and delivery timeframe",
+        "info": "Shown on product pages, in the cart, in the FAQ and in the footer. Change it here and it changes everywhere.",
+        "default": "Ships from the UK. Standard delivery is 3 working days."
       },
       {
         "type": "text",
         "id": "warehouse_location",
         "label": "Warehouse location",
-        "info": "Confirm with Lami: the exact warehouse location, used in the FAQ and in structured data.",
+        "info": "Used in the FAQ and in structured data.",
         "default": "United Kingdom"
       },
       {
         "type": "text",
         "id": "next_webinar_date",
-        "label": "Next SYPB webinar date",
-        "info": "Leave blank to show \"announced inside SYPB\" instead of a date. Confirm the recurring schedule with Lami."
+        "label": "Next SYPB live session date",
+        "info": "Leave blank and the site says the date is announced inside the group instead."
       }
     ]
   },
@@ -295,13 +303,13 @@
         "type": "text",
         "id": "response_time_text",
         "label": "Response time promise",
-        "default": "Within 24 hours everyday except Fridays and Sundays — those are our rest days."
+        "default": "Within 24 hours everyday except Fridays and Sundays - those are our rest days."
       },
       {
         "type": "text",
         "id": "support_hours_text",
         "label": "Support hours",
-        "default": "9:00am – 5:00pm"
+        "default": "9:00am-5:00pm"
       }
     ]
   },
@@ -318,12 +326,12 @@
         "id": "founder_note_body",
         "label": "Founder's note (About page + order confirmation)",
         "info": "Launch-ready copy written in Lami's voice. Confirm the final wording with her.",
-        "default": "<p>GBG started because I got tired of watching women give up on reselling, not because they weren't capable, but because nobody could give them a straight answer without gatekeeping. I built this to be the source I needed when I started: real stock, honest prices, and someone who actually answers when you ask a question. Every part of this hub — the shop, the guides, the community — comes from that same place. Thank you for being part of it.</p>"
+        "default": "<p>GBG started because I got tired of watching women give up on reselling, not because they weren't capable, but because nobody could give them a straight answer without gatekeeping. I built this to be the source I needed when I started: real stock, honest prices, and someone who actually answers when you ask a question. Every part of this hub - the shop, the guides, the community - comes from that same place. Thank you for being part of it.</p>"
       }
     ]
   },
   {
-    "name": "Organization (SEO / structured data)",
+    "name": "Business details (SEO and structured data)",
     "settings": [
       {
         "type": "text",

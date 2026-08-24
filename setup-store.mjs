@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 /**
- * GBG Wholesale Hub — one-time store setup.
+ * GBG Wholesale Hub - one-time store setup.
  *
  * Creates every Shopify record the theme's links point at:
  *   · 14 Pages, each bound to the matching theme template
  *   ·  7 Collections (automated, by product tag)
  *   ·  8 demo products across those collections
  *
- * The theme is only a set of layouts — Shopify still needs a real Page record
+ * The theme is only a set of layouts - Shopify still needs a real Page record
  * before /pages/about resolves instead of 404ing. This script creates them
  * with exactly the handles the navigation expects, so nothing can be mistyped.
  *
@@ -38,7 +38,7 @@ if (!TOKEN.startsWith('shpat_')) {
   console.error(
     `\n✗ That token doesn't look like an Admin API token.\n` +
       `  It should begin with "shpat_". A "shptka_" token is a Theme Access\n` +
-      `  password — that one can only touch theme files, not pages or products.\n`
+      `  password - that one can only touch theme files, not pages or products.\n`
   );
   process.exit(1);
 }
@@ -72,7 +72,7 @@ async function api(method, path, body) {
     );
   }
 
-  // Shopify rate limit — wait and let the caller retry.
+  // Shopify rate limit - wait and let the caller retry.
   if (res.status === 429) {
     await new Promise((r) => setTimeout(r, 2000));
     return api(method, path, body);
@@ -89,7 +89,7 @@ async function api(method, path, body) {
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /* ------------------------------------------------------------------ */
-/* 1. PAGES — handle must match what the theme navigation links to.    */
+/* 1. PAGES - handle must match what the theme navigation links to.    */
 /* ------------------------------------------------------------------ */
 
 const PAGES = [
@@ -110,21 +110,21 @@ const PAGES = [
 ];
 
 /* ------------------------------------------------------------------ */
-/* 2. COLLECTIONS — automated, matched on product tag.                 */
+/* 2. COLLECTIONS - automated, matched on product tag.                 */
 /* ------------------------------------------------------------------ */
 
 const COLLECTIONS = [
-  ['jewellery-accessories', 'Jewellery & Accessories', 'Ready-stock jewellery and accessories at low minimum order quantities — the fastest-moving category for Vinted and TikTok Shop resellers.'],
+  ['jewellery-accessories', 'Jewellery & Accessories', 'Ready-stock jewellery and accessories at low minimum order quantities - the fastest-moving category for Vinted and TikTok Shop resellers.'],
   ['electronics',           'Electronics',             'Boxed, ready-to-list electronics and gadgets. Strong performers on eBay, where buyers search by name.'],
   ['fashion',               'Fashion',                 'Clothing and wearables in mixed-size packs, sold at wholesale prices with low MOQs.'],
-  ['home-lifestyle',        'Home & Lifestyle',        'Homeware and giftable lifestyle products — reliable sellers on Facebook Marketplace and through gifting season.'],
+  ['home-lifestyle',        'Home & Lifestyle',        'Homeware and giftable lifestyle products - reliable sellers on Facebook Marketplace and through gifting season.'],
   ['starter-boxes',         'Starter Boxes',           'The lowest-risk way to begin. Small mixed packs chosen to give first-time resellers a varied first listing batch.'],
   ['new-arrivals',          'New Arrivals',            'The latest stock to land in our UK warehouse.'],
   ['best-sellers',          'Best Sellers',            'The packs our resellers reorder most often.'],
 ];
 
 /* ------------------------------------------------------------------ */
-/* 3. PRODUCTS — realistic demo data, swap for real stock any time.    */
+/* 3. PRODUCTS - realistic demo data, swap for real stock any time.    */
 /* ------------------------------------------------------------------ */
 
 const img = (t) => `https://placehold.co/1200x1200/F7F6F2/101418/png?text=${encodeURIComponent(t)}`;
@@ -132,7 +132,7 @@ const img = (t) => `https://placehold.co/1200x1200/F7F6F2/101418/png?text=${enco
 const PRODUCTS = [
   {
     handle: 'statement-hoop-earrings-pack-of-12',
-    title: 'Statement Hoop Earrings – Pack of 12',
+    title: 'Statement Hoop Earrings - Pack of 12',
     body_html: '<p>A ready-to-list pack of 12 statement hoop earrings in mixed on-trend styles. Low MOQ, high repeat-buy potential, and a proven mover on Vinted and TikTok Shop.</p><p><strong>Pack contains:</strong> 12 pairs, mixed designs, gold and silver tone.</p>',
     product_type: 'Jewellery & Accessories',
     tags: 'jewellery-accessories,best-sellers',
@@ -142,7 +142,7 @@ const PRODUCTS = [
   },
   {
     handle: 'layered-chain-necklace-set',
-    title: 'Layered Chain Necklace Set – Pack of 15',
+    title: 'Layered Chain Necklace Set - Pack of 15',
     body_html: '<p>Fifteen layered chain necklaces per pack in a dainty, stacking style. A consistent top seller for resellers building a jewellery storefront.</p><p><strong>Pack contains:</strong> 15 necklaces in your chosen finish.</p>',
     product_type: 'Jewellery & Accessories',
     tags: 'jewellery-accessories,new-arrivals',
@@ -154,7 +154,7 @@ const PRODUCTS = [
   },
   {
     handle: 'wireless-earbuds-pack-of-6',
-    title: 'Wireless Earbuds – Pack of 6',
+    title: 'Wireless Earbuds - Pack of 6',
     body_html: '<p>Six boxed wireless Bluetooth earbud sets per pack, ready to list. A strong eBay and TikTok Shop category with genuine repeat demand.</p><p><strong>Pack contains:</strong> 6 boxed sets with charging cases.</p>',
     product_type: 'Electronics',
     tags: 'electronics,new-arrivals',
@@ -164,7 +164,7 @@ const PRODUCTS = [
   },
   {
     handle: 'mini-ring-light-kit-pack-of-4',
-    title: 'Mini Ring Light Kit – Pack of 4',
+    title: 'Mini Ring Light Kit - Pack of 4',
     body_html: '<p>Four compact ring light kits per pack, popular with content-creator buyers. Easy to demo on video, which makes it a natural TikTok Shop product.</p><p><strong>Pack contains:</strong> 4 kits with clips and USB cables.</p>',
     product_type: 'Electronics',
     tags: 'electronics,best-sellers',
@@ -174,8 +174,8 @@ const PRODUCTS = [
   },
   {
     handle: 'oversized-knit-jumpers-pack-of-8',
-    title: 'Oversized Knit Jumpers – Pack of 8 (Mixed Sizes)',
-    body_html: '<p>Eight oversized knit jumpers per pack in mixed sizes, a season-round staple for fashion resellers on Vinted.</p><p><strong>Pack contains:</strong> 8 jumpers, sizes S–XL, mixed colours.</p>',
+    title: 'Oversized Knit Jumpers - Pack of 8 (Mixed Sizes)',
+    body_html: '<p>Eight oversized knit jumpers per pack in mixed sizes, a season-round staple for fashion resellers on Vinted.</p><p><strong>Pack contains:</strong> 8 jumpers, sizes S-XL, mixed colours.</p>',
     product_type: 'Fashion',
     tags: 'fashion',
     price: '96.00',
@@ -184,7 +184,7 @@ const PRODUCTS = [
   },
   {
     handle: 'scented-candle-trio-pack-of-10',
-    title: 'Scented Candle Trio – Pack of 10',
+    title: 'Scented Candle Trio - Pack of 10',
     body_html: '<p>Ten scented candles per pack across three signature scents. A reliable Home &amp; Lifestyle seller that lifts sharply through gifting season.</p><p><strong>Pack contains:</strong> 10 candles across 3 scents.</p>',
     product_type: 'Home & Lifestyle',
     tags: 'home-lifestyle,best-sellers',
@@ -194,7 +194,7 @@ const PRODUCTS = [
   },
   {
     handle: 'reseller-starter-box-small',
-    title: 'Reseller Starter Box – Small',
+    title: 'Reseller Starter Box - Small',
     body_html: '<p>The lowest-risk way to start: a small mixed pack across jewellery, accessories and lifestyle items, chosen to give a first-time reseller a fast, varied first listing batch.</p><p>Split it across two platforms to find out where your audience actually is.</p>',
     product_type: 'Starter Boxes',
     tags: 'starter-boxes,new-arrivals',
@@ -206,7 +206,7 @@ const PRODUCTS = [
   },
   {
     handle: 'reseller-starter-box-medium',
-    title: 'Reseller Starter Box – Medium',
+    title: 'Reseller Starter Box - Medium',
     body_html: '<p>A bigger first order spanning our top categories, for resellers who want more stock live on day one.</p><p>Ideal if you have already tested a small box and know which categories move for you.</p>',
     product_type: 'Starter Boxes',
     tags: 'starter-boxes',
@@ -233,7 +233,7 @@ async function doPages() {
         await api('PUT', `/pages/${found.id}.json`, {
           page: { id: found.id, template_suffix: template.replace(/^page\./, '') },
         });
-        console.log(`   ↻ ${handle.padEnd(30)} existed — re-pointed at ${template}`);
+        console.log(`   ↻ ${handle.padEnd(30)} existed - re-pointed at ${template}`);
       } else {
         console.log(`   · ${handle.padEnd(30)} already correct, skipped`);
         skipped++;
@@ -327,7 +327,7 @@ async function doProducts() {
         published: true,
         options: p.options ? [{ name: p.optionName, values: p.options }] : undefined,
         variants,
-        images: [{ src: img(p.title.split('–')[0].trim()), alt: p.alt }],
+        images: [{ src: img(p.title.split(' - ')[0].trim()), alt: p.alt }],
       },
     });
     console.log(`   ✓ ${p.handle.padEnd(38)} created  →  /products/${p.handle}`);
@@ -356,7 +356,7 @@ async function doProducts() {
     await doProducts();
   } catch (e) {
     console.error(`\n✗ Stopped early.\n  ${e.message}`);
-    console.error(`\n  Nothing already created has been lost — fix the issue and run again.\n`);
+    console.error(`\n  Nothing already created has been lost - fix the issue and run again.\n`);
     process.exit(1);
   }
 

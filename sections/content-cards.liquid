@@ -7,7 +7,7 @@
     {% if section.settings.eyebrow != blank or section.settings.heading != blank or section.settings.body != blank %}
       <div class="section-intro reveal">
         {% if section.settings.eyebrow != blank %}
-          <span class="route-label {% if section.settings.eyebrow_color == 'plum' %}route-label--plum{% elsif section.settings.eyebrow_color == 'forest' %}route-label--forest{% endif %}">
+          <span class="route-label {% if section.settings.eyebrow_color == 'navy' %}route-label--navy{% elsif section.settings.eyebrow_color == 'amber' %}route-label--amber{% endif %}">
             {{ section.settings.eyebrow }}
           </span>
         {% endif %}
@@ -81,7 +81,7 @@
   }
 
   .content-cards__label {
-    font-family: 'Public Sans', monospace;
+    font-family: var(--font-body);
     font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -143,8 +143,8 @@
     { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label" },
     { "type": "select", "id": "eyebrow_color", "label": "Eyebrow colour", "options": [
         { "value": "accent", "label": "Primary accent" },
-        { "value": "forest", "label": "Forest" },
-        { "value": "plum", "label": "Plum" }
+        { "value": "amber", "label": "Amber" },
+        { "value": "navy", "label": "Navy" }
       ], "default": "accent" },
     { "type": "text", "id": "heading", "label": "Heading" },
     { "type": "richtext", "id": "body", "label": "Intro text" }

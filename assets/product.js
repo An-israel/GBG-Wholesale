@@ -80,7 +80,7 @@
         if (section) mount.replaceWith(section);
       })
       .catch(function () {
-        /* fail silently — related products are a nice-to-have, not critical path */
+        /* fail silently - related products are a nice-to-have, not critical path */
       });
   }
 })();

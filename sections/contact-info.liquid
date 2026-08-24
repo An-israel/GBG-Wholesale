@@ -1,14 +1,14 @@
 <section id="{{ section.settings.custom_id | default: section.id }}" class="contact-info section section--surface">
   <div class="container">
     <div class="contact-info__inner reveal">
-      {% if section.settings.eyebrow != blank %}<span class="route-label route-label--forest">{{ section.settings.eyebrow }}</span>{% endif %}
+      {% if section.settings.eyebrow != blank %}<span class="route-label route-label--amber">{{ section.settings.eyebrow }}</span>{% endif %}
       <h2>{{ section.settings.heading }}</h2>
       <p>
         For anything urgent, or if the form doesn't cover it, message us directly on WhatsApp.
       </p>
 
       {% if settings.whatsapp_link != blank %}
-        <a href="{{ settings.whatsapp_link }}" target="_blank" rel="noopener noreferrer" class="btn btn--forest">
+        <a href="{{ settings.whatsapp_link }}" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp">
           {% render 'icon', name: 'whatsapp' %}
           Message us on WhatsApp
         </a>

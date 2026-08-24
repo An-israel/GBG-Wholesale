@@ -25,16 +25,16 @@
         <div class="field">
           <label class="field__label" for="CalcFee">Platform fee (%)</label>
           <input class="input" type="number" min="0" max="90" step="0.1" id="CalcFee" name="fee" inputmode="decimal" placeholder="e.g. 10" value="10">
-          <span class="field__hint">Vinted, eBay and TikTok Shop fees vary — check your platform's current rate.</span>
+          <span class="field__hint">Vinted, eBay and TikTok Shop fees vary - check your platform's current rate.</span>
         </div>
       </div>
 
       <button type="submit" class="btn btn--primary">Calculate minimum sell price</button>
 
       <div class="pricing-calc__result" data-pricing-result aria-live="polite" hidden>
-        <span class="route-label route-label--forest">RESULT</span>
+        <span class="route-label route-label--amber">RESULT</span>
         <p class="pricing-calc__price"><span data-result-price>£0.00</span> minimum sell price per item</p>
-        <p class="field__hint">This is your break-even price after packaging and platform fees — the lowest you should list at. Anything above it is profit.</p>
+        <p class="field__hint">This is your break-even price after packaging and platform fees - the lowest you should list at. Anything above it is profit.</p>
       </div>
     </form>
   </div>
@@ -73,7 +73,7 @@
     font-family: var(--font-display);
     font-size: 2rem;
     font-weight: 700;
-    color: var(--color-forest);
+    color: var(--color-amber-text);
     margin: 0 0 var(--space-2);
   }
 {% endstylesheet %}

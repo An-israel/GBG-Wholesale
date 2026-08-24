@@ -10,11 +10,11 @@
 
   {% if customer.orders_count == 1 %}
     <div class="account-page__hub-banner reveal">
-      <span class="route-label route-label--forest">UNLOCKED</span>
+      <span class="route-label route-label--amber">UNLOCKED</span>
       <h2>You've unlocked the GBG Wholesale Hub</h2>
-      <p>This was your first order — you're now a verified buyer with access to deal drops, restock alerts, and the active reseller community.</p>
+      <p>This was your first order - you're now a verified buyer with access to deal drops, restock alerts, and the active reseller community.</p>
       {% if settings.wholesale_hub_join_link != blank %}
-        <a href="{{ settings.wholesale_hub_join_link }}" target="_blank" rel="noopener noreferrer" class="btn btn--forest">Join the Wholesale Hub</a>
+        <a href="{{ settings.wholesale_hub_join_link }}" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp">Join the Wholesale Hub</a>
       {% endif %}
     </div>
   {% endif %}

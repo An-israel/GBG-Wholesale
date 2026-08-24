@@ -111,7 +111,7 @@
 
       <div class="form-status" {% if form.posted_successfully? %}data-state="success"{% elsif form.errors %}data-state="error"{% endif %}>
         {% if form.posted_successfully? %}
-          Thanks — your message is in. We reply within 24 hours everyday except Fridays and Sundays.
+          Thanks - your message is in. We reply within 24 hours everyday except Fridays and Sundays.
         {% elsif form.errors %}
           {{ 'forms.error_generic' | t }}
           <ul>

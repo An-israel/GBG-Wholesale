@@ -20,7 +20,7 @@
         "narrow": true,
         "eyebrow": "WHAT TO EXPECT",
         "heading": "Normal timings",
-        "body": "<p>Orders placed on a working day are picked and dispatched the next working day. Once your parcel is with the carrier it typically arrives within 1–3 working days.</p><p>Tracking can take a few hours to start showing movement after you receive the email — that's the carrier scanning it into their network, not a problem with your parcel.</p>"
+        "body": "<p>Orders placed on a working day are picked and dispatched the next working day. Once your parcel is with the carrier it typically arrives within 1-3 working days.</p><p>Tracking can take a few hours to start showing movement after you receive the email - that's the carrier scanning it into their network, not a problem with your parcel.</p>"
       }
     },
     "problems": {
@@ -68,7 +68,7 @@
         "align": "center",
         "eyebrow": "STILL STUCK?",
         "heading": "Send us your order number and we'll look it up",
-        "body": "<p>Quickest route is WhatsApp — send the order number and we'll check it against the carrier for you.</p>",
+        "body": "<p>Quickest route is WhatsApp - send the order number and we'll check it against the carrier for you.</p>",
         "primary_label": "Message us on WhatsApp",
         "primary_link_source": "whatsapp_link"
       }

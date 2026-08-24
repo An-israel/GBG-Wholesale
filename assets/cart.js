@@ -167,7 +167,7 @@
       })
       .catch(function (err) {
         if (errorEl) {
-          errorEl.textContent = (err && err.description) || 'That item could not be added — please try again.';
+          errorEl.textContent = (err && err.description) || 'That item could not be added - please try again.';
           errorEl.hidden = false;
         }
       })

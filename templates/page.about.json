@@ -6,7 +6,7 @@
         "compact": true,
         "eyebrow": "ROUTE → ABOUT GBG",
         "heading": "Built by someone who started with a bag of stock and a WiFi connection.",
-        "body": "<p>GBG — Global Biz Gateway exists because getting into reselling shouldn't require guesswork, gatekeeping, or a supplier who disappears the moment your card is charged.</p>",
+        "body": "<p>GBG - Global Biz Gateway exists because getting into reselling shouldn't require guesswork, gatekeeping, or a supplier who disappears the moment your card is charged.</p>",
         "primary_label": "Shop the Catalogue",
         "primary_url": "/collections/all"
       }
@@ -39,8 +39,8 @@
         "body": "<p>Three things, together, not separately:</p>"
       },
       "blocks": {
-        "p1": { "type": "list_item", "settings": { "text": "Real wholesale stock at low minimum order quantities — no need to buy 500 units to start." } },
-        "p2": { "type": "list_item", "settings": { "text": "The education to actually sell it — product selection guidance, platform guides, pricing help, listing tips and more." } },
+        "p1": { "type": "list_item", "settings": { "text": "Real wholesale stock at low minimum order quantities - no need to buy 500 units to start." } },
+        "p2": { "type": "list_item", "settings": { "text": "The education to actually sell it - product selection guidance, platform guides, pricing help, listing tips and more." } },
         "p3": { "type": "list_item", "settings": { "text": "A community that keeps you accountable and answers the questions Google can't." } }
       },
       "block_order": ["p1", "p2", "p3"]
@@ -52,9 +52,9 @@
         "background": "ink",
         "narrow": true,
         "eyebrow": "THE FOUNDER STORY",
-        "eyebrow_color": "plum",
+        "eyebrow_color": "navy",
         "heading": "From a bridal business to a wholesale hub.",
-        "body": "<p>It started in Lagos market when I was young, that was when I first understood the market and how to purchase goods, and in 2016, I started a small bridal accessories business, that was when I started really learning, order by order, what it actually takes to source, price, and sell. That grew into GBL Accessories, and GBL Accessories grew into GBG Wholesale Hub: the same eye for product, built into something bigger — a place where other women could buy the same way, sell the same way, and grow the same way.</p><p><em>\"Input equals output.\" What you put into your business — the time, the consistency, the willingness to learn — is what you'll get back. GBG can hand you the stock and the roadmap. The rest is still yours to build.</em></p>"
+        "body": "<p>It started in Lagos market when I was young, that was when I first understood the market and how to purchase goods, and in 2016, I started a small bridal accessories business, that was when I started really learning, order by order, what it actually takes to source, price, and sell. That grew into GBL Accessories, and GBL Accessories grew into GBG Wholesale Hub: the same eye for product, built into something bigger - a place where other women could buy the same way, sell the same way, and grow the same way.</p><p><em>\"Input equals output.\" What you put into your business - the time, the consistency, the willingness to learn - is what you'll get back. GBG can hand you the stock and the roadmap. The rest is still yours to build.</em></p>"
       }
     },
     "who-we-serve": {

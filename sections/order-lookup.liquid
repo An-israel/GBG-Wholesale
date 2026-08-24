@@ -2,7 +2,7 @@
   <div class="container order-lookup__inner reveal">
     {% if customer %}
       <div class="card order-lookup__card">
-        <span class="route-label route-label--forest">SIGNED IN</span>
+        <span class="route-label route-label--amber">SIGNED IN</span>
         <h2>Your order history</h2>
         <p>You're signed in as {{ customer.email }}. Every order and its live status is in your account.</p>
         <a href="{{ routes.account_url }}" class="btn btn--primary">View my orders</a>

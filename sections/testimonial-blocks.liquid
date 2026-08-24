@@ -1,7 +1,7 @@
 <section id="{{ section.settings.custom_id | default: section.id }}" class="testimonial-blocks section section--surface">
   <div class="container">
     <div class="section-intro reveal">
-      {% if section.settings.eyebrow != blank %}<span class="route-label route-label--forest">{{ section.settings.eyebrow }}</span>{% endif %}
+      {% if section.settings.eyebrow != blank %}<span class="route-label route-label--amber">{{ section.settings.eyebrow }}</span>{% endif %}
       {% if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif %}
       {% if section.settings.body != blank %}<p>{{ section.settings.body }}</p>{% endif %}
     </div>
@@ -20,8 +20,8 @@
               >
             {% else %}
               <div class="testimonial-blocks__placeholder">
-                <span class="route-label route-label--forest">SAMPLE WIN</span>
-                <p>{{ block.settings.caption | default: 'Screenshot placeholder — add a real community win here.' }}</p>
+                <span class="route-label route-label--amber">SAMPLE WIN</span>
+                <p>{{ block.settings.caption | default: 'Screenshot placeholder - add a real community win here.' }}</p>
               </div>
             {% endif %}
           </div>
@@ -103,7 +103,7 @@
       "blocks": [
         { "type": "testimonial", "settings": { "caption": "Sold within days of ordering her first Starter Box." } },
         { "type": "testimonial", "settings": { "caption": "Cleared a whole pack in hours on Vinted." } },
-        { "type": "testimonial", "settings": { "caption": "First Vinted sale in a week — no experience needed." } }
+        { "type": "testimonial", "settings": { "caption": "First Vinted sale in a week - no experience needed." } }
       ]
     }
   ]

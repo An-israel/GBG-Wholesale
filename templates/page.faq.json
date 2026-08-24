@@ -6,7 +6,7 @@
         "compact": true,
         "eyebrow": "ROUTE → FAQ",
         "heading": "Frequently Asked Questions",
-        "body": "<p>Answers to everything before you have to DM Lami — grouped so you can find yours fast.</p>"
+        "body": "<p>Answers to everything before you have to DM Lami - grouped so you can find yours fast.</p>"
       }
     },
     "faq-full": {
@@ -71,7 +71,7 @@
           "settings": {
             "category": "Products and Orders",
             "question": "Can I choose my own sizes or designs?",
-            "answer": "<p>Not on standard packs — wholesale stock is sold as-is. Specific sizes are sometimes available during live auctions.</p>",
+            "answer": "<p>Not on standard packs - wholesale stock is sold as-is. Specific sizes are sometimes available during live auctions.</p>",
             "link_text": "Join SYPB for auction alerts",
             "link_url": "/pages/community#sypb"
           }
@@ -90,7 +90,7 @@
           "settings": {
             "category": "Products and Orders",
             "question": "What's your returns and refund policy?",
-            "answer": "<p>Damaged, faulty or incorrect items are always covered — tell us within 48 hours of delivery with photos and we'll replace or refund them in full. If you bought as a consumer rather than for a business, you also have 14 days to change your mind. Wholesale packs bought for resale are sold as-is once received in good condition. The full policy sets out every case.</p>",
+            "answer": "<p>Damaged, faulty or incorrect items are always covered - tell us within 48 hours of delivery with photos and we'll replace or refund them in full. If you bought as a consumer rather than for a business, you also have 14 days to change your mind. Wholesale packs bought for resale are sold as-is once received in good condition. The full policy sets out every case.</p>",
             "link_text": "Full returns policy",
             "link_url": "/pages/returns-policy"
           }
@@ -110,7 +110,7 @@
           "settings": {
             "category": "Selling and Platforms",
             "question": "Where should I sell GBG products?",
-            "answer": "<p>Depends on the product and your audience — the Platform Guide breaks down what tends to move best on Vinted, eBay, TikTok Shop, and Facebook Marketplace.</p>",
+            "answer": "<p>Depends on the product and your audience - the Platform Guide breaks down what tends to move best on Vinted, eBay, TikTok Shop, and Facebook Marketplace.</p>",
             "link_text": "Read the Platform Guide",
             "link_url": "/pages/learn-platform-guide"
           }
@@ -150,7 +150,7 @@
           "settings": {
             "category": "Community and Course",
             "question": "What is the Start Your Product Business group?",
-            "answer": "<p>A free group for anyone still deciding — education and webinar access, no purchase required.</p>",
+            "answer": "<p>A free group for anyone still deciding - education and webinar access, no purchase required.</p>",
             "link_text": "Join SYPB",
             "link_url": "/pages/community#sypb"
           }
@@ -191,7 +191,7 @@
           "settings": {
             "category": "Community and Course",
             "question": "I've been scammed before. How do I know GBG is real?",
-            "answer": "<p>Fair question, and one we'd rather answer than have you wonder. Here's what you can actually check, rather than just taking our word for it:</p><ul><li>Checkout runs on Shopify's own secure payment system. We never see or hold your card details, and you're covered by your card provider's protection.</li><li>Every product photo on this site is of stock we actually hold and ship from the UK — not supplier renders.</li><li>Lami answers questions personally, by name, on WhatsApp and inside the community. You can message her before you spend anything.</li><li>The community is public and active. You can join SYPB free, read what members are saying, and ask them directly about their orders before you buy from us.</li><li>Our returns policy is written out in full, including what we will and won't cover.</li></ul><p>If you're still unsure, start with the smallest Starter Box. Risking a small first order and seeing how we handle it is a far better test than anything we could tell you here.</p>",
+            "answer": "<p>Fair question, and one we'd rather answer than have you wonder. Here's what you can actually check, rather than just taking our word for it:</p><ul><li>Checkout runs on Shopify's own secure payment system. We never see or hold your card details, and you're covered by your card provider's protection.</li><li>Every product photo on this site is of stock we actually hold and ship from the UK - not supplier renders.</li><li>Lami answers questions personally, by name, on WhatsApp and inside the community. You can message her before you spend anything.</li><li>The community is public and active. You can join SYPB free, read what members are saying, and ask them directly about their orders before you buy from us.</li><li>Our returns policy is written out in full, including what we will and won't cover.</li></ul><p>If you're still unsure, start with the smallest Starter Box. Risking a small first order and seeing how we handle it is a far better test than anything we could tell you here.</p>",
             "link_text": "Read our returns policy",
             "link_url": "/pages/returns-policy"
           }

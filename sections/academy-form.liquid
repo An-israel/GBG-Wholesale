@@ -7,7 +7,7 @@
   <div class="container academy-form__layout">
     <div class="academy-form__intro reveal">
       {% if section.settings.eyebrow != blank %}
-        <span class="route-label route-label--plum">{{ section.settings.eyebrow }}</span>
+        <span class="route-label route-label--navy">{{ section.settings.eyebrow }}</span>
       {% endif %}
       <h2>{{ section.settings.heading }}</h2>
       {% if section.settings.body != blank %}<div>{{ section.settings.body }}</div>{% endif %}
@@ -69,7 +69,7 @@
         <div class="field">
           <label class="field__label" for="AcademyGoal">What do you want the Academy to help you do?</label>
           <textarea class="input" id="AcademyGoal" name="contact[Goal]" rows="4" required></textarea>
-          <span class="field__hint">A sentence or two is plenty — it helps us tell you whether the Academy is genuinely right for you.</span>
+          <span class="field__hint">A sentence or two is plenty - it helps us tell you whether the Academy is genuinely right for you.</span>
         </div>
 
         <button type="submit" class="btn btn--primary btn--block">{{ section.settings.submit_label }}</button>

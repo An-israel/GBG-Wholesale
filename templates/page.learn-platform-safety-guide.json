@@ -18,7 +18,7 @@
         "narrow": true,
         "eyebrow": "WHY IT HAPPENS",
         "heading": "The platform isn't judging you. It's pattern-matching.",
-        "body": "<p>Vinted in particular is built around the idea of individuals clearing their own wardrobes. When an account starts behaving like a shop — twenty identical items, uploaded in one burst, all brand new with the tags on — automated checks notice. No human decided you were a problem; a pattern did.</p><p>That's good news, because patterns can be changed. Almost everything below is about looking like an enthusiastic individual seller rather than a bulk operation.</p>"
+        "body": "<p>Vinted in particular is built around the idea of individuals clearing their own wardrobes. When an account starts behaving like a shop - twenty identical items, uploaded in one burst, all brand new with the tags on - automated checks notice. No human decided you were a problem; a pattern did.</p><p>That's good news, because patterns can be changed. Almost everything below is about looking like an enthusiastic individual seller rather than a bulk operation.</p>"
       }
     },
     "triggers": {
@@ -44,7 +44,7 @@
           "settings": {
             "label": "HIGH RISK",
             "heading": "Taking payment off-platform",
-            "body": "<p>Someone asks to pay by bank transfer to save fees. It is the most common way sellers lose both the money and the account. You lose all buyer protection and it breaches the terms of every platform here. Keep every transaction on the platform, every time — no exceptions for someone who seems nice.</p>"
+            "body": "<p>Someone asks to pay by bank transfer to save fees. It is the most common way sellers lose both the money and the account. You lose all buyer protection and it breaches the terms of every platform here. Keep every transaction on the platform, every time - no exceptions for someone who seems nice.</p>"
           }
         },
         "t3": {
@@ -52,7 +52,7 @@
           "settings": {
             "label": "HIGH RISK",
             "heading": "Brand names you can't substantiate",
-            "body": "<p>Using a designer or brand name to describe an item that isn't from that brand — even as \"style\" or \"dupe\" — invites both takedowns and legal trouble. Describe what the item genuinely is. If the pack came without brand authorisation, don't borrow a brand's name to sell it.</p>"
+            "body": "<p>Using a designer or brand name to describe an item that isn't from that brand - even as \"style\" or \"dupe\" - invites both takedowns and legal trouble. Describe what the item genuinely is. If the pack came without brand authorisation, don't borrow a brand's name to sell it.</p>"
           }
         },
         "t4": {
@@ -92,7 +92,7 @@
         "body": "<p>None of this is complicated. It's mostly pacing and honesty.</p>"
       },
       "blocks": {
-        "h1": { "type": "list_item", "settings": { "text": "List steadily — a handful of items a day beats a hundred on Sunday night." } },
+        "h1": { "type": "list_item", "settings": { "text": "List steadily - a handful of items a day beats a hundred on Sunday night." } },
         "h2": { "type": "list_item", "settings": { "text": "Photograph every item yourself, in daylight, against a plain background." } },
         "h3": { "type": "list_item", "settings": { "text": "Write each listing fresh. Copy-pasted identical descriptions are easy to spot." } },
         "h4": { "type": "list_item", "settings": { "text": "Describe condition accurately, including flaws. A disclosed flaw almost never causes a dispute; an undisclosed one always does." } },
@@ -111,11 +111,11 @@
       "blocks": {
         "s1": { "type": "step", "settings": { "text": "Stop listing immediately. Adding more while under review makes it worse, not better." } },
         "s2": { "type": "step", "settings": { "text": "Read the notice properly and find the specific reason given. Appeals that don't address the stated reason get rejected." } },
-        "s3": { "type": "step", "settings": { "text": "Gather your proof of purchase — supplier invoices and order confirmations showing the stock is legitimately yours to sell." } },
+        "s3": { "type": "step", "settings": { "text": "Gather your proof of purchase - supplier invoices and order confirmations showing the stock is legitimately yours to sell." } },
         "s4": { "type": "step", "settings": { "text": "Appeal once, calmly and factually. State what you sell, where you source it, and attach the evidence. Do not send several angry messages; it rarely helps and often hurts." } },
         "s5": { "type": "step", "settings": { "text": "Fulfil any orders you already owe. Leaving buyers stranded turns a temporary restriction into a permanent one." } },
         "s6": { "type": "step", "settings": { "text": "While you wait, move the stock to another platform rather than sitting idle.", "link_text": "Read the Platform Guide", "link_source": "custom", "link_url": "/pages/learn-platform-guide" } },
-        "s7": { "type": "step", "settings": { "text": "If you're stuck, ask us — we've seen most versions of this.", "link_text": "Message us on WhatsApp", "link_source": "whatsapp_link" } }
+        "s7": { "type": "step", "settings": { "text": "If you're stuck, ask us - we've seen most versions of this.", "link_text": "Message us on WhatsApp", "link_source": "whatsapp_link" } }
       },
       "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7"]
     },
