@@ -8,12 +8,22 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
-    "name": "Logo",
+    "name": "Logo and favicon",
     "settings": [
+      {
+        "type": "paragraph",
+        "content": "Upload the logo files here and they appear in the header, the footer, the browser tab and every link preview. Until then the site draws the GBG wordmark in type, in the brand colours."
+      },
       {
         "type": "image_picker",
         "id": "logo",
-        "label": "Logo image"
+        "label": "Logo (full colour, for the header)"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_light",
+        "label": "Logo (white version, for the navy footer)",
+        "info": "Optional. Without it the footer draws the wordmark in white instead."
       },
       {
         "type": "range",
@@ -28,7 +38,14 @@
       {
         "type": "image_picker",
         "id": "favicon",
-        "label": "Favicon"
+        "label": "Favicon",
+        "info": "Square. A 512 x 512 PNG of the arrow mark works best; Shopify resizes it for every device."
+      },
+      {
+        "type": "image_picker",
+        "id": "share_image",
+        "label": "Default share image",
+        "info": "Shown when someone shares a link on WhatsApp, TikTok or Facebook and the page has no image of its own. 1200 x 630 works everywhere."
       }
     ]
   },

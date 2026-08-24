@@ -1,0 +1,74 @@
+{% doc %}
+  The GBG wordmark, drawn in type rather than loaded as an image.
+
+  This is what shows before a logo file has been uploaded in Theme settings,
+  and inside the footer where the full-colour logo would fight the navy
+  background. It uses the brand's own navy, amber and Helvetica Neue, so an
+  un-uploaded site still looks like GBG rather than like an unstyled shop.
+
+  @param {string} [tone] - 'dark' on light backgrounds (default), 'light' on navy
+
+  @example
+  {% render 'brand-lockup', tone: 'light' %}
+{% enddoc %}
+
+<span class="brand-lockup brand-lockup--{{ tone | default: 'dark' }}">
+  <span class="brand-lockup__mark" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 20 L20 4 M20 4 H9 M20 4 V15" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"/>
+    </svg>
+  </span>
+  <span class="brand-lockup__text">
+    <span class="brand-lockup__name">GBG</span>
+    <span class="brand-lockup__sub">Wholesale Hub</span>
+  </span>
+</span>
+
+{% stylesheet %}
+  .brand-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55em;
+    font-family: var(--font-display);
+    line-height: 1;
+  }
+
+  .brand-lockup__mark {
+    display: block;
+    width: 1.5em;
+    height: 1.5em;
+    color: var(--color-amber);
+    flex-shrink: 0;
+  }
+
+  .brand-lockup__mark svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .brand-lockup__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.22em;
+  }
+
+  .brand-lockup__name {
+    font-size: 1.35em;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-navy);
+  }
+
+  .brand-lockup__sub {
+    font-size: 0.62em;
+    font-weight: 700;
+    letter-spacing: 0.19em;
+    text-transform: uppercase;
+    color: var(--color-navy);
+  }
+
+  .brand-lockup--light .brand-lockup__name,
+  .brand-lockup--light .brand-lockup__sub {
+    color: #ffffff;
+  }
+{% endstylesheet %}

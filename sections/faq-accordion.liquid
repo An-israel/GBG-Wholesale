@@ -52,6 +52,33 @@
   </div>
 </section>
 
+{%- comment -%}
+  FAQPage markup, so these answers can surface directly in Google rather than
+  only after a click. Only emitted when the section is the page's main FAQ,
+  because a page carrying two FAQPage blocks is invalid.
+{%- endcomment -%}
+{%- if section.settings.emit_schema and section.blocks.size > 0 -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for block in section.blocks -%}
+          {%- unless forloop.first %},{% endunless -%}
+          {
+            "@type": "Question",
+            "name": {{ block.settings.question | strip_html | json }},
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": {{ block.settings.answer | strip_html | strip_newlines | json }}
+            }
+          }
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
+
 {% stylesheet %}
   .faq-section__category + .faq-section__category {
     margin-top: var(--space-7);
@@ -78,6 +105,7 @@
     { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
     { "type": "checkbox", "id": "on_surface", "label": "White surface background", "default": false },
     { "type": "checkbox", "id": "group_by_category", "label": "Group questions under category headings", "default": false },
+    { "type": "checkbox", "id": "emit_schema", "label": "Let Google show these answers in search results", "info": "Switch on for the main FAQ page only. Two on one page is invalid and Google ignores both.", "default": false },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Frequently Asked Questions" },
     { "type": "text", "id": "cta_text", "label": "Bottom CTA text" },

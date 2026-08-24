@@ -64,6 +64,19 @@
     <hr class="rule">
 
     <div class="site-footer__bottom">
+      <a href="{{ routes.root_url }}" class="site-footer__logo" aria-label="{{ shop.name }} - Home">
+        {% if settings.logo_light %}
+          <img
+            src="{{ settings.logo_light | image_url: width: 300 }}"
+            alt="{{ shop.name }}"
+            width="140"
+            height="{{ 140 | divided_by: settings.logo_light.aspect_ratio }}"
+            loading="lazy"
+          >
+        {% else %}
+          {% render 'brand-lockup', tone: 'light' %}
+        {% endif %}
+      </a>
       <p class="site-footer__copyright">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
       {% render 'payment-icons' %}
     </div>
@@ -182,6 +195,18 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--space-4);
+  }
+
+  .site-footer__logo {
+    display: inline-flex;
+    text-decoration: none;
+    font-size: 0.95rem;
+    margin-right: auto;
+  }
+
+  .site-footer__logo img {
+    height: auto;
+    width: 140px;
   }
 
   .site-footer__copyright {

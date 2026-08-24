@@ -18,6 +18,7 @@
       "type": "faq-accordion",
       "settings": {
         "group_by_category": true,
+        "emit_schema": true,
         "heading": ""
       },
       "blocks": {
