@@ -37,7 +37,7 @@
     </div>
 
     <div class="product__info">
-      <span class="route-label">LOT &mdash; {{ product.handle | upcase | truncate: 18, '' }}</span>
+      <span class="route-label">LOT {{ product.handle | upcase | truncate: 18, '' }}</span>
       <h1>{{ product.title }}</h1>
 
       {% render 'price', product: product %}
@@ -94,6 +94,10 @@
         </button>
         <p class="field__error" data-cart-add-error hidden></p>
       {% endform %}
+
+      {% render 'product-shipping', product: product %}
+
+      {% render 'product-guide-link', product: product %}
 
       {% render 'dm-keyword-note', product: product, text: section.settings.dm_note_text %}
     </div>
@@ -177,6 +181,11 @@
     display: grid;
     gap: var(--space-4);
     max-width: 380px;
+  }
+
+  .product__info .shipping-facts,
+  .product__info .product-guide {
+    margin-top: var(--space-5);
   }
 
   .qty-stepper--lg .qty-stepper__btn {

@@ -396,5 +396,38 @@
         "label": "Pinterest URL"
       }
     ]
+  },
+  {
+    "name": "Analytics and tracking",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Storefront tracking. Paste an ID and the tag goes live; leave it blank and nothing is loaded. Shopify's own analytics needs no setup. Checkout and purchase events are NOT covered here, because Shopify blocks third-party scripts on checkout: add those in Settings > Customer events, or by installing the Google and TikTok sales channels."
+      },
+      {
+        "type": "text",
+        "id": "ga4_measurement_id",
+        "label": "Google Analytics 4 measurement ID",
+        "info": "Looks like G-XXXXXXXXXX. Found in GA4 under Admin > Data streams."
+      },
+      {
+        "type": "text",
+        "id": "gsc_verification",
+        "label": "Google Search Console verification code",
+        "info": "Only the content value from the HTML tag method, not the whole tag."
+      },
+      {
+        "type": "text",
+        "id": "tiktok_pixel_id",
+        "label": "TikTok pixel ID",
+        "info": "Found in TikTok Ads Manager under Assets > Events > Web events. Installing the TikTok sales channel instead is the better route, because it also covers checkout."
+      },
+      {
+        "type": "text",
+        "id": "meta_pixel_id",
+        "label": "Meta (Facebook) pixel ID",
+        "info": "Optional. Leave blank if you are not running Meta ads."
+      }
+    ]
   }
 ]

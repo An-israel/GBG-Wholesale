@@ -698,6 +698,16 @@ textarea.input {
   padding: var(--space-5);
 }
 
+.account-page__shipping {
+  margin-bottom: var(--space-6);
+  max-width: 640px;
+}
+
+.account-page__shipping h2 {
+  font-size: 1.1rem;
+  margin-bottom: var(--space-3);
+}
+
 .account-page__hub-banner {
   padding: var(--space-5);
   border: 1px solid var(--color-amber-text);

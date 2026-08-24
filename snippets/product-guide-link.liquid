@@ -1,0 +1,87 @@
+{% doc %}
+  Sends a product page on to the guide that actually helps sell that product,
+  so no product is a dead end. The match is by product type first, then by
+  tag, then a sensible default.
+
+  @param {product} product
+
+  @example
+  {% render 'product-guide-link', product: product %}
+{% enddoc %}
+
+{%- liquid
+  assign type = product.product_type | downcase
+  assign tags = product.tags | join: ',' | downcase
+
+  assign guide_url = '/pages/learn-platform-guide'
+  assign guide_label = 'Where to sell this'
+  assign guide_body = 'Which platform this category actually moves on, and why the same item performs differently on each.'
+
+  if type contains 'starter' or tags contains 'starter-boxes'
+    assign guide_url = '/pages/start-here'
+    assign guide_label = 'Never sold online? Start here'
+    assign guide_body = 'The roadmap for your first pack: what to list first, where, and what to charge.'
+  elsif type contains 'fashion' or type contains 'jewellery' or type contains 'accessories'
+    assign guide_url = '/pages/learn-listings-guide'
+    assign guide_label = 'Write a listing that sells this'
+    assign guide_body = 'Phone photography, titles built from words buyers search, and descriptions that close.'
+  elsif type contains 'electronics'
+    assign guide_url = '/pages/learn-platform-safety-guide'
+    assign guide_label = 'Read this before you list electronics'
+    assign guide_body = 'Electronics draw the most buyer disputes and the most account restrictions. Here is how to avoid both.'
+  endif
+-%}
+
+<a class="product-guide" href="{{ guide_url }}">
+  <span class="product-guide__label">{{ guide_label }}</span>
+  <span class="product-guide__body">{{ guide_body }}</span>
+  <span class="product-guide__cue">Read the guide {% render 'icon', name: 'arrow-right' %}</span>
+</a>
+
+{% stylesheet %}
+  .product-guide {
+    display: block;
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-amber);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 150ms ease, transform 150ms ease;
+  }
+
+  .product-guide:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .product-guide__label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: var(--space-1);
+  }
+
+  .product-guide__body {
+    display: block;
+    font-size: 0.88rem;
+    color: var(--color-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .product-guide__cue {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .product-guide__cue svg {
+    width: 14px;
+    height: 14px;
+  }
+{% endstylesheet %}

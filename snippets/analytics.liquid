@@ -1,0 +1,146 @@
+{%- comment -%}
+  Storefront tracking. Every tag here is opt in: paste an ID in Theme settings
+  and it loads, leave it blank and nothing is requested.
+
+  What this covers: page views, product views, add to cart, and which page or
+  campaign the visitor arrived from, across the whole storefront.
+
+  What this does NOT cover: checkout and purchase. Shopify blocks third-party
+  scripts on its checkout pages, so those events have to come from Settings >
+  Customer events or from the Google and TikTok sales channels. Abandoned
+  carts and checkout completion rate are already in Shopify's own analytics
+  with no setup at all.
+{%- endcomment -%}
+
+{%- if settings.gsc_verification != blank -%}
+  <meta name="google-site-verification" content="{{ settings.gsc_verification | escape }}">
+{%- endif -%}
+
+{%- liquid
+  assign track_product = false
+  if request.page_type == 'product' and product != blank
+    assign track_product = true
+  endif
+-%}
+
+{%- if settings.ga4_measurement_id != blank -%}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ settings.ga4_measurement_id | escape }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', {{ settings.ga4_measurement_id | json }});
+    {%- if track_product %}
+    gtag('event', 'view_item', {
+      currency: {{ cart.currency.iso_code | json }},
+      value: {{ product.price | divided_by: 100.0 }},
+      items: [{
+        item_id: {{ product.handle | json }},
+        item_name: {{ product.title | json }},
+        item_category: {{ product.product_type | json }},
+        price: {{ product.price | divided_by: 100.0 }}
+      }]
+    });
+    {%- endif %}
+  </script>
+{%- endif -%}
+
+{%- if settings.tiktok_pixel_id != blank -%}
+  <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject = t;
+      var ttq = w[t] = w[t] || [];
+      ttq.methods = ['page', 'track', 'identify', 'instances', 'debug', 'on', 'off', 'once', 'ready', 'alias', 'group', 'enableCookie', 'disableCookie'];
+      ttq.setAndDefer = function (o, m) { o[m] = function () { o.push([m].concat(Array.prototype.slice.call(arguments, 0))); }; };
+      for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+      ttq.instance = function (id) {
+        var inst = ttq._i[id] || [];
+        for (var j = 0; j < ttq.methods.length; j++) ttq.setAndDefer(inst, ttq.methods[j]);
+        return inst;
+      };
+      ttq.load = function (id, opts) {
+        var url = 'https://analytics.tiktok.com/i18n/pixel/events.js';
+        ttq._i = ttq._i || {}; ttq._i[id] = []; ttq._i[id]._u = url;
+        ttq._t = ttq._t || {}; ttq._t[id] = +new Date();
+        ttq._o = ttq._o || {}; ttq._o[id] = opts || {};
+        var s = d.createElement('script');
+        s.type = 'text/javascript'; s.async = true; s.src = url + '?sdkid=' + id + '&lib=' + t;
+        var f = d.getElementsByTagName('script')[0];
+        f.parentNode.insertBefore(s, f);
+      };
+      ttq.load({{ settings.tiktok_pixel_id | json }});
+      ttq.page();
+      {%- if track_product %}
+      ttq.track('ViewContent', {
+        content_id: {{ product.handle | json }},
+        content_name: {{ product.title | json }},
+        content_type: 'product',
+        currency: {{ cart.currency.iso_code | json }},
+        value: {{ product.price | divided_by: 100.0 }}
+      });
+      {%- endif %}
+    }(window, document, 'ttq');
+  </script>
+{%- endif -%}
+
+{%- if settings.meta_pixel_id != blank -%}
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+      t = b.createElement(e); t.async = true; t.src = v;
+      s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', {{ settings.meta_pixel_id | json }});
+    fbq('track', 'PageView');
+    {%- if track_product %}
+    fbq('track', 'ViewContent', {
+      content_ids: [{{ product.handle | json }}],
+      content_name: {{ product.title | json }},
+      content_type: 'product',
+      currency: {{ cart.currency.iso_code | json }},
+      value: {{ product.price | divided_by: 100.0 }}
+    });
+    {%- endif %}
+  </script>
+{%- endif -%}
+
+{%- comment -%}
+  Add to cart happens over AJAX, so nothing reloads and no page view fires.
+  theme.js raises a `gbg:cart:add` event on every successful add, and this
+  forwards it to whichever tags are switched on.
+{%- endcomment -%}
+{%- if settings.ga4_measurement_id != blank or settings.tiktok_pixel_id != blank or settings.meta_pixel_id != blank -%}
+  <script>
+    document.addEventListener('gbg:cart:add', function (event) {
+      var item = event.detail || {};
+      var value = (item.price || 0) / 100;
+      if (window.gtag) {
+        gtag('event', 'add_to_cart', {
+          currency: item.currency,
+          value: value,
+          items: [{ item_id: item.handle, item_name: item.title, price: value, quantity: item.quantity }]
+        });
+      }
+      if (window.ttq) {
+        ttq.track('AddToCart', {
+          content_id: item.handle,
+          content_name: item.title,
+          content_type: 'product',
+          currency: item.currency,
+          value: value,
+          quantity: item.quantity
+        });
+      }
+      if (window.fbq) {
+        fbq('track', 'AddToCart', {
+          content_ids: [item.handle],
+          content_name: item.title,
+          content_type: 'product',
+          currency: item.currency,
+          value: value
+        });
+      }
+    });
+  </script>
+{%- endif -%}

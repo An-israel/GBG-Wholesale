@@ -1,0 +1,83 @@
+{% doc %}
+  Delivery, returns and preorder facts, shown on the product page and in the
+  cart so nobody has to go hunting for them before they pay.
+
+  @param {product} [product] - used to detect a preorder batch; omit outside a product context
+
+  @example
+  {% render 'product-shipping', product: product %}
+{% enddoc %}
+
+{%- liquid
+  assign is_preorder = false
+  if product != blank and product.tags contains 'preorder'
+    assign is_preorder = true
+  endif
+-%}
+
+<ul class="shipping-facts">
+  <li>
+    {% render 'icon', name: 'check' %}
+    <span>{{ settings.dispatch_timeframe }}</span>
+  </li>
+  {% if is_preorder %}
+    <li class="shipping-facts__flag">
+      {% render 'icon', name: 'check' %}
+      <span><strong>This one comes in on a batch.</strong> We'll email you the date as soon as your order is in.</span>
+    </li>
+  {% endif %}
+  <li>
+    {% render 'icon', name: 'check' %}
+    <span>Tracked delivery. Your dispatch email carries the link.</span>
+  </li>
+  <li>
+    {% render 'icon', name: 'check' %}
+    <span>Damaged, faulty or wrong? Replaced or refunded in full. <a href="/pages/returns-policy">Returns policy</a></span>
+  </li>
+</ul>
+
+{% stylesheet %}
+  .shipping-facts {
+    list-style: none;
+    margin: 0;
+    padding: var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+    background: var(--color-paper);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+  }
+
+  .shipping-facts li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .shipping-facts svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-top: 0.2em;
+    color: var(--color-accent);
+  }
+
+  .shipping-facts a {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  /* A preorder is the one fact on this list that changes what a buyer
+     expects, so it gets the amber tint rather than sitting in the run. */
+  .shipping-facts__flag {
+    background: var(--color-amber-soft);
+    margin: calc(var(--space-2) * -1) calc(var(--space-2) * -1);
+    padding: var(--space-3) var(--space-2);
+    border-radius: var(--radius);
+  }
+
+  .shipping-facts__flag svg {
+    color: var(--color-amber-text);
+  }
+{% endstylesheet %}

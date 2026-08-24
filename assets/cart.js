@@ -158,7 +158,22 @@
           return data;
         });
       })
-      .then(function () {
+      .then(function (added) {
+        /* Add to cart is an AJAX call, so no page load happens and no
+           analytics tag would ever hear about it. Announce it instead and
+           let snippets/analytics.liquid forward it to whichever tags are on. */
+        var line = (added && added.items && added.items[0]) || added || {};
+        document.dispatchEvent(
+          new CustomEvent('gbg:cart:add', {
+            detail: {
+              handle: line.handle,
+              title: line.product_title || line.title,
+              price: line.price,
+              quantity: line.quantity || 1,
+              currency: document.documentElement.getAttribute('data-currency') || 'GBP',
+            },
+          })
+        );
         return refreshCart();
       })
       .then(function () {

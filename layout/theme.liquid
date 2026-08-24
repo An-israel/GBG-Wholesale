@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ request.locale.iso_code }}">
+<html lang="{{ request.locale.iso_code }}" data-currency="{{ cart.currency.iso_code }}">
   <head>
     {% render 'css-variables' %}
 
@@ -15,6 +15,8 @@
     {% render 'meta-tags' %}
 
     {{ content_for_header }}
+
+    {% render 'analytics' %}
   </head>
 
   <body>

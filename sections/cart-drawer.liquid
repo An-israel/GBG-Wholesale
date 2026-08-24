@@ -69,6 +69,7 @@
           <span>{{ 'cart.subtotal' | t }}</span>
           <span>{{ cart.total_price | money }}</span>
         </div>
+        <p class="field__hint">{{ settings.dispatch_timeframe }}</p>
         <p class="field__hint">Shipping, taxes and discount codes are calculated at checkout.</p>
         <a href="{{ routes.cart_url }}" class="btn btn--secondary btn--block">{{ 'cart.view_full_cart' | t }}</a>
         <a href="{{ routes.cart_url }}/checkout" class="btn btn--primary btn--block">{{ 'cart.checkout' | t }}</a>

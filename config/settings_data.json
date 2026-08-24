@@ -43,6 +43,10 @@
     "social_instagram_url": "",
     "social_facebook_url": "",
     "social_tiktok_url": "",
-    "social_pinterest_url": ""
+    "social_pinterest_url": "",
+    "ga4_measurement_id": "",
+    "gsc_verification": "",
+    "tiktok_pixel_id": "",
+    "meta_pixel_id": ""
   }
 }

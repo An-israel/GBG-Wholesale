@@ -79,6 +79,8 @@
         </div>
         <p class="field__hint">Shipping, taxes and discount codes are calculated at checkout.</p>
         <a href="{{ routes.cart_url }}/checkout" class="btn btn--primary btn--block">{{ 'cart.checkout' | t }}</a>
+
+        {% render 'product-shipping' %}
         <a href="{{ routes.all_products_collection_url }}" class="btn btn--ghost">{{ 'cart.continue_shopping' | t }}</a>
       </div>
     </div>
