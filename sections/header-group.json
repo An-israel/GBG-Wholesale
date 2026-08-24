@@ -32,24 +32,53 @@
         },
         "start-here": {
           "type": "link",
-          "settings": { "label": "Start Here", "url": "/pages/start-here" }
+          "settings": {
+            "label": "Start Here",
+            "url": "/pages/start-here"
+          }
         },
         "learn": {
           "type": "link",
-          "settings": { "label": "Learn", "url": "/pages/learn" }
+          "settings": {
+            "label": "Learn",
+            "url": "/pages/learn"
+          }
         },
         "academy": {
           "type": "link",
-          "settings": { "label": "Academy", "url": "/pages/academy" }
+          "settings": {
+            "label": "Academy",
+            "url": "/pages/academy"
+          }
         },
         "about": {
           "type": "link",
-          "settings": { "label": "About", "url": "/pages/about" }
+          "settings": {
+            "label": "About",
+            "url": "/pages/about"
+          }
+        },
+        "community": {
+          "type": "link",
+          "settings": {
+            "label": "Community",
+            "url": "/pages/community"
+          }
         }
       },
-      "block_order": ["shop", "start-here", "learn", "academy", "about"],
+      "block_order": [
+        "shop",
+        "start-here",
+        "learn",
+        "academy",
+        "community",
+        "about"
+      ],
       "settings": {}
     }
   },
-  "order": ["announcement-bar", "header"]
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
 }

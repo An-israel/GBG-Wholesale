@@ -2,11 +2,10 @@
   <div class="announcement-bar">
     <div class="container announcement-bar__inner">
       <button type="button" class="announcement-bar__link" data-waitlist-trigger>
-        <span class="route-label route-label--ink">LOT 01</span>
         <span>
-          New stock drops every <strong>{{ settings.restock_day | default: 'Thursday' }}</strong>. Join the waitlist so you never miss a restock.
+          Ships from the UK in 3 days. New stock every <strong>{{ settings.restock_day | default: 'Thursday' }}</strong>.
         </span>
-        {% render 'icon', name: 'arrow-right' %}
+        <span class="announcement-bar__cue">Get restock alerts {% render 'icon', name: 'arrow-right' %}</span>
       </button>
     </div>
   </div>
@@ -14,8 +13,8 @@
 
 {% stylesheet %}
   .announcement-bar {
-    background: var(--color-ink);
-    color: var(--color-paper);
+    background: var(--color-navy);
+    color: #ffffff;
   }
 
   .announcement-bar__inner {
@@ -37,8 +36,13 @@
     min-height: 44px;
   }
 
-  .announcement-bar__link .route-label {
+  .announcement-bar__cue {
     display: none;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 700;
+    color: var(--color-amber);
+    white-space: nowrap;
   }
 
   .announcement-bar__link svg {
@@ -48,7 +52,7 @@
   }
 
   @media (min-width: 640px) {
-    .announcement-bar__link .route-label {
+    .announcement-bar__cue {
       display: inline-flex;
     }
   }

@@ -141,6 +141,23 @@ p {
   gap: var(--space-5);
 }
 
+/* Product grids go two-up on the smallest screens. One product per screen
+   means a phone visitor scrolls past four products to see four products;
+   two-up puts twice as much stock above the fold, which is the point.
+   Search results share the product card, so they get the same treatment. */
+.grid--4,
+.search-page .grid--3 {
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .grid--4,
+  .search-page .grid--3 {
+    gap: var(--space-5);
+  }
+}
+
 @media (min-width: 640px) {
   .grid--2 {
     grid-template-columns: repeat(2, 1fr);
