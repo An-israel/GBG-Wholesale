@@ -123,21 +123,13 @@
   </script>
 {%- endif -%}
 
+{%- comment -%}
+  A WebSite / SearchAction block used to sit here. Dropped on purpose: Google
+  retired the sitelinks searchbox rich result, so it earned nothing, and the
+  braces its target URL template needs are rejected by Shopify's server-side
+  Liquid parser. The Organization markup below is the part that still works.
+{%- endcomment -%}
 {%- if request.page_type == 'index' -%}
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": {{ shop.name | json }},
-      "url": {{ shop.url | json }},
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {{ shop.url | append: '/search?q={search_term_string}' | json }},
-        "query-input": "required name=search_term_string"
-      }
-    }
-  </script>
-
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",

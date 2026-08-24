@@ -14,4 +14,4 @@
 
 # Local setup tooling, not part of the theme
 setup-store.mjs
-seed-data/
+seed-data/*
