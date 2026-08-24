@@ -5,23 +5,13 @@
       "settings": {
         "compact": true,
         "layout": "overlay",
-        "eyebrow": "LEARN HUB",
-        "heading": "Everything you need to know before you spend a penny.",
-        "body": "<p>Three full guides and a working calculator, free and open to everyone. No signup, no email required, no upsell at the end. Read them before you order, not after.</p>",
+        "eyebrow": "LEARN",
+        "heading": "Know what you're doing before you spend a penny.",
+        "body": "<p>Three guides and a working calculator. Free, no signup, no upsell.</p>",
         "primary_label": "Start with the Platform Guide",
         "primary_url": "/pages/learn-platform-guide",
-        "secondary_label": "New to all this? Start Here",
-        "secondary_url": "/pages/start-here"
-      }
-    },
-    "order": {
-      "type": "rich-text",
-      "settings": {
-        "background": "surface",
-        "narrow": true,
-        "eyebrow": "READ THEM IN THIS ORDER",
-        "heading": "They build on each other",
-        "body": "<p>Each guide assumes the one before it. Work through them in order and you'll finish knowing what to sell, where to sell it, what to charge, how to write the listing, and how to grow without getting your account restricted.</p>"
+        "secondary_label": "Shop the stock",
+        "secondary_url": "/collections/all"
       }
     },
     "guides": {
@@ -87,8 +77,8 @@
         "background": "surface",
         "columns": "3",
         "eyebrow": "WHEN YOU'RE READY",
-        "heading": "Where to go after reading",
-        "body": "<p>The guides get you to the starting line. These are the three routes onward.</p>"
+        "heading": "Three routes onward",
+        "body": ""
       },
       "blocks": {
         "n1": {
@@ -113,8 +103,8 @@
           "type": "card",
           "settings": {
             "heading": "Get guided properly",
-            "body": "<p>If reading isn't enough and you want someone reviewing your actual listings and numbers, apply to the Academy.</p>",
-            "link_text": "See the Academy",
+            "body": "<p>If reading isn't enough and you want someone reviewing your actual listings and numbers, join the Academy.</p>",
+            "link_text": "Join the Academy",
             "link_url": "/pages/academy"
           }
         }
@@ -130,9 +120,9 @@
       "settings": {
         "height": "compact",
         "align": "center",
-        "eyebrow": "STILL GOT A QUESTION?",
-        "heading": "Ask before you spend. We answer personally.",
-        "body": "<p>If something in these guides doesn't fit your situation, message us and we'll tell you what we'd actually do.</p>",
+        "eyebrow": "STILL STUCK?",
+        "heading": "Ask before you spend.",
+        "body": "<p>If a guide doesn't fit your situation, message us and we'll tell you what we'd actually do.</p>",
         "primary_label": "Message us on WhatsApp",
         "primary_link_source": "whatsapp_link"
       }
@@ -152,7 +142,6 @@
   },
   "order": [
     "hero",
-    "order",
     "guides",
     "next-steps",
     "shop-this",
