@@ -15,3 +15,15 @@
 # Local setup tooling, not part of the theme
 setup-store.mjs
 seed-data/*
+
+# Merchant settings live in the store, not in this repo.
+#
+# This file holds every value chosen in the theme editor: the uploaded logo
+# and favicon, the palette, the WhatsApp links, the dispatch wording. Pushing
+# it overwrites all of that with whatever the repo happens to hold, which
+# silently deletes uploaded images. Ignoring it means a code push changes code
+# and leaves the shop's own settings alone.
+#
+# New settings added to settings_schema.json still work: Shopify falls back to
+# the schema default for any key the store has not got a value for yet.
+config/settings_data.json

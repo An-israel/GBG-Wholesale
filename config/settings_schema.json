@@ -17,23 +17,25 @@
       {
         "type": "image_picker",
         "id": "logo",
-        "label": "Logo (full colour, for the header)"
+        "label": "Logo (full colour, for the header)",
+        "info": "PNG with a transparent background works best. It shows in the header at the width set below."
       },
       {
         "type": "image_picker",
         "id": "logo_light",
         "label": "Logo (white version, for the navy footer)",
-        "info": "Optional. Without it the footer draws the wordmark in white instead."
+        "info": "The white version, for the navy footer. Without it the footer draws the wordmark in white type instead."
       },
       {
         "type": "range",
         "id": "logo_width",
-        "min": 80,
-        "max": 260,
-        "step": 5,
+        "min": 100,
+        "max": 340,
+        "step": 10,
         "unit": "px",
         "label": "Logo width (desktop)",
-        "default": 150
+        "default": 200,
+        "info": "The GBG lockup is wide, so it needs more room than a square logo. Around 200px suits it."
       },
       {
         "type": "image_picker",

@@ -10,12 +10,21 @@
 <header class="site-header">
   <div class="container site-header__inner">
     <a href="{{ routes.root_url }}" class="site-header__logo" aria-label="{{ shop.name }} - Home">
+      {%- comment -%}
+        The GBG mark is a wide lockup, so it is served at twice the display
+        width to stay sharp on phones, and shrinks on narrow screens rather
+        than crowding the search and cart icons.
+      {%- endcomment -%}
       {% if settings.logo %}
         <img
-          src="{{ settings.logo | image_url: width: 320 }}"
+          class="site-header__logo-img"
+          src="{{ settings.logo | image_url: width: 680 }}"
+          srcset="{{ settings.logo | image_url: width: 340 }} 340w, {{ settings.logo | image_url: width: 680 }} 680w"
+          sizes="{{ settings.logo_width }}px"
           alt="{{ shop.name }}"
           width="{{ settings.logo_width }}"
           height="{{ settings.logo_width | divided_by: settings.logo.aspect_ratio }}"
+          style="--logo-w: {{ settings.logo_width }}px"
           loading="eager"
         >
       {% else %}
@@ -162,6 +171,14 @@
   .site-header__logo {
     text-decoration: none;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .site-header__logo-img {
+    width: var(--logo-w, 150px);
+    height: auto;
+    max-width: 46vw;
   }
 
   .site-header__wordmark {
