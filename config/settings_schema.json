@@ -265,7 +265,7 @@
     ]
   },
   {
-    "name": "Trust & business info",
+    "name": "Trust and business info",
     "settings": [
       {
         "type": "text",
@@ -311,6 +311,38 @@
         "id": "next_live_date",
         "label": "Next SYPB live session",
         "info": "Optional. Leave blank and the site says sessions are announced inside the group."
+      },
+      {
+        "type": "header",
+        "content": "Resale estimate on product cards"
+      },
+      {
+        "type": "paragraph",
+        "content": "The \"Sells for around\" line under every price. It is worked out from the pack price, so it updates itself whenever a price changes."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_resale_estimate",
+        "label": "Show the resale estimate",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "resale_low_multiple",
+        "min": 1.1,
+        "max": 3,
+        "step": 0.1,
+        "label": "Lower end (times the pack price)",
+        "default": 1.6
+      },
+      {
+        "type": "range",
+        "id": "resale_high_multiple",
+        "min": 1.2,
+        "max": 5,
+        "step": 0.1,
+        "label": "Upper end (times the pack price)",
+        "default": 2.2
       }
     ]
   },

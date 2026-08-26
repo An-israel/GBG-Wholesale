@@ -49,6 +49,9 @@
     "ga4_measurement_id": "",
     "gsc_verification": "",
     "tiktok_pixel_id": "",
-    "meta_pixel_id": ""
+    "meta_pixel_id": "",
+    "show_resale_estimate": true,
+    "resale_low_multiple": 1.6,
+    "resale_high_multiple": 2.2
   }
 }

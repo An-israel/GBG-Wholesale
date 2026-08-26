@@ -6,8 +6,20 @@
 {% enddoc %}
 
 {%- liquid
-  assign resale_low = product.price | times: 1.6 | round
-  assign resale_high = product.price | times: 2.2 | round
+  comment
+    Shopify holds prices in pence, and the money filter is what turns pence
+    into a formatted price in the shop's own currency. Printing the raw number
+    after a hyphen sign showed a 22.00 pack as "3520", and always in pounds
+    even when the shop was set to another currency.
+
+    A gift card has no resale value, so it never carries this line.
+  endcomment
+  assign show_resale = settings.show_resale_estimate
+  if product.gift_card?
+    assign show_resale = false
+  endif
+  assign resale_low = product.price | times: settings.resale_low_multiple
+  assign resale_high = product.price | times: settings.resale_high_multiple
 -%}
 
 <div class="product-card card reveal">
@@ -39,7 +51,9 @@
       {% render 'price', product: product %}
     </div>
 
-    <p class="product-card__resale">Sells for around £{{ resale_low }}-£{{ resale_high }}</p>
+    {% if show_resale %}
+      <p class="product-card__resale">Sells for around {{ resale_low | money }}-{{ resale_high | money }}</p>
+    {% endif %}
 
     {% form 'product', product, data-cart-add-form: true, class: 'product-card__form' %}
       <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
