@@ -6,7 +6,8 @@
         "compact": true,
         "eyebrow": "TRACKING",
         "heading": "Track Your Order",
-        "body": "<p>Every order ships from our UK warehouse, and you'll get a shipping confirmation email with a tracking link the moment it's on its way. If you can't find it, here's how to get to it.</p>"
+        "body": "<p>Every order ships from our UK warehouse, and you'll get a shipping confirmation email with a tracking link the moment it's on its way. If you can't find it, here's how to get to it.</p>",
+        "layout": "overlay"
       }
     },
     "lookup": {

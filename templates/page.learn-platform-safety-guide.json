@@ -8,7 +8,8 @@
         "heading": "How to grow without getting your account restricted",
         "body": "<p>Most reseller accounts aren't banned for doing something dishonest. They're restricted because their listing pattern looked automated, or because a payment was taken off-platform. Both are avoidable once you know what the systems are watching for.</p>",
         "primary_label": "Back to Learn Hub",
-        "primary_url": "/pages/learn"
+        "primary_url": "/pages/learn",
+        "layout": "overlay"
       }
     },
     "why": {

@@ -4,7 +4,26 @@
     section--{{ section.settings.background }}
     {% if section.settings.narrow %}rich-text--narrow{% endif %}"
 >
-  <div class="container">
+  <div class="container{% if section.settings.image %} rich-text__layout rich-text__layout--{{ section.settings.image_position }}{% endif %}">
+    {%- comment -%}
+      An image turns the section into two columns on desktop and stacks it on
+      mobile, so a text band and a picture band are the same section rather
+      than two things to keep aligned.
+    {%- endcomment -%}
+    {% if section.settings.image %}
+      <div class="rich-text__media reveal">
+        <img
+          src="{{ section.settings.image | image_url: width: 1000 }}"
+          srcset="{{ section.settings.image | image_url: width: 600 }} 600w, {{ section.settings.image | image_url: width: 1000 }} 1000w"
+          sizes="(min-width: 900px) 45vw, 100vw"
+          alt="{{ section.settings.image_alt | default: section.settings.heading | escape }}"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+          loading="lazy"
+        >
+      </div>
+    {% endif %}
+
     <div class="rich-text__inner reveal">
       {% if section.settings.eyebrow != blank %}
         <span class="route-label {% if section.settings.eyebrow_color == 'amber' %}route-label--amber{% elsif section.settings.eyebrow_color == 'navy' %}route-label--navy{% endif %}">
@@ -79,6 +98,37 @@
 </section>
 
 {% stylesheet %}
+  .rich-text__layout {
+    display: grid;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .rich-text__layout {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+    }
+
+    /* The picture leads on the left by default. Flipping it moves the media
+       column after the text without reordering the markup, so screen readers
+       and keyboards still meet the heading first. */
+    .rich-text__layout--right .rich-text__media {
+      order: 2;
+    }
+  }
+
+  .rich-text__media img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+  }
+
+  /* A narrow column and a side image fight each other, so the image wins. */
+  .rich-text--narrow .rich-text__layout .rich-text__inner {
+    max-width: none;
+  }
+
   .rich-text__inner {
     max-width: 72ch;
   }
@@ -159,6 +209,12 @@
         { "value": "navy", "label": "Navy (dark)" }
       ], "default": "paper" },
     { "type": "checkbox", "id": "narrow", "label": "Narrow column", "default": false },
+    { "type": "image_picker", "id": "image", "label": "Image (optional)", "info": "Adding one puts the text and the picture side by side on desktop, stacked on mobile." },
+    { "type": "text", "id": "image_alt", "label": "Image alt text" },
+    { "type": "select", "id": "image_position", "label": "Image position", "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ], "default": "left" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label" },
     { "type": "select", "id": "eyebrow_color", "label": "Eyebrow colour", "options": [
         { "value": "accent", "label": "Primary accent" },

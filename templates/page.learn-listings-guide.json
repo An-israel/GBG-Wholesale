@@ -8,7 +8,8 @@
         "heading": "How to write a listing that gets found, then gets bought",
         "body": "<p>A listing has two jobs, and they're different. First it has to be found - that's the title and the keywords. Then it has to be believed - that's the photos and the description. Most listings that don't sell are failing at one of the two, and you can tell which from your own stats.</p>",
         "primary_label": "Back to Learn Hub",
-        "primary_url": "/pages/learn"
+        "primary_url": "/pages/learn",
+        "layout": "overlay"
       }
     },
     "diagnose": {

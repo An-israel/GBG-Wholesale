@@ -27,3 +27,7 @@ seed-data/*
 # New settings added to settings_schema.json still work: Shopify falls back to
 # the schema default for any key the store has not got a value for yet.
 config/settings_data.json
+
+# A pulled-down copy of the live theme, used to rescue content the shop's
+# own editor created before a push overwrites it. Never pushed back up.
+live-snapshot/*

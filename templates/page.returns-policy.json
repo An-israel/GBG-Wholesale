@@ -8,7 +8,8 @@
         "heading": "Returns & Refunds",
         "body": "<p>If something arrives damaged, faulty or not what you ordered, we will put it right. This page sets out exactly how, and what your rights are depending on whether you're buying as a consumer or for your reselling business.</p>",
         "primary_label": "Start a return",
-        "primary_url": "/pages/contact"
+        "primary_url": "/pages/contact",
+        "layout": "overlay"
       }
     },
     "faulty": {

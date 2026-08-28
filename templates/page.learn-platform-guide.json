@@ -10,7 +10,8 @@
         "primary_label": "Browse the catalogue",
         "primary_url": "/collections/all",
         "secondary_label": "Back to Learn Hub",
-        "secondary_url": "/pages/learn"
+        "secondary_url": "/pages/learn",
+        "layout": "overlay"
       }
     },
     "principle": {

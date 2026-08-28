@@ -6,7 +6,8 @@
         "compact": true,
         "eyebrow": "TERMS",
         "heading": "Terms of Service",
-        "body": "<p>These terms cover using this website and buying from GBG Wholesale Hub. Placing an order means you accept them. They're written to be readable rather than impenetrable - if anything here is unclear, ask us before you order.</p>"
+        "body": "<p>These terms cover using this website and buying from GBG Wholesale Hub. Placing an order means you accept them. They're written to be readable rather than impenetrable - if anything here is unclear, ask us before you order.</p>",
+        "layout": "overlay"
       }
     },
     "who": {
