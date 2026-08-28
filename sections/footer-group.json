@@ -20,7 +20,9 @@
             "link5_label": "New Arrivals",
             "link5_url": "/collections/new-arrivals",
             "link6_label": "Best Sellers",
-            "link6_url": "/collections/best-sellers"
+            "link6_url": "/collections/best-sellers",
+            "link7_label": "Dropshipping",
+            "link7_url": "/collections/dropshipping"
           }
         },
         "start-learn": {
@@ -74,11 +76,19 @@
           }
         }
       },
-      "block_order": ["shop", "start-learn", "support", "about", "legal"],
+      "block_order": [
+        "shop",
+        "start-learn",
+        "support",
+        "about",
+        "legal"
+      ],
       "settings": {
         "brand_blurb": "UK wholesale stock at low MOQs, plus the education and community to actually sell it."
       }
     }
   },
-  "order": ["footer"]
+  "order": [
+    "footer"
+  ]
 }

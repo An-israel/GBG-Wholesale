@@ -18,7 +18,7 @@
             <div class="site-footer__group" {{ block.shopify_attributes }}>
               <h3>{{ block.settings.heading }}</h3>
               <ul>
-                {% for i in (1..6) %}
+                {% for i in (1..7) %}
                   {% assign label_key = 'link' | append: i | append: '_label' %}
                   {% assign url_key = 'link' | append: i | append: '_url' %}
                   {% assign l_label = block.settings[label_key] %}
@@ -244,7 +244,9 @@
         { "type": "text", "id": "link5_label", "label": "Link 5 label" },
         { "type": "url", "id": "link5_url", "label": "Link 5 URL" },
         { "type": "text", "id": "link6_label", "label": "Link 6 label" },
-        { "type": "url", "id": "link6_url", "label": "Link 6 URL" }
+        { "type": "url", "id": "link6_url", "label": "Link 6 URL" },
+        { "type": "text", "id": "link7_label", "label": "Link 7 label" },
+        { "type": "url", "id": "link7_url", "label": "Link 7 URL" }
       ]
     }
   ]

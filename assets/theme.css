@@ -636,6 +636,28 @@ textarea.input {
   }
 }
 
+/* A cart line below its minimum order quantity, and the message that
+   explains why the checkout button is switched off. */
+.cart-page__row--under {
+  background: color-mix(in srgb, var(--color-error) 6%, transparent);
+}
+
+.cart-page__block {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  border: 1px solid color-mix(in srgb, var(--color-error) 40%, transparent);
+  background: color-mix(in srgb, var(--color-error) 8%, transparent);
+  color: var(--color-error);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.cart-page__block a {
+  color: inherit;
+  font-weight: 700;
+}
+
 /* Utility */
 .text-center {
   text-align: center;

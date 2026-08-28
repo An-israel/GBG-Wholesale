@@ -14,6 +14,26 @@
     </p>
   </div>
 
+  {%- comment -%}
+    Quick filters. These are plain links to Shopify's own tag filtering, so
+    they work without JavaScript and are shareable as URLs. They sit above the
+    full filter panel because these three questions ("can I order one?",
+    "where do I sell it?") are the ones buyers actually arrive with.
+  {%- endcomment -%}
+  <div class="collection__quick">
+    <span class="collection__quick-label">Quick filters</span>
+    <a class="collection__pill{% unless collection.current_tags %} is-active{% endunless %}" href="{{ collection.url }}">All</a>
+    <a class="collection__pill collection__pill--dropship{% if collection.current_tags contains 'dropship' %} is-active{% endif %}" href="{{ collection.url }}/dropship">Dropship, order 1</a>
+    {% assign platform_tags = 'platform-vinted,platform-ebay,platform-tiktok,platform-marketplace' | split: ',' %}
+    {% assign platform_names = 'Vinted,eBay,TikTok Shop,Facebook Marketplace' | split: ',' %}
+    {% for tag in platform_tags %}
+      <a
+        class="collection__pill{% if collection.current_tags contains tag %} is-active{% endif %}"
+        href="{{ collection.url }}/{{ tag }}"
+      >{{ platform_names[forloop.index0] }}</a>
+    {% endfor %}
+  </div>
+
   {% paginate collection.products by 24 %}
     <div class="collection__toolbar">
       <details class="collection__filters" {% if collection.current_vendor or collection.current_type %}open{% endif %}>
@@ -113,6 +133,61 @@
 </div>
 
 {% stylesheet %}
+  .collection__quick {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-5);
+  }
+
+  .collection__quick-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-right: var(--space-2);
+  }
+
+  .collection__pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 0 var(--space-4);
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .collection__pill:hover {
+    border-color: var(--color-accent);
+  }
+
+  .collection__pill.is-active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-on-accent);
+    font-weight: 700;
+  }
+
+  /* Dropship is the filter people come looking for, so it carries the amber
+     even when it is not the active one. */
+  .collection__pill--dropship {
+    border-color: var(--color-amber);
+    background: var(--color-amber-soft);
+  }
+
+  .collection__pill--dropship.is-active {
+    background: var(--color-amber);
+    border-color: var(--color-amber);
+    color: var(--color-navy);
+  }
+
   .collection__header {
     margin-bottom: var(--space-5);
     max-width: 60ch;

@@ -114,13 +114,43 @@ const PAGES = [
 /* ------------------------------------------------------------------ */
 
 const COLLECTIONS = [
-  ['jewellery-accessories', 'Jewellery & Accessories', 'Ready-stock jewellery and accessories at low minimum order quantities - the fastest-moving category for Vinted and TikTok Shop resellers.'],
-  ['electronics',           'Electronics',             'Boxed, ready-to-list electronics and gadgets. Strong performers on eBay, where buyers search by name.'],
-  ['fashion',               'Fashion',                 'Clothing and wearables in mixed-size packs, sold at wholesale prices with low MOQs.'],
-  ['home-lifestyle',        'Home & Lifestyle',        'Homeware and giftable lifestyle products - reliable sellers on Facebook Marketplace and through gifting season.'],
-  ['starter-boxes',         'Starter Boxes',           'The lowest-risk way to begin. Small mixed packs chosen to give first-time resellers a varied first listing batch.'],
-  ['new-arrivals',          'New Arrivals',            'The latest stock to land in our UK warehouse.'],
-  ['best-sellers',          'Best Sellers',            'The packs our resellers reorder most often.'],
+  ['jewellery-accessories', 'Jewellery & Accessories',
+    '<p>Wholesale jewellery and accessories for UK resellers, sold in small packs rather than by the hundred. Hoops, chains, stacking rings and hair accessories, all held in the UK and dispatched in 3 working days.</p>' +
+    '<p>This is the fastest category to start in. The items photograph well on a phone, they post for the price of a large letter, and they sit at an impulse price on Vinted and TikTok Shop, which is where most of our resellers clear their first pack. Minimum order quantities are deliberately low so you can test a style before committing to it.</p>' +
+    '<p>New to reselling? Read the <a href="/pages/learn-listings-guide">Listings Guide</a> first: jewellery lives or dies on the photograph.</p>'],
+
+  ['electronics', 'Electronics',
+    '<p>Wholesale consumer electronics and gadgets for UK resellers. Earbuds, ring lights, chargers and accessories, boxed and ready to list, shipped from the UK in 3 working days.</p>' +
+    '<p>Electronics behave differently to fashion. People search for them by name rather than browsing, which makes eBay the strongest first platform, and anything you can demonstrate on video does well on TikTok Shop. Margins are higher per unit than jewellery, but so is the buyer expectation, so description accuracy matters more here than anywhere else.</p>' +
+    '<p>Read the <a href="/pages/learn-platform-safety-guide">Platform Safety Guide</a> before you list: electronics draw the most buyer disputes.</p>'],
+
+  ['fashion', 'Fashion',
+    '<p>Wholesale clothing for UK resellers, sold in mixed-size packs at genuine trade prices. Shipped from the UK in 3 working days.</p>' +
+    '<p>Vinted is the fashion platform in Britain, and it rewards sellers who list consistently rather than in bursts. Packs arrive in mixed sizes so you cover a realistic size curve instead of guessing one, and whatever has not moved after a few weeks bundles well onto Facebook Marketplace for local collection, which keeps postage from eating the margin.</p>' +
+    '<p>Work out your floor price before you list anything with the <a href="/pages/faq#pricing-calculator">pricing calculator</a>.</p>'],
+
+  ['home-lifestyle', 'Home & Lifestyle',
+    '<p>Wholesale homeware and giftable lifestyle products for UK resellers. Candles, home fragrance and small decor, held in the UK and dispatched in 3 working days.</p>' +
+    '<p>This category is seasonal in a way the others are not. Demand climbs sharply from October and holds through to the new year, so buying early is worth more here than anywhere else in the shop. Bulkier items do better with local collection on Facebook Marketplace, where postage is not coming out of your margin, while smaller giftable pieces sell steadily on eBay year round.</p>' +
+    '<p>The <a href="/pages/learn-platform-guide">Platform Guide</a> covers which items belong where.</p>'],
+
+  ['starter-boxes', 'Starter Boxes',
+    '<p>The cheapest way to start reselling in the UK. A small mixed box across jewellery, accessories and lifestyle, chosen so a first-time reseller has a varied batch to list rather than fifty of one thing.</p>' +
+    '<p>A Starter Box is really an experiment. Split it across two platforms, list everything the same week, and see what actually sells to your audience before you spend more. That is real data on your own buyers, and it is worth more than any guide we could write. Shipped from the UK in 3 working days, like everything else.</p>' +
+    '<p>Never sold anything online? <a href="/pages/start-here">Start here</a> first.</p>'],
+
+  ['new-arrivals', 'New Arrivals',
+    '<p>The latest wholesale stock to land in our UK warehouse. New packs arrive most weeks and the newest are listed first.</p>' +
+    '<p>Restocks are announced in the buyers community before they reach this page, and popular packs often clear the same day. Your first order gets you into that group.</p>'],
+
+  ['best-sellers', 'Best Sellers',
+    '<p>The wholesale packs our resellers reorder most often. If you are not sure what to buy first, buy from this page.</p>' +
+    '<p>Reorder rate is the only honest measure of whether stock sells, because it means somebody made money on it and came back. Everything here has been bought more than once by the same people.</p>'],
+
+  ['dropshipping', 'Dropshipping',
+    '<p>Products you can order one at a time. No pack, no minimum order quantity, dispatched from our UK warehouse in 3 working days.</p>' +
+    '<p>Dropshipping suits you if you would rather list first and buy once something sells, instead of holding stock. Order a single unit when you have a buyer. Everything on this page ships from us in the UK, so your customer gets the same 3 working day delivery as any other order, and you are not explaining a three-week wait from overseas.</p>' +
+    '<p>Everything else in the shop is wholesale and carries a minimum order quantity, shown on every product.</p>'],
 ];
 
 /* ------------------------------------------------------------------ */
@@ -135,7 +165,7 @@ const PRODUCTS = [
     title: 'Statement Hoop Earrings - Pack of 12',
     body_html: '<p>A ready-to-list pack of 12 statement hoop earrings in mixed on-trend styles. Low MOQ, high repeat-buy potential, and a proven mover on Vinted and TikTok Shop.</p><p><strong>Pack contains:</strong> 12 pairs, mixed designs, gold and silver tone.</p>',
     product_type: 'Jewellery & Accessories',
-    tags: 'jewellery-accessories,best-sellers',
+    tags: 'jewellery-accessories,best-sellers,platform-vinted,platform-tiktok,moq-12',
     price: '18.00',
     qty: 60,
     alt: 'Pack of twelve mixed statement hoop earrings',
@@ -145,7 +175,7 @@ const PRODUCTS = [
     title: 'Layered Chain Necklace Set - Pack of 15',
     body_html: '<p>Fifteen layered chain necklaces per pack in a dainty, stacking style. A consistent top seller for resellers building a jewellery storefront.</p><p><strong>Pack contains:</strong> 15 necklaces in your chosen finish.</p>',
     product_type: 'Jewellery & Accessories',
-    tags: 'jewellery-accessories,new-arrivals',
+    tags: 'jewellery-accessories,new-arrivals,platform-vinted,moq-15',
     price: '22.00',
     qty: 40,
     alt: 'Layered chain necklace set in gold finish',
@@ -157,7 +187,7 @@ const PRODUCTS = [
     title: 'Wireless Earbuds - Pack of 6',
     body_html: '<p>Six boxed wireless Bluetooth earbud sets per pack, ready to list. A strong eBay and TikTok Shop category with genuine repeat demand.</p><p><strong>Pack contains:</strong> 6 boxed sets with charging cases.</p>',
     product_type: 'Electronics',
-    tags: 'electronics,new-arrivals',
+    tags: 'electronics,new-arrivals,platform-ebay,platform-tiktok,moq-6',
     price: '54.00',
     qty: 30,
     alt: 'Pack of six boxed wireless earbud sets',
@@ -167,7 +197,7 @@ const PRODUCTS = [
     title: 'Mini Ring Light Kit - Pack of 4',
     body_html: '<p>Four compact ring light kits per pack, popular with content-creator buyers. Easy to demo on video, which makes it a natural TikTok Shop product.</p><p><strong>Pack contains:</strong> 4 kits with clips and USB cables.</p>',
     product_type: 'Electronics',
-    tags: 'electronics,best-sellers',
+    tags: 'electronics,best-sellers,platform-ebay,platform-tiktok,dropship',
     price: '38.00',
     qty: 45,
     alt: 'Pack of four mini ring light kits',
@@ -177,7 +207,7 @@ const PRODUCTS = [
     title: 'Oversized Knit Jumpers - Pack of 8 (Mixed Sizes)',
     body_html: '<p>Eight oversized knit jumpers per pack in mixed sizes, a season-round staple for fashion resellers on Vinted.</p><p><strong>Pack contains:</strong> 8 jumpers, sizes S-XL, mixed colours.</p>',
     product_type: 'Fashion',
-    tags: 'fashion',
+    tags: 'fashion,platform-vinted,platform-marketplace,moq-8',
     price: '96.00',
     qty: 20,
     alt: 'Pack of eight oversized knit jumpers in mixed sizes',
@@ -187,7 +217,7 @@ const PRODUCTS = [
     title: 'Scented Candle Trio - Pack of 10',
     body_html: '<p>Ten scented candles per pack across three signature scents. A reliable Home &amp; Lifestyle seller that lifts sharply through gifting season.</p><p><strong>Pack contains:</strong> 10 candles across 3 scents.</p>',
     product_type: 'Home & Lifestyle',
-    tags: 'home-lifestyle,best-sellers',
+    tags: 'home-lifestyle,best-sellers,platform-marketplace,platform-ebay,moq-10',
     price: '45.00',
     qty: 50,
     alt: 'Pack of ten scented candles across three scents',
@@ -197,7 +227,7 @@ const PRODUCTS = [
     title: 'Reseller Starter Box - Small',
     body_html: '<p>The lowest-risk way to start: a small mixed pack across jewellery, accessories and lifestyle items, chosen to give a first-time reseller a fast, varied first listing batch.</p><p>Split it across two platforms to find out where your audience actually is.</p>',
     product_type: 'Starter Boxes',
-    tags: 'starter-boxes,new-arrivals',
+    tags: 'starter-boxes,new-arrivals,platform-vinted,dropship',
     price: '50.00',
     qty: 80,
     alt: 'Small reseller starter box with mixed stock',
@@ -222,7 +252,7 @@ const PRODUCTS = [
     title: 'Reseller Starter Box - Medium',
     body_html: '<p>A bigger first order spanning our top categories, for resellers who want more stock live on day one.</p><p>Ideal if you have already tested a small box and know which categories move for you.</p>',
     product_type: 'Starter Boxes',
-    tags: 'starter-boxes',
+    tags: 'starter-boxes,platform-vinted,moq-1',
     price: '85.00',
     qty: 35,
     alt: 'Medium reseller starter box with mixed stock',
@@ -280,14 +310,20 @@ async function doCollections() {
       skipped++;
       continue;
     }
+    /* The collection handle is the tag, except for dropshipping: products
+       carry the shorter `dropship` tag, which is also what the product page,
+       the card badge and the quick filters read. */
+    const tag = handle === 'dropshipping' ? 'dropship' : handle;
+
     await api('POST', '/smart_collections.json', {
       smart_collection: {
         title,
         handle,
-        body_html: `<p>${body}</p>`,
+        /* The descriptions already contain their own paragraph markup. */
+        body_html: body,
         published: true,
         disjunctive: false,
-        rules: [{ column: 'tag', relation: 'equals', condition: handle }],
+        rules: [{ column: 'tag', relation: 'equals', condition: tag }],
       },
     });
     console.log(`   ✓ ${handle.padEnd(30)} created  →  /collections/${handle}`);

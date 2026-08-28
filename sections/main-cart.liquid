@@ -19,8 +19,24 @@
           </tr>
         </thead>
         <tbody>
+          {%- comment -%}
+            Every line is checked against its product's own minimum. Anything
+            short is flagged here and blocks the checkout button below, so a
+            wholesale pack cannot be split by accident.
+          {%- endcomment -%}
           {% for item in cart.items %}
-            <tr data-cart-line="{{ forloop.index }}">
+            {%- liquid
+              capture moq_raw
+                render 'product-moq-value', product: item.product
+              endcapture
+              assign moq = moq_raw | plus: 0
+              assign under = false
+              if item.quantity < moq
+                assign under = true
+                assign cart_blocked = true
+              endif
+            -%}
+            <tr data-cart-line="{{ forloop.index }}"{% if under %} class="cart-page__row--under"{% endif %}>
               <td>
                 <div class="cart-page__product">
                   <a href="{{ item.url }}" class="cart-page__image">
@@ -58,6 +74,7 @@
                     min="0"
                     value="{{ item.quantity }}"
                     data-cart-qty-input
+                    data-moq="{{ moq }}"
                     data-line="{{ forloop.index }}"
                     aria-label="{{ 'cart.quantity' | t }}"
                   >
@@ -78,7 +95,16 @@
           <span>{{ cart.total_price | money }}</span>
         </div>
         <p class="field__hint">Shipping, taxes and discount codes are calculated at checkout.</p>
-        <a href="{{ routes.cart_url }}/checkout" class="btn btn--primary btn--block">{{ 'cart.checkout' | t }}</a>
+
+        {% if cart_blocked %}
+          <p class="cart-page__block" role="alert">
+            One or more packs is below its minimum order quantity. Raise the
+            quantity, or remove the line, to check out.
+          </p>
+          <button type="button" class="btn btn--primary btn--block" disabled aria-disabled="true">{{ 'cart.checkout' | t }}</button>
+        {% else %}
+          <a href="{{ routes.cart_url }}/checkout" class="btn btn--primary btn--block">{{ 'cart.checkout' | t }}</a>
+        {% endif %}
 
         {% render 'product-shipping' %}
         <a href="{{ routes.all_products_collection_url }}" class="btn btn--ghost">{{ 'cart.continue_shopping' | t }}</a>

@@ -17,6 +17,15 @@
     {% else %}
       <ul class="cart-drawer__items">
         {% for item in cart.items %}
+          {%- liquid
+            capture moq_raw
+              render 'product-moq-value', product: item.product
+            endcapture
+            assign moq = moq_raw | plus: 0
+            if item.quantity < moq
+              assign cart_blocked = true
+            endif
+          -%}
           <li class="cart-drawer__item" data-cart-line="{{ forloop.index }}">
             <a href="{{ item.url }}" class="cart-drawer__item-image">
               {% if item.image %}
@@ -47,6 +56,7 @@
                     min="0"
                     value="{{ item.quantity }}"
                     data-cart-qty-input
+                    data-moq="{{ moq }}"
                     data-line="{{ forloop.index }}"
                     aria-label="{{ 'cart.quantity' | t }}"
                   >
@@ -72,7 +82,15 @@
         <p class="field__hint">{{ settings.dispatch_timeframe }}</p>
         <p class="field__hint">Shipping, taxes and discount codes are calculated at checkout.</p>
         <a href="{{ routes.cart_url }}" class="btn btn--secondary btn--block">{{ 'cart.view_full_cart' | t }}</a>
-        <a href="{{ routes.cart_url }}/checkout" class="btn btn--primary btn--block">{{ 'cart.checkout' | t }}</a>
+        {% if cart_blocked %}
+          <p class="cart-page__block" role="alert">
+            A pack in your basket is below its minimum order quantity.
+            <a href="{{ routes.cart_url }}">Open your basket</a> to fix it.
+          </p>
+          <button type="button" class="btn btn--primary btn--block" disabled aria-disabled="true">{{ 'cart.checkout' | t }}</button>
+        {% else %}
+          <a href="{{ routes.cart_url }}/checkout" class="btn btn--primary btn--block">{{ 'cart.checkout' | t }}</a>
+        {% endif %}
       </div>
     {% endif %}
   </div>

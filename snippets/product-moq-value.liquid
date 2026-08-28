@@ -1,0 +1,33 @@
+{% doc %}
+  Outputs a product's minimum order quantity as a bare number.
+
+  One tagging convention drives everything: tag a product `moq-6` and it sells
+  in sixes, on the product page, in the cart, on the card, and in the filters.
+  Tag it `dropship` and it sells as single units. Nothing else to set up, and
+  tags are the one thing a non-technical merchant can add without leaving the
+  product form.
+
+  @param {product} product
+
+  @example
+  {% capture moq %}{% render 'product-moq-value', product: product %}{% endcapture %}
+  {% assign moq = moq | plus: 0 %}
+{% enddoc %}
+
+{%- liquid
+  assign moq = 1
+
+  unless product.tags contains 'dropship'
+    for tag in product.tags
+      assign lower = tag | downcase
+      if lower contains 'moq-'
+        assign found = lower | remove: 'moq-' | plus: 0
+        if found > moq
+          assign moq = found
+        endif
+      endif
+    endfor
+  endunless
+
+  echo moq
+-%}

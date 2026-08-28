@@ -1,0 +1,64 @@
+{% doc %}
+  The minimum-order line shown on a product page, plus the dropship flag.
+
+  @param {product} product
+
+  @example
+  {% render 'product-moq-note', product: product %}
+{% enddoc %}
+
+{%- liquid
+  capture moq_raw
+    render 'product-moq-value', product: product
+  endcapture
+  assign moq = moq_raw | plus: 0
+  assign is_dropship = false
+  if product.tags contains 'dropship'
+    assign is_dropship = true
+  endif
+-%}
+
+{% if is_dropship %}
+  <p class="moq-note moq-note--dropship">
+    {% render 'icon', name: 'check' %}
+    <span><strong>Dropship ready.</strong> Order a single unit. No pack, no minimum.</span>
+  </p>
+{% elsif moq > 1 %}
+  <p class="moq-note">
+    {% render 'icon', name: 'check' %}
+    <span><strong>Minimum order: {{ moq }} units.</strong> Wholesale price depends on the pack staying whole.</span>
+  </p>
+{% endif %}
+
+{% stylesheet %}
+  .moq-note {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--color-navy) 6%, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--color-navy) 16%, transparent);
+    font-size: 0.9rem;
+  }
+
+  .moq-note svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-top: 0.2em;
+    color: var(--color-accent);
+  }
+
+  /* Dropship is the exception a buyer is looking for, so it gets the amber. */
+  .moq-note--dropship {
+    background: var(--color-amber-soft);
+    border-color: color-mix(in srgb, var(--color-amber) 55%, transparent);
+    color: #3a2a00;
+  }
+
+  .moq-note--dropship svg {
+    color: var(--color-amber-text);
+  }
+{% endstylesheet %}

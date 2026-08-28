@@ -20,6 +20,15 @@
   endif
   assign resale_low = product.price | times: settings.resale_low_multiple
   assign resale_high = product.price | times: settings.resale_high_multiple
+
+  capture moq_raw
+    render 'product-moq-value', product: product
+  endcapture
+  assign moq = moq_raw | plus: 0
+  assign is_dropship = false
+  if product.tags contains 'dropship'
+    assign is_dropship = true
+  endif
 -%}
 
 <div class="product-card card reveal">
@@ -39,6 +48,8 @@
     {% endif %}
     {% if product.available == false %}
       <span class="product-card__badge">{{ 'products.sold_out' | t }}</span>
+    {% elsif is_dropship %}
+      <span class="product-card__badge product-card__badge--dropship">Dropship</span>
     {% elsif product.compare_at_price > product.price %}
       <span class="product-card__badge product-card__badge--sale">Sale</span>
     {% endif %}
@@ -55,8 +66,13 @@
       <p class="product-card__resale">Sells for around {{ resale_low | money }}-{{ resale_high | money }}</p>
     {% endif %}
 
+    <p class="product-card__moq">
+      {% if is_dropship %}Single units, no minimum{% elsif moq > 1 %}Minimum order: {{ moq }}{% endif %}
+    </p>
+
     {% form 'product', product, data-cart-add-form: true, class: 'product-card__form' %}
       <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <input type="hidden" name="quantity" value="{{ moq }}">
       <button
         type="submit"
         class="btn btn--primary btn--block btn--sm"
@@ -125,6 +141,18 @@
 
   .product-card__badge--sale {
     background: var(--color-accent);
+  }
+
+  .product-card__badge--dropship {
+    background: var(--color-amber);
+    color: var(--color-navy);
+  }
+
+  .product-card__moq {
+    font-size: 0.78rem;
+    color: var(--color-muted);
+    margin: 0;
+    min-height: 1em;
   }
 
   .product-card__body {

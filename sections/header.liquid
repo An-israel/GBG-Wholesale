@@ -58,13 +58,13 @@
                 <div class="mega-menu" id="{{ menu_id }}" data-mega-panel hidden>
                   <div class="mega-menu__inner">
                     <a href="{{ block.settings.url }}" class="mega-menu__all">
-                      <span class="route-label">SHOP &rarr; ALL</span>
+                      <span class="route-label">EVERYTHING</span>
                       <span>Browse the full catalogue</span>
                       {% render 'icon', name: 'arrow-right' %}
                     </a>
                     <hr class="rule">
                     <ul class="mega-menu__list">
-                      {% for i in (1..7) %}
+                      {% for i in (1..8) %}
                         {% assign label_key = 'sublink' | append: i | append: '_label' %}
                         {% assign url_key = 'sublink' | append: i | append: '_url' %}
                         {% assign sub_label = block.settings[label_key] %}
@@ -113,7 +113,7 @@
   <div class="mobile-nav__backdrop" data-mobile-nav-close></div>
   <div class="mobile-nav__panel">
     <div class="mobile-nav__header">
-      <span class="site-header__wordmark">{{ shop.name }}</span>
+      <span class="site-header__wordmark">{% render 'brand-lockup' %}</span>
       <button type="button" class="site-header__icon-btn" data-mobile-nav-close aria-label="{{ 'accessibility.close_menu' | t }}">
         {% render 'icon', name: 'close' %}
       </button>
@@ -134,7 +134,7 @@
               </button>
               <ul class="mobile-nav__submenu" id="{{ m_panel_id }}" data-mobile-accordion-panel hidden>
                 <li><a href="{{ block.settings.url }}">All {{ block.settings.label }}</a></li>
-                {% for i in (1..7) %}
+                {% for i in (1..8) %}
                   {% assign label_key = 'sublink' | append: i | append: '_label' %}
                   {% assign url_key = 'sublink' | append: i | append: '_url' %}
                   {% assign sub_label = block.settings[label_key] %}
@@ -476,7 +476,9 @@
         { "type": "text", "id": "sublink6_label", "label": "Link 6 label", "default": "Home & Lifestyle" },
         { "type": "url", "id": "sublink6_url", "label": "Link 6 URL" },
         { "type": "text", "id": "sublink7_label", "label": "Link 7 label", "default": "Starter Boxes" },
-        { "type": "url", "id": "sublink7_url", "label": "Link 7 URL" }
+        { "type": "url", "id": "sublink7_url", "label": "Link 7 URL" },
+        { "type": "text", "id": "sublink8_label", "label": "Link 8 label", "default": "Dropshipping" },
+        { "type": "url", "id": "sublink8_url", "label": "Link 8 URL" }
       ]
     }
   ]

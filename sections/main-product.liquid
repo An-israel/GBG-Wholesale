@@ -1,4 +1,10 @@
-{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  capture moq_raw
+    render 'product-moq-value', product: product
+  endcapture
+  assign moq = moq_raw | plus: 0
+-%}
 
 <div class="product container section">
   <div class="product__grid">
@@ -77,7 +83,16 @@
           <label class="field__label" for="ProductQuantity">{{ 'products.quantity' | t }}</label>
           <div class="qty-stepper qty-stepper--lg">
             <button type="button" class="qty-stepper__btn" data-qty-decrease aria-label="Decrease quantity">{% render 'icon', name: 'minus' %}</button>
-            <input class="qty-stepper__input" type="number" id="ProductQuantity" name="quantity" min="1" value="1">
+            <input
+              class="qty-stepper__input"
+              type="number"
+              id="ProductQuantity"
+              name="quantity"
+              min="{{ moq }}"
+              step="1"
+              value="{{ moq }}"
+              data-moq="{{ moq }}"
+            >
             <button type="button" class="qty-stepper__btn" data-qty-increase aria-label="Increase quantity">{% render 'icon', name: 'plus' %}</button>
           </div>
         </div>
@@ -94,6 +109,8 @@
         </button>
         <p class="field__error" data-cart-add-error hidden></p>
       {% endform %}
+
+      {% render 'product-moq-note', product: product %}
 
       {% render 'product-shipping', product: product %}
 
@@ -184,7 +201,8 @@
   }
 
   .product__info .shipping-facts,
-  .product__info .product-guide {
+  .product__info .product-guide,
+  .product__info .moq-note {
     margin-top: var(--space-5);
   }
 
