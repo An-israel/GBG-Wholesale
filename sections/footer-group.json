@@ -62,7 +62,9 @@
             "link2_label": "Meet Lami",
             "link2_url": "/pages/about#founder-story",
             "link3_label": "Community & Support",
-            "link3_url": "/pages/community"
+            "link3_url": "/pages/community",
+            "link4_label": "Reviews",
+            "link4_url": "/pages/reviews"
           }
         },
         "legal": {

@@ -485,6 +485,16 @@
         "f2",
         "f3"
       ]
+    },
+    "reviews-carousel": {
+      "type": "reviews-carousel",
+      "settings": {
+        "background": "mist",
+        "eyebrow": "VERIFIED REVIEWS",
+        "heading": "Left by people who bought",
+        "cta_text": "Read all reviews",
+        "cta_url": "/pages/reviews"
+      }
     }
   },
   "order": [
@@ -492,6 +502,7 @@
     "trust-strip",
     "best-sellers",
     "success-proof",
+    "reviews-carousel",
     "first-sales",
     "starter-boxes",
     "shop-by-category",

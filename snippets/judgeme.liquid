@@ -1,0 +1,48 @@
+{% doc %}
+  Judge.me mount points.
+
+  Judge.me installs itself by pattern-matching a theme's markup. On a custom
+  theme it usually finds nothing and the reviews never appear, which is what
+  happened here. These are the explicit containers it looks for, so it has
+  somewhere definite to render into.
+
+  Nothing is output unless Judge.me is switched on in theme settings, so an
+  uninstalled shop shows no empty boxes.
+
+  @param {string} type - badge, widget, carousel or all
+  @param {product} [product] - required for badge and widget
+
+  @example
+  {% render 'judgeme', type: 'badge', product: product %}
+{% enddoc %}
+
+{%- if settings.enable_judgeme -%}
+  {%- case type -%}
+    {%- when 'badge' -%}
+      {%- comment -%} Star rating. Sits near the price and on product cards. {%- endcomment -%}
+      <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}">
+        {{ product.metafields.judgeme.badge }}
+      </div>
+
+    {%- when 'widget' -%}
+      {%- comment -%} The full review list and the write-a-review form. {%- endcomment -%}
+      <div class="jdgm-widget jdgm-review-widget" data-id="{{ product.id }}" data-product-title="{{ product.title | escape }}">
+        {{ product.metafields.judgeme.widget }}
+      </div>
+
+    {%- when 'carousel' -%}
+      <div class="jdgm-widget jdgm-carousel-wrapper">
+        <div class="jdgm-carousel-title-and-link">
+          <span class="jdgm-carousel-title">What buyers say</span>
+        </div>
+        <div class="jdgm-carousel"></div>
+      </div>
+
+    {%- when 'all' -%}
+      <div class="jdgm-widget jdgm-all-reviews-widget">
+        <div class="jdgm-all-reviews-page__header">
+          <div class="jdgm-all-reviews-rating"></div>
+        </div>
+      </div>
+  {%- endcase -%}
+{%- endif -%}

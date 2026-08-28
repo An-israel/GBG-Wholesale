@@ -58,6 +58,8 @@
   <div class="product-card__body">
     <a href="{{ product.url }}" class="product-card__title">{{ product.title }}</a>
 
+    {% render 'judgeme', type: 'badge', product: product %}
+
     <div class="product-card__price">
       {% render 'price', product: product %}
     </div>

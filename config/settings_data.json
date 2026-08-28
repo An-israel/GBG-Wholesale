@@ -22,6 +22,7 @@
     "show_whatsapp_float": true,
     "sypb_link": "https://chat.whatsapp.com/J8cg43SbFN58hvDQomRpNf?mode=gi_t",
     "sypb_video_url": "",
+    "sypb_video_embed": "",
     "wholesale_hub_join_link": "https://chat.whatsapp.com/F4UPdAS2IxNGgT5f65Wude?mode=gi_t",
     "show_announcement_bar": true,
     "restock_day": "Thursday",
@@ -52,6 +53,7 @@
     "meta_pixel_id": "",
     "show_resale_estimate": true,
     "resale_low_multiple": 1.6,
-    "resale_high_multiple": 2.2
+    "resale_high_multiple": 2.2,
+    "enable_judgeme": true
   }
 }

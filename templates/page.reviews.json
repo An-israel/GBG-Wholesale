@@ -1,0 +1,36 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "compact": true,
+        "layout": "overlay",
+        "eyebrow": "REVIEWS",
+        "heading": "What buyers actually say.",
+        "body": "<p>Every review, unedited. Left by people who bought and sold the stock.</p>",
+        "primary_label": "Shop the stock",
+        "primary_url": "/collections/all",
+        "secondary_label": "See best sellers",
+        "secondary_url": "/collections/best-sellers"
+      }
+    },
+    "all-reviews": {
+      "type": "reviews-all",
+      "settings": { "background": "white" }
+    },
+    "shop-next": {
+      "type": "featured-products",
+      "settings": {
+        "background": "mist",
+        "eyebrow": "BEST SELLERS",
+        "heading": "The packs people reorder",
+        "collection": "best-sellers",
+        "product_count": 4,
+        "show_cta": true,
+        "cta_text": "Shop everything",
+        "cta_url": "/collections/all"
+      }
+    }
+  },
+  "order": ["hero", "all-reviews", "shop-next"]
+}

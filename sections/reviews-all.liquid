@@ -1,0 +1,37 @@
+{%- comment -%}
+  Every review on the shop, on one page.
+{%- endcomment -%}
+
+<section
+  id="{{ section.settings.custom_id | default: section.id }}"
+  class="reviews-all section section--{{ section.settings.background }}"
+>
+  <div class="container">
+    {% if settings.enable_judgeme %}
+      {% render 'judgeme', type: 'all' %}
+    {% else %}
+      <p class="field__hint">
+        Reviews appear here once the Judge.me app is installed and switched on
+        in Theme settings, under Analytics and tracking.
+      </p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "All reviews",
+  "settings": [
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
+    { "type": "select", "id": "background", "label": "Section background", "options": [
+        { "value": "paper", "label": "Paper (light grey)" },
+        { "value": "white", "label": "White" },
+        { "value": "mist", "label": "Mist (pale navy)" },
+        { "value": "amber", "label": "Amber tint" },
+        { "value": "aqua", "label": "Aqua tint" },
+        { "value": "navy", "label": "Navy (dark)" }
+      ], "default": "white" }
+  ],
+  "presets": [{ "name": "All reviews" }]
+}
+{% endschema %}

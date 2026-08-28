@@ -67,10 +67,10 @@
       {% if section.settings.primary_label != blank or section.settings.secondary_label != blank %}
         <div class="rich-text__actions">
           {% if section.settings.primary_label != blank %}
-            <a href="{{ primary_href }}" class="btn btn--primary" {% if section.settings.primary_link_source != 'custom' %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ primary_label }}</a>
+            <a href="{{ primary_href }}" class="btn btn--primary" {% if section.settings.primary_link_source == 'sypb_video' %}data-sypb-trigger{% endif %} {% if section.settings.primary_link_source != 'custom' %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ primary_label }}</a>
           {% endif %}
           {% if section.settings.secondary_label != blank %}
-            <a href="{{ secondary_href }}" class="btn btn--secondary" {% if section.settings.secondary_link_source != 'custom' %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ section.settings.secondary_label }}</a>
+            <a href="{{ secondary_href }}" class="btn btn--secondary" {% if section.settings.secondary_link_source == 'sypb_video' %}data-sypb-trigger{% endif %} {% if section.settings.secondary_link_source != 'custom' %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ section.settings.secondary_label }}</a>
           {% endif %}
         </div>
       {% endif %}

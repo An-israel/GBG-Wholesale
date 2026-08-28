@@ -208,6 +208,16 @@
         "info": "The video new members are told to watch before they join. Leave blank and the \"watch the video\" buttons fall back to the SYPB group link."
       },
       {
+        "type": "video_url",
+        "id": "sypb_video_embed",
+        "accept": [
+          "youtube",
+          "vimeo"
+        ],
+        "label": "SYPB video (plays on the site)",
+        "info": "Paste a YouTube or Vimeo link. It plays inside the signup pop-up, so people stay here instead of leaving for YouTube. The plain link above is only the fallback."
+      },
+      {
         "type": "text",
         "id": "wholesale_hub_join_link",
         "label": "GBG Wholesale Hub community link",
@@ -478,6 +488,20 @@
         "id": "meta_pixel_id",
         "label": "Meta (Facebook) pixel ID",
         "info": "Optional. Leave blank if you are not running Meta ads."
+      },
+      {
+        "type": "header",
+        "content": "Reviews"
+      },
+      {
+        "type": "paragraph",
+        "content": "Switch this on once the Judge.me app is installed AND published. It adds the containers Judge.me renders into. Leave it off and nothing is output, so no empty boxes appear."
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_judgeme",
+        "label": "Show Judge.me reviews",
+        "default": true
       }
     ]
   }

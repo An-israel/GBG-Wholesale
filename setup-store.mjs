@@ -107,6 +107,7 @@ const PAGES = [
   ['privacy-policy',             'Privacy Policy',       'page.privacy-policy'],
   ['terms-of-service',           'Terms of Service',     'page.terms-of-service'],
   ['track-your-order',           'Track Your Order',     'page.track-your-order'],
+  ['reviews',                    'Reviews',              'page.reviews'],
 ];
 
 /* ------------------------------------------------------------------ */

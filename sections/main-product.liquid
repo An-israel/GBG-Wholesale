@@ -48,6 +48,8 @@
 
       {% render 'price', product: product %}
 
+      {% render 'judgeme', type: 'badge', product: product %}
+
       {% if product.description != blank %}
         <div class="product__description">{{ product.description }}</div>
       {% endif %}
@@ -119,6 +121,10 @@
       {% render 'dm-keyword-note', product: product, text: section.settings.dm_note_text %}
     </div>
   </div>
+</div>
+
+<div class="container section judgeme-reviews">
+  {% render 'judgeme', type: 'widget', product: product %}
 </div>
 
 <div class="related-products-mount" data-recommendations-url="{{ routes.product_recommendations_url }}?section_id=related-products&product_id={{ product.id }}&limit=4&intent=related"></div>

@@ -1,0 +1,190 @@
+{% doc %}
+  SYPB gate.
+
+  Any [data-sypb-trigger] element opens this instead of jumping straight to
+  the video. It asks for a first name and an email, saves them as a real
+  Shopify customer with marketing consent, and only then reveals the video and
+  the group link.
+
+  The details land under Customers in the Shopify admin, tagged sypb, so they
+  can be filtered, exported to CSV, and emailed with Shopify Email without
+  anyone needing another login.
+
+  Shopify's customer form reloads the page on submit, so the modal reopens
+  itself on the way back and goes straight to the video. A returning visitor
+  skips the form entirely.
+{% enddoc %}
+
+{%- liquid
+  assign posted = false
+  if form.posted_successfully? and form.id == 'SypbGateForm'
+    assign posted = true
+  endif
+  assign video = settings.sypb_video_embed
+  assign fallback_link = settings.sypb_video_url | default: settings.sypb_link
+-%}
+
+<div
+  id="SypbGate"
+  class="sypb-gate"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="SypbGateTitle"
+  hidden
+  {% if posted %}data-autoopen="true"{% endif %}
+  data-fallback="{{ fallback_link | escape }}"
+>
+  <div class="sypb-gate__backdrop" data-sypb-close></div>
+
+  <div class="sypb-gate__panel">
+    <button type="button" class="sypb-gate__close" data-sypb-close aria-label="{{ 'accessibility.close' | t }}">
+      {% render 'icon', name: 'close' %}
+    </button>
+
+    {%- comment -%} Step one: who are you. {%- endcomment -%}
+    <div class="sypb-gate__step" data-sypb-step="form" {% if posted %}hidden{% endif %}>
+      <span class="route-label route-label--amber">SYPB</span>
+      <h2 id="SypbGateTitle">Watch the video first</h2>
+      <p>Tell us where to send it and it plays right here. You'll also get the group link and the odd email when something worth knowing lands. No spam, unsubscribe any time.</p>
+
+      {% form 'customer', id: 'SypbGateForm' %}
+        <input type="hidden" name="contact[tags]" value="sypb,video-watched">
+
+        <div class="field">
+          <label class="field__label" for="SypbGateName">First name</label>
+          <input class="input" type="text" id="SypbGateName" name="contact[first_name]" autocomplete="given-name" required>
+        </div>
+
+        <div class="field {% if form.errors %}has-error{% endif %}">
+          <label class="field__label" for="SypbGateEmail">Email</label>
+          <input class="input" type="email" id="SypbGateEmail" name="contact[email]" autocomplete="email" required>
+          <span class="field__error">{{ 'forms.invalid_email' | t }}</span>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--block">Show me the video</button>
+
+        {% if form.errors %}
+          <div class="form-status" data-state="error">{{ 'forms.error_generic' | t }}</div>
+        {% endif %}
+      {% endform %}
+    </div>
+
+    {%- comment -%} Step two: the video and the way in. {%- endcomment -%}
+    <div class="sypb-gate__step" data-sypb-step="video" {% unless posted %}hidden{% endunless %}>
+      <span class="route-label route-label--amber">SYPB</span>
+      <h2>Here it is. Watch, then come in.</h2>
+
+      {% if video != blank %}
+        <div class="sypb-gate__video">
+          <iframe
+            src="{% if video.type == 'youtube' %}https://www.youtube.com/embed/{{ video.id }}{% else %}https://player.vimeo.com/video/{{ video.id }}{% endif %}"
+            title="Start Your Product Business"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      {% else %}
+        <p>
+          <a href="{{ fallback_link }}" target="_blank" rel="noopener noreferrer">Open the video</a>
+        </p>
+      {% endif %}
+
+      <p>When you're done, the group is where the questions get answered.</p>
+
+      <a href="{{ settings.sypb_link }}" class="btn btn--primary btn--block" target="_blank" rel="noopener noreferrer">
+        Join SYPB, it's free
+      </a>
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn--ghost btn--block">Or go straight to the stock</a>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'sypb-gate.js' | asset_url }}" defer></script>
+
+{% stylesheet %}
+  .sypb-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+  }
+
+  .sypb-gate[hidden] {
+    display: none;
+  }
+
+  .sypb-gate__backdrop {
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--color-navy) 78%, transparent);
+  }
+
+  .sypb-gate__panel {
+    position: relative;
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    padding: var(--space-6);
+    width: 100%;
+    max-width: 34rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 24px 60px rgba(0, 26, 63, 0.35);
+  }
+
+  .sypb-gate__close {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 0;
+    color: var(--color-muted);
+  }
+
+  .sypb-gate__close svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .sypb-gate__step .route-label {
+    margin-bottom: var(--space-3);
+  }
+
+  .sypb-gate__step h2 {
+    font-size: 1.5rem;
+  }
+
+  .sypb-gate__step .field {
+    margin-bottom: var(--space-4);
+  }
+
+  .sypb-gate__step .btn + .btn {
+    margin-top: var(--space-3);
+  }
+
+  .sypb-gate__video {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    margin-bottom: var(--space-5);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--color-navy);
+  }
+
+  .sypb-gate__video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+{% endstylesheet %}
