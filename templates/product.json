@@ -2,12 +2,19 @@
   "sections": {
     "main-product": {
       "type": "main-product",
-      "settings": {}
+      "settings": {
+        "background": "white"
+      }
     },
     "related-products": {
       "type": "related-products",
-      "settings": {}
+      "settings": {
+        "background": "mist"
+      }
     }
   },
-  "order": ["main-product", "related-products"]
+  "order": [
+    "main-product",
+    "related-products"
+  ]
 }

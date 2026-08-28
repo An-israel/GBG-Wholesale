@@ -1,4 +1,4 @@
-<section id="{{ section.settings.custom_id | default: section.id }}" class="order-lookup section">
+<section id="{{ section.settings.custom_id | default: section.id }}" class="order-lookup section section--{{ section.settings.background }}">
   <div class="container order-lookup__inner reveal">
     {% if customer %}
       <div class="card order-lookup__card">
@@ -48,6 +48,14 @@
 {
   "name": "Order lookup",
   "settings": [
+    { "type": "select", "id": "background", "label": "Section background", "info": "Vary this down a page so each band reads as its own.", "options": [
+        { "value": "paper", "label": "Paper (light grey)" },
+        { "value": "white", "label": "White" },
+        { "value": "mist", "label": "Mist (pale navy)" },
+        { "value": "amber", "label": "Amber tint" },
+        { "value": "aqua", "label": "Aqua tint" },
+        { "value": "navy", "label": "Navy (dark)" }
+      ], "default": "paper" },
     { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" }
   ],
   "presets": [

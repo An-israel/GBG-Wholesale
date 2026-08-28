@@ -12,7 +12,7 @@
     "who": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "narrow": true,
         "eyebrow": "WHO WE ARE",
         "heading": "About us",
@@ -22,24 +22,49 @@
     "orders": {
       "type": "rich-text",
       "settings": {
-        "background": "paper",
+        "background": "mist",
         "narrow": true,
         "eyebrow": "ORDERING",
         "heading": "Placing an order",
         "body": "<p>Adding items to your cart and checking out is an offer to buy. A contract is formed when we send you an order confirmation, not when you pay.</p>"
       },
       "blocks": {
-        "o1": { "type": "list_item", "settings": { "text": "We may decline or cancel an order - for example if stock has sold out, if a price was listed in error, or if we suspect fraud. If we do, you get a full refund promptly." } },
-        "o2": { "type": "list_item", "settings": { "text": "Product photographs are representative. Natural variation in colour, finish and exact styling is normal in wholesale stock, particularly in mixed packs." } },
-        "o3": { "type": "list_item", "settings": { "text": "Mixed and Starter packs are sold as a pack. The specific combination of items within them can vary." } },
-        "o4": { "type": "list_item", "settings": { "text": "Each product's stated minimum order quantity applies. You must be 18 or over to order." } }
+        "o1": {
+          "type": "list_item",
+          "settings": {
+            "text": "We may decline or cancel an order - for example if stock has sold out, if a price was listed in error, or if we suspect fraud. If we do, you get a full refund promptly."
+          }
+        },
+        "o2": {
+          "type": "list_item",
+          "settings": {
+            "text": "Product photographs are representative. Natural variation in colour, finish and exact styling is normal in wholesale stock, particularly in mixed packs."
+          }
+        },
+        "o3": {
+          "type": "list_item",
+          "settings": {
+            "text": "Mixed and Starter packs are sold as a pack. The specific combination of items within them can vary."
+          }
+        },
+        "o4": {
+          "type": "list_item",
+          "settings": {
+            "text": "Each product's stated minimum order quantity applies. You must be 18 or over to order."
+          }
+        }
       },
-      "block_order": ["o1", "o2", "o3", "o4"]
+      "block_order": [
+        "o1",
+        "o2",
+        "o3",
+        "o4"
+      ]
     },
     "prices": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "narrow": true,
         "eyebrow": "PRICES & PAYMENT",
         "heading": "What you pay",
@@ -49,7 +74,7 @@
     "delivery": {
       "type": "rich-text",
       "settings": {
-        "background": "paper",
+        "background": "amber",
         "narrow": true,
         "eyebrow": "DISPATCH & DELIVERY",
         "heading": "Getting your order to you",
@@ -62,26 +87,63 @@
     "reselling": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "narrow": true,
         "eyebrow": "RESELLING",
         "heading": "Selling on what you buy",
         "body": "<p>You're free to resell products bought from us, on any platform you choose. That's what we're here for. A few things remain your responsibility as the seller:</p>"
       },
       "blocks": {
-        "r1": { "type": "list_item", "settings": { "text": "Complying with the terms of whichever platform you sell on." } },
-        "r2": { "type": "list_item", "settings": { "text": "Describing items accurately and honestly to your own buyers." } },
-        "r3": { "type": "list_item", "settings": { "text": "Handling your own customers' returns, refunds and enquiries - your buyers are your customers, not ours." } },
-        "r4": { "type": "list_item", "settings": { "text": "Meeting your own tax, trading and consumer-law obligations as a seller." } },
-        "r5": { "type": "list_item", "settings": { "text": "Not describing items using a brand name they don't legitimately carry." } },
-        "r6": { "type": "list_item", "settings": { "text": "Not presenting yourself as GBG Wholesale Hub, or as an authorised agent of ours, without written agreement." } }
+        "r1": {
+          "type": "list_item",
+          "settings": {
+            "text": "Complying with the terms of whichever platform you sell on."
+          }
+        },
+        "r2": {
+          "type": "list_item",
+          "settings": {
+            "text": "Describing items accurately and honestly to your own buyers."
+          }
+        },
+        "r3": {
+          "type": "list_item",
+          "settings": {
+            "text": "Handling your own customers' returns, refunds and enquiries - your buyers are your customers, not ours."
+          }
+        },
+        "r4": {
+          "type": "list_item",
+          "settings": {
+            "text": "Meeting your own tax, trading and consumer-law obligations as a seller."
+          }
+        },
+        "r5": {
+          "type": "list_item",
+          "settings": {
+            "text": "Not describing items using a brand name they don't legitimately carry."
+          }
+        },
+        "r6": {
+          "type": "list_item",
+          "settings": {
+            "text": "Not presenting yourself as GBG Wholesale Hub, or as an authorised agent of ours, without written agreement."
+          }
+        }
       },
-      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6"]
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
+      ]
     },
     "site": {
       "type": "rich-text",
       "settings": {
-        "background": "paper",
+        "background": "aqua",
         "narrow": true,
         "eyebrow": "USING THIS SITE",
         "heading": "Acceptable use and our content",
@@ -91,7 +153,7 @@
     "liability": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "narrow": true,
         "eyebrow": "LIABILITY",
         "heading": "Our responsibility to you",
@@ -101,7 +163,7 @@
     "general": {
       "type": "rich-text",
       "settings": {
-        "background": "paper",
+        "background": "navy",
         "narrow": true,
         "eyebrow": "GENERAL",
         "heading": "Changes, and the law that applies",
@@ -112,5 +174,15 @@
       }
     }
   },
-  "order": ["hero", "who", "orders", "prices", "delivery", "reselling", "site", "liability", "general"]
+  "order": [
+    "hero",
+    "who",
+    "orders",
+    "prices",
+    "delivery",
+    "reselling",
+    "site",
+    "liability",
+    "general"
+  ]
 }

@@ -12,29 +12,61 @@
     "quick-links": {
       "type": "routing-cards",
       "settings": {
-        "on_surface": true
+        "background": "white"
       },
       "blocks": {
-        "q1": { "type": "card", "settings": { "heading": "Order or delivery question", "link_text": "Track Your Order", "link_url": "/pages/track-your-order" } },
-        "q2": { "type": "card", "settings": { "heading": "Pricing, platforms, or how to sell", "link_text": "FAQ", "link_url": "/pages/faq" } },
-        "q3": { "type": "card", "settings": { "heading": "Never sold before", "link_text": "Start Here", "link_url": "/pages/start-here" } }
+        "q1": {
+          "type": "card",
+          "settings": {
+            "heading": "Order or delivery question",
+            "link_text": "Track Your Order",
+            "link_url": "/pages/track-your-order"
+          }
+        },
+        "q2": {
+          "type": "card",
+          "settings": {
+            "heading": "Pricing, platforms, or how to sell",
+            "link_text": "FAQ",
+            "link_url": "/pages/faq"
+          }
+        },
+        "q3": {
+          "type": "card",
+          "settings": {
+            "heading": "Never sold before",
+            "link_text": "Start Here",
+            "link_url": "/pages/start-here"
+          }
+        }
       },
-      "block_order": ["q1", "q2", "q3"]
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ]
     },
     "contact-form": {
       "type": "contact-form",
       "settings": {
         "eyebrow": "GET IN TOUCH",
-        "heading": "What Do You Need Help With?"
+        "heading": "What Do You Need Help With?",
+        "background": "mist"
       }
     },
     "contact-info": {
       "type": "contact-info",
       "settings": {
         "eyebrow": "STILL NEED US?",
-        "heading": "Still Need Us?"
+        "heading": "Still Need Us?",
+        "background": "white"
       }
     }
   },
-  "order": ["hero", "quick-links", "contact-form", "contact-info"]
+  "order": [
+    "hero",
+    "quick-links",
+    "contact-form",
+    "contact-info"
+  ]
 }

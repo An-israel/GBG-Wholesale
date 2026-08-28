@@ -19,7 +19,8 @@
       "settings": {
         "group_by_category": true,
         "emit_schema": true,
-        "heading": ""
+        "heading": "",
+        "background": "white"
       },
       "blocks": {
         "q1": {
@@ -294,11 +295,33 @@
         }
       },
       "block_order": [
-        "q1", "q2", "q3", "q4", "q5",
-        "q6", "q7", "q8", "q9", "q10", "q11", "q12", "q13",
-        "q14", "q15", "q16", "q17", "q18",
-        "q19", "q20", "q21", "q22", "q23",
-        "q24", "q25", "q26", "q27"
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8",
+        "q9",
+        "q10",
+        "q11",
+        "q12",
+        "q13",
+        "q14",
+        "q15",
+        "q16",
+        "q17",
+        "q18",
+        "q19",
+        "q20",
+        "q21",
+        "q22",
+        "q23",
+        "q24",
+        "q25",
+        "q26",
+        "q27"
       ]
     },
     "pricing-calculator": {
@@ -307,7 +330,8 @@
         "custom_id": "pricing-calculator",
         "eyebrow": "TOOL",
         "heading": "Pricing calculator",
-        "body": "Pack cost divided by units, plus packaging and platform fees. That's your floor."
+        "body": "Pack cost divided by units, plus packaging and platform fees. That's your floor.",
+        "background": "mist"
       }
     },
     "still-stuck": {
@@ -331,9 +355,16 @@
         "product_count": 4,
         "show_cta": true,
         "cta_text": "Shop everything",
-        "cta_url": "/collections/all"
+        "cta_url": "/collections/all",
+        "background": "white"
       }
     }
   },
-  "order": ["hero", "faq-full", "pricing-calculator", "still-stuck", "shop-next"]
+  "order": [
+    "hero",
+    "faq-full",
+    "pricing-calculator",
+    "still-stuck",
+    "shop-next"
+  ]
 }

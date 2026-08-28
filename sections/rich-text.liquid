@@ -1,7 +1,7 @@
 <section
   id="{{ section.settings.custom_id | default: section.id }}"
   class="rich-text section
-    {% if section.settings.background == 'surface' %}section--surface{% elsif section.settings.background == 'ink' %}section--ink{% endif %}
+    section--{{ section.settings.background }}
     {% if section.settings.narrow %}rich-text--narrow{% endif %}"
 >
   <div class="container">
@@ -150,10 +150,13 @@
   "name": "Rich text",
   "settings": [
     { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
-    { "type": "select", "id": "background", "label": "Background", "options": [
-        { "value": "paper", "label": "Paper" },
-        { "value": "surface", "label": "White surface" },
-        { "value": "ink", "label": "Ink (dark)" }
+    { "type": "select", "id": "background", "label": "Section background", "info": "Vary this down a page so each band reads as its own.", "options": [
+        { "value": "paper", "label": "Paper (light grey)" },
+        { "value": "white", "label": "White" },
+        { "value": "mist", "label": "Mist (pale navy)" },
+        { "value": "amber", "label": "Amber tint" },
+        { "value": "aqua", "label": "Aqua tint" },
+        { "value": "navy", "label": "Navy (dark)" }
       ], "default": "paper" },
     { "type": "checkbox", "id": "narrow", "label": "Narrow column", "default": false },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label" },

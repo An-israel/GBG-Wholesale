@@ -383,7 +383,7 @@
         "id": "founder_note_body",
         "label": "Founder's note (About page + order confirmation)",
         "info": "Launch-ready copy written in Lami's voice. Confirm the final wording with her.",
-        "default": "<p>GBG started because I got tired of watching women give up on reselling, not because they weren't capable, but because nobody could give them a straight answer without gatekeeping. I built this to be the source I needed when I started: real stock, honest prices, and someone who actually answers when you ask a question. Every part of this hub - the shop, the guides, the community - comes from that same place. Thank you for being part of it.</p>"
+        "default": "<p>I built GBG because I watched too many women give up on reselling. Not because they couldn't do it, but because nobody would give them a straight answer without charging for it first.</p><p>So this is the thing I needed when I started: real stock, honest prices, and someone who actually replies. Thank you for being here.</p>"
       }
     ]
   },

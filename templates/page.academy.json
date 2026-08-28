@@ -17,7 +17,7 @@
     "who-its-for": {
       "type": "content-cards",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "columns": "3",
         "eyebrow": "IS THIS YOU?",
         "heading": "Three people this is built for"
@@ -55,7 +55,7 @@
       "type": "content-cards",
       "settings": {
         "custom_id": "curriculum",
-        "background": "paper",
+        "background": "mist",
         "columns": "2",
         "eyebrow": "THE MODULES",
         "eyebrow_color": "navy",
@@ -135,9 +135,9 @@
       "type": "numbered-steps",
       "settings": {
         "custom_id": "how-it-runs",
-        "on_surface": true,
         "eyebrow": "HOW IT RUNS",
-        "heading": "What happens after you join"
+        "heading": "What happens after you join",
+        "background": "white"
       },
       "blocks": {
         "s1": {
@@ -191,7 +191,7 @@
     "vs-community": {
       "type": "content-cards",
       "settings": {
-        "background": "paper",
+        "background": "amber",
         "columns": "3",
         "eyebrow": "HOW IT DIFFERS",
         "heading": "Academy, SYPB, Wholesale Hub",
@@ -247,7 +247,8 @@
         "price_note": "One payment. Lifetime access to the modules and the community.",
         "submit_label": "Join the Academy",
         "after_pay_note": "You'll pay at the usual checkout. Your welcome email arrives straight after, with your invite to the Skool community.",
-        "success_message": "You're on the list. We'll email you the moment the next intake opens."
+        "success_message": "You're on the list. We'll email you the moment the next intake opens.",
+        "background": "aqua"
       },
       "blocks": {
         "p1": {
@@ -285,10 +286,10 @@
     "faq": {
       "type": "faq-accordion",
       "settings": {
-        "on_surface": false,
         "group_by_category": false,
         "eyebrow": "ACADEMY FAQ",
-        "heading": "Before you join"
+        "heading": "Before you join",
+        "background": "white"
       },
       "blocks": {
         "f1": {
@@ -361,7 +362,8 @@
       "settings": {
         "eyebrow": "PROOF",
         "heading": "Members, in their own words",
-        "body": "Screenshots and reviews from members, names blurred."
+        "body": "Screenshots and reviews from members, names blurred.",
+        "background": "white"
       },
       "blocks": {
         "t1": {

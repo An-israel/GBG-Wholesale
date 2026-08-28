@@ -127,13 +127,84 @@ p {
   padding-block: var(--space-6);
 }
 
-.section--surface {
-  background: var(--color-surface);
+/* ------------------------------------------------------------------
+   Section backgrounds
+
+   Every section picks one of these in the theme editor, so a page reads as
+   a sequence of distinct bands rather than one flat colour scrolling past.
+   All six are drawn from the brand palette: two neutrals, two tints of the
+   navy and amber, one mint, and the full navy for the dark bands.
+
+   Each variant sets its own ground AND its own text colour, so nothing ever
+   inherits the wrong pair. `--on-section` is the readable ink for that band,
+   and components use it instead of assuming a light background.
+   ------------------------------------------------------------------ */
+
+.section--white {
+  background: #FFFFFF;
+  --on-section: var(--color-ink);
 }
 
+.section--paper {
+  background: var(--color-paper);
+  --on-section: var(--color-ink);
+}
+
+/* A cool tint of the brand navy: reads as a different band to paper without
+   introducing a colour that is not in the identity. */
+.section--mist {
+  background: color-mix(in srgb, var(--color-navy) 8%, #FFFFFF);
+  --on-section: var(--color-ink);
+}
+
+.section--amber {
+  background: var(--color-amber-soft);
+  --on-section: #3A2A00;
+}
+
+.section--aqua {
+  background: color-mix(in srgb, var(--color-aqua) 22%, #FFFFFF);
+  --on-section: var(--color-ink);
+}
+
+.section--navy,
 .section--ink {
   background: var(--color-navy);
   color: #FFFFFF;
+  --on-section: #FFFFFF;
+}
+
+.section--white,
+.section--paper,
+.section--mist,
+.section--amber,
+.section--aqua {
+  color: var(--on-section);
+}
+
+/* Kept so older section markup and any saved settings still resolve. */
+.section--surface {
+  background: var(--color-surface);
+  --on-section: var(--color-ink);
+}
+
+/* On the two warm/mint bands a white card would vanish into the ground, so
+   cards there get a firmer edge instead of a heavier shadow. */
+.section--amber .card,
+.section--aqua .card,
+.section--white .card {
+  border-color: color-mix(in srgb, var(--color-ink) 14%, transparent);
+  box-shadow: none;
+}
+
+.section--amber .route-label,
+.section--amber .content-cards__label,
+.section--amber .btn--ghost {
+  color: var(--color-amber-text);
+}
+
+.section--amber .route-label {
+  border-color: var(--color-amber-text);
 }
 
 .grid {

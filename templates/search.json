@@ -2,8 +2,12 @@
   "sections": {
     "main-search": {
       "type": "main-search",
-      "settings": {}
+      "settings": {
+        "background": "white"
+      }
     }
   },
-  "order": ["main-search"]
+  "order": [
+    "main-search"
+  ]
 }

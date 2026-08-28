@@ -14,7 +14,7 @@
     "faulty": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "narrow": true,
         "eyebrow": "ALWAYS COVERED",
         "heading": "Damaged, faulty or incorrect items",
@@ -24,7 +24,7 @@
     "consumer": {
       "type": "rich-text",
       "settings": {
-        "background": "paper",
+        "background": "mist",
         "narrow": true,
         "eyebrow": "BUYING FOR YOURSELF",
         "heading": "Your right to cancel (consumer orders)",
@@ -34,7 +34,7 @@
     "business": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "narrow": true,
         "eyebrow": "BUYING TO RESELL",
         "heading": "Wholesale and business orders",
@@ -47,34 +47,106 @@
       "type": "numbered-steps",
       "settings": {
         "eyebrow": "THE PROCESS",
-        "heading": "How to start a return"
+        "heading": "How to start a return",
+        "background": "amber"
       },
       "blocks": {
-        "s1": { "type": "step", "settings": { "text": "Contact us within the relevant window with your order number and, for damage or faults, photographs.", "link_text": "Contact us", "link_source": "custom", "link_url": "/pages/contact" } },
-        "s2": { "type": "step", "settings": { "text": "We reply confirming whether to return the items, and to which address - please don't send anything back before this." } },
-        "s3": { "type": "step", "settings": { "text": "Pack the items securely. Use tracked postage and keep your proof of postage until the refund lands." } },
-        "s4": { "type": "step", "settings": { "text": "We inspect on arrival and confirm by email." } },
-        "s5": { "type": "step", "settings": { "text": "Your refund is issued to the original payment method. Banks typically take a further 3-5 working days to show it." } }
+        "s1": {
+          "type": "step",
+          "settings": {
+            "text": "Contact us within the relevant window with your order number and, for damage or faults, photographs.",
+            "link_text": "Contact us",
+            "link_source": "custom",
+            "link_url": "/pages/contact"
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "text": "We reply confirming whether to return the items, and to which address - please don't send anything back before this."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "text": "Pack the items securely. Use tracked postage and keep your proof of postage until the refund lands."
+          }
+        },
+        "s4": {
+          "type": "step",
+          "settings": {
+            "text": "We inspect on arrival and confirm by email."
+          }
+        },
+        "s5": {
+          "type": "step",
+          "settings": {
+            "text": "Your refund is issued to the original payment method. Banks typically take a further 3-5 working days to show it."
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3", "s4", "s5"]
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5"
+      ]
     },
     "exclusions": {
       "type": "rich-text",
       "settings": {
-        "background": "paper",
+        "background": "white",
         "narrow": true,
         "heading": "What we can't accept back",
         "body": "<p>For hygiene, safety and practical reasons, we cannot accept returns of:</p>"
       },
       "blocks": {
-        "e1": { "type": "list_item", "settings": { "text": "Pierced jewellery, including earrings, once the sealed packaging has been opened." } },
-        "e2": { "type": "list_item", "settings": { "text": "Cosmetics, skincare or any personal-care item once opened or used." } },
-        "e3": { "type": "list_item", "settings": { "text": "Items that have been worn, washed, altered, relabelled or otherwise used." } },
-        "e4": { "type": "list_item", "settings": { "text": "Items returned without their original packaging, tags or components." } },
-        "e5": { "type": "list_item", "settings": { "text": "Items returned outside the timeframes set out above." } },
-        "e6": { "type": "list_item", "settings": { "text": "Anything bought from another seller. If you bought a GBG product from a reseller, their returns policy applies, not ours." } }
+        "e1": {
+          "type": "list_item",
+          "settings": {
+            "text": "Pierced jewellery, including earrings, once the sealed packaging has been opened."
+          }
+        },
+        "e2": {
+          "type": "list_item",
+          "settings": {
+            "text": "Cosmetics, skincare or any personal-care item once opened or used."
+          }
+        },
+        "e3": {
+          "type": "list_item",
+          "settings": {
+            "text": "Items that have been worn, washed, altered, relabelled or otherwise used."
+          }
+        },
+        "e4": {
+          "type": "list_item",
+          "settings": {
+            "text": "Items returned without their original packaging, tags or components."
+          }
+        },
+        "e5": {
+          "type": "list_item",
+          "settings": {
+            "text": "Items returned outside the timeframes set out above."
+          }
+        },
+        "e6": {
+          "type": "list_item",
+          "settings": {
+            "text": "Anything bought from another seller. If you bought a GBG product from a reseller, their returns policy applies, not ours."
+          }
+        }
       },
-      "block_order": ["e1", "e2", "e3", "e4", "e5", "e6"]
+      "block_order": [
+        "e1",
+        "e2",
+        "e3",
+        "e4",
+        "e5",
+        "e6"
+      ]
     },
     "help": {
       "type": "image-banner",
@@ -89,5 +161,13 @@
       }
     }
   },
-  "order": ["hero", "faulty", "consumer", "business", "how", "exclusions", "help"]
+  "order": [
+    "hero",
+    "faulty",
+    "consumer",
+    "business",
+    "how",
+    "exclusions",
+    "help"
+  ]
 }

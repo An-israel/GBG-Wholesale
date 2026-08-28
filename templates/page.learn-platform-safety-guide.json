@@ -14,7 +14,7 @@
     "why": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "narrow": true,
         "eyebrow": "WHY IT HAPPENS",
         "heading": "The platform isn't judging you. It's pattern-matching.",
@@ -24,7 +24,7 @@
     "triggers": {
       "type": "content-cards",
       "settings": {
-        "background": "paper",
+        "background": "mist",
         "columns": "2",
         "eyebrow": "WHAT TRIGGERS A FLAG",
         "heading": "The patterns that get accounts restricted",
@@ -92,7 +92,7 @@
     "habits": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "narrow": true,
         "eyebrow": "SAFE HABITS",
         "heading": "What a healthy reseller account looks like",
@@ -156,7 +156,8 @@
       "type": "numbered-steps",
       "settings": {
         "eyebrow": "IF IT HAPPENS",
-        "heading": "You've been restricted. Do this, in this order."
+        "heading": "You've been restricted. Do this, in this order.",
+        "background": "amber"
       },
       "blocks": {
         "s1": {
@@ -220,7 +221,7 @@
     "buyer-safety": {
       "type": "content-cards",
       "settings": {
-        "background": "paper",
+        "background": "white",
         "columns": "3",
         "eyebrow": "PROTECTING YOURSELF",
         "heading": "Staying safe from the other side too",
@@ -276,7 +277,8 @@
         "product_count": 4,
         "show_cta": true,
         "cta_text": "See all Starter Boxes",
-        "cta_url": "/collections/starter-boxes"
+        "cta_url": "/collections/starter-boxes",
+        "background": "aqua"
       }
     }
   },

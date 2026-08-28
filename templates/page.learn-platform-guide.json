@@ -16,7 +16,7 @@
     "principle": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "narrow": true,
         "eyebrow": "THE ONE RULE",
         "heading": "Match the product to the buyer's mood, not just the category",
@@ -26,7 +26,7 @@
     "platforms": {
       "type": "content-cards",
       "settings": {
-        "background": "paper",
+        "background": "mist",
         "columns": "2",
         "eyebrow": "PLATFORM BY PLATFORM",
         "heading": "The four that matter in the UK",
@@ -80,7 +80,7 @@
     "matching": {
       "type": "content-cards",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "columns": "3",
         "eyebrow": "QUICK MATCH",
         "heading": "If you're holding this, start here",
@@ -161,7 +161,8 @@
       "type": "numbered-steps",
       "settings": {
         "eyebrow": "THE METHOD",
-        "heading": "How to pick a platform for a new pack"
+        "heading": "How to pick a platform for a new pack",
+        "background": "amber"
       },
       "blocks": {
         "s1": {
@@ -216,7 +217,7 @@
     "next": {
       "type": "content-cards",
       "settings": {
-        "background": "paper",
+        "background": "navy",
         "columns": "3",
         "eyebrow": "READ NEXT",
         "heading": "Keep going"
@@ -265,7 +266,8 @@
         "product_count": 4,
         "show_cta": true,
         "cta_text": "Shop everything",
-        "cta_url": "/collections/all"
+        "cta_url": "/collections/all",
+        "background": "white"
       }
     }
   },

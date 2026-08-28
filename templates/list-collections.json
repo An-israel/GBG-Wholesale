@@ -2,8 +2,12 @@
   "sections": {
     "main": {
       "type": "list-collections",
-      "settings": {}
+      "settings": {
+        "background": "white"
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }

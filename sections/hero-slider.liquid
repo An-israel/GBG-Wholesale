@@ -1,0 +1,383 @@
+{%- comment -%}
+  Home page hero slider.
+
+  Three slides by default, one for each word of the brand line: BUY the stock,
+  SELL with better information, BUILD with the community. Each slide carries
+  its own image, copy and buttons.
+
+  It advances on its own and can also be driven by the arrows, the dots, a
+  swipe, or the arrow keys. It stops while someone is hovering or tabbing
+  through it, and it never auto-advances for a visitor who has asked their
+  system to reduce motion.
+{%- endcomment -%}
+
+<section
+  id="{{ section.settings.custom_id | default: section.id }}"
+  class="hero-slider"
+  data-hero-slider
+  data-autoplay="{{ section.settings.autoplay }}"
+  data-interval="{{ section.settings.interval | times: 1000 }}"
+  aria-roledescription="carousel"
+  aria-label="{{ section.settings.aria_label | escape }}"
+>
+  <div class="hero-slider__track" data-hero-track>
+    {% for block in section.blocks %}
+      <div
+        class="hero-slider__slide{% if forloop.first %} is-active{% endif %}"
+        data-hero-slide
+        role="group"
+        aria-roledescription="slide"
+        aria-label="{{ forloop.index }} of {{ section.blocks.size }}"
+        {% unless forloop.first %}aria-hidden="true"{% endunless %}
+        {{ block.shopify_attributes }}
+      >
+        <div class="hero-slider__bg">
+          {% if block.settings.image %}
+            <img
+              src="{{ block.settings.image | image_url: width: 1800 }}"
+              srcset="{{ block.settings.image | image_url: width: 900 }} 900w, {{ block.settings.image | image_url: width: 1400 }} 1400w, {{ block.settings.image | image_url: width: 1800 }} 1800w"
+              sizes="100vw"
+              alt="{{ block.settings.image_alt | default: block.settings.heading | escape }}"
+              width="{{ block.settings.image.width }}"
+              height="{{ block.settings.image.height }}"
+              {% if forloop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}
+            >
+          {% endif %}
+          <div class="hero-slider__scrim" aria-hidden="true"></div>
+        </div>
+
+        <div class="container hero-slider__content">
+          {% if block.settings.eyebrow != blank %}
+            <span class="hero-slider__word">{{ block.settings.eyebrow }}</span>
+          {% endif %}
+          <h1 class="hero-slider__heading">{{ block.settings.heading }}</h1>
+          {% if block.settings.body != blank %}
+            <div class="hero-slider__body">{{ block.settings.body }}</div>
+          {% endif %}
+          <div class="hero-slider__actions">
+            {% if block.settings.primary_label != blank %}
+              <a href="{{ block.settings.primary_url }}" class="btn btn--primary">{{ block.settings.primary_label }}</a>
+            {% endif %}
+            {% if block.settings.secondary_label != blank %}
+              <a href="{{ block.settings.secondary_url }}" class="btn btn--secondary">{{ block.settings.secondary_label }}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if section.blocks.size > 1 %}
+    <button type="button" class="hero-slider__arrow hero-slider__arrow--prev" data-hero-prev aria-label="Previous slide">
+      {% render 'icon', name: 'chevron' %}
+    </button>
+    <button type="button" class="hero-slider__arrow hero-slider__arrow--next" data-hero-next aria-label="Next slide">
+      {% render 'icon', name: 'chevron' %}
+    </button>
+
+    <div class="hero-slider__dots" role="tablist" aria-label="Choose a slide">
+      {% for block in section.blocks %}
+        <button
+          type="button"
+          class="hero-slider__dot{% if forloop.first %} is-active{% endif %}"
+          data-hero-dot
+          data-index="{{ forloop.index0 }}"
+          role="tab"
+          aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+          aria-label="{{ block.settings.eyebrow | default: block.settings.heading | escape }}"
+        >
+          <span class="hero-slider__dot-label">{{ block.settings.eyebrow | default: forloop.index }}</span>
+        </button>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if section.settings.show_stats %}
+    <div class="hero-slider__stats">
+      <div class="container">
+        <ul>
+          {% if settings.stat_customers_text != blank %}<li>{{ settings.stat_customers_text }}</li>{% endif %}
+          {% if settings.stat_price_text != blank %}<li>{{ settings.stat_price_text }}</li>{% endif %}
+          {% if settings.stat_shipping_text != blank %}<li>{{ settings.stat_shipping_text }}</li>{% endif %}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+</section>
+
+<script src="{{ 'hero-slider.js' | asset_url }}" defer></script>
+
+{% stylesheet %}
+  .hero-slider {
+    position: relative;
+    background: var(--color-navy);
+    color: #ffffff;
+    overflow: hidden;
+  }
+
+  .hero-slider__track {
+    position: relative;
+    display: grid;
+  }
+
+  /* Every slide sits in the same grid cell, so the slider is as tall as its
+     tallest slide and nothing jumps as they change. */
+  .hero-slider__slide {
+    grid-area: 1 / 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: clamp(420px, 62vh, 640px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 600ms ease;
+  }
+
+  .hero-slider__slide.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hero-slider__bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-slider__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Navy scrim, heavier on the left where the copy sits, so the headline
+     stays readable over any photograph the merchant uploads. */
+  .hero-slider__scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, var(--color-navy) 0%, color-mix(in srgb, var(--color-navy) 82%, transparent) 45%, color-mix(in srgb, var(--color-navy) 35%, transparent) 100%),
+      linear-gradient(0deg, color-mix(in srgb, var(--color-navy) 55%, transparent), transparent 60%);
+  }
+
+  .hero-slider__content {
+    position: relative;
+    padding-block: var(--space-8);
+    max-width: 44rem;
+    margin-inline: 0;
+    padding-inline: var(--space-5);
+  }
+
+  @media (min-width: 1440px) {
+    .hero-slider__content {
+      margin-inline: auto;
+      max-width: var(--page-width);
+    }
+
+    .hero-slider__content > * {
+      max-width: 44rem;
+    }
+  }
+
+  .hero-slider__word {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-amber);
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-slider__heading {
+    font-size: clamp(2.1rem, 1.4rem + 3vw, 3.9rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    margin-bottom: var(--space-4);
+    text-wrap: balance;
+  }
+
+  .hero-slider__body {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.86);
+    max-width: 34rem;
+  }
+
+  .hero-slider__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hero-slider__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .hero-slider__actions .btn--primary {
+    background: var(--color-amber);
+    color: var(--color-navy);
+    border-color: var(--color-amber);
+  }
+
+  .hero-slider__actions .btn--primary:hover {
+    background: color-mix(in srgb, var(--color-amber) 85%, white);
+    border-color: color-mix(in srgb, var(--color-amber) 85%, white);
+  }
+
+  .hero-slider__actions .btn--secondary {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.65);
+  }
+
+  .hero-slider__actions .btn--secondary:hover {
+    background: #ffffff;
+    color: var(--color-navy);
+  }
+
+  .hero-slider__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-navy) 55%, transparent);
+    color: #ffffff;
+    z-index: 2;
+  }
+
+  .hero-slider__arrow:hover {
+    background: var(--color-amber);
+    color: var(--color-navy);
+    border-color: var(--color-amber);
+  }
+
+  .hero-slider__arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hero-slider__arrow--prev {
+    left: var(--space-4);
+  }
+
+  .hero-slider__arrow--prev svg {
+    transform: rotate(90deg);
+  }
+
+  .hero-slider__arrow--next {
+    right: var(--space-4);
+  }
+
+  .hero-slider__arrow--next svg {
+    transform: rotate(-90deg);
+  }
+
+  @media (min-width: 900px) {
+    .hero-slider__arrow {
+      display: flex;
+    }
+  }
+
+  /* The dots are labelled BUY / SELL / BUILD rather than being anonymous
+     pips, so the brand line is readable even standing still. */
+  .hero-slider__dots {
+    position: relative;
+    display: flex;
+    gap: var(--space-2);
+    justify-content: center;
+    padding-bottom: var(--space-5);
+    z-index: 2;
+  }
+
+  .hero-slider__dot {
+    background: none;
+    border: 0;
+    padding: var(--space-2) var(--space-3);
+    min-height: 44px;
+    color: rgba(255, 255, 255, 0.55);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+  }
+
+  .hero-slider__dot.is-active {
+    color: var(--color-amber);
+    border-bottom-color: var(--color-amber);
+  }
+
+  .hero-slider__stats {
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-slider__stats ul {
+    list-style: none;
+    margin: 0;
+    padding: var(--space-4) 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-6);
+    justify-content: center;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-slider__slide {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero slider",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
+    { "type": "checkbox", "id": "autoplay", "label": "Advance slides automatically", "default": true },
+    { "type": "range", "id": "interval", "min": 3, "max": 12, "step": 1, "unit": "s", "label": "Seconds on each slide", "default": 6 },
+    { "type": "text", "id": "aria_label", "label": "Screen reader label for the slider", "default": "Buy, sell, build" },
+    { "type": "checkbox", "id": "show_stats", "label": "Show the trust stats strip", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Background image", "info": "Landscape, at least 1800px wide. The copy sits over the left of it." },
+        { "type": "text", "id": "image_alt", "label": "Image alt text" },
+        { "type": "text", "id": "eyebrow", "label": "Word", "info": "BUY, SELL or BUILD. Also used as the label on the slide button below the hero.", "default": "BUY" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Wholesale stock you can actually sell." },
+        { "type": "richtext", "id": "body", "label": "Body" },
+        { "type": "text", "id": "primary_label", "label": "Primary button label", "default": "Shop the stock" },
+        { "type": "url", "id": "primary_url", "label": "Primary button link" },
+        { "type": "text", "id": "secondary_label", "label": "Secondary button label" },
+        { "type": "url", "id": "secondary_url", "label": "Secondary button link" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Hero slider",
+      "blocks": [
+        { "type": "slide", "settings": { "eyebrow": "BUY" } },
+        { "type": "slide", "settings": { "eyebrow": "SELL" } },
+        { "type": "slide", "settings": { "eyebrow": "BUILD" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

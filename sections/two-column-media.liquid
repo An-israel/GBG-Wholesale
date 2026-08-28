@@ -1,4 +1,4 @@
-<section id="{{ section.settings.custom_id | default: section.id }}" class="two-col section {% if section.settings.image_position == 'right' %}two-col--image-right{% endif %}">
+<section id="{{ section.settings.custom_id | default: section.id }}" class="two-col section section--{{ section.settings.background }} {% if section.settings.image_position == 'right' %}two-col--image-right{% endif %}">
   <div class="container two-col__grid">
     <div class="two-col__media reveal">
       {% if section.settings.image %}
@@ -72,6 +72,14 @@
   "name": "Image with text",
   "settings": [
     { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
+    { "type": "select", "id": "background", "label": "Section background", "info": "Vary this down a page so each band reads as its own.", "options": [
+        { "value": "paper", "label": "Paper (light grey)" },
+        { "value": "white", "label": "White" },
+        { "value": "mist", "label": "Mist (pale navy)" },
+        { "value": "amber", "label": "Amber tint" },
+        { "value": "aqua", "label": "Aqua tint" },
+        { "value": "navy", "label": "Navy (dark)" }
+      ], "default": "white" },
     { "type": "select", "id": "image_position", "label": "Image position", "options": [
         { "value": "left", "label": "Left" },
         { "value": "right", "label": "Right" }

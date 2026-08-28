@@ -11,12 +11,14 @@
     },
     "lookup": {
       "type": "order-lookup",
-      "settings": {}
+      "settings": {
+        "background": "white"
+      }
     },
     "timings": {
       "type": "rich-text",
       "settings": {
-        "background": "paper",
+        "background": "mist",
         "narrow": true,
         "eyebrow": "WHAT TO EXPECT",
         "heading": "Normal timings",
@@ -26,7 +28,7 @@
     "problems": {
       "type": "content-cards",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "columns": "3",
         "eyebrow": "COMMON ISSUES",
         "heading": "If something doesn't look right",
@@ -59,7 +61,11 @@
           }
         }
       },
-      "block_order": ["p1", "p2", "p3"]
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ]
     },
     "help": {
       "type": "image-banner",
@@ -74,5 +80,11 @@
       }
     }
   },
-  "order": ["hero", "lookup", "timings", "problems", "help"]
+  "order": [
+    "hero",
+    "lookup",
+    "timings",
+    "problems",
+    "help"
+  ]
 }

@@ -17,7 +17,7 @@
     "guides": {
       "type": "content-cards",
       "settings": {
-        "background": "paper",
+        "background": "white",
         "columns": "2",
         "eyebrow": "THE GUIDES",
         "heading": "Four things worth your time"
@@ -74,7 +74,7 @@
     "next-steps": {
       "type": "content-cards",
       "settings": {
-        "background": "surface",
+        "background": "mist",
         "columns": "3",
         "eyebrow": "WHEN YOU'RE READY",
         "heading": "Three routes onward",
@@ -136,7 +136,8 @@
         "product_count": 4,
         "show_cta": true,
         "cta_text": "Shop everything",
-        "cta_url": "/collections/all"
+        "cta_url": "/collections/all",
+        "background": "white"
       }
     }
   },

@@ -17,7 +17,7 @@
     "what-we-provide": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "narrow": true,
         "heading": "Three things, together",
         "body": "",
@@ -58,18 +58,24 @@
       "type": "rich-text",
       "settings": {
         "custom_id": "founder-story",
-        "background": "ink",
+        "background": "navy",
         "narrow": true,
         "eyebrow": "THE FOUNDER STORY",
         "eyebrow_color": "navy",
-        "heading": "From a bridal business to a wholesale hub",
-        "body": "<p>It started in Lagos market, watching how goods were actually bought. In 2016 I started a small bridal accessories business and learned the rest order by order: sourcing, pricing, selling. That became GBL Accessories, and GBL Accessories became GBG Wholesale Hub. Same eye for product, built into something other women could buy from, sell from, and grow with.</p><p><em>Input equals output. We can hand you the stock and the roadmap. The rest is yours to build.</em></p>"
+        "heading": "I learned this the expensive way.",
+        "body": "<p>I grew up around Lagos market. Long before I sold anything myself, I was watching how it actually works: who buys what, who gets a good price, and who walks away with a box of stock nobody wants.</p><p>In 2016 I started a small bridal accessories business. I had a bag of stock and a WiFi connection, and no idea what I was doing. I bought the wrong things. I priced them wrong. I listed on the wrong platform and decided the product was the problem. Every one of those lessons cost me money, and I learned each one on my own, because there was nobody to ask who wasn't also trying to sell me something.</p><p>That business became GBL Accessories. GBL Accessories became GBG Wholesale Hub. Same eye for product, but built into something with the part I never had: someone to ask.</p><p>That is why the guides are free and why I answer messages myself. Not as a marketing tactic. Because I remember what it cost not to have them.</p><p><em>Input equals output. We can hand you the stock and the roadmap. The rest is yours to build.</em></p>",
+        "primary_label": "Shop what we stock",
+        "primary_link_source": "custom",
+        "primary_url": "/collections/all",
+        "secondary_label": "Read the free guides",
+        "secondary_link_source": "custom",
+        "secondary_url": "/pages/learn"
       }
     },
     "who-we-serve": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "mist",
         "narrow": true,
         "heading": "Who GBG is for"
       },
@@ -101,12 +107,14 @@
     },
     "founders-note": {
       "type": "founder-note",
-      "settings": {}
+      "settings": {
+        "background": "white"
+      }
     },
     "closing": {
       "type": "rich-text",
       "settings": {
-        "background": "paper",
+        "background": "navy",
         "narrow": true,
         "heading": "Welcome to GBG.",
         "body": "",
@@ -127,7 +135,8 @@
         "product_count": 4,
         "show_cta": true,
         "cta_text": "Shop everything",
-        "cta_url": "/collections/all"
+        "cta_url": "/collections/all",
+        "background": "white"
       }
     },
     "proof": {
@@ -135,7 +144,8 @@
       "settings": {
         "eyebrow": "PROOF",
         "heading": "What buyers say",
-        "body": "Screenshots and reviews from members, names blurred."
+        "body": "Screenshots and reviews from members, names blurred.",
+        "background": "amber"
       },
       "blocks": {
         "t1": {

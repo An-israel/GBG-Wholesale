@@ -14,7 +14,7 @@
     "diagnose": {
       "type": "content-cards",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "columns": "3",
         "eyebrow": "DIAGNOSE FIRST",
         "heading": "Your view count tells you what's wrong",
@@ -55,7 +55,7 @@
     "titles": {
       "type": "rich-text",
       "settings": {
-        "background": "paper",
+        "background": "mist",
         "narrow": true,
         "eyebrow": "STEP 01",
         "heading": "Titles: write for the search box, not for yourself",
@@ -104,7 +104,7 @@
     "photos": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "narrow": true,
         "eyebrow": "STEP 02",
         "heading": "Photos: your phone is fine, your lighting is the problem",
@@ -160,7 +160,7 @@
     "description": {
       "type": "rich-text",
       "settings": {
-        "background": "paper",
+        "background": "amber",
         "narrow": true,
         "eyebrow": "STEP 03",
         "heading": "Descriptions: answer the question before it's asked",
@@ -216,7 +216,7 @@
     "pricing": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "narrow": true,
         "eyebrow": "STEP 04",
         "heading": "Pricing: know your floor before you list anything",
@@ -230,7 +230,8 @@
       "type": "numbered-steps",
       "settings": {
         "eyebrow": "THE ROUTINE",
-        "heading": "A listing session that actually works"
+        "heading": "A listing session that actually works",
+        "background": "aqua"
       },
       "blocks": {
         "s1": {
@@ -288,7 +289,7 @@
     "next": {
       "type": "content-cards",
       "settings": {
-        "background": "paper",
+        "background": "navy",
         "columns": "3",
         "eyebrow": "READ NEXT",
         "heading": "Keep going"
@@ -337,7 +338,8 @@
         "product_count": 4,
         "show_cta": true,
         "cta_text": "Shop all jewellery",
-        "cta_url": "/collections/jewellery-accessories"
+        "cta_url": "/collections/jewellery-accessories",
+        "background": "white"
       }
     }
   },

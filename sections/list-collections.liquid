@@ -1,4 +1,4 @@
-<div class="container section list-collections">
+<div class="container section list-collections section--{{ section.settings.background }}">
   <div class="section-intro reveal">
     <span class="route-label">SHOP &rarr; ALL CATEGORIES</span>
     <h1>{{ 'collections.title' | t }}</h1>
@@ -71,6 +71,15 @@
 {% schema %}
 {
   "name": "Collections list",
-  "settings": []
+  "settings": [
+    { "type": "select", "id": "background", "label": "Section background", "info": "Vary this down a page so each band reads as its own.", "options": [
+        { "value": "paper", "label": "Paper (light grey)" },
+        { "value": "white", "label": "White" },
+        { "value": "mist", "label": "Mist (pale navy)" },
+        { "value": "amber", "label": "Amber tint" },
+        { "value": "aqua", "label": "Aqua tint" },
+        { "value": "navy", "label": "Navy (dark)" }
+      ], "default": "paper" }
+  ]
 }
 {% endschema %}

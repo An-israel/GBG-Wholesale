@@ -12,64 +12,175 @@
     "collect": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "narrow": true,
         "eyebrow": "WHAT WE COLLECT",
         "heading": "The information we hold",
         "body": "<p>We only collect what we need to sell to you and support you:</p>"
       },
       "blocks": {
-        "c1": { "type": "list_item", "settings": { "text": "Order details - your name, email, delivery address, phone number and what you bought." } },
-        "c2": { "type": "list_item", "settings": { "text": "Account details, if you create an account - your name, email and saved addresses." } },
-        "c3": { "type": "list_item", "settings": { "text": "Messages you send us through the contact form, the waitlist form or WhatsApp." } },
-        "c4": { "type": "list_item", "settings": { "text": "Marketing preferences - whether you've asked to hear about restocks and offers." } },
-        "c5": { "type": "list_item", "settings": { "text": "Technical and usage data collected by our website platform, such as your device type, approximate location and which pages you viewed." } },
-        "c6": { "type": "list_item", "settings": { "text": "We never see or store your full card details. Payments are handled entirely by Shopify's payment providers." } }
+        "c1": {
+          "type": "list_item",
+          "settings": {
+            "text": "Order details - your name, email, delivery address, phone number and what you bought."
+          }
+        },
+        "c2": {
+          "type": "list_item",
+          "settings": {
+            "text": "Account details, if you create an account - your name, email and saved addresses."
+          }
+        },
+        "c3": {
+          "type": "list_item",
+          "settings": {
+            "text": "Messages you send us through the contact form, the waitlist form or WhatsApp."
+          }
+        },
+        "c4": {
+          "type": "list_item",
+          "settings": {
+            "text": "Marketing preferences - whether you've asked to hear about restocks and offers."
+          }
+        },
+        "c5": {
+          "type": "list_item",
+          "settings": {
+            "text": "Technical and usage data collected by our website platform, such as your device type, approximate location and which pages you viewed."
+          }
+        },
+        "c6": {
+          "type": "list_item",
+          "settings": {
+            "text": "We never see or store your full card details. Payments are handled entirely by Shopify's payment providers."
+          }
+        }
       },
-      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6"]
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6"
+      ]
     },
     "why": {
       "type": "rich-text",
       "settings": {
-        "background": "paper",
+        "background": "mist",
         "narrow": true,
         "eyebrow": "WHY WE USE IT",
         "heading": "How your information is used, and our lawful basis",
         "body": "<p>We use your information to fulfil your order, to provide support, to meet our legal obligations, and - only where you've agreed - to send you marketing.</p>"
       },
       "blocks": {
-        "w1": { "type": "list_item", "settings": { "text": "To process and deliver your order, and to handle returns and refunds. Lawful basis: performance of our contract with you." } },
-        "w2": { "type": "list_item", "settings": { "text": "To answer your questions and provide customer support. Lawful basis: performance of our contract, or our legitimate interest in helping you." } },
-        "w3": { "type": "list_item", "settings": { "text": "To send restock alerts, offers and community updates. Lawful basis: your consent, which you can withdraw at any time." } },
-        "w4": { "type": "list_item", "settings": { "text": "To keep records required for tax and accounting. Lawful basis: our legal obligation." } },
-        "w5": { "type": "list_item", "settings": { "text": "To protect against fraud and keep the site secure. Lawful basis: our legitimate interest in running the business safely." } },
-        "w6": { "type": "list_item", "settings": { "text": "We do not sell your personal information to anyone, and we never will." } }
+        "w1": {
+          "type": "list_item",
+          "settings": {
+            "text": "To process and deliver your order, and to handle returns and refunds. Lawful basis: performance of our contract with you."
+          }
+        },
+        "w2": {
+          "type": "list_item",
+          "settings": {
+            "text": "To answer your questions and provide customer support. Lawful basis: performance of our contract, or our legitimate interest in helping you."
+          }
+        },
+        "w3": {
+          "type": "list_item",
+          "settings": {
+            "text": "To send restock alerts, offers and community updates. Lawful basis: your consent, which you can withdraw at any time."
+          }
+        },
+        "w4": {
+          "type": "list_item",
+          "settings": {
+            "text": "To keep records required for tax and accounting. Lawful basis: our legal obligation."
+          }
+        },
+        "w5": {
+          "type": "list_item",
+          "settings": {
+            "text": "To protect against fraud and keep the site secure. Lawful basis: our legitimate interest in running the business safely."
+          }
+        },
+        "w6": {
+          "type": "list_item",
+          "settings": {
+            "text": "We do not sell your personal information to anyone, and we never will."
+          }
+        }
       },
-      "block_order": ["w1", "w2", "w3", "w4", "w5", "w6"]
+      "block_order": [
+        "w1",
+        "w2",
+        "w3",
+        "w4",
+        "w5",
+        "w6"
+      ]
     },
     "share": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "narrow": true,
         "eyebrow": "WHO SEES IT",
         "heading": "Who we share your information with",
         "body": "<p>We share only what is necessary, only with providers who need it to do their job for us:</p>"
       },
       "blocks": {
-        "s1": { "type": "list_item", "settings": { "text": "Shopify, which hosts this store and processes orders on our behalf." } },
-        "s2": { "type": "list_item", "settings": { "text": "Payment providers, who process your payment securely and hold the card details we never see." } },
-        "s3": { "type": "list_item", "settings": { "text": "Delivery carriers, who receive your name and address so your parcel can reach you." } },
-        "s4": { "type": "list_item", "settings": { "text": "Our email provider, where you've consented to marketing." } },
-        "s5": { "type": "list_item", "settings": { "text": "Professional advisers and authorities, where we are legally required to disclose information." } },
-        "s6": { "type": "list_item", "settings": { "text": "Some of these providers operate outside the UK. Where that happens, transfers are covered by the safeguards required under UK data protection law." } }
+        "s1": {
+          "type": "list_item",
+          "settings": {
+            "text": "Shopify, which hosts this store and processes orders on our behalf."
+          }
+        },
+        "s2": {
+          "type": "list_item",
+          "settings": {
+            "text": "Payment providers, who process your payment securely and hold the card details we never see."
+          }
+        },
+        "s3": {
+          "type": "list_item",
+          "settings": {
+            "text": "Delivery carriers, who receive your name and address so your parcel can reach you."
+          }
+        },
+        "s4": {
+          "type": "list_item",
+          "settings": {
+            "text": "Our email provider, where you've consented to marketing."
+          }
+        },
+        "s5": {
+          "type": "list_item",
+          "settings": {
+            "text": "Professional advisers and authorities, where we are legally required to disclose information."
+          }
+        },
+        "s6": {
+          "type": "list_item",
+          "settings": {
+            "text": "Some of these providers operate outside the UK. Where that happens, transfers are covered by the safeguards required under UK data protection law."
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6"]
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ]
     },
     "retention": {
       "type": "rich-text",
       "settings": {
-        "background": "paper",
+        "background": "amber",
         "narrow": true,
         "eyebrow": "HOW LONG",
         "heading": "How long we keep it",
@@ -79,27 +190,70 @@
     "rights": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "white",
         "narrow": true,
         "eyebrow": "YOUR RIGHTS",
         "heading": "What you can ask us to do",
         "body": "<p>Under UK GDPR you have the right to:</p>"
       },
       "blocks": {
-        "r1": { "type": "list_item", "settings": { "text": "Ask for a copy of the personal information we hold about you." } },
-        "r2": { "type": "list_item", "settings": { "text": "Ask us to correct anything that's wrong or incomplete." } },
-        "r3": { "type": "list_item", "settings": { "text": "Ask us to delete your information, where we're not legally required to keep it." } },
-        "r4": { "type": "list_item", "settings": { "text": "Ask us to restrict or stop processing it, including objecting to marketing at any time." } },
-        "r5": { "type": "list_item", "settings": { "text": "Ask for your information in a portable format." } },
-        "r6": { "type": "list_item", "settings": { "text": "Withdraw consent at any time, without affecting anything done before you withdrew it." } },
-        "r7": { "type": "list_item", "settings": { "text": "Complain to the Information Commissioner's Office (ico.org.uk) if you think we've handled your data badly. We'd appreciate the chance to put it right first." } }
+        "r1": {
+          "type": "list_item",
+          "settings": {
+            "text": "Ask for a copy of the personal information we hold about you."
+          }
+        },
+        "r2": {
+          "type": "list_item",
+          "settings": {
+            "text": "Ask us to correct anything that's wrong or incomplete."
+          }
+        },
+        "r3": {
+          "type": "list_item",
+          "settings": {
+            "text": "Ask us to delete your information, where we're not legally required to keep it."
+          }
+        },
+        "r4": {
+          "type": "list_item",
+          "settings": {
+            "text": "Ask us to restrict or stop processing it, including objecting to marketing at any time."
+          }
+        },
+        "r5": {
+          "type": "list_item",
+          "settings": {
+            "text": "Ask for your information in a portable format."
+          }
+        },
+        "r6": {
+          "type": "list_item",
+          "settings": {
+            "text": "Withdraw consent at any time, without affecting anything done before you withdrew it."
+          }
+        },
+        "r7": {
+          "type": "list_item",
+          "settings": {
+            "text": "Complain to the Information Commissioner's Office (ico.org.uk) if you think we've handled your data badly. We'd appreciate the chance to put it right first."
+          }
+        }
       },
-      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6", "r7"]
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7"
+      ]
     },
     "cookies": {
       "type": "rich-text",
       "settings": {
-        "background": "paper",
+        "background": "aqua",
         "narrow": true,
         "eyebrow": "COOKIES",
         "heading": "Cookies and tracking",
@@ -120,5 +274,14 @@
       }
     }
   },
-  "order": ["hero", "collect", "why", "share", "retention", "rights", "cookies", "contact"]
+  "order": [
+    "hero",
+    "collect",
+    "why",
+    "share",
+    "retention",
+    "rights",
+    "cookies",
+    "contact"
+  ]
 }

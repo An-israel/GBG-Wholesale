@@ -18,7 +18,7 @@
       "type": "rich-text",
       "settings": {
         "custom_id": "wholesale-basics",
-        "background": "surface",
+        "background": "white",
         "narrow": true,
         "eyebrow": "THE BASICS",
         "heading": "What wholesale actually means",
@@ -31,7 +31,7 @@
     "ready-checklist": {
       "type": "rich-text",
       "settings": {
-        "background": "paper",
+        "background": "amber",
         "narrow": true,
         "eyebrow": "CHECKLIST",
         "heading": "Are you ready?"
@@ -72,9 +72,9 @@
     "choose-by-need": {
       "type": "routing-cards",
       "settings": {
-        "on_surface": true,
         "eyebrow": "PICK YOUR ROUTE",
-        "heading": "What do you need first?"
+        "heading": "What do you need first?",
+        "background": "white"
       },
       "blocks": {
         "c1": {
@@ -116,7 +116,8 @@
       "settings": {
         "custom_id": "roadmap",
         "eyebrow": "THE ROADMAP",
-        "heading": "Seven steps"
+        "heading": "Seven steps",
+        "background": "white"
       },
       "blocks": {
         "s1": {
@@ -178,9 +179,9 @@
       "type": "routing-cards",
       "settings": {
         "custom_id": "first-reads",
-        "on_surface": true,
         "eyebrow": "READ THESE FIRST",
-        "heading": "Three that save you money"
+        "heading": "Three that save you money",
+        "background": "aqua"
       },
       "blocks": {
         "f1": {
@@ -220,7 +221,7 @@
     "join-before-buy": {
       "type": "rich-text",
       "settings": {
-        "background": "ink",
+        "background": "navy",
         "narrow": true,
         "eyebrow": "COMMUNITY",
         "eyebrow_color": "navy",
@@ -235,7 +236,7 @@
     "want-structure": {
       "type": "rich-text",
       "settings": {
-        "background": "surface",
+        "background": "mist",
         "narrow": true,
         "eyebrow": "ACADEMY",
         "eyebrow_color": "navy",
@@ -258,7 +259,8 @@
         "product_count": 4,
         "show_cta": true,
         "cta_text": "See all Starter Boxes",
-        "cta_url": "/collections/starter-boxes"
+        "cta_url": "/collections/starter-boxes",
+        "background": "mist"
       }
     },
     "proof": {
@@ -266,7 +268,8 @@
       "settings": {
         "eyebrow": "PROOF",
         "heading": "People who started exactly here",
-        "body": "Screenshots and reviews from members, names blurred."
+        "body": "Screenshots and reviews from members, names blurred.",
+        "background": "white"
       },
       "blocks": {
         "t1": {
