@@ -1,10 +1,16 @@
 {% liquid
-  assign published_date = article.published_at | date: '%B %d, %Y'
+  assign published_date = article.published_at | date: '%-d %B %Y'
 %}
 
 <article class="container section article-page">
   <div class="article-page__header reveal">
-    <span class="route-label">LEARN &rarr; {{ blog.title | upcase }}</span>
+    {% if article.tags.size > 0 %}
+      <a class="route-label route-label--amber" href="{{ blog.url }}/tagged/{{ article.tags.first }}">
+        {{ article.tags.first | replace: '-', ' ' | upcase }}
+      </a>
+    {% else %}
+      <span class="route-label route-label--amber">{{ blog.title | upcase }}</span>
+    {% endif %}
     <h1>{{ article.title }}</h1>
     <p class="field__hint">{{ 'blog.article_metadata_html' | t: date: published_date, author: article.author }}</p>
   </div>
@@ -22,7 +28,16 @@
 
   <div class="article-page__content">{{ article.content }}</div>
 
-  <a href="{{ blog.url }}" class="btn btn--secondary">{{ 'blog.back_to_blog' | t }}</a>
+  <div class="article-page__next">
+    <h2>Where to next</h2>
+    <div class="article-page__next-actions">
+      <a href="{{ section.settings.cta_url | default: routes.all_products_collection_url }}" class="btn btn--primary">
+        {{ section.settings.cta_label | default: 'Shop the stock' }}
+      </a>
+      <a href="/pages/learn" class="btn btn--secondary">Read the guides</a>
+      <a href="{{ blog.url }}" class="btn btn--ghost">{{ 'blog.back_to_blog' | t }}</a>
+    </div>
+  </div>
 
   {% if blog.comments_enabled? %}
     <div class="article-page__comments">
@@ -92,6 +107,26 @@
     margin-bottom: var(--space-6);
   }
 
+  .article-page__next {
+    max-width: 68ch;
+    margin-top: var(--space-7);
+    padding: var(--space-5);
+    border-radius: var(--radius);
+    background: var(--color-paper);
+    border: 1px solid var(--color-border);
+  }
+
+  .article-page__next h2 {
+    font-size: 1.15rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .article-page__next-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
   .article-page__comments {
     max-width: 68ch;
     margin-top: var(--space-8);
@@ -113,6 +148,9 @@
 {% schema %}
 {
   "name": "Article",
-  "settings": []
+  "settings": [
+    { "type": "text", "id": "cta_label", "label": "Main button label", "default": "Shop the stock" },
+    { "type": "url", "id": "cta_url", "label": "Main button link", "info": "Defaults to the full catalogue." }
+  ]
 }
 {% endschema %}

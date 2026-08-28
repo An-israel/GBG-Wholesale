@@ -36,7 +36,9 @@
             "link3_label": "Academy",
             "link3_url": "/pages/academy",
             "link4_label": "Starter Boxes",
-            "link4_url": "/collections/starter-boxes"
+            "link4_url": "/collections/starter-boxes",
+            "link5_label": "Blog",
+            "link5_url": "/blogs/news"
           }
         },
         "support": {

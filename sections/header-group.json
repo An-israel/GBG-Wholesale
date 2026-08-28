@@ -66,12 +66,20 @@
             "label": "Community",
             "url": "/pages/community"
           }
+        },
+        "blog": {
+          "type": "link",
+          "settings": {
+            "label": "Blog",
+            "url": "/blogs/news"
+          }
         }
       },
       "block_order": [
         "shop",
         "start-here",
         "learn",
+        "blog",
         "academy",
         "community",
         "about"

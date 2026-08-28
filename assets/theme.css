@@ -658,6 +658,63 @@ textarea.input {
   font-weight: 700;
 }
 
+/* Quick filter pills. Shared by the shop and the blog, so they live here
+   rather than inside either section's own stylesheet. */
+.collection__quick {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.collection__quick-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-right: var(--space-2);
+}
+
+.collection__pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 var(--space-4);
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.collection__pill:hover {
+  border-color: var(--color-accent);
+}
+
+.collection__pill.is-active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-on-accent);
+  font-weight: 700;
+}
+
+/* Dropship is the filter people come looking for, so it carries the amber
+   even when it is not the active one. */
+.collection__pill--dropship {
+  border-color: var(--color-amber);
+  background: var(--color-amber-soft);
+}
+
+.collection__pill--dropship.is-active {
+  background: var(--color-amber);
+  border-color: var(--color-amber);
+  color: var(--color-navy);
+}
+
 /* Utility */
 .text-center {
   text-align: center;

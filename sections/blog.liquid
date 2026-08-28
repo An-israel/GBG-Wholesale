@@ -1,63 +1,188 @@
-<div class="container section blog-page">
-  <div class="section-intro reveal">
-    <span class="route-label">LEARN &rarr; BLOG</span>
-    <h1>{{ blog.title }}</h1>
-  </div>
+{%- comment -%}
+  Blog listing.
 
-  {% paginate blog.articles by 9 %}
-    <div class="grid grid--3">
-      {% for article in blog.articles %}
-        {% assign published_date = article.published_at | date: '%B %d, %Y' %}
-        <a href="{{ article.url }}" class="blog-page__card card reveal">
-          {% if article.image %}
-            <img
-              src="{{ article.image | image_url: width: 600 }}"
-              alt="{{ article.image.alt | default: article.title | escape }}"
-              loading="lazy"
-              width="{{ article.image.width }}"
-              height="{{ article.image.height }}"
-            >
-          {% endif %}
-          <div class="blog-page__body">
-            <h2>{{ article.title }}</h2>
-            <p class="field__hint">{{ 'blog.article_metadata_html' | t: date: published_date, author: article.author }}</p>
-            <p>{{ article.excerpt | default: article.content | strip_html | truncatewords: 20 }}</p>
-          </div>
-        </a>
-      {% endfor %}
+  The four post types are tags: restock, selling-tips, member-stories and
+  behind-the-scenes. Tag an article and it appears under the matching filter,
+  which is the same tag-driven approach the shop uses, so there is one thing
+  to learn rather than two.
+{%- endcomment -%}
+
+<section class="section section--{{ section.settings.background }} blog-page">
+  <div class="container">
+    <div class="section-intro reveal">
+      {% if section.settings.eyebrow != blank %}
+        <span class="route-label route-label--amber">{{ section.settings.eyebrow }}</span>
+      {% endif %}
+      <h1>{{ section.settings.heading | default: blog.title }}</h1>
+      {% if section.settings.body != blank %}
+        <div class="blog-page__intro">{{ section.settings.body }}</div>
+      {% endif %}
     </div>
 
-    {% if paginate.pages > 1 %}
-      {% render 'pagination', paginate: paginate %}
+    {% if section.settings.show_filters %}
+      {%- liquid
+        assign type_tags = 'restock,selling-tips,member-stories,behind-the-scenes' | split: ','
+        assign type_names = 'Restocks,Selling tips,Member stories,Behind the scenes' | split: ','
+      -%}
+      <div class="collection__quick">
+        <span class="collection__quick-label">Filter</span>
+        <a class="collection__pill{% unless current_tags %} is-active{% endunless %}" href="{{ blog.url }}">Everything</a>
+        {% for tag in type_tags %}
+          {%- comment -%}
+            Only offer a filter the blog can actually fill, so nobody clicks
+            through to an empty page.
+          {%- endcomment -%}
+          {% if blog.all_tags contains tag %}
+            <a
+              class="collection__pill{% if current_tags contains tag %} is-active{% endif %}"
+              href="{{ blog.url }}/tagged/{{ tag }}"
+            >{{ type_names[forloop.index0] }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
     {% endif %}
-  {% endpaginate %}
-</div>
+
+    {% paginate blog.articles by 9 %}
+      {% if blog.articles.size > 0 %}
+        <div class="grid grid--3">
+          {% for article in blog.articles %}
+            {% assign published_date = article.published_at | date: '%-d %B %Y' %}
+            <a href="{{ article.url }}" class="blog-page__card card reveal">
+              {% if article.image %}
+                <img
+                  src="{{ article.image | image_url: width: 700 }}"
+                  srcset="{{ article.image | image_url: width: 450 }} 450w, {{ article.image | image_url: width: 700 }} 700w"
+                  sizes="(min-width: 900px) 33vw, 100vw"
+                  alt="{{ article.image.alt | default: article.title | escape }}"
+                  loading="lazy"
+                  width="{{ article.image.width }}"
+                  height="{{ article.image.height }}"
+                >
+              {% else %}
+                <div class="blog-page__placeholder" aria-hidden="true"></div>
+              {% endif %}
+              <div class="blog-page__body">
+                {% if article.tags.size > 0 %}
+                  <span class="blog-page__tag">{{ article.tags.first | replace: '-', ' ' }}</span>
+                {% endif %}
+                <h2>{{ article.title }}</h2>
+                <p class="blog-page__meta">{{ published_date }}</p>
+                <p>{{ article.excerpt_or_content | strip_html | truncatewords: 22 }}</p>
+                <span class="blog-page__cue">Read it {% render 'icon', name: 'arrow-right' %}</span>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+
+        {% if paginate.pages > 1 %}
+          {% render 'pagination', paginate: paginate %}
+        {% endif %}
+      {% else %}
+        <div class="collection__empty">
+          <p>Nothing posted under that filter yet.</p>
+          <a href="{{ blog.url }}" class="btn btn--secondary">See everything</a>
+        </div>
+      {% endif %}
+    {% endpaginate %}
+  </div>
+</section>
 
 {% stylesheet %}
   .blog-page .route-label {
     margin-bottom: var(--space-3);
   }
 
-  .blog-page__card {
-    text-decoration: none;
-    color: var(--color-ink);
-    overflow: hidden;
+  .blog-page__intro {
+    max-width: 58ch;
+    color: var(--color-muted);
   }
 
-  .blog-page__card img {
+  .blog-page__card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  .blog-page__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 2px 4px rgba(0, 26, 63, 0.06), 0 16px 32px rgba(0, 26, 63, 0.1);
+  }
+
+  .blog-page__card img,
+  .blog-page__placeholder {
     width: 100%;
     aspect-ratio: 16 / 10;
     object-fit: cover;
   }
 
+  .blog-page__placeholder {
+    background: linear-gradient(135deg, var(--color-paper), var(--color-border));
+  }
+
   .blog-page__body {
-    padding: var(--space-4);
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    flex: 1;
+  }
+
+  .blog-page__tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-amber-text);
+  }
+
+  .blog-page__body h2 {
+    font-size: 1.15rem;
+    margin: 0;
+  }
+
+  .blog-page__meta {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    margin: 0;
+  }
+
+  .blog-page__cue {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: auto;
+    padding-top: var(--space-2);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .blog-page__cue svg {
+    width: 14px;
+    height: 14px;
   }
 {% endstylesheet %}
 
 {% schema %}
 {
-  "name": "Blog",
-  "settings": []
+  "name": "Blog posts",
+  "settings": [
+    { "type": "select", "id": "background", "label": "Section background", "options": [
+        { "value": "paper", "label": "Paper (light grey)" },
+        { "value": "white", "label": "White" },
+        { "value": "mist", "label": "Mist (pale navy)" },
+        { "value": "amber", "label": "Amber tint" },
+        { "value": "aqua", "label": "Aqua tint" }
+      ], "default": "white" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label", "default": "THE BLOG" },
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Leave blank to use the blog's own title." },
+    { "type": "richtext", "id": "body", "label": "Intro text" },
+    { "type": "checkbox", "id": "show_filters", "label": "Show the post type filters", "info": "Tag articles restock, selling-tips, member-stories or behind-the-scenes and they appear under the matching filter.", "default": true }
+  ]
 }
 {% endschema %}
