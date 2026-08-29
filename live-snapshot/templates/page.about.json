@@ -1,0 +1,189 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "compact": false,
+        "eyebrow": "ABOUT GBG",
+        "heading": "Started with a bag of stock and a WiFi connection.",
+        "body": "<p>Global Biz Gateway. A wholesaler sells you stock and moves on. We hand you the stock and the map: what to sell it as, where to sell it, and who to ask when you're stuck.</p>",
+        "primary_label": "Shop the stock",
+        "primary_url": "/collections/all",
+        "layout": "overlay",
+        "secondary_label": "New to this? Start here",
+        "secondary_url": "/pages/start-here"
+      }
+    },
+    "what-we-provide": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": true,
+        "heading": "Three things, together",
+        "body": "",
+        "primary_label": "Shop the stock",
+        "primary_link_source": "custom",
+        "primary_url": "/collections/all",
+        "secondary_label": "Read the guides",
+        "secondary_link_source": "custom",
+        "secondary_url": "/pages/learn"
+      },
+      "blocks": {
+        "l1": {
+          "type": "list_item",
+          "settings": {
+            "text": "Real wholesale stock at low minimums. No 500-unit orders to get started."
+          }
+        },
+        "l2": {
+          "type": "list_item",
+          "settings": {
+            "text": "The guides to actually sell it: what to pick, where to list it, what to charge."
+          }
+        },
+        "l3": {
+          "type": "list_item",
+          "settings": {
+            "text": "A community that answers the questions Google can't."
+          }
+        }
+      },
+      "block_order": [
+        "l1",
+        "l2",
+        "l3"
+      ]
+    },
+    "founder-story": {
+      "type": "rich-text",
+      "settings": {
+        "custom_id": "founder-story",
+        "background": "ink",
+        "narrow": true,
+        "eyebrow": "THE FOUNDER STORY",
+        "eyebrow_color": "navy",
+        "heading": "From a bridal business to a wholesale hub",
+        "body": "<p>It started in Lagos market, watching how goods were actually bought. In 2016 I started a small bridal accessories business and learned the rest order by order: sourcing, pricing, selling. That became GBL Accessories, and GBL Accessories became GBG Wholesale Hub. Same eye for product, built into something other women could buy from, sell from, and grow with.</p><p><em>Input equals output. We can hand you the stock and the roadmap. The rest is yours to build.</em></p>"
+      }
+    },
+    "who-we-serve": {
+      "type": "rich-text",
+      "settings": {
+        "background": "surface",
+        "narrow": true,
+        "heading": "Who GBG is for"
+      },
+      "blocks": {
+        "w1": {
+          "type": "list_item",
+          "settings": {
+            "text": "The complete beginner who's never sold anything online."
+          }
+        },
+        "w2": {
+          "type": "list_item",
+          "settings": {
+            "text": "The reseller who needs reliable stock at real margins."
+          }
+        },
+        "w3": {
+          "type": "list_item",
+          "settings": {
+            "text": "The direct buyer who just wants the product, no business pitch."
+          }
+        }
+      },
+      "block_order": [
+        "w1",
+        "w2",
+        "w3"
+      ]
+    },
+    "founders-note": {
+      "type": "founder-note",
+      "settings": {}
+    },
+    "closing": {
+      "type": "rich-text",
+      "settings": {
+        "background": "paper",
+        "narrow": true,
+        "heading": "Welcome to GBG.",
+        "body": "",
+        "primary_label": "Shop the stock",
+        "primary_link_source": "custom",
+        "primary_url": "/collections/all",
+        "secondary_label": "Start Here",
+        "secondary_link_source": "custom",
+        "secondary_url": "/pages/start-here"
+      }
+    },
+    "shop-this": {
+      "type": "featured-products",
+      "settings": {
+        "eyebrow": "WHAT WE STOCK",
+        "heading": "GBG best sellers",
+        "collection": "best-sellers",
+        "product_count": 4,
+        "show_cta": true,
+        "cta_text": "Shop everything",
+        "cta_url": "/collections/all"
+      }
+    },
+    "proof": {
+      "type": "testimonial-blocks",
+      "settings": {
+        "eyebrow": "PROOF",
+        "heading": "What buyers say",
+        "body": "Screenshots and reviews from members, names blurred."
+      },
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "caption": "Sold within days of her first Starter Box.",
+            "rating": 5
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "caption": "Reordered three times in two months.",
+            "rating": 5
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "caption": "Asked one question, got a real answer.",
+            "rating": 5
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "what-we-provide",
+    "founder-story",
+    "who-we-serve",
+    "founders-note",
+    "proof",
+    "shop-this",
+    "closing"
+  ]
+}

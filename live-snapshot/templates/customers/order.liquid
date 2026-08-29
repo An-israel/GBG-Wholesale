@@ -1,0 +1,54 @@
+{% liquid
+  assign order_date = order.created_at | date: '%d %b %Y'
+%}
+<div class="container section account-page">
+  <div class="account-page__header">
+    <span class="route-label">ORDER {{ order.name }}</span>
+    <h1>{{ 'customers.order.title' | t: name: order.name }}</h1>
+    <p class="field__hint">{{ 'customers.order.date_html' | t: date: order_date }}</p>
+  </div>
+
+  {% if customer.orders_count == 1 %}
+    <div class="account-page__hub-banner reveal">
+      <span class="route-label route-label--amber">UNLOCKED</span>
+      <h2>You've unlocked the GBG Wholesale Hub</h2>
+      <p>This was your first order - you're now a verified buyer with access to deal drops, restock alerts, and the active reseller community.</p>
+      {% if settings.wholesale_hub_join_link != blank %}
+        <a href="{{ settings.wholesale_hub_join_link }}" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp">Join the Wholesale Hub</a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="account-page__shipping reveal">
+    <h2>Delivery</h2>
+    {% render 'product-shipping' %}
+  </div>
+
+  <div class="card account-page__card">
+    <table class="account-page__table">
+      <thead>
+        <tr>
+          <th scope="col">Item</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for line_item in order.line_items %}
+          <tr>
+            <td>{{ line_item.title }}</td>
+            <td>{{ line_item.quantity }}</td>
+            <td>{{ line_item.final_line_price | money }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p class="account-page__meta" style="text-align:right;">
+      <strong>Total: {{ order.total_price | money }}</strong>
+    </p>
+  </div>
+
+  <p class="account-page__meta">
+    <a href="{{ routes.account_url }}">&larr; {{ 'customers.account.title' | t }}</a>
+  </p>
+</div>

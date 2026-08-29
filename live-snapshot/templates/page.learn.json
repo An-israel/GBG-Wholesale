@@ -1,0 +1,159 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "compact": true,
+        "layout": "overlay",
+        "eyebrow": "LEARN",
+        "heading": "Know what you're doing before you spend a penny.",
+        "body": "<p>Three guides and a working calculator. Free, no signup, no upsell.</p>",
+        "primary_label": "Start with the Platform Guide",
+        "primary_url": "/pages/learn-platform-guide",
+        "secondary_label": "Shop the stock",
+        "secondary_url": "/collections/all"
+      }
+    },
+    "guides": {
+      "type": "content-cards",
+      "settings": {
+        "background": "paper",
+        "columns": "2",
+        "eyebrow": "THE GUIDES",
+        "heading": "Four things worth your time"
+      },
+      "blocks": {
+        "g1": {
+          "type": "card",
+          "settings": {
+            "label": "GUIDE 01",
+            "heading": "Platform Guide",
+            "body": "<p>Where to sell what, and why the same item performs completely differently on Vinted, eBay, TikTok Shop and Facebook Marketplace. Includes a category-by-category match for everything GBG stocks, and a six-step method for choosing a platform for a new pack.</p>",
+            "link_text": "Read the Platform Guide",
+            "link_url": "/pages/learn-platform-guide"
+          }
+        },
+        "g2": {
+          "type": "card",
+          "settings": {
+            "label": "GUIDE 02",
+            "heading": "Pricing Calculator",
+            "body": "<p>A working tool, not an article. Put in your pack cost, unit count, packaging and platform fee, and it gives you the lowest price you can list at without losing money. Know that number before you ever accept an offer.</p>",
+            "link_text": "Open the calculator",
+            "link_url": "/pages/faq#pricing-calculator"
+          }
+        },
+        "g3": {
+          "type": "card",
+          "settings": {
+            "label": "GUIDE 03",
+            "heading": "Listings Guide",
+            "body": "<p>How to write a listing that gets found and then gets bought - titles built from real search words, phone photography that works, descriptions that answer questions before they're asked, and how to diagnose a failing listing from its own view count.</p>",
+            "link_text": "Read the Listings Guide",
+            "link_url": "/pages/learn-listings-guide"
+          }
+        },
+        "g4": {
+          "type": "card",
+          "settings": {
+            "label": "GUIDE 04",
+            "heading": "Platform Safety Guide",
+            "body": "<p>The listing patterns that get reseller accounts restricted, how to grow without tripping them, what to do in what order if you're already restricted, and how to avoid the scams that target sellers rather than buyers.</p>",
+            "link_text": "Read the Safety Guide",
+            "link_url": "/pages/learn-platform-safety-guide"
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ]
+    },
+    "next-steps": {
+      "type": "content-cards",
+      "settings": {
+        "background": "surface",
+        "columns": "3",
+        "eyebrow": "WHEN YOU'RE READY",
+        "heading": "Three routes onward",
+        "body": ""
+      },
+      "blocks": {
+        "n1": {
+          "type": "card",
+          "settings": {
+            "heading": "Buy your first pack",
+            "body": "<p>You know what sells where and what to charge. Start with a Starter Box if you want the lowest-risk entry.</p>",
+            "link_text": "Shop Starter Boxes",
+            "link_url": "/collections/starter-boxes"
+          }
+        },
+        "n2": {
+          "type": "card",
+          "settings": {
+            "heading": "Ask the community",
+            "body": "<p>SYPB is free and open. Ask the questions the guides didn't answer, before you spend anything.</p>",
+            "link_text": "About the communities",
+            "link_url": "/pages/community"
+          }
+        },
+        "n3": {
+          "type": "card",
+          "settings": {
+            "heading": "Get guided properly",
+            "body": "<p>If reading isn't enough and you want someone reviewing your actual listings and numbers, join the Academy.</p>",
+            "link_text": "Join the Academy",
+            "link_url": "/pages/academy"
+          }
+        }
+      },
+      "block_order": [
+        "n1",
+        "n2",
+        "n3"
+      ]
+    },
+    "cta": {
+      "type": "image-banner",
+      "settings": {
+        "height": "compact",
+        "align": "center",
+        "eyebrow": "STILL STUCK?",
+        "heading": "Ask before you spend.",
+        "body": "<p>If a guide doesn't fit your situation, message us and we'll tell you what we'd actually do.</p>",
+        "primary_label": "Message us on WhatsApp",
+        "primary_link_source": "whatsapp_link"
+      }
+    },
+    "shop-this": {
+      "type": "featured-products",
+      "settings": {
+        "eyebrow": "READY?",
+        "heading": "The stock these guides are about",
+        "collection": "best-sellers",
+        "product_count": 4,
+        "show_cta": true,
+        "cta_text": "Shop everything",
+        "cta_url": "/collections/all"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "guides",
+    "next-steps",
+    "shop-this",
+    "cta"
+  ]
+}
