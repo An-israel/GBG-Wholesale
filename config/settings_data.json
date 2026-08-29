@@ -54,6 +54,7 @@
     "show_resale_estimate": true,
     "resale_low_multiple": 1.6,
     "resale_high_multiple": 2.2,
-    "enable_judgeme": true
+    "enable_judgeme": true,
+    "judgeme_theme_widget": false
   }
 }

@@ -70,7 +70,8 @@
           "settings": {
             "title": "Electronics",
             "collection": "electronics",
-            "manual_url": "/collections/electronics"
+            "manual_url": "/collections/electronics",
+            "image": "shopify://shop_images/IMG_0528.heic"
           }
         },
         "t3": {
@@ -78,7 +79,8 @@
           "settings": {
             "title": "Fashion",
             "collection": "fashion",
-            "manual_url": "/collections/fashion"
+            "manual_url": "/collections/fashion",
+            "image": "shopify://shop_images/IMG_0604.heic"
           }
         },
         "t4": {
@@ -86,7 +88,8 @@
           "settings": {
             "title": "Home & Lifestyle",
             "collection": "home-lifestyle",
-            "manual_url": "/collections/home-lifestyle"
+            "manual_url": "/collections/home-lifestyle",
+            "image": "shopify://shop_images/IMG_4470.jpg"
           }
         },
         "t5": {
@@ -94,7 +97,8 @@
           "settings": {
             "title": "Starter Boxes",
             "collection": "starter-boxes",
-            "manual_url": "/collections/starter-boxes"
+            "manual_url": "/collections/starter-boxes",
+            "image": "shopify://shop_images/IMG_4451.jpg"
           }
         }
       },
@@ -295,7 +299,8 @@
         "heading": "Two groups. One journey.",
         "body": "<p>SYPB is free and open to anyone deciding. The Wholesale Hub is buyers only, and your first order lets you in.</p>",
         "primary_label": "Join SYPB, it's free",
-        "primary_link_source": "sypb_link"
+        "primary_link_source": "sypb_link",
+        "image": "shopify://shop_images/Frame_2147225437_1.png"
       }
     },
     "academy-preview": {
@@ -325,7 +330,8 @@
         "body": "<p>Lami started with a bag of bridal accessories and a WiFi connection in 2016. She learned wholesale the expensive way, then built GBG so you don't have to.</p><p><em>Input equals output. We hand you the stock and the roadmap. The rest is yours to build.</em></p>",
         "link_text": "Read her story",
         "link_url": "/pages/about#founder-story",
-        "background": "white"
+        "background": "white",
+        "image": "shopify://shop_images/photo_2026-08-19_22-54-05.jpg"
       }
     },
     "faq-preview": {
@@ -415,7 +421,9 @@
             "primary_label": "Shop the stock",
             "primary_url": "/collections/all",
             "secondary_label": "See Starter Boxes",
-            "secondary_url": "/collections/starter-boxes"
+            "secondary_url": "/collections/starter-boxes",
+            "image": "shopify://shop_images/Frame_2147225437.png",
+            "image_alt": "Wholesale stock ready to sell"
           }
         },
         "sell": {

@@ -123,9 +123,16 @@
   </div>
 </div>
 
-<div class="container section judgeme-reviews">
-  {% render 'judgeme', type: 'widget', product: product %}
-</div>
+{%- comment -%}
+  Only drawn when the Judge.me app block is NOT on this template. The app
+  block is the supported route and Lami has already placed it; rendering both
+  would show the same reviews twice.
+{%- endcomment -%}
+{% if settings.judgeme_theme_widget %}
+  <div class="container section judgeme-reviews">
+    {% render 'judgeme', type: 'widget', product: product %}
+  </div>
+{% endif %}
 
 <div class="related-products-mount" data-recommendations-url="{{ routes.product_recommendations_url }}?section_id=related-products&product_id={{ product.id }}&limit=4&intent=related"></div>
 

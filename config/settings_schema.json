@@ -502,6 +502,13 @@
         "id": "enable_judgeme",
         "label": "Show Judge.me reviews",
         "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "judgeme_theme_widget",
+        "label": "Let the theme draw the product review list too",
+        "info": "Leave this off if the Judge.me review block has been added to the product page in the theme editor, which it has. Switching it on as well shows the same reviews twice.",
+        "default": false
       }
     ]
   }
