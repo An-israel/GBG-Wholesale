@@ -1,0 +1,137 @@
+{%- comment -%}
+  Collection guidance.
+
+  The hero shows the first paragraph of the collection description. This shows
+  everything after it. So one template gives every collection its own
+  guidance, written once in Products > Collections, with nothing configured
+  per page and nothing written twice.
+
+  It sits below the products deliberately. On a demand collection the page
+  rule is that stock appears immediately, so the reading comes after the
+  shopping rather than in front of it.
+
+  The disclaimer is not optional and not a setting. Any page that groups
+  products by how well they might sell needs to say plainly that results are
+  not guaranteed, and a line a merchant can switch off is a line that ends up
+  switched off.
+{%- endcomment -%}
+
+{%- liquid
+  assign parts = collection.description | split: '</p>'
+  assign rest = ''
+
+  for part in parts offset: 1
+    assign chunk = part | strip
+    unless chunk == blank
+      assign rest = rest | append: chunk | append: '</p>'
+    endunless
+  endfor
+
+  assign has_guidance = false
+  if rest != blank
+    assign has_guidance = true
+  endif
+-%}
+
+{% if has_guidance or section.settings.show_disclaimer %}
+  <section class="section section--{{ section.settings.background }} coll-guide">
+    <div class="container coll-guide__inner">
+      {% if has_guidance %}
+        <div class="coll-guide__body reveal">
+          {% if section.settings.eyebrow != blank %}
+            <span class="route-label route-label--amber">{{ section.settings.eyebrow }}</span>
+          {% endif %}
+          {% if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif %}
+          {{ rest }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_disclaimer %}
+        <aside class="coll-guide__note reveal">
+          <h3>Before you buy</h3>
+          <p>
+            Nothing here is a promise of profit. What you make depends on what
+            you pay, how you list it, what you charge, and demand on the day.
+            We can give you the stock and the guidance. The selling is still
+            yours to do.
+          </p>
+          <p>
+            <a href="/pages/learn">Read the free guides</a> or
+            <a href="/pages/faq#pricing-calculator">work out your floor price</a>
+            before you list anything.
+          </p>
+        </aside>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
+
+{% stylesheet %}
+  .coll-guide__inner {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 900px) {
+    .coll-guide__inner {
+      grid-template-columns: 1.4fr 1fr;
+      gap: var(--space-8);
+      align-items: start;
+    }
+  }
+
+  .coll-guide__body {
+    max-width: 60ch;
+  }
+
+  .coll-guide__body .route-label {
+    margin-bottom: var(--space-3);
+  }
+
+  .coll-guide__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* The disclaimer reads as a note rather than as body copy, so it is visible
+     without competing with the guidance next to it. */
+  .coll-guide__note {
+    padding: var(--space-5);
+    border-radius: var(--radius);
+    border: 1px solid color-mix(in srgb, var(--color-amber) 45%, transparent);
+    background: var(--color-amber-soft);
+    color: #3a2a00;
+    font-size: 0.92rem;
+  }
+
+  .coll-guide__note h3 {
+    font-size: 1rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .coll-guide__note p:last-child {
+    margin-bottom: 0;
+  }
+
+  .coll-guide__note a {
+    color: var(--color-amber-text);
+    font-weight: 700;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection guidance",
+  "settings": [
+    { "type": "paragraph", "content": "Shows everything after the first paragraph of the collection description, so each collection carries its own guidance with nothing to set up here. Write it in Products > Collections." },
+    { "type": "select", "id": "background", "label": "Section background", "options": [
+        { "value": "white", "label": "White" },
+        { "value": "paper", "label": "Paper (light grey)" },
+        { "value": "mist", "label": "Mist (pale navy)" },
+        { "value": "aqua", "label": "Aqua tint" }
+      ], "default": "mist" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "WORTH KNOWING" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "About these products" },
+    { "type": "checkbox", "id": "show_disclaimer", "label": "Show the results disclaimer", "info": "Leave this on. Any page grouping products by how well they might sell has to say plainly that results are not guaranteed.", "default": true }
+  ]
+}
+{% endschema %}

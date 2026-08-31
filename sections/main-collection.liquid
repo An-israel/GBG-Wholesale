@@ -27,6 +27,7 @@
     <a class="collection__pill{% unless collection.current_tags %} is-active{% endunless %}" href="{{ collection.url }}">All</a>
     <a class="collection__pill collection__pill--dropship{% if collection.current_tags contains 'dropship' %} is-active{% endif %}" href="{{ collection.url }}/dropship">Dropship, order 1</a>
     <a class="collection__pill{% if collection.current_tags contains 'low-moq' %} is-active{% endif %}" href="{{ collection.url }}/low-moq">Low MOQ</a>
+    <a class="collection__pill{% if collection.current_tags contains 'uk-stock' %} is-active{% endif %}" href="{{ collection.url }}/uk-stock">UK stock</a>
     {% assign platform_tags = 'platform-vinted,platform-ebay,platform-tiktok,platform-marketplace' | split: ',' %}
     {% assign platform_names = 'Vinted,eBay,TikTok Shop,Facebook Marketplace' | split: ',' %}
     {% for tag in platform_tags %}

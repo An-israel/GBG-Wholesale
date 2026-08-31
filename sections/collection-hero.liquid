@@ -17,8 +17,8 @@
   endif
 -%}
 
-<section class="collection-hero{% if has_image %} collection-hero--image{% endif %}">
-  {% if has_image %}
+<section class="collection-hero{% if has_image and section.settings.show_image %} collection-hero--image{% endif %}{% if section.settings.compact %} collection-hero--compact{% endif %}">
+  {% if has_image and section.settings.show_image %}
     <div class="collection-hero__bg">
       <img
         src="{{ collection.image | image_url: width: 1800 }}"
@@ -58,12 +58,14 @@
       </div>
     {% endif %}
 
+    {% if section.settings.cta_label != blank %}
     <div class="collection-hero__actions">
       <a href="#products" class="btn btn--primary">{{ section.settings.cta_label }}</a>
       {% if section.settings.secondary_label != blank %}
         <a href="{{ section.settings.secondary_url }}" class="btn btn--secondary">{{ section.settings.secondary_label }}</a>
       {% endif %}
     </div>
+    {% endif %}
 
     <p class="collection-hero__meta">
       {{ collection.products_count }} {% if collection.products_count == 1 %}product{% else %}products{% endif %}
@@ -118,6 +120,20 @@
     .collection-hero__inner > * {
       max-width: 46rem;
     }
+  }
+
+  /* Compact is for demand collections, where the page rule is that products
+     appear immediately. Half the padding, smaller heading, no banner image. */
+  .collection-hero--compact .collection-hero__inner {
+    padding-block: var(--space-6);
+  }
+
+  .collection-hero--compact .collection-hero__title {
+    font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.4rem);
+  }
+
+  .collection-hero--compact .collection-hero__intro {
+    font-size: 0.96rem;
   }
 
   .collection-hero__crumbs {
@@ -192,8 +208,10 @@
   "name": "Category hero",
   "settings": [
     { "type": "paragraph", "content": "The heading, intro and image all come from the collection itself, so this one section serves every category. Edit them in Products > Collections." },
+    { "type": "checkbox", "id": "compact", "label": "Compact", "info": "Shorter hero for demand collections, where products need to appear immediately.", "default": false },
+    { "type": "checkbox", "id": "show_image", "label": "Show the collection image behind the heading", "default": true },
     { "type": "checkbox", "id": "show_breadcrumb", "label": "Show breadcrumb", "default": true },
-    { "type": "text", "id": "cta_label", "label": "Main button label", "default": "Shop this category" },
+    { "type": "text", "id": "cta_label", "label": "Main button label", "info": "Leave blank to hide both buttons, which suits a compact hero.", "default": "Shop this category" },
     { "type": "text", "id": "secondary_label", "label": "Second button label", "default": "See best sellers" },
     { "type": "url", "id": "secondary_url", "label": "Second button link" }
   ]
