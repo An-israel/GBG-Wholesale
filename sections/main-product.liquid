@@ -123,6 +123,13 @@
   </div>
 </div>
 
+<div class="container section product-detail">
+  <div class="product-detail__grid">
+    {% render 'product-facts', product: product %}
+    {% render 'product-selling', product: product %}
+  </div>
+</div>
+
 {%- comment -%}
   Only drawn when the Judge.me app block is NOT on this template. The app
   block is the supported route and Lami has already placed it; rendering both
@@ -134,7 +141,15 @@
   </div>
 {% endif %}
 
-<div class="related-products-mount" data-recommendations-url="{{ routes.product_recommendations_url }}?section_id=related-products&product_id={{ product.id }}&limit=4&intent=related"></div>
+<div
+  class="related-products-mount"
+  data-recommendations-url="{{ routes.product_recommendations_url }}?section_id=related-products&product_id={{ product.id }}&limit=4&intent=related"
+></div>
+
+<div
+  class="related-products-mount"
+  data-recommendations-url="{{ routes.product_recommendations_url }}?section_id=complementary-products&product_id={{ product.id }}&limit=4&intent=complementary"
+></div>
 
 {% stylesheet %}
   .product__grid {
@@ -230,6 +245,19 @@
 
   .qty-stepper--lg .qty-stepper__input {
     width: 48px;
+  }
+
+  .product-detail__grid {
+    display: grid;
+    gap: var(--space-5);
+    align-items: start;
+  }
+
+  @media (min-width: 900px) {
+    .product-detail__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+    }
   }
 {% endstylesheet %}
 

@@ -67,8 +67,11 @@
 
   /* Related products: fetched via the native recommendations endpoint and
      injected as pre-rendered section HTML. */
-  var mount = document.querySelector('.related-products-mount');
-  if (mount && mount.dataset.recommendationsUrl) {
+  /* One mount per recommendation band. Each fetches its own intent, so
+     "you may also like" and "complete your order" stay different questions
+     rather than the same four products under two headings. */
+  document.querySelectorAll('.related-products-mount').forEach(function (mount) {
+    if (!mount.dataset.recommendationsUrl) return;
     fetch(mount.dataset.recommendationsUrl)
       .then(function (res) {
         return res.text();
@@ -77,10 +80,17 @@
         var wrapper = document.createElement('div');
         wrapper.innerHTML = html;
         var section = wrapper.querySelector('.related-products');
-        if (section) mount.replaceWith(section);
+        /* An empty band is worse than no band, so a mount with nothing to
+           show removes itself rather than leaving a gap. */
+        if (section) {
+          mount.replaceWith(section);
+        } else {
+          mount.remove();
+        }
       })
       .catch(function () {
-        /* fail silently - related products are a nice-to-have, not critical path */
+        /* fail silently - recommendations are a nice-to-have, not critical path */
+        mount.remove();
       });
-  }
+  });
 })();

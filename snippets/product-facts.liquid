@@ -1,0 +1,184 @@
+{% doc %}
+  The spec panel: the facts a wholesale buyer checks before deciding.
+
+  Status, minimum order, what is in the pack, where it ships from and when it
+  arrives, all in one place rather than scattered through a description.
+
+  Status comes from tags, so it needs no setup. What is included, the key
+  features and who it suits come from product metafields, so each is written
+  once on the product and hidden entirely when empty. The definitions to create
+  are listed in docs/product-fields.md.
+
+  @param {product} product
+  @param {string} [heading] - panel heading; defaults to "The details"
+
+  @example
+  {% render 'product-facts', product: product %}
+{% enddoc %}
+
+{%- liquid
+  capture moq_raw
+    render 'product-moq-value', product: product
+  endcapture
+  assign moq = moq_raw | plus: 0
+
+  assign is_dropship = false
+  assign is_preorder = false
+  if product.tags contains 'dropship'
+    assign is_dropship = true
+  endif
+  if product.tags contains 'preorder'
+    assign is_preorder = true
+  endif
+
+  assign location = product.metafields.custom.stock_location | default: settings.warehouse_location
+  assign included = product.metafields.custom.whats_included
+  assign variant = product.selected_or_first_available_variant
+-%}
+
+<div class="pfacts">
+  <h2 class="pfacts__title">{{ heading | default: 'The details' }}</h2>
+
+  <dl class="pfacts__list">
+    <div class="pfacts__row">
+      <dt>Availability</dt>
+      <dd>
+        {% if product.available == false %}
+          <span class="pfacts__flag pfacts__flag--out">Out of stock</span>
+        {% elsif is_preorder %}
+          <span class="pfacts__flag pfacts__flag--pre">Preorder</span>
+          We will email you the batch date once your order is in.
+        {% elsif is_dropship %}
+          <span class="pfacts__flag pfacts__flag--drop">Dropshipping</span>
+          Order single units, no pack required.
+        {% else %}
+          <span class="pfacts__flag pfacts__flag--in">In stock</span>
+          Held in the UK and ready to dispatch.
+        {% endif %}
+      </dd>
+    </div>
+
+    <div class="pfacts__row">
+      <dt>Minimum order</dt>
+      <dd>
+        {% if is_dropship %}
+          1 unit. No minimum on this product.
+        {% elsif moq > 1 %}
+          {{ moq }} units
+        {% else %}
+          No minimum
+        {% endif %}
+      </dd>
+    </div>
+
+    {% if included != blank %}
+      <div class="pfacts__row">
+        <dt>What is included</dt>
+        <dd>{{ included }}</dd>
+      </div>
+    {% endif %}
+
+    {% if product.options_with_values.size > 0 and product.has_only_default_variant == false %}
+      <div class="pfacts__row">
+        <dt>
+          {%- for option in product.options_with_values -%}
+            {{ option.name }}{% unless forloop.last %} and {% endunless %}
+          {%- endfor -%}
+        </dt>
+        <dd>
+          {%- for option in product.options_with_values -%}
+            {{ option.values | join: ', ' }}{% unless forloop.last %}. {% endunless %}
+          {%- endfor -%}
+        </dd>
+      </div>
+    {% endif %}
+
+    <div class="pfacts__row">
+      <dt>Ships from</dt>
+      <dd>{{ location }}</dd>
+    </div>
+
+    <div class="pfacts__row">
+      <dt>Delivery</dt>
+      <dd>{{ settings.dispatch_timeframe }}</dd>
+    </div>
+
+    {% if variant.sku != blank %}
+      <div class="pfacts__row">
+        <dt>Product code</dt>
+        <dd>{{ variant.sku }}</dd>
+      </div>
+    {% endif %}
+  </dl>
+</div>
+
+{% stylesheet %}
+  .pfacts {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    padding: var(--space-5);
+  }
+
+  .pfacts__title {
+    font-size: 1.05rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .pfacts__list {
+    margin: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  /* Label above value on a phone, side by side once there is room, so the
+     values still line up as a scannable column on desktop. */
+  .pfacts__row {
+    display: grid;
+    gap: 2px;
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .pfacts__row:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  @media (min-width: 520px) {
+    .pfacts__row {
+      grid-template-columns: 10rem 1fr;
+      gap: var(--space-4);
+      align-items: baseline;
+    }
+  }
+
+  .pfacts__row dt {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .pfacts__row dd {
+    margin: 0;
+    font-size: 0.94rem;
+  }
+
+  .pfacts__flag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2em 0.55em;
+    border-radius: 3px;
+    margin-right: var(--space-2);
+  }
+
+  .pfacts__flag--in { background: color-mix(in srgb, #1E7A4C 14%, transparent); color: #1E7A4C; }
+  .pfacts__flag--pre { background: var(--color-amber-soft); color: var(--color-amber-text); }
+  .pfacts__flag--drop { background: var(--color-amber); color: var(--color-navy); }
+  .pfacts__flag--out { background: var(--color-surface-2, #eee); color: var(--color-muted); }
+{% endstylesheet %}

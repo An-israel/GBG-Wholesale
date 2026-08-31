@@ -1,0 +1,225 @@
+{% doc %}
+  Selling guidance: who the product suits, which platforms it tends to move on,
+  and what it typically sells for.
+
+  Platforms come from the product's own `platform-*` tags, so nothing has to be
+  written twice: the same tags that put a product in the Best for Vinted
+  collection also list Vinted here.
+
+  The resale range is an estimate drawn from the wholesale price and the
+  multiplier in theme settings. It carries a disclaimer that cannot be switched
+  off, because a number next to the words "sells for" is read as a promise
+  unless something says otherwise.
+
+  @param {product} product
+  @param {string} [heading] - panel heading; defaults to "Selling this"
+
+  @example
+  {% render 'product-selling', product: product %}
+{% enddoc %}
+
+{%- liquid
+  assign suits = product.metafields.custom.who_it_suits
+  assign features = product.metafields.custom.key_features.value
+
+  assign platform_tags = 'platform-vinted,platform-ebay,platform-tiktok,platform-marketplace' | split: ','
+  assign platform_names = 'Vinted,eBay,TikTok Shop,Facebook Marketplace' | split: ','
+  assign platform_handles = 'best-for-vinted,best-for-ebay,best-for-tiktok-shop,best-for-vinted' | split: ','
+
+  assign has_platform = false
+  for tag in platform_tags
+    if product.tags contains tag
+      assign has_platform = true
+    endif
+  endfor
+
+  assign show_resale = settings.show_resale_estimate
+  if product.gift_card?
+    assign show_resale = false
+  endif
+  assign resale_low = product.price | times: settings.resale_low_multiple
+  assign resale_high = product.price | times: settings.resale_high_multiple
+-%}
+
+{% if features != blank or suits != blank or has_platform or show_resale %}
+  <div class="pselling">
+    <h2 class="pselling__title">{{ heading | default: 'Selling this' }}</h2>
+
+    {% if features != blank %}
+      <div class="pselling__block">
+        <h3>Key features</h3>
+        <ul class="pselling__features">
+          {% for feature in features %}
+            <li>{% render 'icon', name: 'check' %}<span>{{ feature }}</span></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    {% if suits != blank %}
+      <div class="pselling__block">
+        <h3>Who this may suit</h3>
+        <div class="pselling__prose">{{ suits }}</div>
+      </div>
+    {% endif %}
+
+    {% if has_platform %}
+      <div class="pselling__block">
+        <h3>Where it tends to sell</h3>
+        <ul class="pselling__platforms">
+          {% for tag in platform_tags %}
+            {% if product.tags contains tag %}
+              <li>
+                <a href="{{ routes.collections_url }}/{{ platform_handles[forloop.index0] }}">
+                  {{ platform_names[forloop.index0] }}
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        <p class="pselling__note">
+          Based on what has moved for other resellers.
+          <a href="/pages/learn-platform-guide">The Platform Guide</a> explains why.
+        </p>
+      </div>
+    {% endif %}
+
+    {% if show_resale %}
+      <div class="pselling__block pselling__resale">
+        <h3>Typical resale range</h3>
+        <p class="pselling__range">{{ resale_low | money }} to {{ resale_high | money }} per unit</p>
+        {%- comment -%}
+          Not a setting. A number beside the words "sells for" is read as a
+          promise unless something says plainly that it is not one, and a
+          disclaimer a merchant can switch off is one that ends up switched off.
+        {%- endcomment -%}
+        <p class="pselling__disclaimer">
+          An estimate, not a guarantee. What you actually make depends on what
+          you pay, how you list it, what you charge and demand on the day. Work
+          out your own floor price before you list anything.
+        </p>
+        <p class="pselling__note">
+          <a href="/pages/faq#pricing-calculator">Open the pricing calculator</a>
+        </p>
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .pselling {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    padding: var(--space-5);
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .pselling__title {
+    font-size: 1.05rem;
+    margin: 0;
+  }
+
+  .pselling__block h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .pselling__features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .pselling__features li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: 0.94rem;
+  }
+
+  .pselling__features svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    margin-top: 0.25em;
+    color: var(--color-accent);
+  }
+
+  .pselling__prose {
+    font-size: 0.94rem;
+  }
+
+  .pselling__prose p:last-child {
+    margin-bottom: 0;
+  }
+
+  .pselling__platforms {
+    list-style: none;
+    margin: 0 0 var(--space-3);
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .pselling__platforms a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 var(--space-4);
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-paper);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  .pselling__platforms a:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .pselling__note {
+    font-size: 0.82rem;
+    color: var(--color-muted);
+    margin: 0;
+  }
+
+  .pselling__note a,
+  .pselling__disclaimer a {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  .pselling__range {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-2);
+  }
+
+  /* The disclaimer is styled to be read, not skimmed past. It sits on the
+     amber tint so it reads as a caveat rather than as more sales copy. */
+  .pselling__disclaimer {
+    font-size: 0.85rem;
+    line-height: 1.45;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius);
+    background: var(--color-amber-soft);
+    border: 1px solid color-mix(in srgb, var(--color-amber) 45%, transparent);
+    color: #3a2a00;
+    margin-bottom: var(--space-2);
+  }
+{% endstylesheet %}

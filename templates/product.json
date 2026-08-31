@@ -18,7 +18,12 @@
     "related-products": {
       "type": "related-products",
       "settings": {
-        "background": "mist"
+        "background": "white",
+        "eyebrow": "KEEP STOCKING",
+        "heading": "See what other resellers are buying",
+        "body": "Chosen from what people actually order alongside this.",
+        "product_count": 4,
+        "fallback_collection": "best-sellers"
       }
     },
     "1787826293afb63bcc": {
@@ -38,11 +43,37 @@
         "judge_me_reviews_review_widget_kkTwBe"
       ],
       "settings": {}
+    },
+    "complementary-products": {
+      "type": "complementary-products",
+      "settings": {
+        "background": "mist",
+        "eyebrow": "COMPLETE THE ORDER",
+        "heading": "Goes well with this",
+        "body": "Products that make a fuller order rather than a repeat of the same thing.",
+        "product_count": 4,
+        "fallback_collection": "new-arrivals"
+      }
+    },
+    "category-best-sellers": {
+      "type": "featured-products",
+      "settings": {
+        "background": "white",
+        "source": "picked",
+        "collection": "best-sellers",
+        "eyebrow": "MOST REORDERED",
+        "heading": "Best sellers right now",
+        "product_count": 4,
+        "show_cta": true,
+        "cta_text": "Shop everything",
+        "cta_url": "/collections/all"
+      }
     }
   },
   "order": [
     "main-product",
     "related-products",
-    "1787826293afb63bcc"
+    "complementary-products",
+    "category-best-sellers"
   ]
 }
