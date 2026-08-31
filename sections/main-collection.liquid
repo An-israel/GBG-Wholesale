@@ -1,18 +1,20 @@
-<div class="collection container section">
-  <div class="collection__header reveal">
-    <span class="route-label">{{ collection.title | upcase }}</span>
-    <h1>{{ collection.title }}</h1>
-    {% if collection.description != blank %}
-      <div class="collection__description">{{ collection.description }}</div>
-    {% endif %}
-  </div>
+<div id="products" class="collection container section section--{{ section.settings.background }}">
+  {% if section.settings.show_header %}
+    <div class="collection__header reveal">
+      <span class="route-label">{{ collection.title | upcase }}</span>
+      <h1>{{ collection.title }}</h1>
+      {% if collection.description != blank %}
+        <div class="collection__description">{{ collection.description }}</div>
+      {% endif %}
+    </div>
 
-  <div class="collection__banner card" data-reseller-banner>
-    <p>
-      <strong>Already reselling?</strong> The Learn Hub has platform guides and a pricing calculator built for exactly this.
-      <a href="/pages/learn">Explore the Learn Hub &rarr;</a>
-    </p>
-  </div>
+    <div class="collection__banner card" data-reseller-banner>
+      <p>
+        <strong>Already reselling?</strong> The Learn Hub has platform guides and a pricing calculator built for exactly this.
+        <a href="/pages/learn">Explore the Learn Hub &rarr;</a>
+      </p>
+    </div>
+  {% endif %}
 
   {%- comment -%}
     Quick filters. These are plain links to Shopify's own tag filtering, so
@@ -24,6 +26,7 @@
     <span class="collection__quick-label">Quick filters</span>
     <a class="collection__pill{% unless collection.current_tags %} is-active{% endunless %}" href="{{ collection.url }}">All</a>
     <a class="collection__pill collection__pill--dropship{% if collection.current_tags contains 'dropship' %} is-active{% endif %}" href="{{ collection.url }}/dropship">Dropship, order 1</a>
+    <a class="collection__pill{% if collection.current_tags contains 'low-moq' %} is-active{% endif %}" href="{{ collection.url }}/low-moq">Low MOQ</a>
     {% assign platform_tags = 'platform-vinted,platform-ebay,platform-tiktok,platform-marketplace' | split: ',' %}
     {% assign platform_names = 'Vinted,eBay,TikTok Shop,Facebook Marketplace' | split: ',' %}
     {% for tag in platform_tags %}
@@ -32,6 +35,16 @@
         href="{{ collection.url }}/{{ tag }}"
       >{{ platform_names[forloop.index0] }}</a>
     {% endfor %}
+
+    {%- comment -%}
+      Price bands are their own collections rather than tags, because a price
+      changes far more often than anyone remembers to retag a product. They
+      leave the current collection, so they are set apart from the filters that
+      narrow it.
+    {%- endcomment -%}
+    <span class="collection__quick-divider" aria-hidden="true"></span>
+    <a class="collection__pill" href="/collections/under-50">Under &pound;50</a>
+    <a class="collection__pill" href="/collections/under-100">Under &pound;100</a>
   </div>
 
   {% paginate collection.products by 24 %}
@@ -133,6 +146,14 @@
 </div>
 
 {% stylesheet %}
+  .collection__quick-divider {
+    width: 1px;
+    align-self: stretch;
+    min-height: 24px;
+    background: var(--color-border);
+    margin-inline: var(--space-2);
+  }
+
   .collection__header {
     margin-bottom: var(--space-5);
     max-width: 60ch;
@@ -244,6 +265,15 @@
 {% schema %}
 {
   "name": "Collection pages",
-  "settings": []
+  "settings": [
+    { "type": "checkbox", "id": "show_header", "label": "Show the title and description here", "info": "Switch off on category pages, where the hero above already shows them.", "default": true },
+    { "type": "select", "id": "background", "label": "Section background", "options": [
+        { "value": "white", "label": "White" },
+        { "value": "paper", "label": "Paper (light grey)" },
+        { "value": "mist", "label": "Mist (pale navy)" },
+        { "value": "amber", "label": "Amber tint" },
+        { "value": "aqua", "label": "Aqua tint" }
+      ], "default": "white" }
+  ]
 }
 {% endschema %}

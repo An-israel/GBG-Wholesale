@@ -114,6 +114,19 @@ const PAGES = [
 /* 2. COLLECTIONS - automated, matched on product tag.                 */
 /* ------------------------------------------------------------------ */
 
+/* The nine core categories get the richer category template: hero,
+   subcategory tiles, buying guide, related collections and a category FAQ.
+   Everything else uses the plain collection template, where products start
+   immediately.
+
+   They are also sorted by best selling, which is what makes the "Best sellers
+   in this category" band on that template truthful rather than decorative:
+   Liquid cannot re-sort a collection, so the order has to be set here. */
+const CATEGORY_HANDLES = new Set([
+  'jewellery-accessories', 'bags', 'clothing', 'beauty-fragrance', 'electronics',
+  'home-lifestyle', 'kids-school', 'drinkware', 'starter-boxes',
+]);
+
 const COLLECTIONS = [
   { handle: "jewellery-accessories", title: "Wholesale Jewellery & Accessories UK", menuLabel: "Jewellery & Accessories",
     body: "<p>Wholesale jewellery and accessories for UK resellers, sold in small packs rather than by the hundred. Necklaces, earrings, bracelets, rings and sets, held in the UK and dispatched in 3 working days.</p><p>The fastest category to start in. It photographs well on a phone, posts for the price of a large letter, and sits at an impulse price on Vinted and TikTok Shop. Minimum order quantities are kept low so you can test a style before committing to it.</p>",
@@ -470,11 +483,22 @@ async function doCollections() {
   console.log('\n📁  COLLECTIONS');
   const existing = (await api('GET', '/smart_collections.json?limit=250')).smart_collections || [];
   const custom = (await api('GET', '/custom_collections.json?limit=250')).custom_collections || [];
-  const handles = new Set([...existing, ...custom].map((c) => c.handle));
+  const all = [...existing, ...custom];
+  const handles = new Set(all.map((c) => c.handle));
+  const byHandle = new Map(all.map((c) => [c.handle, c]));
 
   for (const c of COLLECTIONS) {
-    if (handles.has(c.handle)) {
-      console.log(`   · ${c.handle.padEnd(30)} already exists, skipped`);
+    const found = byHandle.get(c.handle);
+    if (found) {
+      const wanted = CATEGORY_HANDLES.has(c.handle) ? 'category' : null;
+      if ((found.template_suffix || null) !== wanted) {
+        await api('PUT', `/smart_collections/${found.id}.json`, {
+          smart_collection: { id: found.id, template_suffix: wanted },
+        });
+        console.log(`   ↻ ${c.handle.padEnd(30)} existed - re-pointed at ${wanted || 'the default template'}`);
+      } else {
+        console.log(`   · ${c.handle.padEnd(30)} already exists, skipped`);
+      }
       skipped++;
       continue;
     }
@@ -497,6 +521,8 @@ async function doCollections() {
         published: true,
         disjunctive: false,
         rules,
+        sort_order: CATEGORY_HANDLES.has(c.handle) ? 'best-selling' : 'best-selling',
+        template_suffix: CATEGORY_HANDLES.has(c.handle) ? 'category' : null,
       },
     });
     console.log(`   ✓ ${c.handle.padEnd(30)} created  →  /collections/${c.handle}`);

@@ -1,0 +1,146 @@
+{%- comment -%}
+  Related collections.
+
+  Links out to four to six other collections, so a category page is never a
+  dead end for someone who arrived in the wrong one. Each tile shows the
+  collection's own image and product count, so nobody clicks into an empty
+  page.
+{%- endcomment -%}
+
+<section class="section section--{{ section.settings.background }} rel-collections">
+  <div class="container">
+    <div class="section-intro reveal">
+      {% if section.settings.eyebrow != blank %}
+        <span class="route-label route-label--amber">{{ section.settings.eyebrow }}</span>
+      {% endif %}
+      {% if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif %}
+    </div>
+
+    <ul class="rel-collections__grid">
+      {% for block in section.blocks %}
+        {%- liquid
+          assign target = block.settings.collection
+          # Never link a page back to itself.
+          assign is_current = false
+          if collection != blank and target.handle == collection.handle
+            assign is_current = true
+          endif
+        -%}
+        {% unless is_current or target == blank %}
+          <li class="rel-collections__item reveal" {{ block.shopify_attributes }}>
+            <a href="{{ target.url }}" class="rel-collections__tile">
+              <span class="rel-collections__media">
+                {% if target.image %}
+                  <img src="{{ target.image | image_url: width: 500 }}" alt="" width="500" height="500" loading="lazy">
+                {% elsif target.products.first.featured_image %}
+                  <img src="{{ target.products.first.featured_image | image_url: width: 500 }}" alt="" width="500" height="500" loading="lazy">
+                {% else %}
+                  <span class="rel-collections__placeholder" aria-hidden="true"></span>
+                {% endif %}
+              </span>
+              <span class="rel-collections__body">
+                <span class="rel-collections__title">{{ block.settings.label | default: target.title }}</span>
+                <span class="rel-collections__count">{{ target.products_count }} products</span>
+              </span>
+            </a>
+          </li>
+        {% endunless %}
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% stylesheet %}
+  .rel-collections__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 700px) { .rel-collections__grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1000px) { .rel-collections__grid { grid-template-columns: repeat(6, 1fr); } }
+
+  .rel-collections__tile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .rel-collections__media {
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .rel-collections__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 400ms ease;
+  }
+
+  .rel-collections__tile:hover img { transform: scale(1.06); }
+
+  .rel-collections__placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-paper), var(--color-border));
+  }
+
+  .rel-collections__body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .rel-collections__title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .rel-collections__count {
+    font-size: 0.78rem;
+    color: var(--color-muted);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Related collections",
+  "settings": [
+    { "type": "select", "id": "background", "label": "Section background", "options": [
+        { "value": "white", "label": "White" },
+        { "value": "paper", "label": "Paper (light grey)" },
+        { "value": "mist", "label": "Mist (pale navy)" },
+        { "value": "amber", "label": "Amber tint" },
+        { "value": "aqua", "label": "Aqua tint" }
+      ], "default": "paper" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "KEEP LOOKING" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Related collections" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Collection",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "label", "label": "Short label", "info": "Leave blank to use the collection's full title." }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    { "name": "Related collections", "blocks": [{ "type": "link" }, { "type": "link" }, { "type": "link" }, { "type": "link" }] }
+  ]
+}
+{% endschema %}

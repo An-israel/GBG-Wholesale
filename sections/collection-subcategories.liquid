@@ -1,0 +1,174 @@
+{%- comment -%}
+  Subcategory tiles.
+
+  Rather than being configured per category, this finds the current collection
+  inside the shop navigation menu and renders whatever sits beneath it. So the
+  menu Lami builds once in Navigation drives both the header and these tiles,
+  and a subcategory added there appears here with no theme work.
+
+  Each tile uses the child collection's own image, so the tiles fill in as
+  collection images are uploaded. The section hides itself entirely when the
+  current collection has no children, which is what makes one template safe to
+  use on categories and on flat collections alike.
+{%- endcomment -%}
+
+{%- liquid
+  assign menu = linklists[section.settings.menu]
+  assign children = nil
+
+  for link in menu.links
+    if link.url == collection.url and link.links.size > 0
+      assign children = link.links
+      break
+    endif
+  endfor
+-%}
+
+{% if children %}
+  <section class="section section--{{ section.settings.background }} subcats">
+    <div class="container">
+      <div class="section-intro reveal">
+        {% if section.settings.eyebrow != blank %}
+          <span class="route-label route-label--amber">{{ section.settings.eyebrow }}</span>
+        {% endif %}
+        {% if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif %}
+      </div>
+
+      <ul class="subcats__grid">
+        {% for child in children limit: section.settings.max_tiles %}
+          {%- liquid
+            assign child_handle = child.url | split: '/collections/' | last
+            assign child_collection = collections[child_handle]
+          -%}
+          <li class="subcats__item reveal">
+            <a href="{{ child.url }}" class="subcats__tile">
+              <span class="subcats__media">
+                {% if child_collection.image %}
+                  <img
+                    src="{{ child_collection.image | image_url: width: 600 }}"
+                    srcset="{{ child_collection.image | image_url: width: 400 }} 400w, {{ child_collection.image | image_url: width: 600 }} 600w"
+                    sizes="(min-width: 900px) 20vw, 45vw"
+                    alt=""
+                    width="{{ child_collection.image.width }}"
+                    height="{{ child_collection.image.height }}"
+                    loading="lazy"
+                  >
+                {% elsif child_collection.products.first.featured_image %}
+                  {%- comment -%}
+                    No collection image yet, so borrow the first product's
+                    photo. A tile with a real product on it beats an empty box
+                    while the images are still being uploaded.
+                  {%- endcomment -%}
+                  <img
+                    src="{{ child_collection.products.first.featured_image | image_url: width: 600 }}"
+                    alt=""
+                    width="600"
+                    height="600"
+                    loading="lazy"
+                  >
+                {% else %}
+                  <span class="subcats__placeholder" aria-hidden="true"></span>
+                {% endif %}
+              </span>
+              <span class="subcats__label">
+                {{ child.title }}
+                {% render 'icon', name: 'arrow-right' %}
+              </span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+{% endif %}
+
+{% stylesheet %}
+  .subcats__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 700px) {
+    .subcats__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (min-width: 1000px) {
+    .subcats__grid { grid-template-columns: repeat(6, 1fr); }
+  }
+
+  .subcats__tile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .subcats__media {
+    display: block;
+    aspect-ratio: 1;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .subcats__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 400ms ease;
+  }
+
+  .subcats__tile:hover img {
+    transform: scale(1.06);
+  }
+
+  .subcats__placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-paper), var(--color-border));
+  }
+
+  .subcats__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .subcats__label svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    color: var(--color-accent);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Subcategory tiles",
+  "settings": [
+    { "type": "paragraph", "content": "Reads the shop navigation menu and shows whatever sits under the category you are on. Add a subcategory in Navigation and it appears here automatically. Hidden on collections that have no subcategories." },
+    { "type": "link_list", "id": "menu", "label": "Menu to read", "info": "The same menu the header uses." },
+    { "type": "select", "id": "background", "label": "Section background", "options": [
+        { "value": "white", "label": "White" },
+        { "value": "paper", "label": "Paper (light grey)" },
+        { "value": "mist", "label": "Mist (pale navy)" },
+        { "value": "amber", "label": "Amber tint" },
+        { "value": "aqua", "label": "Aqua tint" }
+      ], "default": "white" },
+    { "type": "range", "id": "max_tiles", "min": 3, "max": 12, "step": 1, "label": "Maximum tiles", "default": 6 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "BROWSE" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by type" }
+  ]
+}
+{% endschema %}

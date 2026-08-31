@@ -1,0 +1,201 @@
+{%- comment -%}
+  Category page hero.
+
+  Everything here comes from the collection record, so one template serves all
+  nine categories and adding a tenth needs no theme work. The H1 is the
+  collection title, which is why the titles carry the explicit SEO wording and
+  the short label lives in the navigation menu instead.
+
+  The image is optional. Without one the hero falls back to a navy band, which
+  is a deliberate look rather than a gap.
+{%- endcomment -%}
+
+{%- liquid
+  assign has_image = false
+  if collection.image
+    assign has_image = true
+  endif
+-%}
+
+<section class="collection-hero{% if has_image %} collection-hero--image{% endif %}">
+  {% if has_image %}
+    <div class="collection-hero__bg">
+      <img
+        src="{{ collection.image | image_url: width: 1800 }}"
+        srcset="{{ collection.image | image_url: width: 900 }} 900w, {{ collection.image | image_url: width: 1800 }} 1800w"
+        sizes="100vw"
+        alt="{{ collection.title | escape }}"
+        width="{{ collection.image.width }}"
+        height="{{ collection.image.height }}"
+        loading="eager"
+        fetchpriority="high"
+      >
+      <div class="collection-hero__scrim" aria-hidden="true"></div>
+    </div>
+  {% endif %}
+
+  <div class="container collection-hero__inner">
+    {% if section.settings.show_breadcrumb %}
+      <nav class="collection-hero__crumbs" aria-label="Breadcrumb">
+        <a href="{{ routes.root_url }}">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="{{ routes.all_products_collection_url }}">Shop</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{{ collection.title }}</span>
+      </nav>
+    {% endif %}
+
+    <h1 class="collection-hero__title">{{ collection.title }}</h1>
+
+    {% if collection.description != blank %}
+      {%- comment -%}
+        Only the opening of the description sits in the hero. The rest is a
+        buying guide further down the page, so products still start within the
+        first scroll, which is the whole point of a category page.
+      {%- endcomment -%}
+      <div class="collection-hero__intro">
+        {{ collection.description | split: '</p>' | first | append: '</p>' }}
+      </div>
+    {% endif %}
+
+    <div class="collection-hero__actions">
+      <a href="#products" class="btn btn--primary">{{ section.settings.cta_label }}</a>
+      {% if section.settings.secondary_label != blank %}
+        <a href="{{ section.settings.secondary_url }}" class="btn btn--secondary">{{ section.settings.secondary_label }}</a>
+      {% endif %}
+    </div>
+
+    <p class="collection-hero__meta">
+      {{ collection.products_count }} {% if collection.products_count == 1 %}product{% else %}products{% endif %}
+      {% if settings.dispatch_timeframe != blank %} &middot; {{ settings.dispatch_timeframe }}{% endif %}
+    </p>
+  </div>
+</section>
+
+{% stylesheet %}
+  .collection-hero {
+    position: relative;
+    background: var(--color-navy);
+    color: #ffffff;
+    overflow: hidden;
+  }
+
+  .collection-hero__bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .collection-hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .collection-hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      var(--color-navy) 0%,
+      color-mix(in srgb, var(--color-navy) 80%, transparent) 50%,
+      color-mix(in srgb, var(--color-navy) 40%, transparent) 100%
+    );
+  }
+
+  .collection-hero__inner {
+    position: relative;
+    padding-block: var(--space-7);
+    max-width: 46rem;
+    margin-inline: 0;
+  }
+
+  @media (min-width: 1440px) {
+    .collection-hero__inner {
+      margin-inline: auto;
+      max-width: var(--page-width);
+    }
+
+    .collection-hero__inner > * {
+      max-width: 46rem;
+    }
+  }
+
+  .collection-hero__crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: var(--space-4);
+  }
+
+  .collection-hero__crumbs a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .collection-hero__crumbs a:hover {
+    color: var(--color-amber);
+  }
+
+  .collection-hero__title {
+    font-size: clamp(1.9rem, 1.3rem + 2.6vw, 3.1rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    margin-bottom: var(--space-4);
+    text-wrap: balance;
+  }
+
+  .collection-hero__intro {
+    font-size: 1.02rem;
+    color: rgba(255, 255, 255, 0.86);
+    max-width: 40rem;
+  }
+
+  .collection-hero__intro p:last-child {
+    margin-bottom: 0;
+  }
+
+  .collection-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  .collection-hero__actions .btn--primary {
+    background: var(--color-amber);
+    color: var(--color-navy);
+    border-color: var(--color-amber);
+  }
+
+  .collection-hero__actions .btn--secondary {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .collection-hero__actions .btn--secondary:hover {
+    background: #ffffff;
+    color: var(--color-navy);
+  }
+
+  .collection-hero__meta {
+    margin: var(--space-5) 0 0;
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Category hero",
+  "settings": [
+    { "type": "paragraph", "content": "The heading, intro and image all come from the collection itself, so this one section serves every category. Edit them in Products > Collections." },
+    { "type": "checkbox", "id": "show_breadcrumb", "label": "Show breadcrumb", "default": true },
+    { "type": "text", "id": "cta_label", "label": "Main button label", "default": "Shop this category" },
+    { "type": "text", "id": "secondary_label", "label": "Second button label", "default": "See best sellers" },
+    { "type": "url", "id": "secondary_url", "label": "Second button link" }
+  ]
+}
+{% endschema %}

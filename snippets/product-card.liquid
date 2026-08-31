@@ -72,6 +72,32 @@
       {% if is_dropship %}Single units, no minimum{% elsif moq > 1 %}Minimum order: {{ moq }}{% endif %}
     </p>
 
+    {%- comment -%}
+      Stock status in words, because "in stock" and "3 left" change a buying
+      decision in a way a greyed-out button does not.
+    {%- endcomment -%}
+    {%- liquid
+      assign qty = product.selected_or_first_available_variant.inventory_quantity
+      assign tracked = false
+      if product.selected_or_first_available_variant.inventory_management != blank
+        assign tracked = true
+      endif
+    -%}
+    <p class="product-card__stock
+      {% if product.available == false %}product-card__stock--out
+      {% elsif tracked and qty > 0 and qty <= 5 %}product-card__stock--low
+      {% else %}product-card__stock--in{% endif %}">
+      {% if product.available == false %}
+        Out of stock
+      {% elsif product.tags contains 'preorder' %}
+        Preorder, batch date emailed
+      {% elsif tracked and qty > 0 and qty <= 5 %}
+        Only {{ qty }} left
+      {% else %}
+        In stock, ships from the UK
+      {% endif %}
+    </p>
+
     {% form 'product', product, data-cart-add-form: true, class: 'product-card__form' %}
       <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
       <input type="hidden" name="quantity" value="{{ moq }}">
@@ -149,6 +175,28 @@
     background: var(--color-amber);
     color: var(--color-navy);
   }
+
+  .product-card__stock {
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .product-card__stock::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  .product-card__stock--in { color: #1E7A4C; }
+  .product-card__stock--low { color: var(--color-amber-text); }
+  .product-card__stock--out { color: var(--color-muted); }
 
   .product-card__moq {
     font-size: 0.78rem;
