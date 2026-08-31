@@ -1,49 +1,191 @@
-<section id="{{ section.settings.custom_id | default: section.id }}" class="badge-strip section--tight">
-  <div class="container badge-strip__row">
-    {% for block in section.blocks %}
-      <span class="badge" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
-    {% endfor %}
+{%- comment -%}
+  Trust strip.
+
+  Four promises, each with an icon above it. Every icon is drawn in the theme
+  rather than uploaded, so they share one line weight and pick up the brand
+  colour automatically. A merchant who wants something else can still upload
+  their own image per badge, and it replaces the drawn icon.
+{%- endcomment -%}
+
+<section
+  id="{{ section.settings.custom_id | default: section.id }}"
+  class="badge-strip section--tight section--{{ section.settings.background }}"
+>
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      <div class="section-intro reveal">
+        {% if section.settings.eyebrow != blank %}<span class="route-label route-label--amber">{{ section.settings.eyebrow }}</span>{% endif %}
+        <h2>{{ section.settings.heading }}</h2>
+      </div>
+    {% endif %}
+
+    <ul class="badge-strip__grid badge-strip__grid--{{ section.settings.columns }}">
+      {% for block in section.blocks %}
+        <li class="badge-strip__item reveal" {{ block.shopify_attributes }}>
+          <span class="badge-strip__icon">
+            {% if block.settings.image %}
+              <img
+                src="{{ block.settings.image | image_url: width: 160 }}"
+                alt=""
+                width="80"
+                height="80"
+                loading="lazy"
+              >
+            {% else %}
+              {% render 'trust-icon', name: block.settings.icon %}
+            {% endif %}
+          </span>
+          <span class="badge-strip__text">{{ block.settings.text }}</span>
+          {% if block.settings.note != blank %}
+            <span class="badge-strip__note">{{ block.settings.note }}</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
   </div>
 </section>
 
 {% stylesheet %}
   .badge-strip {
-    background: var(--color-surface);
     border-block: 1px solid var(--color-border);
   }
 
-  .badge-strip__row {
+  .badge-strip__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    /* Two up on a phone, matching how these strips are read: as pairs, not as
+       a long single column nobody scrolls through. */
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6) var(--space-4);
+  }
+
+  @media (min-width: 800px) {
+    .badge-strip__grid--4 { grid-template-columns: repeat(4, 1fr); }
+    .badge-strip__grid--3 { grid-template-columns: repeat(3, 1fr); }
+    .badge-strip__grid--5 { grid-template-columns: repeat(5, 1fr); }
+  }
+
+  .badge-strip__item {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     gap: var(--space-3);
+  }
+
+  .badge-strip__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    color: var(--color-amber-text);
+  }
+
+  @media (min-width: 800px) {
+    .badge-strip__icon {
+      width: 72px;
+      height: 72px;
+    }
+  }
+
+  .badge-strip__icon .trust-icon {
+    width: 100%;
+    height: 100%;
+  }
+
+  .badge-strip__icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .badge-strip__text {
+    font-family: var(--font-display);
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+
+  .badge-strip__note {
+    font-size: 0.82rem;
+    color: var(--color-muted);
+    line-height: 1.35;
+  }
+
+  /* On the navy band the amber has to lift off the dark ground rather than
+     sink into it, so it uses the full-strength brand amber. */
+  .badge-strip.section--navy .badge-strip__icon {
+    color: var(--color-amber);
+  }
+
+  .badge-strip.section--navy .badge-strip__note {
+    color: rgba(255, 255, 255, 0.72);
   }
 {% endstylesheet %}
 
 {% schema %}
 {
-  "name": "Badge strip",
+  "name": "Trust strip",
   "settings": [
-    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" }
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
+    { "type": "select", "id": "background", "label": "Section background", "options": [
+        { "value": "white", "label": "White" },
+        { "value": "paper", "label": "Paper (light grey)" },
+        { "value": "mist", "label": "Mist (pale navy)" },
+        { "value": "amber", "label": "Amber tint" },
+        { "value": "aqua", "label": "Aqua tint" },
+        { "value": "navy", "label": "Navy (dark)" }
+      ], "default": "white" },
+    { "type": "select", "id": "columns", "label": "Columns (desktop)", "options": [
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" },
+        { "value": "5", "label": "5" }
+      ], "default": "4" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow (optional)" },
+    { "type": "text", "id": "heading", "label": "Heading (optional)", "info": "Leave blank for just the icon row." }
   ],
   "blocks": [
     {
       "type": "badge",
       "name": "Badge",
       "settings": [
-        { "type": "text", "id": "text", "label": "Text", "default": "UK-Based Warehouse" }
+        { "type": "select", "id": "icon", "label": "Icon", "options": [
+            { "value": "truck", "label": "Delivery van" },
+            { "value": "clock", "label": "Clock" },
+            { "value": "box", "label": "Pack / box" },
+            { "value": "chat", "label": "Message bubble" },
+            { "value": "shield", "label": "Shield with tick" },
+            { "value": "lock", "label": "Padlock" },
+            { "value": "refund", "label": "Money back" },
+            { "value": "tag", "label": "Price tag" },
+            { "value": "sparkle", "label": "Sparkle / quality" },
+            { "value": "globe", "label": "Globe" },
+            { "value": "people", "label": "Community" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "star", "label": "Star" },
+            { "value": "gift", "label": "Gift box" },
+            { "value": "card", "label": "Card payment" }
+          ], "default": "check" },
+        { "type": "image_picker", "id": "image", "label": "Custom icon (optional)", "info": "Replaces the drawn icon. Square PNG with a transparent background works best." },
+        { "type": "text", "id": "text", "label": "Text", "default": "Ships from the UK" },
+        { "type": "text", "id": "note", "label": "Small line underneath (optional)" }
       ]
     }
   ],
+  "max_blocks": 5,
   "presets": [
     {
-      "name": "Badge strip",
+      "name": "Trust strip",
       "blocks": [
-        { "type": "badge", "settings": { "text": "UK-Based Warehouse" } },
-        { "type": "badge", "settings": { "text": "Real Wholesale Prices" } },
-        { "type": "badge", "settings": { "text": "Lami Answers Personally" } },
-        { "type": "badge", "settings": { "text": "Easy Checkout" } },
-        { "type": "badge", "settings": { "text": "Next Day Dispatch" } }
+        { "type": "badge", "settings": { "icon": "truck", "text": "Ships from the UK" } },
+        { "type": "badge", "settings": { "icon": "clock", "text": "3 working days" } },
+        { "type": "badge", "settings": { "icon": "box", "text": "Low minimum order" } },
+        { "type": "badge", "settings": { "icon": "chat", "text": "Lami answers personally" } }
       ]
     }
   ]

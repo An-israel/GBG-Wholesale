@@ -1,0 +1,101 @@
+{% doc %}
+  Line icons for the trust strip.
+
+  Drawn rather than loaded from an icon font, so they inherit the brand colour,
+  stay sharp at any size, and cost no extra request. They are deliberately a
+  single consistent weight: a strip where one icon is heavier than its
+  neighbours reads as a mistake rather than a set.
+
+  @param {string} name - which icon to draw
+  @param {string} [class] - extra class on the svg
+
+  @example
+  {% render 'trust-icon', name: 'truck' %}
+{% enddoc %}
+
+<svg
+  class="trust-icon {{ class }}"
+  viewBox="0 0 48 48"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+>
+  {%- case name -%}
+    {%- when 'truck' -%}
+      <path d="M4 12h22v20H4z"/>
+      <path d="M26 19h8l6 6v7h-14z"/>
+      <circle cx="13" cy="36" r="4"/>
+      <circle cx="33" cy="36" r="4"/>
+      <path d="M17 36h12M4 32h5M37 32h3"/>
+
+    {%- when 'clock' -%}
+      <circle cx="24" cy="24" r="17"/>
+      <path d="M24 14v10l7 5"/>
+
+    {%- when 'box' -%}
+      <path d="M24 6 41 15v18l-17 9-17-9V15z"/>
+      <path d="M7 15l17 9 17-9M24 24v18"/>
+      <path d="M15.5 10.5 32.5 19.5"/>
+
+    {%- when 'chat' -%}
+      <path d="M40 27c0 3-2.5 5.5-5.5 5.5H19l-9 7v-7H13.5C10.5 32.5 8 30 8 27V14c0-3 2.5-5.5 5.5-5.5h21C37.5 8.5 40 11 40 14z"/>
+      <path d="M17 17h14M17 24h9"/>
+
+    {%- when 'shield' -%}
+      <path d="M24 5 40 11v12c0 9-7 16-16 20-9-4-16-11-16-20V11z"/>
+      <path d="M17 23.5 22 28.5 32 19"/>
+
+    {%- when 'lock' -%}
+      <rect x="9" y="21" width="30" height="21" rx="3"/>
+      <path d="M16 21v-6a8 8 0 0 1 16 0v6"/>
+      <circle cx="24" cy="31" r="2.5"/>
+
+    {%- when 'refund' -%}
+      <path d="M8 24a16 16 0 1 1 5 11.7"/>
+      <path d="M6 15v9h9"/>
+      <path d="M28.5 18.5h-4a4.5 4.5 0 0 0-4.5 4.5v5a4 4 0 0 1-1.5 3h11.5"/>
+      <path d="M18.5 24.5h7"/>
+
+    {%- when 'tag' -%}
+      <path d="M6 6h16l20 20-16 16L6 22z"/>
+      <circle cx="15" cy="15" r="3"/>
+
+    {%- when 'sparkle' -%}
+      <path d="M24 6c1.5 9 5.5 13 14.5 14.5C29.5 22 25.5 26 24 35c-1.5-9-5.5-13-14.5-14.5C18.5 19 22.5 15 24 6z"/>
+      <path d="M37 33c.6 3.5 2 5 5.5 5.6-3.5.6-4.9 2.1-5.5 5.6-.6-3.5-2-5-5.5-5.6 3.5-.6 4.9-2.1 5.5-5.6z"/>
+
+    {%- when 'globe' -%}
+      <circle cx="24" cy="24" r="17"/>
+      <path d="M7 24h34"/>
+      <path d="M24 7c4.5 5 6.8 10.7 6.8 17S28.5 41 24 41s-6.8-5.7-6.8-12S19.5 7 24 7z"/>
+
+    {%- when 'people' -%}
+      <circle cx="18" cy="17" r="6"/>
+      <path d="M8 38c0-5.5 4.5-10 10-10s10 4.5 10 10"/>
+      <path d="M31 12.5a6 6 0 0 1 0 11.5"/>
+      <path d="M33 28.5c4.2.9 7 4.5 7 9.5"/>
+
+    {%- when 'heart' -%}
+      <path d="M24 40S8 30 8 19a8.5 8.5 0 0 1 16-4 8.5 8.5 0 0 1 16 4c0 11-16 21-16 21z"/>
+
+    {%- when 'star' -%}
+      <path d="M24 6l5.6 11.6L42 19.4l-9 8.9 2.2 12.6L24 34.9l-11.2 6 2.2-12.6-9-8.9 12.4-1.8z"/>
+
+    {%- when 'gift' -%}
+      <rect x="7" y="19" width="34" height="22" rx="2"/>
+      <path d="M5 19h38v7H5zM24 19v22"/>
+      <path d="M24 19s-3-11-8-11a4.5 4.5 0 0 0 0 9zM24 19s3-11 8-11a4.5 4.5 0 0 1 0 9z"/>
+
+    {%- when 'card' -%}
+      <rect x="5" y="11" width="38" height="26" rx="3"/>
+      <path d="M5 19h38M11 29h7"/>
+
+    {%- else -%}
+      <circle cx="24" cy="24" r="17"/>
+      <path d="M17 23.5 22 28.5 32 19"/>
+  {%- endcase -%}
+</svg>

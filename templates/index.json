@@ -6,25 +6,33 @@
         "b1": {
           "type": "badge",
           "settings": {
-            "text": "Ships from the UK"
+            "icon": "truck",
+            "text": "Ships from the UK",
+            "note": "Held in our own warehouse, not drop-shipped from overseas."
           }
         },
         "b2": {
           "type": "badge",
           "settings": {
-            "text": "3 working days"
+            "icon": "clock",
+            "text": "3 working days",
+            "note": "Standard delivery, tracked, with a link in your dispatch email."
           }
         },
         "b3": {
           "type": "badge",
           "settings": {
-            "text": "Low minimum order"
+            "icon": "box",
+            "text": "Low minimum order",
+            "note": "Test a category without spending hundreds."
           }
         },
         "b4": {
           "type": "badge",
           "settings": {
-            "text": "Lami answers personally"
+            "icon": "chat",
+            "text": "Lami answers personally",
+            "note": "A real person, before you spend anything."
           }
         }
       },
@@ -34,7 +42,10 @@
         "b3",
         "b4"
       ],
-      "settings": {}
+      "settings": {
+        "background": "white",
+        "columns": "4"
+      }
     },
     "best-sellers": {
       "type": "featured-products",
