@@ -161,7 +161,7 @@
         "s4": {
           "type": "step",
           "settings": {
-            "text": "Post your listings, prices and product choices in the group. Lami reviews them and tells you what to change."
+            "text": "Post your listings, prices and product choices in the group and get them back marked up with what to change."
           }
         },
         "s5": {
@@ -266,7 +266,7 @@
         "p3": {
           "type": "point",
           "settings": {
-            "text": "Lami reviews your real listings and prices"
+            "text": "Your real listings and prices get reviewed"
           }
         },
         "p4": {

@@ -115,43 +115,210 @@ const PAGES = [
 /* ------------------------------------------------------------------ */
 
 const COLLECTIONS = [
-  ['jewellery-accessories', 'Jewellery & Accessories',
-    '<p>Wholesale jewellery and accessories for UK resellers, sold in small packs rather than by the hundred. Hoops, chains, stacking rings and hair accessories, all held in the UK and dispatched in 3 working days.</p>' +
-    '<p>This is the fastest category to start in. The items photograph well on a phone, they post for the price of a large letter, and they sit at an impulse price on Vinted and TikTok Shop, which is where most of our resellers clear their first pack. Minimum order quantities are deliberately low so you can test a style before committing to it.</p>' +
-    '<p>New to reselling? Read the <a href="/pages/learn-listings-guide">Listings Guide</a> first: jewellery lives or dies on the photograph.</p>'],
-
-  ['electronics', 'Electronics',
-    '<p>Wholesale consumer electronics and gadgets for UK resellers. Earbuds, ring lights, chargers and accessories, boxed and ready to list, shipped from the UK in 3 working days.</p>' +
-    '<p>Electronics behave differently to fashion. People search for them by name rather than browsing, which makes eBay the strongest first platform, and anything you can demonstrate on video does well on TikTok Shop. Margins are higher per unit than jewellery, but so is the buyer expectation, so description accuracy matters more here than anywhere else.</p>' +
-    '<p>Read the <a href="/pages/learn-platform-safety-guide">Platform Safety Guide</a> before you list: electronics draw the most buyer disputes.</p>'],
-
-  ['fashion', 'Fashion',
-    '<p>Wholesale clothing for UK resellers, sold in mixed-size packs at genuine trade prices. Shipped from the UK in 3 working days.</p>' +
-    '<p>Vinted is the fashion platform in Britain, and it rewards sellers who list consistently rather than in bursts. Packs arrive in mixed sizes so you cover a realistic size curve instead of guessing one, and whatever has not moved after a few weeks bundles well onto Facebook Marketplace for local collection, which keeps postage from eating the margin.</p>' +
-    '<p>Work out your floor price before you list anything with the <a href="/pages/faq#pricing-calculator">pricing calculator</a>.</p>'],
-
-  ['home-lifestyle', 'Home & Lifestyle',
-    '<p>Wholesale homeware and giftable lifestyle products for UK resellers. Candles, home fragrance and small decor, held in the UK and dispatched in 3 working days.</p>' +
-    '<p>This category is seasonal in a way the others are not. Demand climbs sharply from October and holds through to the new year, so buying early is worth more here than anywhere else in the shop. Bulkier items do better with local collection on Facebook Marketplace, where postage is not coming out of your margin, while smaller giftable pieces sell steadily on eBay year round.</p>' +
-    '<p>The <a href="/pages/learn-platform-guide">Platform Guide</a> covers which items belong where.</p>'],
-
-  ['starter-boxes', 'Starter Boxes',
-    '<p>The cheapest way to start reselling in the UK. A small mixed box across jewellery, accessories and lifestyle, chosen so a first-time reseller has a varied batch to list rather than fifty of one thing.</p>' +
-    '<p>A Starter Box is really an experiment. Split it across two platforms, list everything the same week, and see what actually sells to your audience before you spend more. That is real data on your own buyers, and it is worth more than any guide we could write. Shipped from the UK in 3 working days, like everything else.</p>' +
-    '<p>Never sold anything online? <a href="/pages/start-here">Start here</a> first.</p>'],
-
-  ['new-arrivals', 'New Arrivals',
-    '<p>The latest wholesale stock to land in our UK warehouse. New packs arrive most weeks and the newest are listed first.</p>' +
-    '<p>Restocks are announced in the buyers community before they reach this page, and popular packs often clear the same day. Your first order gets you into that group.</p>'],
-
-  ['best-sellers', 'Best Sellers',
-    '<p>The wholesale packs our resellers reorder most often. If you are not sure what to buy first, buy from this page.</p>' +
-    '<p>Reorder rate is the only honest measure of whether stock sells, because it means somebody made money on it and came back. Everything here has been bought more than once by the same people.</p>'],
-
-  ['dropshipping', 'Dropshipping',
-    '<p>Products you can order one at a time. No pack, no minimum order quantity, dispatched from our UK warehouse in 3 working days.</p>' +
-    '<p>Dropshipping suits you if you would rather list first and buy once something sells, instead of holding stock. Order a single unit when you have a buyer. Everything on this page ships from us in the UK, so your customer gets the same 3 working day delivery as any other order, and you are not explaining a three-week wait from overseas.</p>' +
-    '<p>Everything else in the shop is wholesale and carries a minimum order quantity, shown on every product.</p>'],
+  { handle: "jewellery-accessories", title: "Wholesale Jewellery & Accessories UK", menuLabel: "Jewellery & Accessories",
+    body: "<p>Wholesale jewellery and accessories for UK resellers, sold in small packs rather than by the hundred. Necklaces, earrings, bracelets, rings and sets, held in the UK and dispatched in 3 working days.</p><p>The fastest category to start in. It photographs well on a phone, posts for the price of a large letter, and sits at an impulse price on Vinted and TikTok Shop. Minimum order quantities are kept low so you can test a style before committing to it.</p>",
+    rule: "jewellery-accessories" },
+  { handle: "bags", title: "Wholesale Bags UK for Resellers", menuLabel: "Bags",
+    body: "<p>Wholesale bags for UK resellers. Fashion bags, handbags, school bags, wallets and travel bags at trade prices, shipped from the UK in 3 working days.</p><p>Bags carry a higher price per unit than jewellery, so fewer sales are needed to make a pack worth it. They photograph well on a plain background and sell year round, with school and travel styles peaking seasonally.</p>",
+    rule: "bags" },
+  { handle: "clothing", title: "Wholesale Clothing UK for Resellers", menuLabel: "Clothing",
+    body: "<p>Wholesale clothing for UK resellers, sold in mixed-size packs at genuine trade prices. Womenswear, casualwear, knitwear and seasonal ranges, shipped from the UK.</p><p>Vinted is the fashion platform in Britain and it rewards sellers who list consistently. Packs arrive in mixed sizes so you cover a realistic size curve instead of guessing one.</p>",
+    rule: "clothing" },
+  { handle: "beauty-fragrance", title: "Wholesale Beauty & Fragrance UK", menuLabel: "Beauty & Fragrance",
+    body: "<p>Wholesale beauty and fragrance for UK resellers. Perfumes, mini perfumes, beauty accessories and personal care, held in the UK.</p><p>Fragrance has one of the strongest gifting curves in the shop, climbing sharply from October. Mini perfumes work well as add-ons that lift an order value without lifting postage.</p>",
+    rule: "beauty-fragrance" },
+  { handle: "electronics", title: "Wholesale Electronics & Gadgets UK", menuLabel: "Electronics & Gadgets",
+    body: "<p>Wholesale consumer electronics and gadgets for UK resellers. Fans, speakers, phone accessories, small electronics and home gadgets, boxed and ready to list.</p><p>People search electronics by name rather than browsing, which makes eBay the strongest first platform. Anything you can demonstrate on video does well on TikTok Shop. Description accuracy matters more here than anywhere else in the shop.</p>",
+    rule: "electronics" },
+  { handle: "home-lifestyle", title: "Wholesale Home & Lifestyle UK", menuLabel: "Home & Lifestyle",
+    body: "<p>Wholesale homeware and lifestyle products for UK resellers. Kitchenware, home accessories, humidifiers, storage and lifestyle products, dispatched from the UK.</p><p>Bulkier items do better with local collection on Facebook Marketplace, where postage is not eating your margin. Smaller giftable pieces sell steadily on eBay all year.</p>",
+    rule: "home-lifestyle" },
+  { handle: "kids-school", title: "Wholesale Kids & School Supplies UK", menuLabel: "Kids & School",
+    body: "<p>Wholesale kids and school products for UK resellers. School bags, school shoes, kids accessories, toys and feeding sets, held in the UK.</p><p>This category is the most seasonal in the shop. Demand climbs from July and peaks in the fortnight before term, so buying early is worth more here than anywhere else.</p>",
+    rule: "kids-school" },
+  { handle: "drinkware", title: "Wholesale Drinkware UK for Resellers", menuLabel: "Drinkware",
+    body: "<p>Wholesale drinkware for UK resellers. Tumblers, cups, bottles and travel cups at trade prices, shipped from the UK in 3 working days.</p><p>Drinkware is light for its size and sells on repeat, because people buy a second one as a gift. It photographs cleanly and needs almost no explanation in a listing.</p>",
+    rule: "drinkware" },
+  { handle: "starter-boxes", title: "Wholesale Starter Boxes UK", menuLabel: "Starter Boxes",
+    body: "<p>The cheapest way to start reselling in the UK. Small mixed boxes chosen so a first-time reseller has a varied batch to list rather than fifty of one thing.</p><p>A Starter Box is really an experiment. Split it across two platforms, list everything the same week, and see what sells to your audience before you spend more. That is real data on your own buyers.</p>",
+    rule: "starter-boxes" },
+  { handle: "necklaces", title: "Wholesale Necklaces UK", menuLabel: "Necklaces",
+    body: "<p>Wholesale Necklaces for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/jewellery-accessories\">Jewellery & Accessories</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "necklaces" },
+  { handle: "earrings", title: "Wholesale Earrings UK", menuLabel: "Earrings",
+    body: "<p>Wholesale Earrings for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/jewellery-accessories\">Jewellery & Accessories</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "earrings" },
+  { handle: "bracelets", title: "Wholesale Bracelets UK", menuLabel: "Bracelets",
+    body: "<p>Wholesale Bracelets for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/jewellery-accessories\">Jewellery & Accessories</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "bracelets" },
+  { handle: "rings", title: "Wholesale Rings UK", menuLabel: "Rings",
+    body: "<p>Wholesale Rings for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/jewellery-accessories\">Jewellery & Accessories</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "rings" },
+  { handle: "jewellery-sets", title: "Wholesale Jewellery Sets UK", menuLabel: "Jewellery Sets",
+    body: "<p>Wholesale Jewellery Sets for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/jewellery-accessories\">Jewellery & Accessories</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "jewellery-sets" },
+  { handle: "jewellery-starter-box", title: "Jewellery Starter Box UK", menuLabel: "Jewellery Starter Box",
+    body: "<p>Jewellery Starter Box for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/jewellery-accessories\">Jewellery & Accessories</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "jewellery-starter-box" },
+  { handle: "fashion-bags", title: "Wholesale Fashion Bags UK", menuLabel: "Fashion Bags",
+    body: "<p>Wholesale Fashion Bags for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/bags\">Bags</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "fashion-bags" },
+  { handle: "handbags", title: "Wholesale Handbags UK", menuLabel: "Handbags",
+    body: "<p>Wholesale Handbags for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/bags\">Bags</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "handbags" },
+  { handle: "school-bags", title: "Wholesale School Bags UK", menuLabel: "School Bags",
+    body: "<p>Wholesale School Bags for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/bags\">Bags</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "school-bags" },
+  { handle: "wallets", title: "Wholesale Wallets UK", menuLabel: "Wallets",
+    body: "<p>Wholesale Wallets for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/bags\">Bags</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "wallets" },
+  { handle: "travel-bags", title: "Wholesale Travel Bags UK", menuLabel: "Travel Bags",
+    body: "<p>Wholesale Travel Bags for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/bags\">Bags</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "travel-bags" },
+  { handle: "womens-clothing", title: "Wholesale Women's Clothing UK", menuLabel: "Women's Clothing",
+    body: "<p>Wholesale Women's Clothing for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/clothing\">Clothing</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "womens-clothing" },
+  { handle: "casualwear", title: "Wholesale Casualwear UK", menuLabel: "Casualwear",
+    body: "<p>Wholesale Casualwear for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/clothing\">Clothing</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "casualwear" },
+  { handle: "knitwear", title: "Wholesale Knitwear UK", menuLabel: "Knitwear",
+    body: "<p>Wholesale Knitwear for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/clothing\">Clothing</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "knitwear" },
+  { handle: "seasonal-clothing", title: "Wholesale Seasonal Clothing UK", menuLabel: "Seasonal Clothing",
+    body: "<p>Wholesale Seasonal Clothing for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/clothing\">Clothing</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "seasonal-clothing" },
+  { handle: "mixed-clothing-packs", title: "Wholesale Mixed Clothing Packs UK", menuLabel: "Mixed Clothing Packs",
+    body: "<p>Wholesale Mixed Clothing Packs for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/clothing\">Clothing</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "mixed-clothing-packs" },
+  { handle: "perfumes", title: "Wholesale Perfumes UK", menuLabel: "Perfumes",
+    body: "<p>Wholesale Perfumes for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/beauty-fragrance\">Beauty & Fragrance</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "perfumes" },
+  { handle: "mini-perfumes", title: "Wholesale Mini Perfumes UK", menuLabel: "Mini Perfumes",
+    body: "<p>Wholesale Mini Perfumes for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/beauty-fragrance\">Beauty & Fragrance</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "mini-perfumes" },
+  { handle: "beauty-accessories", title: "Wholesale Beauty Accessories UK", menuLabel: "Beauty Accessories",
+    body: "<p>Wholesale Beauty Accessories for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/beauty-fragrance\">Beauty & Fragrance</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "beauty-accessories" },
+  { handle: "personal-care", title: "Wholesale Personal Care Products UK", menuLabel: "Personal Care",
+    body: "<p>Wholesale Personal Care Products for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/beauty-fragrance\">Beauty & Fragrance</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "personal-care" },
+  { handle: "fans", title: "Wholesale Fans UK", menuLabel: "Fans",
+    body: "<p>Wholesale Fans for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/electronics\">Electronics & Gadgets</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "fans" },
+  { handle: "speakers", title: "Wholesale Speakers UK", menuLabel: "Speakers",
+    body: "<p>Wholesale Speakers for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/electronics\">Electronics & Gadgets</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "speakers" },
+  { handle: "phone-accessories", title: "Wholesale Phone Accessories UK", menuLabel: "Phone Accessories",
+    body: "<p>Wholesale Phone Accessories for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/electronics\">Electronics & Gadgets</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "phone-accessories" },
+  { handle: "small-electronics", title: "Wholesale Small Electronics UK", menuLabel: "Small Electronics",
+    body: "<p>Wholesale Small Electronics for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/electronics\">Electronics & Gadgets</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "small-electronics" },
+  { handle: "home-gadgets", title: "Wholesale Home Gadgets UK", menuLabel: "Home Gadgets",
+    body: "<p>Wholesale Home Gadgets for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/electronics\">Electronics & Gadgets</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "home-gadgets" },
+  { handle: "kitchenware", title: "Wholesale Kitchenware UK", menuLabel: "Kitchenware",
+    body: "<p>Wholesale Kitchenware for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/home-lifestyle\">Home & Lifestyle</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "kitchenware" },
+  { handle: "home-accessories", title: "Wholesale Home Accessories UK", menuLabel: "Home Accessories",
+    body: "<p>Wholesale Home Accessories for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/home-lifestyle\">Home & Lifestyle</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "home-accessories" },
+  { handle: "humidifiers", title: "Wholesale Humidifiers UK", menuLabel: "Humidifiers",
+    body: "<p>Wholesale Humidifiers for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/home-lifestyle\">Home & Lifestyle</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "humidifiers" },
+  { handle: "storage", title: "Wholesale Storage Products UK", menuLabel: "Storage",
+    body: "<p>Wholesale Storage Products for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/home-lifestyle\">Home & Lifestyle</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "storage" },
+  { handle: "lifestyle-products", title: "Wholesale Lifestyle Products UK", menuLabel: "Lifestyle Products",
+    body: "<p>Wholesale Lifestyle Products for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/home-lifestyle\">Home & Lifestyle</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "lifestyle-products" },
+  { handle: "school-shoes", title: "Wholesale School Shoes UK", menuLabel: "School Shoes",
+    body: "<p>Wholesale School Shoes for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/kids-school\">Kids & School</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "school-shoes" },
+  { handle: "kids-accessories", title: "Wholesale Kids Accessories UK", menuLabel: "Kids Accessories",
+    body: "<p>Wholesale Kids Accessories for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/kids-school\">Kids & School</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "kids-accessories" },
+  { handle: "toys-games", title: "Wholesale Toys & Games UK", menuLabel: "Toys & Games",
+    body: "<p>Wholesale Toys & Games for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/kids-school\">Kids & School</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "toys-games" },
+  { handle: "feeding-sets", title: "Wholesale Feeding Sets UK", menuLabel: "Feeding Sets",
+    body: "<p>Wholesale Feeding Sets for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/kids-school\">Kids & School</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "feeding-sets" },
+  { handle: "tumblers", title: "Wholesale Tumblers UK", menuLabel: "Tumblers",
+    body: "<p>Wholesale Tumblers for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/drinkware\">Drinkware</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "tumblers" },
+  { handle: "cups", title: "Wholesale Cups UK", menuLabel: "Cups",
+    body: "<p>Wholesale Cups for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/drinkware\">Drinkware</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "cups" },
+  { handle: "bottles", title: "Wholesale Bottles UK", menuLabel: "Bottles",
+    body: "<p>Wholesale Bottles for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/drinkware\">Drinkware</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "bottles" },
+  { handle: "travel-cups", title: "Wholesale Travel Cups UK", menuLabel: "Travel Cups",
+    body: "<p>Wholesale Travel Cups for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/drinkware\">Drinkware</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "travel-cups" },
+  { handle: "boutique-starter-box", title: "Boutique Starter Box UK", menuLabel: "Boutique Starter Box",
+    body: "<p>Boutique Starter Box for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/starter-boxes\">Starter Boxes</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "boutique-starter-box" },
+  { handle: "mixed-product-starter-box", title: "Mixed Product Starter Box UK", menuLabel: "Mixed Product Starter Box",
+    body: "<p>Mixed Product Starter Box for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/starter-boxes\">Starter Boxes</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "mixed-product-starter-box" },
+  { handle: "mixed-branded-jewellery-box", title: "Mixed Branded Jewellery Box UK", menuLabel: "Mixed Branded Jewellery Box",
+    body: "<p>Mixed Branded Jewellery Box for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/starter-boxes\">Starter Boxes</a> range. Minimum order quantities are shown on every product.</p>",
+    rule: "mixed-branded-jewellery-box" },
+  { handle: "best-sellers", title: "Best Selling Wholesale Products UK", menuLabel: "Best Sellers",
+    body: "<p>The wholesale packs our resellers reorder most often. If you are not sure what to buy first, buy from this page.</p><p>Reorder rate is the only honest measure of whether stock sells, because it means somebody made money on it and came back.</p>",
+    rule: "best-sellers" },
+  { handle: "new-arrivals", title: "New Wholesale Stock UK", menuLabel: "New Arrivals",
+    body: "<p>The latest wholesale stock to land in our UK warehouse. New packs arrive most weeks and the newest are listed first.</p><p>Restocks are announced in the buyers community before they reach this page, and popular packs often clear the same day.</p>",
+    rule: "new-arrivals" },
+  { handle: "trending-now", title: "Trending Wholesale Products UK", menuLabel: "Trending Now",
+    body: "<p>What is moving fastest across the shop right now, based on what resellers are actually ordering this month.</p><p>Trends move quickly. What is here today may be gone in a fortnight, which is the point of the page.</p>",
+    rule: "trending-now" },
+  { handle: "back-in-stock", title: "Wholesale Products Back in Stock UK", menuLabel: "Back in Stock",
+    body: "<p>Packs that sold out and have now returned. These tend to go quickly the second time.</p><p>A product that sold out once has already proved there is demand for it.</p>",
+    rule: "back-in-stock" },
+  { handle: "selling-fast", title: "Wholesale Products Selling Fast UK", menuLabel: "Selling Fast",
+    body: "<p>Low stock, high reorder rate. These are the packs clearing quickest right now.</p><p>Stock levels here change daily. If something is on this page and you want it, do not wait on it.</p>",
+    rule: "selling-fast" },
+  { handle: "deal-drops", title: "Wholesale Deal Drops UK", menuLabel: "Deal Drops",
+    body: "<p>Reduced packs and clearance lines, while they last. Announced in the buyers community first.</p><p>Deal drops are one-off buys rather than permanent lines, so they are not restocked once they go.</p>",
+    rule: "deal-drops" },
+  { handle: "under-50", title: "Wholesale Products Under £50 UK", menuLabel: "Under £50",
+    body: "<p>Wholesale packs under £50, for testing a category without a big first order.</p><p>The cheapest honest way to find out whether a product sells to your audience before you commit to it.</p>",
+    rule: { priceMax: 50 } },
+  { handle: "under-100", title: "Wholesale Products Under £100 UK", menuLabel: "Under £100",
+    body: "<p>Wholesale packs under £100, shipped from the UK in 3 working days.</p><p>Enough range to fill a small shop without tying up your budget in one line.</p>",
+    rule: { priceMax: 100 } },
+  { handle: "low-moq", title: "Low MOQ Wholesale UK", menuLabel: "Low MOQ Wholesale",
+    body: "<p>Wholesale products with the smallest minimum order quantities in the shop.</p><p>Low minimums exist so you can spread a budget across several products rather than gamble it on one.</p>",
+    rule: "low-moq" },
+  { handle: "low-cost-to-resell", title: "Low-Cost Wholesale Products to Resell UK", menuLabel: "Low-Cost Products to Resell",
+    body: "<p>The lowest cost-per-unit wholesale products we stock, for resellers working to a tight budget.</p><p>A low unit cost means a smaller loss if a product does not move, which matters more than margin when you are starting.</p>",
+    rule: "low-cost" },
+  { handle: "higher-margin", title: "Higher Margin Wholesale Products UK", menuLabel: "High-Profit-Potential Products",
+    body: "<p>Wholesale products with a wider gap between the trade price and typical UK retail.</p><p>A wider gap gives you more room to price competitively and still make something. It is not a promise of profit: what you actually make depends on your listing quality, your pricing and demand on the day. Nothing here is guaranteed.</p>",
+    rule: "higher-margin" },
+  { handle: "best-for-vinted", title: "Wholesale Products to Sell on Vinted UK", menuLabel: "Best for Vinted",
+    body: "<p>Wholesale products suited to Vinted, the UK fashion resale platform.</p><p>Vinted buyers are browsing in a fashion mindset and buying at impulse prices. These products fit that. Results still depend on your listing quality, your pricing and demand.</p>",
+    rule: "platform-vinted" },
+  { handle: "best-for-ebay", title: "Wholesale Products to Sell on eBay UK", menuLabel: "Best for eBay",
+    body: "<p>Wholesale products suited to eBay, where buyers search by product name.</p><p>eBay rewards accurate titles and specifics over styling. These are products people look for by name. Results depend on your listing and pricing.</p>",
+    rule: "platform-ebay" },
+  { handle: "best-for-tiktok-shop", title: "Wholesale Products to Sell on TikTok Shop UK", menuLabel: "Best for TikTok Shop",
+    body: "<p>Wholesale products suited to TikTok Shop, where anything demonstrable sells.</p><p>If you can show it working in fifteen seconds, it belongs here. Results depend on your content, your pricing and demand.</p>",
+    rule: "platform-tiktok" },
+  { handle: "dropshipping", title: "Dropshipping Products UK, No Minimum Order", menuLabel: "Dropshipping Available",
+    body: "<p>Products you can order one at a time. No pack, no minimum order quantity, dispatched from our UK warehouse in 3 working days.</p><p>Dropshipping suits you if you would rather list first and buy once something sells. Everything here ships from us in the UK, so your customer gets the same 3 working day delivery.</p>",
+    rule: "dropship" },
+  { handle: "back-to-school", title: "Wholesale Back to School Products UK", menuLabel: "Back to School",
+    body: "<p>Wholesale school bags, shoes, stationery and kit for the back-to-school run.</p><p>Demand climbs from July and peaks in the fortnight before term. Buy early: this is the one category where late stock is dead stock.</p>",
+    rule: "back-to-school" },
+  { handle: "winter-essentials", title: "Wholesale Winter Essentials UK", menuLabel: "Winter Essentials",
+    body: "<p>Wholesale knitwear, warmers and cold-weather lines for the UK winter.</p><p>Winter lines carry from October to February, with gifting lifting the whole category through December.</p>",
+    rule: "winter-essentials" },
+  { handle: "summer-essentials", title: "Wholesale Summer Essentials UK", menuLabel: "Summer Essentials",
+    body: "<p>Wholesale summer lines: lightweight fashion, drinkware, fans and holiday accessories.</p><p>British summer buying is weather-driven and spiky. Hold a little back rather than listing everything in the first warm week.</p>",
+    rule: "summer-essentials" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -305,29 +472,34 @@ async function doCollections() {
   const custom = (await api('GET', '/custom_collections.json?limit=250')).custom_collections || [];
   const handles = new Set([...existing, ...custom].map((c) => c.handle));
 
-  for (const [handle, title, body] of COLLECTIONS) {
-    if (handles.has(handle)) {
-      console.log(`   · ${handle.padEnd(30)} already exists, skipped`);
+  for (const c of COLLECTIONS) {
+    if (handles.has(c.handle)) {
+      console.log(`   · ${c.handle.padEnd(30)} already exists, skipped`);
       skipped++;
       continue;
     }
-    /* The collection handle is the tag, except for dropshipping: products
-       carry the shorter `dropship` tag, which is also what the product page,
-       the card badge and the quick filters read. */
-    const tag = handle === 'dropshipping' ? 'dropship' : handle;
+
+    /* Most collections fill themselves from a product tag. The price bands
+       use Shopify's own price rule instead, so they stay correct when a price
+       changes rather than needing a tag kept in sync by hand. */
+    const rules =
+      typeof c.rule === 'object' && c.rule.priceMax
+        ? [{ column: 'variant_price', relation: 'less_than', condition: String(c.rule.priceMax) }]
+        : [{ column: 'tag', relation: 'equals', condition: c.rule }];
 
     await api('POST', '/smart_collections.json', {
       smart_collection: {
-        title,
-        handle,
-        /* The descriptions already contain their own paragraph markup. */
-        body_html: body,
+        /* The title is the page's H1, so it carries the explicit SEO wording.
+           The short menu label lives in the Navigation menu instead. */
+        title: c.title,
+        handle: c.handle,
+        body_html: c.body,
         published: true,
         disjunctive: false,
-        rules: [{ column: 'tag', relation: 'equals', condition: tag }],
+        rules,
       },
     });
-    console.log(`   ✓ ${handle.padEnd(30)} created  →  /collections/${handle}`);
+    console.log(`   ✓ ${c.handle.padEnd(30)} created  →  /collections/${c.handle}`);
     created++;
     await sleep(300);
   }
