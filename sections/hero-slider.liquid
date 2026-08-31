@@ -62,6 +62,21 @@
               <a href="{{ block.settings.secondary_url }}" class="btn btn--secondary">{{ block.settings.secondary_label }}</a>
             {% endif %}
           </div>
+
+          {% if block.settings.support_line != blank %}
+            {%- comment -%}
+              Split on the bullet so each fact becomes its own item. Written as
+              one field because that is how a merchant thinks about it, and
+              separated here so the spacing stays even and it wraps sensibly on
+              a phone instead of breaking mid-fact.
+            {%- endcomment -%}
+            <ul class="hero-slider__support">
+              {% assign facts = block.settings.support_line | split: '|' %}
+              {% for fact in facts %}
+                <li>{{ fact | strip }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
         </div>
       </div>
     {% endfor %}
@@ -236,6 +251,33 @@
     color: var(--color-navy);
   }
 
+  .hero-slider__support {
+    list-style: none;
+    margin: var(--space-5) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .hero-slider__support li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  /* A dot between facts rather than after the last one, drawn rather than
+     typed so it never ends up orphaned on its own line. */
+  .hero-slider__support li:not(:last-child)::after {
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-amber);
+  }
+
   .hero-slider__arrow {
     position: absolute;
     top: 50%;
@@ -364,7 +406,8 @@
         { "type": "text", "id": "primary_label", "label": "Primary button label", "default": "Shop the stock" },
         { "type": "url", "id": "primary_url", "label": "Primary button link" },
         { "type": "text", "id": "secondary_label", "label": "Secondary button label" },
-        { "type": "url", "id": "secondary_url", "label": "Secondary button link" }
+        { "type": "url", "id": "secondary_url", "label": "Secondary button link" },
+        { "type": "text", "id": "support_line", "label": "Supporting line", "info": "Short facts under the buttons. Separate them with a vertical bar, like: Low minimum orders | UK stock available | Secure checkout" }
       ]
     }
   ],

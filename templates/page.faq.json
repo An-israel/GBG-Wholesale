@@ -7,7 +7,7 @@
         "layout": "overlay",
         "eyebrow": "FAQ",
         "heading": "Everything people ask, answered.",
-        "body": "<p>Grouped so you can find yours fast. Still stuck? Message Lami.</p>",
+        "body": "<p>Grouped so you can find yours fast. Still stuck? Get in touch.</p>",
         "primary_label": "Shop the stock",
         "primary_url": "/collections/all",
         "secondary_label": "Message us",
@@ -258,7 +258,7 @@
           "settings": {
             "category": "Trust and payment",
             "question": "I've been scammed before. How do I know GBG is real?",
-            "answer": "<p>Fair question. Here's what you can check rather than take our word for:</p><ul><li>Checkout runs on Shopify's own payment system. We never see your card details, and your card provider's protection still applies.</li><li>Every photo is stock we actually hold and ship from the UK, not supplier renders.</li><li>Lami answers personally, by name, before you spend anything.</li><li>SYPB is free and public. Join it and ask members about their orders.</li><li>The returns policy is written out in full, including what we won't cover.</li></ul><p>Still unsure? Order the smallest Starter Box. How we handle a small order tells you more than anything we could write here.</p>",
+            "answer": "<p>Fair question. Here's what you can check rather than take our word for:</p><ul><li>Checkout runs on Shopify's own payment system. We never see your card details, and your card provider's protection still applies.</li><li>Every photo is stock we actually hold and ship from the UK, not supplier renders.</li><li>Real support, before and after you buy, by name, before you spend anything.</li><li>SYPB is free and public. Join it and ask members about their orders.</li><li>The returns policy is written out in full, including what we won't cover.</li></ul><p>Still unsure? Order the smallest Starter Box. How we handle a small order tells you more than anything we could write here.</p>",
             "link_text": "Read the returns policy",
             "link_url": "/pages/returns-policy"
           }

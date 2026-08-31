@@ -31,8 +31,8 @@
           "type": "badge",
           "settings": {
             "icon": "chat",
-            "text": "Lami answers personally",
-            "note": "A real person, before you spend anything."
+            "text": "Real support, before and after you buy",
+            "note": "Questions answered before and after you order."
           }
         }
       },
@@ -43,7 +43,7 @@
         "b4"
       ],
       "settings": {
-        "background": "white",
+        "background": "paper",
         "columns": "4"
       }
     },
@@ -51,7 +51,7 @@
       "type": "featured-products",
       "settings": {
         "eyebrow": "BEST SELLERS",
-        "heading": "GBG best sellers",
+        "heading": "What resellers are buying right now",
         "collection": "best-sellers",
         "product_count": 8,
         "show_cta": true,
@@ -125,7 +125,7 @@
       "type": "featured-products",
       "settings": {
         "eyebrow": "FIRST ORDER",
-        "heading": "Never done this before? Start with a box.",
+        "heading": "Start with a box",
         "collection": "starter-boxes",
         "product_count": 4,
         "show_cta": true,
@@ -137,7 +137,7 @@
     "success-proof": {
       "type": "testimonial-blocks",
       "settings": {
-        "eyebrow": "REVIEWS",
+        "eyebrow": "CUSTOMER WINS",
         "heading": "What buyers say",
         "body": "Reviews and screenshots from members, names blurred.",
         "background": "amber"
@@ -171,9 +171,9 @@
     "how-it-works": {
       "type": "numbered-steps",
       "settings": {
-        "eyebrow": "HOW IT WORKS",
+        "eyebrow": "HOW GBG WORKS",
         "heading": "Four steps, start to first sale",
-        "background": "mist"
+        "background": "white"
       },
       "blocks": {
         "s1": {
@@ -215,7 +215,7 @@
     "choose-journey": {
       "type": "routing-cards",
       "settings": {
-        "eyebrow": "WHERE TO START",
+        "eyebrow": "START HERE",
         "heading": "Pick your route",
         "background": "aqua"
       },
@@ -260,7 +260,7 @@
         "background": "white",
         "columns": "3",
         "eyebrow": "LEARN",
-        "heading": "Three questions, three answers",
+        "heading": "Answers to your hidden questions",
         "body": "<p>Free, no signup. Read one, then buy the stock it points you at.</p>"
       },
       "blocks": {
@@ -427,38 +427,41 @@
           "type": "slide",
           "settings": {
             "eyebrow": "BUY",
-            "heading": "Wholesale stock you can actually sell.",
-            "body": "<p>Real packs, low minimums, shipped from the UK in 3 working days.</p>",
-            "primary_label": "Shop the stock",
+            "heading": "Better stock decisions start here.",
+            "body": "<p>GBG gives you access to low-MOQ wholesale products, current best sellers and starter-friendly options, so you can choose stock based on your budget and where you plan to sell.</p>",
+            "primary_label": "Shop Products",
             "primary_url": "/collections/all",
-            "secondary_label": "See Starter Boxes",
-            "secondary_url": "/collections/starter-boxes",
+            "secondary_label": "Shop Under £100",
+            "secondary_url": "/collections/under-100",
             "image": "shopify://shop_images/Frame_2147225437.png",
-            "image_alt": "Wholesale stock ready to sell"
+            "image_alt": "Wholesale stock ready to sell",
+            "support_line": "Low minimum orders | UK stock available | Secure checkout"
           }
         },
         "sell": {
           "type": "slide",
           "settings": {
             "eyebrow": "SELL",
-            "heading": "Know where it sells before you buy it.",
-            "body": "<p>Free guides on what moves on Vinted, eBay, TikTok Shop and Marketplace, and what to charge.</p>",
-            "primary_label": "Read the guides",
+            "heading": "Turn stock into sales.",
+            "body": "<p>From pricing to platforms and product listings, GBG gives you the guidance to take your stock to market with a clearer plan.</p>",
+            "primary_label": "Learn How to Sell",
             "primary_url": "/pages/learn",
-            "secondary_label": "Try the pricing calculator",
-            "secondary_url": "/pages/faq#pricing-calculator"
+            "secondary_label": "Shop by Platform",
+            "secondary_url": "/collections/best-for-vinted",
+            "support_line": "Pricing | Listings | Platforms | Selling support"
           }
         },
         "build": {
           "type": "slide",
           "settings": {
             "eyebrow": "BUILD",
-            "heading": "You won't be doing this on your own.",
-            "body": "<p>A free community while you decide, a buyers group once you order, and the Academy when you want someone checking your work.</p>",
-            "primary_label": "Join the community",
+            "heading": "Build beyond the first sale.",
+            "body": "<p>Use GBG's education, communities and support to learn, restock and keep building from what you've started.</p>",
+            "primary_label": "Find Your Community",
             "primary_url": "/pages/community",
-            "secondary_label": "See the Academy",
-            "secondary_url": "/pages/academy"
+            "secondary_label": "Explore the Academy",
+            "secondary_url": "/pages/academy",
+            "support_line": "Learn | Restock | Improve | Grow"
           }
         }
       },
@@ -466,43 +469,6 @@
         "buy",
         "sell",
         "build"
-      ]
-    },
-    "first-sales": {
-      "type": "testimonial-blocks",
-      "settings": {
-        "background": "white",
-        "eyebrow": "FIRST SALES",
-        "heading": "First sales, from the group chat",
-        "body": "Screenshots members shared the week they started."
-      },
-      "blocks": {
-        "f1": {
-          "type": "testimonial",
-          "settings": {
-            "caption": "Sold within days of her first Starter Box.",
-            "rating": 5
-          }
-        },
-        "f2": {
-          "type": "testimonial",
-          "settings": {
-            "caption": "Cleared a whole pack in hours on Vinted.",
-            "rating": 5
-          }
-        },
-        "f3": {
-          "type": "testimonial",
-          "settings": {
-            "caption": "First Vinted sale in a week, no experience.",
-            "rating": 5
-          }
-        }
-      },
-      "block_order": [
-        "f1",
-        "f2",
-        "f3"
       ]
     },
     "reviews-carousel": {
@@ -514,6 +480,98 @@
         "cta_text": "Read all reviews",
         "cta_url": "/pages/reviews"
       }
+    },
+    "new-arrivals": {
+      "type": "featured-products",
+      "settings": {
+        "background": "white",
+        "eyebrow": "JUST LANDED",
+        "heading": "New drops",
+        "collection": "new-arrivals",
+        "product_count": 4,
+        "show_cta": true,
+        "cta_text": "See all new arrivals",
+        "cta_url": "/collections/new-arrivals"
+      }
+    },
+    "shop-by-need": {
+      "type": "content-cards",
+      "settings": {
+        "background": "mist",
+        "columns": "3",
+        "eyebrow": "SHOP BY WHAT YOU NEED",
+        "heading": "What are you looking for?"
+      },
+      "blocks": {
+        "n1": {
+          "type": "card",
+          "settings": {
+            "label": "BUDGET",
+            "heading": "Under £50",
+            "body": "<p>The lowest-cost way to test a category before committing.</p>",
+            "link_text": "Shop under £50",
+            "link_url": "/collections/under-50"
+          }
+        },
+        "n2": {
+          "type": "card",
+          "settings": {
+            "label": "SMALL ORDERS",
+            "heading": "Low MOQ",
+            "body": "<p>Packs with the smallest minimums in the shop.</p>",
+            "link_text": "Shop low MOQ",
+            "link_url": "/collections/low-moq"
+          }
+        },
+        "n3": {
+          "type": "card",
+          "settings": {
+            "label": "NO STOCK HOLDING",
+            "heading": "Dropshipping",
+            "body": "<p>Order a single unit once you have a buyer.</p>",
+            "link_text": "Shop dropshipping",
+            "link_url": "/collections/dropshipping"
+          }
+        },
+        "n4": {
+          "type": "card",
+          "settings": {
+            "label": "PLATFORM",
+            "heading": "Best for Vinted",
+            "body": "<p>Products that tend to move on the UK fashion platform.</p>",
+            "link_text": "Shop for Vinted",
+            "link_url": "/collections/best-for-vinted"
+          }
+        },
+        "n5": {
+          "type": "card",
+          "settings": {
+            "label": "PLATFORM",
+            "heading": "Best for TikTok Shop",
+            "body": "<p>Anything you can demonstrate on video.</p>",
+            "link_text": "Shop for TikTok",
+            "link_url": "/collections/best-for-tiktok-shop"
+          }
+        },
+        "n6": {
+          "type": "card",
+          "settings": {
+            "label": "MOVING FAST",
+            "heading": "Selling fast",
+            "body": "<p>Low stock, high reorder rate. Gone quickly.</p>",
+            "link_text": "Shop selling fast",
+            "link_url": "/collections/selling-fast"
+          }
+        }
+      },
+      "block_order": [
+        "n1",
+        "n2",
+        "n3",
+        "n4",
+        "n5",
+        "n6"
+      ]
     }
   },
   "order": [
@@ -522,9 +580,10 @@
     "best-sellers",
     "success-proof",
     "reviews-carousel",
-    "first-sales",
-    "starter-boxes",
+    "new-arrivals",
+    "shop-by-need",
     "shop-by-category",
+    "starter-boxes",
     "how-it-works",
     "choose-journey",
     "guides-to-stock",

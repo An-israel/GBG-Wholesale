@@ -63,17 +63,53 @@
                       {% render 'icon', name: 'arrow-right' %}
                     </a>
                     <hr class="rule">
-                    <ul class="mega-menu__list">
-                      {% for i in (1..8) %}
-                        {% assign label_key = 'sublink' | append: i | append: '_label' %}
-                        {% assign url_key = 'sublink' | append: i | append: '_url' %}
-                        {% assign sub_label = block.settings[label_key] %}
-                        {% assign sub_url = block.settings[url_key] %}
-                        {% if sub_label != blank and sub_url != blank %}
-                          <li><a href="{{ sub_url }}">{{ sub_label }}</a></li>
-                        {% endif %}
+                    {%- comment -%}
+                      Driven by a Shopify navigation menu rather than a list of
+                      numbered fields. With nine categories, forty-odd
+                      subcategories and a dozen demand collections, the menu has
+                      to be editable in Navigation, where it can be reordered
+                      and nested, instead of in twenty-eight theme settings.
+
+                      Any menu item with children renders as a column with its
+                      children beneath it. A flat menu still works and just
+                      renders as one list.
+                    {%- endcomment -%}
+                    {%- assign shop_menu = linklists[block.settings.menu] -%}
+                    {% if shop_menu.links.size > 0 %}
+                      {% assign has_children = false %}
+                      {% for link in shop_menu.links %}
+                        {% if link.links.size > 0 %}{% assign has_children = true %}{% endif %}
                       {% endfor %}
-                    </ul>
+
+                      <ul class="mega-menu__list{% if has_children %} mega-menu__list--columns{% endif %}">
+                        {% for link in shop_menu.links %}
+                          <li class="mega-menu__group">
+                            <a class="mega-menu__group-link{% if link.links.size > 0 %} mega-menu__group-link--parent{% endif %}" href="{{ link.url }}">
+                              {{ link.title }}
+                            </a>
+                            {% if link.links.size > 0 %}
+                              <ul class="mega-menu__children">
+                                {% for child in link.links %}
+                                  <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+                                {% endfor %}
+                              </ul>
+                            {% endif %}
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% else %}
+                      <ul class="mega-menu__list">
+                        {% for i in (1..8) %}
+                          {% assign label_key = 'sublink' | append: i | append: '_label' %}
+                          {% assign url_key = 'sublink' | append: i | append: '_url' %}
+                          {% assign sub_label = block.settings[label_key] %}
+                          {% assign sub_url = block.settings[url_key] %}
+                          {% if sub_label != blank and sub_url != blank %}
+                            <li><a href="{{ sub_url }}">{{ sub_label }}</a></li>
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
                   </div>
                 </div>
               </li>
@@ -134,15 +170,25 @@
               </button>
               <ul class="mobile-nav__submenu" id="{{ m_panel_id }}" data-mobile-accordion-panel hidden>
                 <li><a href="{{ block.settings.url }}">All {{ block.settings.label }}</a></li>
-                {% for i in (1..8) %}
-                  {% assign label_key = 'sublink' | append: i | append: '_label' %}
-                  {% assign url_key = 'sublink' | append: i | append: '_url' %}
-                  {% assign sub_label = block.settings[label_key] %}
-                  {% assign sub_url = block.settings[url_key] %}
-                  {% if sub_label != blank and sub_url != blank %}
-                    <li><a href="{{ sub_url }}">{{ sub_label }}</a></li>
-                  {% endif %}
-                {% endfor %}
+                {%- assign m_menu = linklists[block.settings.menu] -%}
+                {% if m_menu.links.size > 0 %}
+                  {% for link in m_menu.links %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% for child in link.links %}
+                      <li class="mobile-nav__child"><a href="{{ child.url }}">{{ child.title }}</a></li>
+                    {% endfor %}
+                  {% endfor %}
+                {% else %}
+                  {% for i in (1..8) %}
+                    {% assign label_key = 'sublink' | append: i | append: '_label' %}
+                    {% assign url_key = 'sublink' | append: i | append: '_url' %}
+                    {% assign sub_label = block.settings[label_key] %}
+                    {% assign sub_url = block.settings[url_key] %}
+                    {% if sub_label != blank and sub_url != blank %}
+                      <li><a href="{{ sub_url }}">{{ sub_label }}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
               </ul>
             </li>
         {% endcase %}
@@ -283,6 +329,52 @@
     text-decoration: none;
     color: var(--color-ink);
     font-weight: 600;
+  }
+
+  /* With nested categories the panel becomes columns: the category is the
+     column head and its subcategories sit under it, so nine categories and
+     their children stay scannable instead of becoming one long list. */
+  .mega-menu__list--columns {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: var(--space-5) var(--space-6);
+    align-items: start;
+  }
+
+  .mega-menu__group-link--parent {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-amber-text);
+    padding-bottom: var(--space-2);
+    margin-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mega-menu__children {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .mega-menu__children a {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+  }
+
+  .mega-menu__children a:hover {
+    color: var(--color-accent);
+  }
+
+  .mobile-nav__child a {
+    padding-left: var(--space-5);
+    font-size: 0.92rem;
+    color: var(--color-muted);
   }
 
   .mega-menu__list a:hover {
@@ -463,6 +555,9 @@
         { "type": "text", "id": "label", "label": "Label", "default": "Shop" },
         { "type": "url", "id": "url", "label": "\"View all\" link" },
         { "type": "header", "content": "Dropdown links (up to 7)" },
+        { "type": "link_list", "id": "menu", "label": "Menu to show", "info": "Build this in Navigation, where you can reorder it and nest subcategories under each category. It replaces the numbered links below." },
+        { "type": "header", "content": "Fallback links" },
+        { "type": "paragraph", "content": "Only used when no menu is chosen above." },
         { "type": "text", "id": "sublink1_label", "label": "Link 1 label", "default": "New Arrivals" },
         { "type": "url", "id": "sublink1_url", "label": "Link 1 URL" },
         { "type": "text", "id": "sublink2_label", "label": "Link 2 label", "default": "Best Sellers" },

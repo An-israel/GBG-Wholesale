@@ -84,7 +84,7 @@
           <div class="field">
             <label class="field__label" for="AcademyGoal">What do you want the Academy to do for you?</label>
             <textarea class="input" id="AcademyGoal" name="properties[What you want the Academy to do]" rows="4" required></textarea>
-            <span class="field__hint">A sentence is plenty. Lami reads every one.</span>
+            <span class="field__hint">A sentence is plenty. Every one gets read.</span>
           </div>
 
           <button type="submit" class="btn btn--primary btn--block">{{ section.settings.submit_label }}</button>
@@ -141,7 +141,7 @@
       <p class="field__hint academy-form__foot">
         Got a question first?
         {% if settings.whatsapp_link != blank %}
-          <a href="{{ settings.whatsapp_link }}" target="_blank" rel="noopener noreferrer">Message Lami on WhatsApp</a>.
+          <a href="{{ settings.whatsapp_link }}" target="_blank" rel="noopener noreferrer">Message us on WhatsApp</a>.
         {% else %}
           <a href="/pages/contact">Get in touch</a>.
         {% endif %}
