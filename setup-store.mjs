@@ -4,7 +4,8 @@
  *
  * Creates every Shopify record the theme's links point at:
  *   · 14 Pages, each bound to the matching theme template
- *   ·  7 Collections (automated, by product tag)
+ *   · 68 Collections (automated, by product tag or price)
+ *   ·  4 Navigation menus, built from those collections
  *   ·  8 demo products across those collections
  *
  * The theme is only a set of layouts - Shopify still needs a real Page record
@@ -16,21 +17,29 @@
  *
  * Usage:
  *   node setup-store.mjs <store>.myshopify.com shpat_xxxxxxxxxxxx
+ *
+ * Add --replace-menus to rebuild the navigation menus from scratch. Without
+ * it, a menu that already exists is left alone, because a setup script should
+ * not quietly throw away navigation someone has hand-edited.
  */
 
 const [, , SHOP_ARG, TOKEN_ARG] = process.argv;
 
 if (!SHOP_ARG || !TOKEN_ARG) {
   console.error(`
-Usage:  node setup-store.mjs <store>.myshopify.com <admin-api-token>
+Usage:  node setup-store.mjs <store>.myshopify.com <admin-api-token> [--replace-menus]
 
 Example:
   node setup-store.mjs gbg-wholesale-hub-d8b9mivj.myshopify.com shpat_abc123...
+
+Scopes the app needs:
+  write_content   write_products   write_online_store_navigation
 `);
   process.exit(1);
 }
 
 const SHOP = SHOP_ARG.replace(/^https?:\/\//, '').replace(/\/$/, '');
+const REPLACE_MENUS = process.argv.includes('--replace-menus');
 const TOKEN = TOKEN_ARG.trim();
 const API = `https://${SHOP}/admin/api/2024-10`;
 
@@ -67,7 +76,8 @@ async function api(method, path, body) {
   if (res.status === 401 || res.status === 403) {
     throw new Error(
       `Shopify rejected the token (HTTP ${res.status}).\n` +
-        `  Check the app has these scopes ticked: write_content, write_products.\n` +
+        `  Check the app has these scopes ticked: write_content, write_products,\n` +
+        `  write_online_store_navigation.\n` +
         `  Also make sure you clicked "Install app" after saving the scopes.`
     );
   }
@@ -87,6 +97,46 @@ async function api(method, path, body) {
 }
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/**
+ * Navigation menus exist only in the GraphQL Admin API. There is no REST
+ * endpoint for them, which is why this one helper sits beside the REST one
+ * rather than replacing it.
+ */
+async function gql(query, variables) {
+  const res = await fetch(`${API}/graphql.json`, {
+    method: 'POST',
+    headers: {
+      'X-Shopify-Access-Token': TOKEN,
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({ query, variables }),
+  });
+
+  if (res.status === 429) {
+    await sleep(2000);
+    return gql(query, variables);
+  }
+
+  const json = await res.json().catch(() => null);
+
+  if (res.status === 401 || res.status === 403) {
+    throw new Error(
+      `Shopify rejected the token for navigation (HTTP ${res.status}).\n` +
+        `  Menus need the write_online_store_navigation scope, which is separate\n` +
+        `  from the ones pages and products use. Tick it on the custom app, save,\n` +
+        `  then click "Install app" again to reissue the token.`
+    );
+  }
+
+  if (!res.ok || json?.errors) {
+    const detail = json?.errors ? JSON.stringify(json.errors) : `HTTP ${res.status}`;
+    throw new Error(`GraphQL failed\n  ${detail}`);
+  }
+
+  return json.data;
+}
 
 /* ------------------------------------------------------------------ */
 /* 1. PAGES - handle must match what the theme navigation links to.    */
@@ -335,7 +385,74 @@ const COLLECTIONS = [
 ];
 
 /* ------------------------------------------------------------------ */
-/* 3. PRODUCTS - realistic demo data, swap for real stock any time.    */
+/* 3. NAVIGATION MENUS                                                  */
+/*                                                                      */
+/* Only the short menu label lives here. The long SEO title is already   */
+/* on the collection itself and is what becomes the page's H1, so the    */
+/* two never have to be kept in step by hand.                           */
+/*                                                                      */
+/* The labels are not written out again below either: they come from     */
+/* menuLabel on the COLLECTIONS list above, so renaming a category is a  */
+/* one-line change that updates the menu with it.                       */
+/* ------------------------------------------------------------------ */
+
+const MENUS = [
+  {
+    handle: 'shop-menu',
+    title: 'Shop menu',
+    items: [
+      { catalog: true, label: 'All Products' },
+      { handle: 'new-arrivals' },
+      { handle: 'best-sellers' },
+      { handle: 'jewellery-accessories', children: ['necklaces', 'earrings', 'bracelets', 'rings', 'jewellery-sets', 'jewellery-starter-box'] },
+      { handle: 'bags', children: ['fashion-bags', 'handbags', 'school-bags', 'wallets', 'travel-bags'] },
+      { handle: 'clothing', children: ['womens-clothing', 'casualwear', 'knitwear', 'seasonal-clothing', 'mixed-clothing-packs'] },
+      { handle: 'beauty-fragrance', children: ['perfumes', 'mini-perfumes', 'beauty-accessories', 'personal-care'] },
+      { handle: 'electronics', children: ['fans', 'speakers', 'phone-accessories', 'small-electronics', 'home-gadgets'] },
+      { handle: 'home-lifestyle', children: ['kitchenware', 'home-accessories', 'humidifiers', 'storage', 'lifestyle-products'] },
+      { handle: 'kids-school', children: ['school-bags', 'school-shoes', 'kids-accessories', 'toys-games', 'feeding-sets'] },
+      { handle: 'drinkware', children: ['tumblers', 'cups', 'bottles', 'travel-cups'] },
+      { handle: 'starter-boxes', children: ['jewellery-starter-box', 'boutique-starter-box', 'mixed-product-starter-box', 'mixed-branded-jewellery-box'] },
+      { handle: 'dropshipping' },
+    ],
+  },
+  {
+    handle: 'shop-by-need',
+    title: 'Shop by need',
+    items: [
+      { handle: 'under-50' },
+      { handle: 'under-100' },
+      { handle: 'low-moq' },
+      { handle: 'low-cost-to-resell' },
+      { handle: 'higher-margin' },
+      { handle: 'best-for-vinted' },
+      { handle: 'best-for-ebay' },
+      { handle: 'best-for-tiktok-shop' },
+    ],
+  },
+  {
+    handle: 'whats-moving',
+    title: 'What is moving',
+    items: [
+      { handle: 'trending-now' },
+      { handle: 'back-in-stock' },
+      { handle: 'selling-fast' },
+      { handle: 'deal-drops' },
+    ],
+  },
+  {
+    handle: 'seasonal',
+    title: 'Seasonal',
+    items: [
+      { handle: 'back-to-school' },
+      { handle: 'winter-essentials' },
+      { handle: 'summer-essentials' },
+    ],
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* 4. PRODUCTS - realistic demo data, swap for real stock any time.    */
 /* ------------------------------------------------------------------ */
 
 const img = (t) => `https://placehold.co/1200x1200/F7F6F2/101418/png?text=${encodeURIComponent(t)}`;
@@ -531,6 +648,120 @@ async function doCollections() {
   }
 }
 
+async function doMenus() {
+  console.log('\n🧭  NAVIGATION');
+
+  // One lookup rather than one per link: the labels come from COLLECTIONS,
+  // the ids from the shop.
+  const labelOf = {};
+  for (const c of COLLECTIONS) labelOf[c.handle] = c.menuLabel;
+
+  const idOf = {};
+  let cursor = null;
+  do {
+    const data = await gql(
+      `query($cursor: String) {
+         collections(first: 250, after: $cursor) {
+           nodes { id handle }
+           pageInfo { hasNextPage endCursor }
+         }
+       }`,
+      { cursor }
+    );
+    for (const n of data.collections.nodes) idOf[n.handle] = n.id;
+    cursor = data.collections.pageInfo.hasNextPage ? data.collections.pageInfo.endCursor : null;
+  } while (cursor);
+
+  const existing = {};
+  const menuData = await gql(`{ menus(first: 50) { nodes { id handle title } } }`);
+  for (const m of menuData.menus.nodes) existing[m.handle] = m;
+
+  // Linking by collection id rather than by URL, so a link keeps working if a
+  // collection is ever renamed.
+  const missing = new Set();
+  const toItem = (entry) => {
+    if (entry.catalog) return { title: entry.label, type: 'CATALOG' };
+
+    const id = idOf[entry.handle];
+    if (!id) {
+      missing.add(entry.handle);
+      return null;
+    }
+
+    const item = {
+      title: entry.label || labelOf[entry.handle] || entry.handle,
+      type: 'COLLECTION',
+      resourceId: id,
+    };
+
+    if (entry.children) {
+      const kids = entry.children.map((h) => toItem({ handle: h })).filter(Boolean);
+      if (kids.length) item.items = kids;
+    }
+
+    return item;
+  };
+
+  for (const menu of MENUS) {
+    const items = menu.items.map(toItem).filter(Boolean);
+
+    if (!items.length) {
+      console.log(`   · ${menu.handle.padEnd(38)} skipped   (no collections exist yet)`);
+      skipped++;
+      continue;
+    }
+
+    // A menu the merchant may have hand-edited is never overwritten. Deleting
+    // someone's navigation to recreate it is not a thing a setup script should
+    // do quietly on a re-run.
+    if (existing[menu.handle]) {
+      if (!REPLACE_MENUS) {
+        console.log(`   · ${menu.handle.padEnd(38)} exists    (run with --replace-menus to rebuild)`);
+        skipped++;
+        continue;
+      }
+
+      const res = await gql(
+        `mutation($id: ID!, $title: String!, $handle: String!, $items: [MenuItemUpdateInput!]!) {
+           menuUpdate(id: $id, title: $title, handle: $handle, items: $items) {
+             menu { handle }
+             userErrors { field message }
+           }
+         }`,
+        { id: existing[menu.handle].id, title: menu.title, handle: menu.handle, items }
+      );
+      const errs = res.menuUpdate.userErrors;
+      if (errs.length) throw new Error(`${menu.handle}: ${errs.map((e) => e.message).join('; ')}`);
+      console.log(`   ✓ ${menu.handle.padEnd(38)} rebuilt   (${items.length} top-level)`);
+      created++;
+      await sleep(400);
+      continue;
+    }
+
+    const res = await gql(
+      `mutation($title: String!, $handle: String!, $items: [MenuItemCreateInput!]!) {
+         menuCreate(title: $title, handle: $handle, items: $items) {
+           menu { handle }
+           userErrors { field message }
+         }
+       }`,
+      { title: menu.title, handle: menu.handle, items }
+    );
+    const errs = res.menuCreate.userErrors;
+    if (errs.length) throw new Error(`${menu.handle}: ${errs.map((e) => e.message).join('; ')}`);
+    console.log(`   ✓ ${menu.handle.padEnd(38)} created   (${items.length} top-level)`);
+    created++;
+    await sleep(400);
+  }
+
+  if (missing.size) {
+    console.log(
+      `\n   Left out of the menus, because no such collection exists yet:\n` +
+        `   ${[...missing].join(', ')}`
+    );
+  }
+}
+
 async function doProducts() {
   console.log('\n📦  PRODUCTS');
   const existing = (await api('GET', '/products.json?limit=250&fields=handle')).products || [];
@@ -603,6 +834,7 @@ async function doProducts() {
   try {
     await doPages();
     await doCollections();
+    await doMenus();
     await doProducts();
   } catch (e) {
     console.error(`\n✗ Stopped early.\n  ${e.message}`);
@@ -615,5 +847,8 @@ async function doProducts() {
   console.log(`\nEvery link in the site should now resolve. Check a few:`);
   console.log(`   https://${SHOP}/pages/about`);
   console.log(`   https://${SHOP}/pages/academy`);
-  console.log(`   https://${SHOP}/collections/starter-boxes\n`);
+  console.log(`   https://${SHOP}/collections/starter-boxes`);
+  console.log(`\nOne thing still needs doing by hand, because a theme setting`);
+  console.log(`cannot be written from here: open the theme editor, click Header,`);
+  console.log(`and set "Menu to show" to Shop menu.\n`);
 })();
