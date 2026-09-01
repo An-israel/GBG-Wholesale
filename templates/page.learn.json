@@ -139,11 +139,43 @@
         "cta_url": "/collections/all",
         "background": "white"
       }
+    },
+    "faq": {
+      "type": "faq-bank",
+      "settings": {
+        "background": "mist",
+        "eyebrow": "FAQ",
+        "heading": "The questions behind the guides",
+        "show_set_headings": true,
+        "show_jump_nav": false,
+        "emit_schema": false,
+        "cta_text": "All questions",
+        "cta_url": "/pages/faq"
+      },
+      "blocks": {
+        "s1": {
+          "type": "set",
+          "settings": {
+            "set": "pricing"
+          }
+        },
+        "s2": {
+          "type": "set",
+          "settings": {
+            "set": "listings"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2"
+      ]
     }
   },
   "order": [
     "hero",
     "guides",
+    "faq",
     "next-steps",
     "shop-this",
     "cta"

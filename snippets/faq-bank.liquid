@@ -1,0 +1,534 @@
+{% doc %}
+  The FAQ bank: every question Lami wrote, held in one place and pulled by name.
+
+  A question is written once here and appears wherever its set is asked for, so
+  the answer on a category page, the product page and the main FAQ page can
+  never drift apart. Nothing has to be typed into the theme editor and nothing
+  is stored per page.
+
+  Set "auto" picks the set from the collection being viewed, which is what lets
+  one category template give nine categories nine different sets of questions.
+
+  @param {string} set - a set name, or "auto" to choose from the collection
+  @param {string} [mode] - "markup" (default) or "schema" for FAQPage JSON-LD
+  @param {object} [collection] - required when set is "auto"
+
+  @example
+  {% render 'faq-bank', set: 'jewellery' %}
+  {% render 'faq-bank', set: 'auto', collection: collection %}
+{% enddoc %}
+
+{%- liquid
+  assign chosen = set | default: 'shopping'
+  assign render_mode = mode | default: 'markup'
+
+  if chosen == 'auto'
+    assign chosen = 'shopping'
+
+    assign jewellery_handles = 'jewellery-accessories,necklaces,earrings,bracelets,rings,jewellery-sets,jewellery-starter-box,mixed-branded-jewellery-box' | split: ','
+    if jewellery_handles contains collection.handle
+      assign chosen = 'jewellery'
+    endif
+    assign bags_handles = 'bags,fashion-bags,handbags,school-bags,wallets,travel-bags' | split: ','
+    if bags_handles contains collection.handle
+      assign chosen = 'bags'
+    endif
+    assign clothing_handles = 'clothing,womens-clothing,casualwear,knitwear,seasonal-clothing,mixed-clothing-packs,winter-essentials,summer-essentials' | split: ','
+    if clothing_handles contains collection.handle
+      assign chosen = 'clothing'
+    endif
+    assign beauty_handles = 'beauty-fragrance,perfumes,mini-perfumes,beauty-accessories,personal-care' | split: ','
+    if beauty_handles contains collection.handle
+      assign chosen = 'beauty'
+    endif
+    assign electronics_handles = 'electronics,fans,speakers,phone-accessories,small-electronics,home-gadgets' | split: ','
+    if electronics_handles contains collection.handle
+      assign chosen = 'electronics'
+    endif
+    assign home_handles = 'home-lifestyle,kitchenware,home-accessories,humidifiers,storage,lifestyle-products' | split: ','
+    if home_handles contains collection.handle
+      assign chosen = 'home'
+    endif
+    assign kids_handles = 'kids-school,school-shoes,kids-accessories,toys-games,feeding-sets,back-to-school' | split: ','
+    if kids_handles contains collection.handle
+      assign chosen = 'kids'
+    endif
+    assign drinkware_handles = 'drinkware,tumblers,cups,bottles,travel-cups' | split: ','
+    if drinkware_handles contains collection.handle
+      assign chosen = 'drinkware'
+    endif
+    assign starter_boxes_handles = 'starter-boxes,boutique-starter-box,mixed-product-starter-box' | split: ','
+    if starter_boxes_handles contains collection.handle
+      assign chosen = 'starter-boxes'
+    endif
+    assign dropshipping_handles = 'dropshipping' | split: ','
+    if dropshipping_handles contains collection.handle
+      assign chosen = 'dropshipping'
+    endif
+    assign vinted_handles = 'best-for-vinted' | split: ','
+    if vinted_handles contains collection.handle
+      assign chosen = 'vinted'
+    endif
+    assign ebay_handles = 'best-for-ebay' | split: ','
+    if ebay_handles contains collection.handle
+      assign chosen = 'ebay'
+    endif
+    assign tiktok_handles = 'best-for-tiktok-shop' | split: ','
+    if tiktok_handles contains collection.handle
+      assign chosen = 'tiktok'
+    endif
+    assign pricing_handles = 'under-50,under-100,low-cost-to-resell,higher-margin' | split: ','
+    if pricing_handles contains collection.handle
+      assign chosen = 'pricing'
+    endif
+    assign choosing_handles = 'low-moq,best-sellers,new-arrivals,trending-now,back-in-stock,selling-fast,deal-drops' | split: ','
+    if choosing_handles contains collection.handle
+      assign chosen = 'choosing'
+    endif
+  endif
+-%}
+
+{%- case chosen -%}
+  {%- when 'shopping' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'shopping-1',
+        q: "What is the minimum order quantity?",
+        a: "<p>The minimum order depends on the product. You will see the MOQ shown clearly on each product page before you order. Some products can be bought in very small quantities, while others come in packs or boxes.</p>",
+        t: "The minimum order depends on the product. You will see the MOQ shown clearly on each product page before you order. Some products can be bought in very small quantities, while others come in packs or boxes.",
+        link_text: "See low MOQ products",
+        link_url: "/collections/low-moq" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'shopping-2',
+        q: "Do I need to own a business before buying from GBG?",
+        a: "<p>No. You can start small even if you have not formally set up a business yet. If you are buying specifically to resell, it is worth learning about your responsibilities as your sales grow.</p>",
+        t: "No. You can start small even if you have not formally set up a business yet. If you are buying specifically to resell, it is worth learning about your responsibilities as your sales grow." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'shopping-3',
+        q: "Can I buy from GBG for personal use?",
+        a: "<p>Yes, where the product's minimum order works for you. GBG is built mainly for resellers, but you do not have to be an experienced seller to shop.</p>",
+        t: "Yes, where the product's minimum order works for you. GBG is built mainly for resellers, but you do not have to be an experienced seller to shop." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'shopping-4',
+        q: "Can I mix different products in one order?",
+        a: "<p>Yes, you can add different available products to your basket. Each individual product still needs to meet its stated MOQ.</p>",
+        t: "Yes, you can add different available products to your basket. Each individual product still needs to meet its stated MOQ." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'shopping-5',
+        q: "How do I know whether a product is currently available?",
+        a: "<p>The product page shows whether the item is in stock, available for preorder, sold out, or available through dropshipping.</p>",
+        t: "The product page shows whether the item is in stock, available for preorder, sold out, or available through dropshipping." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'shopping-6',
+        q: "What happens when a product sells out?",
+        a: "<p>Some popular products are restocked. Where the option is available, use Notify Me on the product page so you hear when the next batch lands.</p>",
+        t: "Some popular products are restocked. Where the option is available, use Notify Me on the product page so you hear when the next batch lands.",
+        link_text: "See what is back in stock",
+        link_url: "/collections/back-in-stock" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'shopping-7',
+        q: "Can I preorder products?",
+        a: "<p>Some products are offered on preorder. Where this applies, the product page explains the expected timeline. A preorder is only confirmed once the required payment has been made.</p>",
+        t: "Some products are offered on preorder. Where this applies, the product page explains the expected timeline. A preorder is only confirmed once the required payment has been made." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'shopping-8',
+        q: "What payment methods can I use?",
+        a: "<p>The payment methods available to you are shown at checkout. These may include card payments, Shop Pay and Klarna where you are eligible.</p>",
+        t: "The payment methods available to you are shown at checkout. These may include card payments, Shop Pay and Klarna where you are eligible." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'shopping-9',
+        q: "How long will my order take to arrive?",
+        a: "<p>Delivery depends on the stock location and the product type. Check the individual product page for the estimate that applies before you order.</p>",
+        t: "Delivery depends on the stock location and the product type. Check the individual product page for the estimate that applies before you order.",
+        append: "dispatch_timeframe" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'shopping-10',
+        q: "Is everything stocked in the UK?",
+        a: "<p>No. GBG offers UK stock, preorder products and other fulfilment options. The stock and delivery information that applies always appears on the individual product page.</p>",
+        t: "No. GBG offers UK stock, preorder products and other fulfilment options. The stock and delivery information that applies always appears on the individual product page." -%}
+  {%- when 'choosing' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'choosing-1',
+        q: "I want to start selling but I do not know what product to choose. Where do I begin?",
+        a: "<p>Start with three things: your budget, where you plan to sell, and the kind of customer you want to reach. Then browse collections such as Low MOQ, Under £50, Under £100, Best for Vinted and Best Sellers, rather than picking a product because it looks interesting.</p><p>If you are completely new, start with Start Your Product Business for beginner guidance.</p>",
+        t: "Start with three things: your budget, where you plan to sell, and the kind of customer you want to reach. Then browse collections such as Low MOQ, Under £50, Under £100, Best for Vinted and Best Sellers, rather than picking a product because it looks interesting. If you are completely new, start with Start Your Product Business for beginner guidance.",
+        link_text: "Start here",
+        link_url: "/pages/start-here" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'choosing-2',
+        q: "Should I buy a lot of stock when I am just starting?",
+        a: "<p>Not necessarily. Starting with a manageable quantity lets you test your photos, pricing, platform and customer response before committing more money.</p>",
+        t: "Not necessarily. Starting with a manageable quantity lets you test your photos, pricing, platform and customer response before committing more money.",
+        link_text: "Browse low MOQ stock",
+        link_url: "/collections/low-moq" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'choosing-3',
+        q: "How do I know if a product will sell?",
+        a: "<p>Nobody can guarantee that a product will sell. Look at current demand, similar listings, realistic selling prices, competition, seasonality, and how well the product fits your chosen platform.</p><p>Our recommendations are there to help you make a better informed decision, not to promise a result.</p>",
+        t: "Nobody can guarantee that a product will sell. Look at current demand, similar listings, realistic selling prices, competition, seasonality, and how well the product fits your chosen platform. Our recommendations are there to help you make a better informed decision, not to promise a result." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'choosing-4',
+        q: "What products are easiest for beginners?",
+        a: "<p>Usually products with a manageable MOQ, straightforward pricing, clear customer demand and simple fulfilment are easier to test. Low MOQ, Low-Cost Products to Resell and Starter Boxes are good places to start.</p>",
+        t: "Usually products with a manageable MOQ, straightforward pricing, clear customer demand and simple fulfilment are easier to test. Low MOQ, Low-Cost Products to Resell and Starter Boxes are good places to start.",
+        link_text: "See Starter Boxes",
+        link_url: "/collections/starter-boxes" -%}
+  {%- when 'pricing' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'pricing-1',
+        q: "How should I price my products?",
+        a: "<p>Start by working out your true cost: product cost, plus delivery and shipping, plus packaging, plus platform and payment fees, plus any other selling costs.</p><p>Then compare similar products on the platform you want to use, and pick a price that leaves a worthwhile margin without putting you outside the market completely.</p>",
+        t: "Start by working out your true cost: product cost, plus delivery and shipping, plus packaging, plus platform and payment fees, plus any other selling costs. Then compare similar products on the platform you want to use, and pick a price that leaves a worthwhile margin without putting you outside the market completely.",
+        link_text: "Use the pricing calculator",
+        link_url: "/pages/faq#pricing-calculator" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'pricing-2',
+        q: "Should I double the price of everything I buy?",
+        a: "<p>No. There is no single markup that works for every product.</p><p>A low-cost clearance jewellery piece may take a larger percentage markup than a more expensive bag or an electronic item. Focus on the actual money left after your costs, not on a fixed percentage.</p>",
+        t: "No. There is no single markup that works for every product. A low-cost clearance jewellery piece may take a larger percentage markup than a more expensive bag or an electronic item. Focus on the actual money left after your costs, not on a fixed percentage." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'pricing-3',
+        q: "Are the resale prices shown by GBG guaranteed?",
+        a: "<p>No. Any resale range shown is an estimate based on comparable products or market observations. What you actually sell for depends on platform, presentation, competition, demand, condition and timing.</p>",
+        t: "No. Any resale range shown is an estimate based on comparable products or market observations. What you actually sell for depends on platform, presentation, competition, demand, condition and timing." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'pricing-4',
+        q: "What costs do people usually forget when calculating profit?",
+        a: "<p>The ones most often missed are packaging, postage, payment and platform fees, returns, promotional fees and discounts.</p><p>A sale is not automatically a profitable sale.</p>",
+        t: "The ones most often missed are packaging, postage, payment and platform fees, returns, promotional fees and discounts. A sale is not automatically a profitable sale.",
+        link_text: "Work out your floor price",
+        link_url: "/pages/faq#pricing-calculator" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'pricing-5',
+        q: "Is a cheaper product always more profitable?",
+        a: "<p>No. A £2 item can have a strong percentage margin but make only a few pounds per sale. A more expensive product may carry a smaller percentage markup but generate more cash profit.</p><p>Look at both the margin percentage and the actual pounds of profit.</p>",
+        t: "No. A £2 item can have a strong percentage margin but make only a few pounds per sale. A more expensive product may carry a smaller percentage markup but generate more cash profit. Look at both the margin percentage and the actual pounds of profit." -%}
+  {%- when 'jewellery' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'jewellery-1',
+        q: "Is jewellery suitable for someone starting a product business?",
+        a: "<p>It can be. Jewellery is relatively easy to store, photograph, package and sell across several channels, and mixed packs let you test different designs without committing to one style.</p>",
+        t: "It can be. Jewellery is relatively easy to store, photograph, package and sell across several channels, and mixed packs let you test different designs without committing to one style." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'jewellery-2',
+        q: "How should I price jewellery?",
+        a: "<p>Price each piece by its design, presentation, quality, selling platform and comparable products. Do not assume every item in a mixed pack needs the same selling price.</p>",
+        t: "Price each piece by its design, presentation, quality, selling platform and comparable products. Do not assume every item in a mixed pack needs the same selling price.",
+        link_text: "Use the pricing calculator",
+        link_url: "/pages/faq#pricing-calculator" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'jewellery-3',
+        q: "Can I sell GBG jewellery on Vinted or eBay?",
+        a: "<p>Some jewellery may suit these platforms, but you remain responsible for checking the platform's current rules and listing the item accurately.</p>",
+        t: "Some jewellery may suit these platforms, but you remain responsible for checking the platform's current rules and listing the item accurately.",
+        link_text: "Read the Platform Guide",
+        link_url: "/pages/learn-platform-guide" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'jewellery-4',
+        q: "What is a jewellery starter box?",
+        a: "<p>A starter box gives you a ready-made selection of jewellery to begin testing, rather than choosing every piece individually. The exact contents and quantity are shown on the product page.</p>",
+        t: "A starter box gives you a ready-made selection of jewellery to begin testing, rather than choosing every piece individually. The exact contents and quantity are shown on the product page.",
+        link_text: "See the Jewellery Starter Box",
+        link_url: "/collections/jewellery-starter-box" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'jewellery-5',
+        q: "What if I do not know which jewellery pieces will sell?",
+        a: "<p>Start with variety, test your listings, and watch what gets views, favourites, enquiries and sales. Use that to decide what to restock.</p>",
+        t: "Start with variety, test your listings, and watch what gets views, favourites, enquiries and sales. Use that to decide what to restock." -%}
+  {%- when 'bags' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'bags-1',
+        q: "Where can I sell wholesale bags?",
+        a: "<p>Depending on the product, sellers use eBay, Vinted, Facebook Marketplace, TikTok Shop, their own websites, social media or physical selling. Always check the current rules for the platform you choose.</p>",
+        t: "Depending on the product, sellers use eBay, Vinted, Facebook Marketplace, TikTok Shop, their own websites, social media or physical selling. Always check the current rules for the platform you choose.",
+        link_text: "Read the Platform Guide",
+        link_url: "/pages/learn-platform-guide" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'bags-2',
+        q: "Should I buy mixed bags or one design?",
+        a: "<p>Mixed stock is useful when you want to test different styles. Buying one style makes more sense once you already know what your customers respond to.</p>",
+        t: "Mixed stock is useful when you want to test different styles. Buying one style makes more sense once you already know what your customers respond to." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'bags-3',
+        q: "How should I price fashion bags?",
+        a: "<p>Compare similar styles and quality, then account for your product cost, delivery, packaging and selling fees. Branded products also need correct authenticity and brand information.</p>",
+        t: "Compare similar styles and quality, then account for your product cost, delivery, packaging and selling fees. Branded products also need correct authenticity and brand information." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'bags-4',
+        q: "Can I sell branded bags from GBG?",
+        a: "<p>Only market an item under a brand name where its authenticity and branding are properly verified. Never describe an unverified item as genuine branded merchandise.</p>",
+        t: "Only market an item under a brand name where its authenticity and branding are properly verified. Never describe an unverified item as genuine branded merchandise." -%}
+  {%- when 'clothing' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'clothing-1',
+        q: "Is wholesale clothing suitable for Vinted?",
+        a: "<p>Clothing is widely sold on resale marketplaces, but how you do depends on style, sizing, photography, pricing and the platform's current rules on commercial selling.</p>",
+        t: "Clothing is widely sold on resale marketplaces, but how you do depends on style, sizing, photography, pricing and the platform's current rules on commercial selling.",
+        link_text: "See Best for Vinted",
+        link_url: "/collections/best-for-vinted" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'clothing-2',
+        q: "How do I choose clothing stock?",
+        a: "<p>Think about season, sizing, current demand and where you plan to sell. If you are new, testing a smaller range helps you learn what your customers actually want before you increase stock.</p>",
+        t: "Think about season, sizing, current demand and where you plan to sell. If you are new, testing a smaller range helps you learn what your customers actually want before you increase stock." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'clothing-3',
+        q: "What information should I include when listing clothes?",
+        a: "<p>Accurate sizing, condition, material and details where you know them, clear photographs, and anything else a buyer needs to decide with confidence.</p>",
+        t: "Accurate sizing, condition, material and details where you know them, clear photographs, and anything else a buyer needs to decide with confidence.",
+        link_text: "Read the Listings Guide",
+        link_url: "/pages/learn-listings-guide" -%}
+  {%- when 'beauty' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'beauty-1',
+        q: "Where can I sell perfumes and beauty products?",
+        a: "<p>It depends on the item and the platform. Beauty and fragrance products can carry extra marketplace, shipping and safety restrictions, so check the current platform and courier rules before you list.</p>",
+        t: "It depends on the item and the platform. Beauty and fragrance products can carry extra marketplace, shipping and safety restrictions, so check the current platform and courier rules before you list." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'beauty-2',
+        q: "Can I create gift sets with products I buy from GBG?",
+        a: "<p>Where the products suit it, bundling is a useful way to build a different offer. Make sure your description explains clearly what the customer receives.</p>",
+        t: "Where the products suit it, bundling is a useful way to build a different offer. Make sure your description explains clearly what the customer receives." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'beauty-3',
+        q: "How should I price mini perfumes or gift products?",
+        a: "<p>Work out the cost per item, packaging and selling costs, then compare similar products and gift sets in your target market.</p>",
+        t: "Work out the cost per item, packaging and selling costs, then compare similar products and gift sets in your target market.",
+        link_text: "Use the pricing calculator",
+        link_url: "/pages/faq#pricing-calculator" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'beauty-4',
+        q: "Can I sell beauty products individually if I bought them in a wholesale pack?",
+        a: "<p>Where the individual products suit it and resale is legally permitted, this may be possible. Always keep product information and any required labelling intact.</p>",
+        t: "Where the individual products suit it and resale is legally permitted, this may be possible. Always keep product information and any required labelling intact." -%}
+  {%- when 'electronics' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'electronics-1',
+        q: "What should I check before selling electronics?",
+        a: "<p>Know exactly what the product does, what is included, any charging or power requirements, and any relevant safety information. Your listing should never promise features the product does not have.</p>",
+        t: "Know exactly what the product does, what is included, any charging or power requirements, and any relevant safety information. Your listing should never promise features the product does not have." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'electronics-2',
+        q: "Where can I sell gadgets?",
+        a: "<p>eBay, TikTok Shop, social media and other marketplaces may suit, depending on the product. Check each platform's current rules before you list.</p>",
+        t: "eBay, TikTok Shop, social media and other marketplaces may suit, depending on the product. Check each platform's current rules before you list.",
+        link_text: "Read the Platform Guide",
+        link_url: "/pages/learn-platform-guide" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'electronics-3',
+        q: "Should I test an electronic product before selling it?",
+        a: "<p>Where it is appropriate and practical, yes. Understanding the product before you list it helps you answer customer questions accurately and cuts avoidable returns.</p>",
+        t: "Where it is appropriate and practical, yes. Understanding the product before you list it helps you answer customer questions accurately and cuts avoidable returns." -%}
+  {%- when 'home' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'home-1',
+        q: "Are home and kitchen products good for reselling?",
+        a: "<p>They can be, because they solve everyday needs and appeal to a broad audience. Your price, imagery, usefulness and timing still matter.</p>",
+        t: "They can be, because they solve everyday needs and appeal to a broad audience. Your price, imagery, usefulness and timing still matter." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'home-2',
+        q: "Where can I sell home products?",
+        a: "<p>Common channels include eBay, Facebook Marketplace, TikTok Shop, social media and your own store, depending on the product.</p>",
+        t: "Common channels include eBay, Facebook Marketplace, TikTok Shop, social media and your own store, depending on the product.",
+        link_text: "Read the Platform Guide",
+        link_url: "/pages/learn-platform-guide" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'home-3',
+        q: "What should I show in my product listing?",
+        a: "<p>For functional products, show the item clearly and help the customer understand size, quantity, what is included, and how it is used.</p>",
+        t: "For functional products, show the item clearly and help the customer understand size, quantity, what is included, and how it is used.",
+        link_text: "Read the Listings Guide",
+        link_url: "/pages/learn-listings-guide" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'home-4',
+        q: "Are larger kitchen sets priced differently from smaller products?",
+        a: "<p>They should be priced on the full landed cost and a realistic market value. Larger items also carry higher packaging and delivery costs, so factor those in before you set your selling price.</p>",
+        t: "They should be priced on the full landed cost and a realistic market value. Larger items also carry higher packaging and delivery costs, so factor those in before you set your selling price." -%}
+  {%- when 'kids' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'kids-1',
+        q: "When is the best time to sell school products?",
+        a: "<p>Demand usually rises around back-to-school periods, but the timing varies. Starting your listings before the peak gives customers time to find you and order.</p>",
+        t: "Demand usually rises around back-to-school periods, but the timing varies. Starting your listings before the peak gives customers time to find you and order.",
+        link_text: "See Back to School stock",
+        link_url: "/collections/back-to-school" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'kids-2',
+        q: "Where can I sell school bags and school items?",
+        a: "<p>Depending on the item, you might use eBay, Vinted, Facebook Marketplace, social media, or physical and community selling.</p>",
+        t: "Depending on the item, you might use eBay, Vinted, Facebook Marketplace, social media, or physical and community selling." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'kids-3',
+        q: "Should I wait until school season before buying?",
+        a: "<p>Not necessarily, but seasonal products need more careful stock planning than year-round products. Avoid buying more than you can reasonably sell inside the demand window.</p>",
+        t: "Not necessarily, but seasonal products need more careful stock planning than year-round products. Avoid buying more than you can reasonably sell inside the demand window." -%}
+  {%- when 'drinkware' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'drinkware-1',
+        q: "Where can I sell tumblers and cups?",
+        a: "<p>Drinkware sells through marketplaces, TikTok Shop, social media, gift businesses and physical selling, where the platform allows the product.</p>",
+        t: "Drinkware sells through marketplaces, TikTok Shop, social media, gift businesses and physical selling, where the platform allows the product." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'drinkware-2',
+        q: "What happens when a popular product like a tumbler sells out?",
+        a: "<p>Join the restock notification where it is available. High demand does not guarantee the next batch sells at the same speed, so still make your own stock decision.</p>",
+        t: "Join the restock notification where it is available. High demand does not guarantee the next batch sells at the same speed, so still make your own stock decision.",
+        link_text: "See what is back in stock",
+        link_url: "/collections/back-in-stock" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'drinkware-3',
+        q: "How should I price drinkware?",
+        a: "<p>Compare similar designs and specifications, then account for the product cost, packaging, platform fees and delivery.</p>",
+        t: "Compare similar designs and specifications, then account for the product cost, packaging, platform fees and delivery.",
+        link_text: "Use the pricing calculator",
+        link_url: "/pages/faq#pricing-calculator" -%}
+  {%- when 'starter-boxes' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'starter-boxes-1',
+        q: "What is a starter box?",
+        a: "<p>A Starter Box is a pre-selected mix of products, put together to make choosing your first stock easier.</p>",
+        t: "A Starter Box is a pre-selected mix of products, put together to make choosing your first stock easier.",
+        append: "starter_box_min_price" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'starter-boxes-2',
+        q: "Who are starter boxes for?",
+        a: "<p>They are useful if you want to start selling but feel overwhelmed choosing individual products.</p>",
+        t: "They are useful if you want to start selling but feel overwhelmed choosing individual products." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'starter-boxes-3',
+        q: "Does buying a starter box guarantee sales?",
+        a: "<p>No. The box gives you stock to work with. Sales still depend on your pricing, product presentation, selling platform and consistency.</p>",
+        t: "No. The box gives you stock to work with. Sales still depend on your pricing, product presentation, selling platform and consistency." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'starter-boxes-4',
+        q: "What happens after I receive my starter box?",
+        a: "<p>Start by understanding what is inside, decide where each item is best suited, photograph and list them, set your prices, and begin testing.</p><p>If you are a verified GBG buyer and need help after your purchase, use the Wholesale Hub.</p>",
+        t: "Start by understanding what is inside, decide where each item is best suited, photograph and list them, set your prices, and begin testing. If you are a verified GBG buyer and need help after your purchase, use the Wholesale Hub.",
+        link_text: "Join the Wholesale Hub",
+        link_url: "/pages/community" -%}
+  {%- when 'dropshipping' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'dropshipping-1',
+        q: "Does GBG offer dropshipping?",
+        a: "<p>Selected GBG products are available for dropshipping. Look for the Dropshipping label on a product, or browse the dedicated collection.</p>",
+        t: "Selected GBG products are available for dropshipping. Look for the Dropshipping label on a product, or browse the dedicated collection.",
+        link_text: "See dropshipping products",
+        link_url: "/collections/dropshipping" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'dropshipping-2',
+        q: "Can every GBG product be dropshipped?",
+        a: "<p>No. Only products marked as eligible should be sold through the GBG dropshipping service.</p>",
+        t: "No. Only products marked as eligible should be sold through the GBG dropshipping service." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'dropshipping-3',
+        q: "What happens after my customer places an order?",
+        a: "<p>The fulfilment process is explained on the dropshipping page, once eligibility and fulfilment details are confirmed.</p>",
+        t: "The fulfilment process is explained on the dropshipping page, once eligibility and fulfilment details are confirmed.",
+        link_text: "Read the dropshipping page",
+        link_url: "/collections/dropshipping" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'dropshipping-4',
+        q: "What if a dropshipping product sells out?",
+        a: "<p>Stock availability changes. Avoid promising stock to customers without checking availability first, and keep your own listings updated.</p>",
+        t: "Stock availability changes. Avoid promising stock to customers without checking availability first, and keep your own listings updated." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'dropshipping-5',
+        q: "Can I dropship perfumes or bags?",
+        a: "<p>Only if that specific product is marked as dropshipping eligible and meets the fulfilment and shipping requirements.</p>",
+        t: "Only if that specific product is marked as dropshipping eligible and meets the fulfilment and shipping requirements." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'dropshipping-6',
+        q: "Do I still need to market the products myself?",
+        a: "<p>Yes. Dropshipping removes some of the inventory and fulfilment work. It does not create customers for you. Your store, listings, pricing, marketing and customer relationship are still yours.</p>",
+        t: "Yes. Dropshipping removes some of the inventory and fulfilment work. It does not create customers for you. Your store, listings, pricing, marketing and customer relationship are still yours." -%}
+  {%- when 'listings' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'listings-1',
+        q: "What makes a good product listing?",
+        a: "<p>A strong listing answers the buyer's questions quickly:</p><ul><li>What is it?</li><li>What condition is it in?</li><li>What do I receive?</li><li>What size, colour or specification is it?</li><li>Why might I want it?</li><li>How much is delivery?</li><li>When will it arrive?</li></ul><p>Use accurate titles, useful descriptions and clear photographs.</p>",
+        t: "A strong listing answers the buyer's questions quickly: What is it? What condition is it in? What do I receive? What size, colour or specification is it? Why might I want it? How much is delivery? When will it arrive? Use accurate titles, useful descriptions and clear photographs.",
+        link_text: "Read the Listings Guide",
+        link_url: "/pages/learn-listings-guide" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'listings-2',
+        q: "Should I use my own photographs?",
+        a: "<p>Real, clear photographs are usually worth it, because they show the buyer exactly what they are getting. Some platforms also have rules about stock or edited images, so check the one you are using. eBay, for example, requires listing photos to represent the item accurately and does not allow added marketing text or watermarks in listing images.</p>",
+        t: "Real, clear photographs are usually worth it, because they show the buyer exactly what they are getting. Some platforms also have rules about stock or edited images, so check the one you are using. eBay, for example, requires listing photos to represent the item accurately and does not allow added marketing text or watermarks in listing images." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'listings-3',
+        q: "Should I use AI to edit product photos?",
+        a: "<p>AI is useful for cleaning up a background or improving presentation, but the final image still has to represent the real product. Do not create colours, features, quantities or packaging the customer will not actually receive.</p>",
+        t: "AI is useful for cleaning up a background or improving presentation, but the final image still has to represent the real product. Do not create colours, features, quantities or packaging the customer will not actually receive." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'listings-4',
+        q: "My product is not selling. Should I reduce the price immediately?",
+        a: "<p>Not automatically. Check your photos, title, keywords, description, price, delivery, competition, and whether you chose the right platform.</p><p>Sometimes the listing needs improving rather than simply getting cheaper.</p>",
+        t: "Not automatically. Check your photos, title, keywords, description, price, delivery, competition, and whether you chose the right platform. Sometimes the listing needs improving rather than simply getting cheaper.",
+        link_text: "Read the Listings Guide",
+        link_url: "/pages/learn-listings-guide" -%}
+  {%- when 'vinted' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'vinted-1',
+        q: "What products should I sell on Vinted?",
+        a: "<p>Look at what buyers are searching for and what fits the platform's permitted catalogue. Our Best for Vinted collection narrows your options, but you should still validate the product yourself.</p>",
+        t: "Look at what buyers are searching for and what fits the platform's permitted catalogue. Our Best for Vinted collection narrows your options, but you should still validate the product yourself.",
+        link_text: "See Best for Vinted",
+        link_url: "/collections/best-for-vinted" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'vinted-2',
+        q: "Can GBG guarantee that a product will sell on Vinted?",
+        a: "<p>No. How a marketplace performs depends on demand, price, presentation, competition, timing and the quality of your account and listings.</p>",
+        t: "No. How a marketplace performs depends on demand, price, presentation, competition, timing and the quality of your account and listings." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'vinted-3',
+        q: "Can I hide a brand name to avoid a Vinted restriction?",
+        a: "<p>No. Do not disguise or misrepresent what you are selling to get round marketplace rules. Listings should be truthful and meet the platform's current catalogue and authenticity requirements.</p>",
+        t: "No. Do not disguise or misrepresent what you are selling to get round marketplace rules. Listings should be truthful and meet the platform's current catalogue and authenticity requirements.",
+        link_text: "Read the Platform Safety Guide",
+        link_url: "/pages/learn-platform-safety-guide" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'vinted-4',
+        q: "Why is my Vinted listing not selling?",
+        a: "<p>Review your photos, title, price, description, category and competition. Also ask whether the product genuinely suits the platform, rather than reposting the same listing without learning from the response.</p>",
+        t: "Review your photos, title, price, description, category and competition. Also ask whether the product genuinely suits the platform, rather than reposting the same listing without learning from the response." -%}
+  {%- when 'ebay' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'ebay-1',
+        q: "Is eBay free to sell on?",
+        a: "<p>For UK private sellers, eBay currently offers free selling in most categories within its monthly free-listing allowance, though optional upgrades and some other charges still apply. Business sellers have a separate fee structure.</p><p>If you are buying stock specifically to resell as a business, eBay says you should register as a business seller.</p>",
+        t: "For UK private sellers, eBay currently offers free selling in most categories within its monthly free-listing allowance, though optional upgrades and some other charges still apply. Business sellers have a separate fee structure. If you are buying stock specifically to resell as a business, eBay says you should register as a business seller.",
+        link_text: "See Best for eBay",
+        link_url: "/collections/best-for-ebay" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'ebay-2',
+        q: "What should I include in an eBay listing?",
+        a: "<p>Accurate product information, several clear photographs where you can, realistic postage details, and a clear returns and delivery policy.</p>",
+        t: "Accurate product information, several clear photographs where you can, realistic postage details, and a clear returns and delivery policy.",
+        link_text: "Read the Listings Guide",
+        link_url: "/pages/learn-listings-guide" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'ebay-3',
+        q: "Does eBay suit beginners?",
+        a: "<p>It can, but learn the platform before you upload large quantities. Understand your fees, postage, policies, and how similar products are presented.</p>",
+        t: "It can, but learn the platform before you upload large quantities. Understand your fees, postage, policies, and how similar products are presented." -%}
+  {%- when 'tiktok' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'tiktok-1',
+        q: "Is TikTok Shop suitable for product sellers?",
+        a: "<p>It can be, for products you can show off visually, especially if you are comfortable making content. Product eligibility, account requirements and seller rules change, so follow TikTok Shop's current seller guidance when you set up.</p>",
+        t: "It can be, for products you can show off visually, especially if you are comfortable making content. Product eligibility, account requirements and seller rules change, so follow TikTok Shop's current seller guidance when you set up.",
+        link_text: "See Best for TikTok Shop",
+        link_url: "/collections/best-for-tiktok-shop" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'tiktok-2',
+        q: "Do I need content to sell on TikTok Shop?",
+        a: "<p>Strong content makes products easier to discover. TikTok suits showing products in use, demonstrating benefits, and answering questions visually.</p>",
+        t: "Strong content makes products easier to discover. TikTok suits showing products in use, demonstrating benefits, and answering questions visually." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'tiktok-3',
+        q: "I am struggling to set up or access TikTok Shop. Can GBG fix my account?",
+        a: "<p>We can offer general selling guidance, but platform account and technical issues have to be resolved through TikTok's own seller support.</p>",
+        t: "We can offer general selling guidance, but platform account and technical issues have to be resolved through TikTok's own seller support." -%}
+  {%- when 'business' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'business-1',
+        q: "When do I need to tell HMRC about my online selling income?",
+        a: "<p>If you are buying or making products with the intention of selling them for profit, HMRC may treat that as trading.</p><p>Current UK guidance says that if your total gross trading income is more than £1,000 in a tax year, you generally need to tell HMRC. The £1,000 is a trading income allowance. It is not a rule saying you only become a business after £1,000 of profit.</p>",
+        t: "If you are buying or making products with the intention of selling them for profit, HMRC may treat that as trading. Current UK guidance says that if your total gross trading income is more than £1,000 in a tax year, you generally need to tell HMRC. The £1,000 is a trading income allowance. It is not a rule saying you only become a business after £1,000 of profit.",
+        link_text: "Check the guidance on GOV.UK",
+        link_url: "https://www.gov.uk/guidance/check-if-you-need-to-tell-hmrc-about-your-income-from-online-platforms" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'business-2',
+        q: "Is the £1,000 limit based on profit?",
+        a: "<p>No. HMRC's guidance refers to gross trading income and receipts before expenses, not simply your profit.</p>",
+        t: "No. HMRC's guidance refers to gross trading income and receipts before expenses, not simply your profit." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'business-3',
+        q: "Should I keep records even when I am small?",
+        a: "<p>Yes. Keep records of your sales, income and business costs from the beginning. HMRC expects accurate records even for side-hustle activity.</p>",
+        t: "Yes. Keep records of your sales, income and business costs from the beginning. HMRC expects accurate records even for side-hustle activity." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'business-4',
+        q: "Does GBG provide tax advice?",
+        a: "<p>No. We can help you understand the basics of running a product business, but tax and legal decisions depend on your circumstances. Use GOV.UK and HMRC guidance, or speak to a qualified professional where you need to.</p>",
+        t: "No. We can help you understand the basics of running a product business, but tax and legal decisions depend on your circumstances. Use GOV.UK and HMRC guidance, or speak to a qualified professional where you need to." -%}
+  {%- when 'community' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'community-1',
+        q: "I am completely new. Which GBG community should I join?",
+        a: "<p>If you have not purchased yet and you are still learning how a product business works, start with Start Your Product Business.</p>",
+        t: "If you have not purchased yet and you are still learning how a product business works, start with Start Your Product Business.",
+        link_text: "Start Your Product Business",
+        link_url: "/pages/start-here" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'community-2',
+        q: "I have already purchased from GBG. Where should I go for support?",
+        a: "<p>Verified buyers belong in the GBG Wholesale Hub, where the conversation stays on stock, selling, restocking and buyer support.</p>",
+        t: "Verified buyers belong in the GBG Wholesale Hub, where the conversation stays on stock, selling, restocking and buyer support.",
+        link_text: "Join the Wholesale Hub",
+        link_url: "/pages/community" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'community-3',
+        q: "How do I join the Wholesale Hub?",
+        a: "<p>After a verified purchase, follow the access instructions we send you. Your order confirmation also carries the next step.</p>",
+        t: "After a verified purchase, follow the access instructions we send you. Your order confirmation also carries the next step." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'community-4',
+        q: "What is the difference between SYPB and the Wholesale Hub?",
+        a: "<p><strong>Start Your Product Business</strong> is for before your first purchase. Learn the basics, explore products, and work out where to start.</p><p><strong>The Wholesale Hub</strong> is for after your verified GBG purchase. Buyer-focused support, product updates, selling conversations and restock opportunities.</p>",
+        t: "Start Your Product Business is for before your first purchase. Learn the basics, explore products, and work out where to start. The Wholesale Hub is for after your verified GBG purchase. Buyer-focused support, product updates, selling conversations and restock opportunities.",
+        link_text: "See both communities",
+        link_url: "/pages/community" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'community-5',
+        q: "What if I need more structured training?",
+        a: "<p>That is what the GBG Academy is for. The Academy suits people who want deeper, structured business education and implementation support, rather than community guidance alone.</p>",
+        t: "That is what the GBG Academy is for. The Academy suits people who want deeper, structured business education and implementation support, rather than community guidance alone.",
+        link_text: "See the Academy",
+        link_url: "/pages/academy" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'community-6',
+        q: "Do I need to join the Academy before I can buy from GBG?",
+        a: "<p>No. The Academy is not required to shop.</p>",
+        t: "No. The Academy is not required to shop." -%}
+    {%- render 'faq-q', mode: render_mode, id: 'community-7',
+        q: "I have bought stock but I still do not know how to list it. What should I do?",
+        a: "<p>If you are a verified buyer, take that question into the Wholesale Hub. The Learn Hub also covers pricing, listings and platform basics.</p>",
+        t: "If you are a verified buyer, take that question into the Wholesale Hub. The Learn Hub also covers pricing, listings and platform basics.",
+        link_text: "Read the free guides",
+        link_url: "/pages/learn" -%}
+  {%- when 'support' -%}
+    {%- render 'faq-q', mode: render_mode, id: 'support-1',
+        q: "I have a problem with my order. Who do I contact?",
+        a: "<p>Use the official GBG support channel, and have your name, order number and a clear explanation of the issue ready so the team can sort it faster.</p>",
+        t: "Use the official GBG support channel, and have your name, order number and a clear explanation of the issue ready so the team can sort it faster.",
+        link_text: "Contact support",
+        link_url: "/pages/contact" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'support-2',
+        q: "I need help choosing a product before I buy. Can someone help?",
+        a: "<p>Yes. Send us your budget, your country, the products you are interested in, and the platform you want to sell on, and the team will help you narrow it down.</p>",
+        t: "Yes. Send us your budget, your country, the products you are interested in, and the platform you want to sell on, and the team will help you narrow it down.",
+        link_text: "Ask the team",
+        link_url: "/pages/contact" -%}
+    {%- render 'faq-q', mode: render_mode, id: 'support-3',
+        q: "Does Lami personally answer every customer?",
+        a: "<p>No. As GBG grows, support is handled through the right GBG support and community channels.</p><p>Our promise is real support, before and after you buy.</p>",
+        t: "No. As GBG grows, support is handled through the right GBG support and community channels. Our promise is real support, before and after you buy." -%}
+{%- endcase -%}

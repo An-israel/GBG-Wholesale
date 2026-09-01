@@ -1,0 +1,442 @@
+{%- comment -%}
+  FAQ bank section.
+
+  Pulls named sets of questions out of snippets/faq-bank.liquid rather than
+  holding the wording in the theme editor, so the same question cannot end up
+  answered two different ways on two different pages. The main FAQ page asks
+  for every set. A category page asks for "auto" and gets the set that matches
+  the collection being viewed, which is how one template gives nine categories
+  nine different sets of questions.
+
+  Only one FAQPage block is valid per page, so the schema switch belongs to the
+  main FAQ page and nowhere else. It covers every set in this section at once.
+{%- endcomment -%}
+
+<section id="{{ section.settings.custom_id | default: section.id }}" class="faq-section section section--{{ section.settings.background }}">
+  <div class="container faq-section__inner">
+    {% if section.settings.eyebrow != blank or section.settings.heading != blank %}
+      <div class="section-intro reveal">
+        {% if section.settings.eyebrow != blank %}<span class="route-label">{{ section.settings.eyebrow }}</span>{% endif %}
+        {% if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif %}
+        {% if section.settings.intro != blank %}<p>{{ section.settings.intro }}</p>{% endif %}
+      </div>
+    {% endif %}
+
+    {%- comment -%}
+      A jump list, because eighty-odd collapsed rows is a scroll rather than a
+      page. Only worth showing when there is more than one set.
+
+      Anchors are named after the set rather than the block, so a link like
+      /pages/faq#faq-dropshipping written anywhere on the site keeps working
+      even if the blocks are reordered in the theme editor.
+    {%- endcomment -%}
+    {% if section.settings.show_jump_nav and section.blocks.size > 1 %}
+      <nav class="faq-jump" aria-label="Jump to a section">
+        <ul>
+          {% for block in section.blocks %}
+            {% liquid
+              case block.settings.set
+                when 'auto'
+                  assign set_title = 'Common questions'
+                when 'shopping'
+                  assign set_title = 'Shopping and ordering'
+                when 'choosing'
+                  assign set_title = 'Choosing what to sell'
+                when 'pricing'
+                  assign set_title = 'Pricing and profit'
+                when 'jewellery'
+                  assign set_title = 'Jewellery and accessories'
+                when 'bags'
+                  assign set_title = 'Bags'
+                when 'clothing'
+                  assign set_title = 'Clothing'
+                when 'beauty'
+                  assign set_title = 'Beauty and fragrance'
+                when 'electronics'
+                  assign set_title = 'Electronics and gadgets'
+                when 'home'
+                  assign set_title = 'Home, lifestyle and kitchenware'
+                when 'kids'
+                  assign set_title = 'Kids and school'
+                when 'drinkware'
+                  assign set_title = 'Drinkware'
+                when 'starter-boxes'
+                  assign set_title = 'Starter Boxes'
+                when 'dropshipping'
+                  assign set_title = 'Dropshipping'
+                when 'listings'
+                  assign set_title = 'Product listings'
+                when 'vinted'
+                  assign set_title = 'Vinted'
+                when 'ebay'
+                  assign set_title = 'eBay'
+                when 'tiktok'
+                  assign set_title = 'TikTok Shop'
+                when 'business'
+                  assign set_title = 'Business and HMRC'
+                when 'community'
+                  assign set_title = 'Community and Academy'
+                when 'support'
+                  assign set_title = 'Customer support'
+                else
+                  assign set_title = 'Questions'
+              endcase
+              assign label = block.settings.heading | default: set_title
+            %}
+            <li><a href="#faq-{{ block.settings.set }}">{{ label }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+
+    {% for block in section.blocks %}
+      {% liquid
+        case block.settings.set
+          when 'auto'
+            assign set_title = 'Common questions'
+          when 'shopping'
+            assign set_title = 'Shopping and ordering'
+          when 'choosing'
+            assign set_title = 'Choosing what to sell'
+          when 'pricing'
+            assign set_title = 'Pricing and profit'
+          when 'jewellery'
+            assign set_title = 'Jewellery and accessories'
+          when 'bags'
+            assign set_title = 'Bags'
+          when 'clothing'
+            assign set_title = 'Clothing'
+          when 'beauty'
+            assign set_title = 'Beauty and fragrance'
+          when 'electronics'
+            assign set_title = 'Electronics and gadgets'
+          when 'home'
+            assign set_title = 'Home, lifestyle and kitchenware'
+          when 'kids'
+            assign set_title = 'Kids and school'
+          when 'drinkware'
+            assign set_title = 'Drinkware'
+          when 'starter-boxes'
+            assign set_title = 'Starter Boxes'
+          when 'dropshipping'
+            assign set_title = 'Dropshipping'
+          when 'listings'
+            assign set_title = 'Product listings'
+          when 'vinted'
+            assign set_title = 'Vinted'
+          when 'ebay'
+            assign set_title = 'eBay'
+          when 'tiktok'
+            assign set_title = 'TikTok Shop'
+          when 'business'
+            assign set_title = 'Business and HMRC'
+          when 'community'
+            assign set_title = 'Community and Academy'
+          when 'support'
+            assign set_title = 'Customer support'
+          else
+            assign set_title = 'Questions'
+        endcase
+        assign label = block.settings.heading | default: set_title
+      %}
+      <div class="faq-section__category" id="faq-{{ block.settings.set }}" {{ block.shopify_attributes }}>
+        {% if section.settings.show_set_headings %}
+          <h3 class="faq-section__category-title">{{ label }}</h3>
+        {% endif %}
+        <div class="accordion">
+          {% render 'faq-bank', set: block.settings.set, collection: collection %}
+        </div>
+      </div>
+    {% endfor %}
+
+    {% if section.settings.cta_text != blank %}
+      <div class="faq-section__cta">
+        <a href="{{ section.settings.cta_url }}" class="btn btn--secondary">{{ section.settings.cta_text }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{%- if section.settings.emit_schema and section.blocks.size > 0 -%}
+  {%- capture faq_entries -%}
+    {%- for block in section.blocks -%}
+      {%- render 'faq-bank', set: block.settings.set, collection: collection, mode: 'schema' -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{{ faq_entries | strip | remove_first: ',' }}]
+    }
+  </script>
+{%- endif -%}
+
+{% stylesheet %}
+  .faq-jump {
+    margin-bottom: var(--space-7);
+  }
+
+  .faq-jump ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .faq-jump a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 var(--space-4);
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  .faq-jump a:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  /* Scroll target sits clear of the sticky header when jumped to. */
+  .faq-section__category {
+    scroll-margin-top: 90px;
+  }
+
+  .faq-section__category + .faq-section__category {
+    margin-top: var(--space-7);
+  }
+
+  .faq-section__category-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-3);
+  }
+
+  .faq-section__cta {
+    text-align: center;
+    margin-top: var(--space-7);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "FAQ bank",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Questions come from the built-in bank, so the wording is written once and stays the same everywhere. Add a block for each set you want on this page."
+    },
+    {
+      "type": "text",
+      "id": "custom_id",
+      "label": "Anchor ID (optional)"
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Section background",
+      "info": "Vary this down a page so each band reads as its own.",
+      "options": [
+        {
+          "value": "paper",
+          "label": "Paper (light grey)"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "mist",
+          "label": "Mist (pale navy)"
+        },
+        {
+          "value": "amber",
+          "label": "Amber tint"
+        },
+        {
+          "value": "aqua",
+          "label": "Aqua tint"
+        },
+        {
+          "value": "navy",
+          "label": "Navy (dark)"
+        }
+      ],
+      "default": "white"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow / route label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently asked questions"
+    },
+    {
+      "type": "text",
+      "id": "intro",
+      "label": "Intro line (optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_set_headings",
+      "label": "Show a heading above each set",
+      "info": "Switch off when the page only carries one set.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_jump_nav",
+      "label": "Show a jump list at the top",
+      "info": "Worth it on the main FAQ page. Ignored when there is only one set.",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "emit_schema",
+      "label": "Let Google show these answers in search results",
+      "info": "Switch on for the main FAQ page only. Two on one page is invalid and Google ignores both.",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Bottom CTA text"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Bottom CTA link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "set",
+      "name": "Question set",
+      "settings": [
+        {
+          "type": "select",
+          "id": "set",
+          "label": "Which questions",
+          "info": "Automatic reads the collection being viewed, so one category template can serve every category.",
+          "options": [
+            {
+              "value": "auto",
+              "label": "Automatic (match the collection being viewed)"
+            },
+            {
+              "value": "shopping",
+              "label": "Shopping and ordering (10)"
+            },
+            {
+              "value": "choosing",
+              "label": "Choosing what to sell (4)"
+            },
+            {
+              "value": "pricing",
+              "label": "Pricing and profit (5)"
+            },
+            {
+              "value": "jewellery",
+              "label": "Jewellery and accessories (5)"
+            },
+            {
+              "value": "bags",
+              "label": "Bags (4)"
+            },
+            {
+              "value": "clothing",
+              "label": "Clothing (3)"
+            },
+            {
+              "value": "beauty",
+              "label": "Beauty and fragrance (4)"
+            },
+            {
+              "value": "electronics",
+              "label": "Electronics and gadgets (3)"
+            },
+            {
+              "value": "home",
+              "label": "Home, lifestyle and kitchenware (4)"
+            },
+            {
+              "value": "kids",
+              "label": "Kids and school (3)"
+            },
+            {
+              "value": "drinkware",
+              "label": "Drinkware (3)"
+            },
+            {
+              "value": "starter-boxes",
+              "label": "Starter Boxes (4)"
+            },
+            {
+              "value": "dropshipping",
+              "label": "Dropshipping (6)"
+            },
+            {
+              "value": "listings",
+              "label": "Product listings (4)"
+            },
+            {
+              "value": "vinted",
+              "label": "Vinted (4)"
+            },
+            {
+              "value": "ebay",
+              "label": "eBay (3)"
+            },
+            {
+              "value": "tiktok",
+              "label": "TikTok Shop (3)"
+            },
+            {
+              "value": "business",
+              "label": "Business and HMRC (4)"
+            },
+            {
+              "value": "community",
+              "label": "Community and Academy (7)"
+            },
+            {
+              "value": "support",
+              "label": "Customer support (3)"
+            }
+          ],
+          "default": "shopping"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading override (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ bank",
+      "blocks": [
+        {
+          "type": "set"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

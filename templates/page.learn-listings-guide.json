@@ -342,6 +342,30 @@
         "cta_url": "/collections/jewellery-accessories",
         "background": "white"
       }
+    },
+    "faq": {
+      "type": "faq-bank",
+      "settings": {
+        "background": "paper",
+        "eyebrow": "FAQ",
+        "heading": "Listing questions",
+        "show_set_headings": false,
+        "show_jump_nav": false,
+        "emit_schema": false,
+        "cta_text": "All questions",
+        "cta_url": "/pages/faq"
+      },
+      "blocks": {
+        "s1": {
+          "type": "set",
+          "settings": {
+            "set": "listings"
+          }
+        }
+      },
+      "block_order": [
+        "s1"
+      ]
     }
   },
   "order": [
@@ -352,6 +376,7 @@
     "description",
     "pricing",
     "routine",
+    "faq",
     "shop-this",
     "next"
   ]

@@ -68,12 +68,37 @@
         "cta_text": "Shop everything",
         "cta_url": "/collections/all"
       }
+    },
+    "faq": {
+      "type": "faq-bank",
+      "settings": {
+        "background": "paper",
+        "eyebrow": "FAQ",
+        "heading": "Ordering questions",
+        "show_set_headings": false,
+        "show_jump_nav": false,
+        "emit_schema": false,
+        "cta_text": "All questions",
+        "cta_url": "/pages/faq"
+      },
+      "blocks": {
+        "s1": {
+          "type": "set",
+          "settings": {
+            "set": "shopping"
+          }
+        }
+      },
+      "block_order": [
+        "s1"
+      ]
     }
   },
   "order": [
     "main-product",
     "related-products",
     "complementary-products",
+    "faq",
     "category-best-sellers"
   ]
 }

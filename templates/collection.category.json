@@ -108,7 +108,14 @@
           }
         }
       },
-      "block_order": ["n1", "n2", "n3", "n4", "n5", "n6"]
+      "block_order": [
+        "n1",
+        "n2",
+        "n3",
+        "n4",
+        "n5",
+        "n6"
+      ]
     },
     "buying-guide": {
       "type": "numbered-steps",
@@ -143,7 +150,11 @@
           }
         }
       },
-      "block_order": ["g1", "g2", "g3"]
+      "block_order": [
+        "g1",
+        "g2",
+        "g3"
+      ]
     },
     "related": {
       "type": "collection-related",
@@ -153,80 +164,81 @@
         "heading": "Related collections"
       },
       "blocks": {
-        "r1": { "type": "link", "settings": { "collection": "best-sellers", "label": "Best Sellers" } },
-        "r2": { "type": "link", "settings": { "collection": "new-arrivals", "label": "New Arrivals" } },
-        "r3": { "type": "link", "settings": { "collection": "starter-boxes", "label": "Starter Boxes" } },
-        "r4": { "type": "link", "settings": { "collection": "under-50", "label": "Under £50" } },
-        "r5": { "type": "link", "settings": { "collection": "dropshipping", "label": "Dropshipping" } },
-        "r6": { "type": "link", "settings": { "collection": "selling-fast", "label": "Selling Fast" } }
+        "r1": {
+          "type": "link",
+          "settings": {
+            "collection": "best-sellers",
+            "label": "Best Sellers"
+          }
+        },
+        "r2": {
+          "type": "link",
+          "settings": {
+            "collection": "new-arrivals",
+            "label": "New Arrivals"
+          }
+        },
+        "r3": {
+          "type": "link",
+          "settings": {
+            "collection": "starter-boxes",
+            "label": "Starter Boxes"
+          }
+        },
+        "r4": {
+          "type": "link",
+          "settings": {
+            "collection": "under-50",
+            "label": "Under £50"
+          }
+        },
+        "r5": {
+          "type": "link",
+          "settings": {
+            "collection": "dropshipping",
+            "label": "Dropshipping"
+          }
+        },
+        "r6": {
+          "type": "link",
+          "settings": {
+            "collection": "selling-fast",
+            "label": "Selling Fast"
+          }
+        }
       },
-      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6"]
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
+      ]
     },
     "faq": {
-      "type": "faq-accordion",
+      "type": "faq-bank",
       "settings": {
         "background": "white",
-        "group_by_category": false,
-        "emit_schema": false,
         "eyebrow": "FAQ",
         "heading": "Before you order",
+        "show_set_headings": false,
+        "show_jump_nav": false,
+        "emit_schema": false,
         "cta_text": "All questions",
         "cta_url": "/pages/faq"
       },
       "blocks": {
-        "f1": {
-          "type": "question",
+        "s1": {
+          "type": "set",
           "settings": {
-            "question": "What is the minimum I have to order?",
-            "answer": "<p>It is set per product and shown on every product page and card. Anything tagged for dropshipping can be ordered as a single unit.</p>",
-            "link_text": "See low MOQ products",
-            "link_url": "/collections/low-moq"
-          }
-        },
-        "f2": {
-          "type": "question",
-          "settings": {
-            "question": "How long does delivery take?",
-            "answer": "<p>Everything ships from the UK.</p>",
-            "dynamic_append": "dispatch_timeframe"
-          }
-        },
-        "f3": {
-          "type": "question",
-          "settings": {
-            "question": "Can I choose sizes, colours or designs?",
-            "answer": "<p>Not on standard packs. Wholesale stock is sold as-is, and each product page states what is in the pack. Where a choice exists it appears as an option on the product itself.</p>"
-          }
-        },
-        "f4": {
-          "type": "question",
-          "settings": {
-            "question": "Where should I sell these?",
-            "answer": "<p>It depends on the product. The Platform Guide breaks down what tends to move on Vinted, eBay, TikTok Shop and Facebook Marketplace.</p>",
-            "link_text": "Read the Platform Guide",
-            "link_url": "/pages/learn-platform-guide"
-          }
-        },
-        "f5": {
-          "type": "question",
-          "settings": {
-            "question": "What if something arrives damaged?",
-            "answer": "<p>Tell us within 48 hours with photos and it is replaced or refunded in full.</p>",
-            "link_text": "Full returns policy",
-            "link_url": "/pages/returns-policy"
-          }
-        },
-        "f6": {
-          "type": "question",
-          "settings": {
-            "question": "Will I definitely make a profit?",
-            "answer": "<p>No, and anyone telling you otherwise is selling you something. What you make depends on what you pay, how you list it, what you charge and demand on the day. We give you the stock and the guidance. The selling is still yours to do.</p>",
-            "link_text": "Read the guides",
-            "link_url": "/pages/learn"
+            "set": "auto"
           }
         }
       },
-      "block_order": ["f1", "f2", "f3", "f4", "f5", "f6"]
+      "block_order": [
+        "s1"
+      ]
     },
     "final-cta": {
       "type": "rich-text",

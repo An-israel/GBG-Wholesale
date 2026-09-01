@@ -284,64 +284,27 @@
       ]
     },
     "faq": {
-      "type": "faq-accordion",
+      "type": "faq-bank",
       "settings": {
-        "group_by_category": false,
+        "background": "white",
         "eyebrow": "ACADEMY FAQ",
         "heading": "Before you join",
-        "background": "white"
+        "show_set_headings": false,
+        "show_jump_nav": false,
+        "emit_schema": false,
+        "cta_text": "All questions",
+        "cta_url": "/pages/faq"
       },
       "blocks": {
-        "f1": {
-          "type": "question",
+        "s1": {
+          "type": "set",
           "settings": {
-            "question": "How do I get into the Skool community?",
-            "answer": "<p>The invite link is in your welcome email, sent the moment your payment goes through. If it hasn't arrived in ten minutes, check spam, then message us.</p>",
-            "link_text": "Get in touch",
-            "link_url": "/pages/contact"
-          }
-        },
-        "f2": {
-          "type": "question",
-          "settings": {
-            "question": "Do I have to buy stock from GBG?",
-            "answer": "<p>No. Sourcing, pricing and selling are skills that apply to any supplier. Most members do order from GBG because the minimums are low and it's simple, but it isn't a condition.</p>",
-            "link_text": "Shop the stock",
-            "link_url": "/collections/all"
-          }
-        },
-        "f3": {
-          "type": "question",
-          "settings": {
-            "question": "I've never sold anything online. Is this too soon?",
-            "answer": "<p>Beginners do well in it. But if you haven't decided reselling is for you yet, start with SYPB and the free guides. They cost nothing and will tell you a lot.</p>",
-            "link_text": "Start Here instead",
-            "link_url": "/pages/start-here"
-          }
-        },
-        "f4": {
-          "type": "question",
-          "settings": {
-            "question": "How much time does it take?",
-            "answer": "<p>A few hours a week. Enough to work through a module and apply it to your own listings. The people who get the most out of it do the work between modules.</p>"
-          }
-        },
-        "f5": {
-          "type": "question",
-          "settings": {
-            "question": "Is this the same as the free community?",
-            "answer": "<p>No. SYPB and the Wholesale Hub are peers, questions and alerts. The Academy is a curriculum plus direct feedback on your own work. Plenty of people use both.</p>",
-            "link_text": "Compare the three",
-            "link_url": "/pages/community"
+            "set": "community"
           }
         }
       },
       "block_order": [
-        "f1",
-        "f2",
-        "f3",
-        "f4",
-        "f5"
+        "s1"
       ]
     },
     "closing": {

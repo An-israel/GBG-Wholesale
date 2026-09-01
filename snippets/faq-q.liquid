@@ -1,0 +1,71 @@
+{% doc %}
+  One question from the FAQ bank, rendered either as an accordion row or as a
+  FAQPage entry for Google.
+
+  Two modes rather than two copies of the wording, so the answer a shopper
+  opens and the answer Google shows are always the same words.
+
+  @param {string} q - the question
+  @param {string} a - the answer as HTML
+  @param {string} t - the same answer as plain text, for the JSON-LD
+  @param {string} id - unique within the page, used for the ARIA wiring
+  @param {string} [mode] - "markup" (default) or "schema"
+  @param {string} [link_text] - optional link shown under the answer
+  @param {string} [link_url]
+  @param {string} [append] - a theme setting to add live: dispatch_timeframe,
+    warehouse_location or starter_box_min_price
+
+  @example
+  {% render 'faq-q', q: 'Question?', a: '<p>Answer.</p>', t: 'Answer.', id: 'a-1' %}
+{% enddoc %}
+
+{%- if mode == 'schema' -%}
+  {%- comment -%}
+    A leading comma on every entry, so the caller can join any number of sets
+    and strip the one comma at the front. Building it the other way round means
+    a trailing comma and invalid JSON.
+  {%- endcomment -%}
+  ,{
+    "@type": "Question",
+    "name": {{ q | strip_html | json }},
+    "acceptedAnswer": { "@type": "Answer", "text": {{ t | json }} }
+  }
+{%- else -%}
+  {%- liquid
+    assign panel_id = 'FaqBank-' | append: id
+    assign trigger_id = 'FaqBankT-' | append: id
+  -%}
+  <div class="accordion__item">
+    <h3>
+      <button
+        type="button"
+        class="accordion__trigger"
+        id="{{ trigger_id }}"
+        aria-expanded="false"
+        aria-controls="{{ panel_id }}"
+        data-accordion-trigger
+      >
+        <span>{{ q }}</span>
+        <span class="accordion__icon">{% render 'icon', name: 'chevron' %}</span>
+      </button>
+    </h3>
+    <div class="accordion__panel" id="{{ panel_id }}" role="region" aria-labelledby="{{ trigger_id }}" data-open="false">
+      <div class="accordion__panel-inner">
+        <div class="accordion__answer">
+          {{ a }}
+          {%- case append -%}
+            {%- when 'dispatch_timeframe' -%}
+              <p><strong>{{ settings.dispatch_timeframe }}</strong></p>
+            {%- when 'warehouse_location' -%}
+              <p><strong>{{ settings.warehouse_location }}</strong></p>
+            {%- when 'starter_box_min_price' -%}
+              <p><strong>Starter Boxes begin at £{{ settings.starter_box_min_price }}.</strong></p>
+          {%- endcase -%}
+          {%- if link_text != blank and link_url != blank -%}
+            <p><a href="{{ link_url }}">{{ link_text }} &rarr;</a></p>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}

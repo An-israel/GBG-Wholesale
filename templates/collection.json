@@ -34,71 +34,81 @@
         "heading": "Related collections"
       },
       "blocks": {
-        "r1": { "type": "link", "settings": { "collection": "best-sellers", "label": "Best Sellers" } },
-        "r2": { "type": "link", "settings": { "collection": "new-arrivals", "label": "New Arrivals" } },
-        "r3": { "type": "link", "settings": { "collection": "under-50", "label": "Under £50" } },
-        "r4": { "type": "link", "settings": { "collection": "under-100", "label": "Under £100" } },
-        "r5": { "type": "link", "settings": { "collection": "best-for-ebay", "label": "Best for eBay" } },
-        "r6": { "type": "link", "settings": { "collection": "starter-boxes", "label": "Starter Boxes" } }
+        "r1": {
+          "type": "link",
+          "settings": {
+            "collection": "best-sellers",
+            "label": "Best Sellers"
+          }
+        },
+        "r2": {
+          "type": "link",
+          "settings": {
+            "collection": "new-arrivals",
+            "label": "New Arrivals"
+          }
+        },
+        "r3": {
+          "type": "link",
+          "settings": {
+            "collection": "under-50",
+            "label": "Under £50"
+          }
+        },
+        "r4": {
+          "type": "link",
+          "settings": {
+            "collection": "under-100",
+            "label": "Under £100"
+          }
+        },
+        "r5": {
+          "type": "link",
+          "settings": {
+            "collection": "best-for-ebay",
+            "label": "Best for eBay"
+          }
+        },
+        "r6": {
+          "type": "link",
+          "settings": {
+            "collection": "starter-boxes",
+            "label": "Starter Boxes"
+          }
+        }
       },
-      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6"]
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
+      ]
     },
     "faq": {
-      "type": "faq-accordion",
+      "type": "faq-bank",
       "settings": {
         "background": "paper",
-        "group_by_category": false,
-        "emit_schema": false,
         "eyebrow": "FAQ",
         "heading": "Before you order",
+        "show_set_headings": false,
+        "show_jump_nav": false,
+        "emit_schema": false,
         "cta_text": "All questions",
         "cta_url": "/pages/faq"
       },
       "blocks": {
-        "f1": {
-          "type": "question",
+        "s1": {
+          "type": "set",
           "settings": {
-            "question": "How is this collection put together?",
-            "answer": "<p>Automatically. Products appear here as soon as they match, and drop out when they no longer do, so what you are looking at is current rather than a list someone updated last month.</p>"
-          }
-        },
-        "f2": {
-          "type": "question",
-          "settings": {
-            "question": "What is the minimum I have to order?",
-            "answer": "<p>It is set per product and shown on every card and product page. Anything marked for dropshipping can be ordered as a single unit.</p>",
-            "link_text": "See low MOQ products",
-            "link_url": "/collections/low-moq"
-          }
-        },
-        "f3": {
-          "type": "question",
-          "settings": {
-            "question": "How long does delivery take?",
-            "answer": "<p>Everything ships from the UK.</p>",
-            "dynamic_append": "dispatch_timeframe"
-          }
-        },
-        "f4": {
-          "type": "question",
-          "settings": {
-            "question": "Will these sell?",
-            "answer": "<p>They have sold for other people, which is not the same as a guarantee. What you make depends on your listing, your pricing and demand when you list. The guides are there to improve the odds, not to promise a result.</p>",
-            "link_text": "Read the guides",
-            "link_url": "/pages/learn"
-          }
-        },
-        "f5": {
-          "type": "question",
-          "settings": {
-            "question": "What if something arrives damaged?",
-            "answer": "<p>Tell us within 48 hours with photos and it is replaced or refunded in full.</p>",
-            "link_text": "Full returns policy",
-            "link_url": "/pages/returns-policy"
+            "set": "auto"
           }
         }
       },
-      "block_order": ["f1", "f2", "f3", "f4", "f5"]
+      "block_order": [
+        "s1"
+      ]
     },
     "final-cta": {
       "type": "rich-text",
@@ -116,5 +126,12 @@
       }
     }
   },
-  "order": ["hero", "main-collection", "guidance", "related", "faq", "final-cta"]
+  "order": [
+    "hero",
+    "main-collection",
+    "guidance",
+    "related",
+    "faq",
+    "final-cta"
+  ]
 }
