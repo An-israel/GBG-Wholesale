@@ -1,4 +1,27 @@
-<section id="{{ section.settings.custom_id | default: section.id }}" class="testimonial-blocks section section--{{ section.settings.background }}">
+{%- comment -%}
+  Testimonial wall.
+
+  Screenshots come in whatever shape the phone took them: a WhatsApp thread is
+  tall and narrow, a photo of a delivery is wide. The default layout keeps each
+  one at its own shape and flows them into columns, so nothing is cropped and
+  no proof gets cut in half.
+
+  The old fixed-tile look is still available for a page that wants a tidy grid,
+  but it crops, so it is not the default.
+{%- endcomment -%}
+
+{%- liquid
+  assign natural = false
+  if section.settings.layout == 'natural'
+    assign natural = true
+  endif
+-%}
+
+<section
+  id="{{ section.settings.custom_id | default: section.id }}"
+  class="testimonial-blocks section section--{{ section.settings.background }}"
+  style="--tb-columns: {{ section.settings.columns }};"
+>
   <div class="container">
     <div class="section-intro reveal">
       {% if section.settings.eyebrow != blank %}<span class="route-label route-label--amber">{{ section.settings.eyebrow }}</span>{% endif %}
@@ -6,7 +29,7 @@
       {% if section.settings.body != blank %}<p>{{ section.settings.body }}</p>{% endif %}
     </div>
 
-    <div class="testimonial-blocks__grid">
+    <div class="testimonial-blocks__grid testimonial-blocks__grid--{% if natural %}natural{% else %}tiles{% endif %}">
       {% for block in section.blocks %}
         <figure class="testimonial-blocks__item card reveal" {{ block.shopify_attributes }}>
           {%- comment -%}
@@ -14,9 +37,19 @@
             A screenshot is the stronger proof, so it wins when both are set.
           {%- endcomment -%}
           {% if block.settings.image %}
-            <div class="testimonial-blocks__image">
+            <div class="testimonial-blocks__image{% unless natural %} testimonial-blocks__image--{{ section.settings.tile_shape }}{% endunless %}">
+              {%- comment -%}
+                The width and height attributes carry the screenshot's real
+                shape, so the browser reserves exactly the right space before
+                the image loads and the page does not jump. That is what makes
+                a mixed wall of shapes work without measuring anything in JS.
+              {%- endcomment -%}
               <img
-                src="{{ block.settings.image | image_url: width: 600 }}"
+                src="{{ block.settings.image | image_url: width: 700 }}"
+                srcset="{{ block.settings.image | image_url: width: 400 }} 400w,
+                        {{ block.settings.image | image_url: width: 700 }} 700w,
+                        {{ block.settings.image | image_url: width: 1000 }} 1000w"
+                sizes="(min-width: 1100px) {{ 100 | divided_by: section.settings.columns }}vw, (min-width: 700px) 45vw, 92vw"
                 alt="{{ block.settings.caption | default: 'Community screenshot' | escape }}"
                 loading="lazy"
                 width="{{ block.settings.image.width }}"
@@ -33,7 +66,7 @@
               <p>{{ block.settings.quote }}</p>
             </blockquote>
           {% else %}
-            <div class="testimonial-blocks__image">
+            <div class="testimonial-blocks__image testimonial-blocks__image--portrait">
               <div class="testimonial-blocks__placeholder">
                 <span class="route-label route-label--amber">ADD PROOF</span>
                 <p>{{ block.settings.caption | default: 'Drop a screenshot or paste a review here.' }}</p>
@@ -64,26 +97,92 @@
 </section>
 
 {% stylesheet %}
-  .testimonial-blocks__grid {
+  /* ---------------------------------------------------------------
+     Natural shapes. CSS columns rather than grid, because a grid row
+     is as tall as its tallest cell: one long chat screenshot would
+     leave a hole under every short one beside it. Columns let each
+     card end where it ends.
+     --------------------------------------------------------------- */
+  .testimonial-blocks__grid--natural {
+    columns: 1;
+    column-gap: var(--space-5);
+  }
+
+  @media (min-width: 700px) {
+    .testimonial-blocks__grid--natural {
+      columns: 2;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .testimonial-blocks__grid--natural {
+      columns: var(--tb-columns, 3);
+    }
+  }
+
+  .testimonial-blocks__grid--natural .testimonial-blocks__item {
+    /* Block, not flex: a flex container inside a multi-column layout
+       still splits across columns in some browsers. */
+    display: block;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    margin: 0 0 var(--space-5);
+  }
+
+  /* No fixed ratio and no cropping. The image is as tall as it is. */
+  .testimonial-blocks__grid--natural .testimonial-blocks__image {
+    aspect-ratio: auto;
+  }
+
+  .testimonial-blocks__grid--natural .testimonial-blocks__image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: fill;
+  }
+
+  /* ---------------------------------------------------------------
+     Equal tiles. The tidy look, at the cost of cropping.
+     --------------------------------------------------------------- */
+  .testimonial-blocks__grid--tiles {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: var(--space-5);
   }
 
+  .testimonial-blocks__grid--tiles .testimonial-blocks__item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* The chosen ratio is the minimum, not the maximum. A grid row is as tall as
+     its tallest card, so without this the shorter cards show a white gap under
+     the image where the row stretched them. */
+  .testimonial-blocks__grid--tiles .testimonial-blocks__image {
+    flex: 1 1 auto;
+  }
+
+  .testimonial-blocks__grid--tiles .testimonial-blocks__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .testimonial-blocks__image--portrait { aspect-ratio: 4 / 5; }
+  .testimonial-blocks__image--square { aspect-ratio: 1; }
+  .testimonial-blocks__image--landscape { aspect-ratio: 16 / 9; }
+  .testimonial-blocks__image--tall { aspect-ratio: 9 / 16; }
+
+  /* ---------------------------------------------------------------
+     Shared
+     --------------------------------------------------------------- */
   .testimonial-blocks__item {
     margin: 0;
     overflow: hidden;
   }
 
   .testimonial-blocks__image {
-    aspect-ratio: 4 / 5;
     background: var(--color-paper);
-  }
-
-  .testimonial-blocks__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 
   .testimonial-blocks__placeholder {
@@ -129,12 +228,10 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
-    margin-top: auto;
   }
 
-  .testimonial-blocks__item {
-    display: flex;
-    flex-direction: column;
+  .testimonial-blocks__grid--tiles figcaption {
+    margin-top: auto;
   }
 
   .testimonial-blocks__by {
@@ -173,6 +270,19 @@
         { "value": "aqua", "label": "Aqua tint" },
         { "value": "navy", "label": "Navy (dark)" }
       ], "default": "amber" },
+    { "type": "header", "content": "Layout" },
+    { "type": "select", "id": "layout", "label": "How screenshots are shown", "info": "Natural shapes keeps every screenshot exactly as it was taken. Equal tiles looks tidier but crops the top and bottom off tall ones.", "options": [
+        { "value": "natural", "label": "Natural shapes, nothing cropped" },
+        { "value": "tiles", "label": "Equal tiles, cropped to fit" }
+      ], "default": "natural" },
+    { "type": "range", "id": "columns", "min": 2, "max": 5, "step": 1, "label": "Columns on a desktop", "info": "Phones always show one, tablets two.", "default": 3 },
+    { "type": "select", "id": "tile_shape", "label": "Tile shape", "info": "Only used by Equal tiles.", "options": [
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "square", "label": "Square" },
+        { "value": "landscape", "label": "Landscape" },
+        { "value": "tall", "label": "Tall (phone screenshot)" }
+      ], "default": "portrait" },
+    { "type": "header", "content": "Text" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Real women, real first sales" },
     { "type": "textarea", "id": "body", "label": "Body" }
