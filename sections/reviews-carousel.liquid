@@ -1,9 +1,31 @@
 {%- comment -%}
-  Judge.me review carousel, for the home page and anywhere else proof helps.
-  Renders nothing at all unless Judge.me is switched on in theme settings.
+  Judge.me review carousel.
+
+  Judge.me renders its carousel from its own app block, not from markup a
+  theme writes by hand. An empty <div class="jdgm-carousel"> is not something
+  their script fills in: on an Online Store 2.0 theme the widget arrives as an
+  app block the merchant adds in the theme editor, exactly like the review
+  widget already sitting on the product page.
+
+  So this section is a frame with a slot. Add the Judge.me carousel block into
+  it and Judge.me renders the reviews itself.
+
+  With no block in the slot the whole section hides on the live site, rather
+  than leaving a heading with a blank space under it. In the theme editor it
+  stays visible and says what to do, because a section you cannot see is a
+  section you cannot add a block to.
 {%- endcomment -%}
 
-{% if settings.enable_judgeme %}
+{%- liquid
+  assign app_blocks = 0
+  for block in section.blocks
+    if block.type == '@app'
+      assign app_blocks = app_blocks | plus: 1
+    endif
+  endfor
+-%}
+
+{% if app_blocks > 0 or request.design_mode %}
   <section
     id="{{ section.settings.custom_id | default: section.id }}"
     class="reviews-carousel section section--{{ section.settings.background }}"
@@ -16,7 +38,31 @@
         </div>
       {% endif %}
 
-      {% render 'judgeme', type: 'carousel' %}
+      {% if app_blocks > 0 %}
+        <div class="reviews-carousel__mount">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when '@app' -%}
+                {%- render block -%}
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      {% elsif request.design_mode %}
+        <div class="reviews-carousel__setup">
+          <p><strong>No reviews widget added yet.</strong></p>
+          <p>
+            Click <em>Add block</em> below, choose <em>Judge.me</em>, and pick
+            the Reviews Carousel. Judge.me then renders the reviews here
+            itself.
+          </p>
+          <p>
+            If the block is there and still shows nothing, check two things:
+            Judge.me is switched on under <em>Theme settings &rsaquo; App
+            embeds</em>, and at least one review has been published. A carousel
+            with no published reviews renders nothing.
+          </p>
+        </div>
+      {% endif %}
 
       {% if section.settings.cta_text != blank %}
         <div class="reviews-carousel__cta">
@@ -32,12 +78,28 @@
     text-align: center;
     margin-top: var(--space-6);
   }
+
+  /* Only ever seen inside the theme editor. */
+  .reviews-carousel__setup {
+    border: 1px dashed color-mix(in srgb, var(--color-navy) 35%, transparent);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    padding: var(--space-5);
+    font-size: 0.9rem;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+
+  .reviews-carousel__setup p:last-child {
+    margin-bottom: 0;
+  }
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "Review carousel",
   "settings": [
+    { "type": "paragraph", "content": "Add the Judge.me Reviews Carousel as a block below. Judge.me renders the reviews itself, so there is nothing to configure here beyond the heading." },
     { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
     { "type": "select", "id": "background", "label": "Section background", "info": "Vary this down a page so each band reads as its own.", "options": [
         { "value": "paper", "label": "Paper (light grey)" },
@@ -52,6 +114,7 @@
     { "type": "text", "id": "cta_text", "label": "Button text", "default": "Read all reviews" },
     { "type": "url", "id": "cta_url", "label": "Button link" }
   ],
+  "blocks": [{ "type": "@app" }],
   "presets": [{ "name": "Review carousel" }]
 }
 {% endschema %}
