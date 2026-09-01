@@ -370,7 +370,7 @@ const COLLECTIONS = [
   { handle: "best-for-tiktok-shop", title: "Wholesale Products to Sell on TikTok Shop UK", menuLabel: "Best for TikTok Shop",
     body: "<p>Wholesale products suited to TikTok Shop, where anything demonstrable sells.</p><p>If you can show it working in fifteen seconds, it belongs here. Results depend on your content, your pricing and demand.</p>",
     rule: "platform-tiktok" },
-  { handle: "dropshipping", title: "Dropshipping Products UK, No Minimum Order", menuLabel: "Dropshipping Available",
+  { handle: "dropshipping", title: "Dropshipping Products UK, No Minimum Order", menuLabel: "Dropshipping Products",
     body: "<p>Products you can order one at a time. No pack, no minimum order quantity, dispatched from our UK warehouse in 3 working days.</p><p>Dropshipping suits you if you would rather list first and buy once something sells. Everything here ships from us in the UK, so your customer gets the same 3 working day delivery.</p>",
     rule: "dropship" },
   { handle: "back-to-school", title: "Wholesale Back to School Products UK", menuLabel: "Back to School",

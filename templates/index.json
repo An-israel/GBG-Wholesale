@@ -79,7 +79,7 @@
         "t2": {
           "type": "tile",
           "settings": {
-            "title": "Electronics",
+            "title": "Electronics & Gadgets",
             "collection": "electronics",
             "manual_url": "/collections/electronics",
             "image": "shopify://shop_images/IMG_0528.heic"
@@ -88,9 +88,9 @@
         "t3": {
           "type": "tile",
           "settings": {
-            "title": "Fashion",
-            "collection": "fashion",
-            "manual_url": "/collections/fashion",
+            "title": "Clothing",
+            "collection": "clothing",
+            "manual_url": "/collections/clothing",
             "image": "shopify://shop_images/IMG_0604.heic"
           }
         },

@@ -99,7 +99,7 @@
                       </ul>
                     {% else %}
                       <ul class="mega-menu__list">
-                        {% for i in (1..8) %}
+                        {% for i in (1..12) %}
                           {% assign label_key = 'sublink' | append: i | append: '_label' %}
                           {% assign url_key = 'sublink' | append: i | append: '_url' %}
                           {% assign sub_label = block.settings[label_key] %}
@@ -179,7 +179,7 @@
                     {% endfor %}
                   {% endfor %}
                 {% else %}
-                  {% for i in (1..8) %}
+                  {% for i in (1..12) %}
                     {% assign label_key = 'sublink' | append: i | append: '_label' %}
                     {% assign url_key = 'sublink' | append: i | append: '_url' %}
                     {% assign sub_label = block.settings[label_key] %}
@@ -554,26 +554,34 @@
       "settings": [
         { "type": "text", "id": "label", "label": "Label", "default": "Shop" },
         { "type": "url", "id": "url", "label": "\"View all\" link" },
-        { "type": "header", "content": "Dropdown links (up to 7)" },
-        { "type": "link_list", "id": "menu", "label": "Menu to show", "info": "Build this in Navigation, where you can reorder it and nest subcategories under each category. It replaces the numbered links below." },
+        { "type": "header", "content": "Dropdown links" },
+        { "type": "link_list", "id": "menu", "label": "Menu to show", "info": "Pick Shop menu. Built in Navigation, where it can be reordered and subcategories nested under each category. It replaces the fallback links below." },
         { "type": "header", "content": "Fallback links" },
-        { "type": "paragraph", "content": "Only used when no menu is chosen above." },
+        { "type": "paragraph", "content": "Only used when no menu is chosen above. These match the categories exactly, so the menu is still right if the setting is ever cleared." },
         { "type": "text", "id": "sublink1_label", "label": "Link 1 label", "default": "New Arrivals" },
         { "type": "url", "id": "sublink1_url", "label": "Link 1 URL" },
         { "type": "text", "id": "sublink2_label", "label": "Link 2 label", "default": "Best Sellers" },
         { "type": "url", "id": "sublink2_url", "label": "Link 2 URL" },
         { "type": "text", "id": "sublink3_label", "label": "Link 3 label", "default": "Jewellery & Accessories" },
         { "type": "url", "id": "sublink3_url", "label": "Link 3 URL" },
-        { "type": "text", "id": "sublink4_label", "label": "Link 4 label", "default": "Electronics" },
+        { "type": "text", "id": "sublink4_label", "label": "Link 4 label", "default": "Bags" },
         { "type": "url", "id": "sublink4_url", "label": "Link 4 URL" },
-        { "type": "text", "id": "sublink5_label", "label": "Link 5 label", "default": "Fashion" },
+        { "type": "text", "id": "sublink5_label", "label": "Link 5 label", "default": "Clothing" },
         { "type": "url", "id": "sublink5_url", "label": "Link 5 URL" },
-        { "type": "text", "id": "sublink6_label", "label": "Link 6 label", "default": "Home & Lifestyle" },
+        { "type": "text", "id": "sublink6_label", "label": "Link 6 label", "default": "Beauty & Fragrance" },
         { "type": "url", "id": "sublink6_url", "label": "Link 6 URL" },
-        { "type": "text", "id": "sublink7_label", "label": "Link 7 label", "default": "Starter Boxes" },
+        { "type": "text", "id": "sublink7_label", "label": "Link 7 label", "default": "Electronics & Gadgets" },
         { "type": "url", "id": "sublink7_url", "label": "Link 7 URL" },
-        { "type": "text", "id": "sublink8_label", "label": "Link 8 label", "default": "Dropshipping" },
-        { "type": "url", "id": "sublink8_url", "label": "Link 8 URL" }
+        { "type": "text", "id": "sublink8_label", "label": "Link 8 label", "default": "Home & Lifestyle" },
+        { "type": "url", "id": "sublink8_url", "label": "Link 8 URL" },
+        { "type": "text", "id": "sublink9_label", "label": "Link 9 label", "default": "Kids & School" },
+        { "type": "url", "id": "sublink9_url", "label": "Link 9 URL" },
+        { "type": "text", "id": "sublink10_label", "label": "Link 10 label", "default": "Drinkware" },
+        { "type": "url", "id": "sublink10_url", "label": "Link 10 URL" },
+        { "type": "text", "id": "sublink11_label", "label": "Link 11 label", "default": "Starter Boxes" },
+        { "type": "url", "id": "sublink11_url", "label": "Link 11 URL" },
+        { "type": "text", "id": "sublink12_label", "label": "Link 12 label", "default": "Dropshipping Products" },
+        { "type": "url", "id": "sublink12_url", "label": "Link 12 URL" }
       ]
     }
   ]
