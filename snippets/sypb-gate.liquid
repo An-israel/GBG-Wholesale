@@ -17,11 +17,28 @@
 
 {%- liquid
   assign posted = false
-  if form.posted_successfully? and form.id == 'SypbGateForm'
+  if form.posted_successfully?
     assign posted = true
   endif
+
   assign video = settings.sypb_video_embed
   assign fallback_link = settings.sypb_video_url | default: settings.sypb_link
+
+  comment
+    A Google Drive video is neither YouTube nor Vimeo, so it cannot go in the
+    video setting above. Drive will play inside an iframe, but only from its
+    /preview URL: the /view URL people copy out of the address bar renders the
+    whole Drive interface and refuses to frame.
+
+    So the share link is converted here. Both shapes Drive hands out are
+    covered, the /file/d/ID/view one and the older open?id=ID one.
+  endcomment
+  assign drive_id = ''
+  if settings.sypb_video_url contains 'drive.google.com/file/d/'
+    assign drive_id = settings.sypb_video_url | split: '/file/d/' | last | split: '/' | first | split: '?' | first
+  elsif settings.sypb_video_url contains 'drive.google.com/open?id='
+    assign drive_id = settings.sypb_video_url | split: 'id=' | last | split: '&' | first
+  endif
 -%}
 
 <div
@@ -85,9 +102,31 @@
             loading="lazy"
           ></iframe>
         </div>
-      {% else %}
+      {% elsif drive_id != blank %}
+        <div class="sypb-gate__video">
+          <iframe
+            src="https://drive.google.com/file/d/{{ drive_id }}/preview"
+            title="Start Your Product Business"
+            frameborder="0"
+            allow="autoplay"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      {% elsif fallback_link != blank %}
+        {%- comment -%}
+          Only ever rendered with a real link. An anchor with an empty href
+          points at the current page, so a blank setting used to send people
+          back to the page they were already on, which reads as the video
+          being broken.
+        {%- endcomment -%}
         <p>
-          <a href="{{ fallback_link }}" target="_blank" rel="noopener noreferrer">Open the video</a>
+          <a href="{{ fallback_link }}" class="btn btn--primary btn--block" target="_blank" rel="noopener noreferrer">Open the video</a>
+        </p>
+      {% else %}
+        <p class="sypb-gate__missing">
+          The video link has not been set yet. Add it in the theme editor under
+          Theme settings, SYPB video link.
         </p>
       {% endif %}
 
@@ -178,6 +217,13 @@
     border-radius: var(--radius);
     overflow: hidden;
     background: var(--color-navy);
+  }
+
+  .sypb-gate__missing {
+    padding: var(--space-4);
+    border-radius: var(--radius);
+    background: var(--color-amber-soft);
+    font-size: 0.9rem;
   }
 
   .sypb-gate__video iframe {

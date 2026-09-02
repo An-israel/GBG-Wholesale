@@ -87,12 +87,45 @@
     if (event.key === 'Escape' && !modal.hidden) close();
   });
 
-  /* Shopify's customer form reloads the page, so the server marks the modal
-     to reopen itself and we land straight on the video. */
-  if (modal.dataset.autoopen === 'true') {
+  /* Shopify's customer form posts and reloads the page, so the modal has to
+     put itself back on the way in, on the video step.
+
+     Two independent signals, because relying on one of them was the bug: the
+     page came back, the modal stayed shut, and the visitor landed on the
+     landing page looking like the video was broken.
+
+       1. data-autoopen, set by Liquid when form.posted_successfully? is true.
+       2. ?customer_posted=true, which Shopify itself appends to the URL after
+          a successful customer form post.
+
+     The second one is the reliable half. It comes from Shopify rather than
+     from anything this theme has to get right. */
+  function returnedFromForm() {
+    if (modal.dataset.autoopen === 'true') return true;
+    try {
+      return new URLSearchParams(window.location.search).get('customer_posted') === 'true';
+    } catch (err) {
+      return window.location.search.indexOf('customer_posted=true') !== -1;
+    }
+  }
+
+  if (returnedFromForm()) {
     remember();
     showVideo();
     open();
+
+    /* Take the parameter back out of the address bar, so a refresh or a
+       shared link does not reopen the modal for someone who never filled the
+       form in. */
+    try {
+      var url = new URL(window.location.href);
+      url.searchParams.delete('customer_posted');
+      url.searchParams.delete('form_type');
+      url.searchParams.delete('utf8');
+      window.history.replaceState({}, '', url.pathname + url.search + url.hash);
+    } catch (err) {
+      /* An address bar that will not tidy up is not worth failing over. */
+    }
   } else if (hasSeen()) {
     showVideo();
   } else {

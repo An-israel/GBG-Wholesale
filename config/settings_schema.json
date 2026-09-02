@@ -205,7 +205,7 @@
         "type": "text",
         "id": "sypb_video_url",
         "label": "SYPB video link",
-        "info": "The video new members are told to watch before they join. Leave blank and the \"watch the video\" buttons fall back to the SYPB group link."
+        "info": "Paste the share link. A Google Drive link plays inside the pop-up, as long as the file is shared as \"Anyone with the link can view\". For YouTube or Vimeo use the setting below instead."
       },
       {
         "type": "video_url",
@@ -215,7 +215,7 @@
           "vimeo"
         ],
         "label": "SYPB video (plays on the site)",
-        "info": "Paste a YouTube or Vimeo link. It plays inside the signup pop-up, so people stay here instead of leaving for YouTube. The plain link above is only the fallback."
+        "info": "For YouTube or Vimeo only. Google Drive links go in the setting above. This one plays inside the signup pop-up so people stay on the site."
       },
       {
         "type": "text",
