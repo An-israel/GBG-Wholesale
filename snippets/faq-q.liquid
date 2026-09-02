@@ -59,7 +59,15 @@
             {%- when 'warehouse_location' -%}
               <p><strong>{{ settings.warehouse_location }}</strong></p>
             {%- when 'starter_box_min_price' -%}
-              <p><strong>Starter Boxes begin at £{{ settings.starter_box_min_price }}.</strong></p>
+              {%- capture from_pence -%}
+                {%- render 'collection-min-price', handle: 'starter-boxes' -%}
+              {%- endcapture -%}
+              {%- assign from_pence = from_pence | plus: 0 -%}
+              {%- if from_pence > 0 -%}
+                <p><strong>Starter Boxes begin at {{ from_pence | money }}.</strong></p>
+              {%- elsif settings.starter_box_min_price != blank -%}
+                <p><strong>Starter Boxes begin at £{{ settings.starter_box_min_price }}.</strong></p>
+              {%- endif -%}
           {%- endcase -%}
           {%- if link_text != blank and link_url != blank -%}
             <p><a href="{{ link_url }}">{{ link_text }} &rarr;</a></p>

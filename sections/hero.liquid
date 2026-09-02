@@ -46,7 +46,8 @@
       {% if section.settings.show_stats %}
         <ul class="hero__stats">
           {% if settings.stat_customers_text != blank %}<li>{{ settings.stat_customers_text }}</li>{% endif %}
-          {% if settings.stat_price_text != blank %}<li>{{ settings.stat_price_text }}</li>{% endif %}
+          {%- capture price_stat -%}{%- render 'hero-price-stat' -%}{%- endcapture -%}
+          {% if price_stat != blank %}<li>{{ price_stat }}</li>{% endif %}
           {% if settings.stat_shipping_text != blank %}<li>{{ settings.stat_shipping_text }}</li>{% endif %}
         </ul>
       {% endif %}

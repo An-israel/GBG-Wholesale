@@ -1,0 +1,37 @@
+{% doc %}
+  The hero's starting-price stat.
+
+  Whatever is typed in theme settings, with {price} swapped for the cheapest
+  product actually on sale. So "Packs from {price}" stays true after a price
+  change instead of quietly advertising last month's figure.
+
+  Without the token the text renders exactly as typed and nothing is looked up,
+  so a shop that would rather write a fixed figure pays no cost for this.
+
+  @example
+  {% capture stat %}{% render 'hero-price-stat' %}{% endcapture %}
+{% enddoc %}
+
+{%- liquid
+  assign stat = settings.stat_price_text
+
+  if stat contains '{price}'
+    capture from_pence
+      render 'collection-min-price', handle: 'all', max: 30
+    endcapture
+    assign from_pence = from_pence | plus: 0
+
+    if from_pence > 0
+      assign lowest = from_pence | money
+      assign stat = stat | replace: '{price}', lowest
+    else
+      comment
+        Nothing on sale to quote. Drop the whole line rather than show it with
+        a gap or a zero where the price should be.
+      endcomment
+      assign stat = ''
+    endif
+  endif
+
+  echo stat
+-%}

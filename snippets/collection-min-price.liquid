@@ -1,0 +1,40 @@
+{% doc %}
+  The lowest price currently on sale in a collection, in pence.
+
+  Returned as a bare number so the caller decides how to show it. Zero means
+  nothing in that collection can be bought right now, which is the caller's cue
+  to fall back rather than print "from £0.00".
+
+  This exists so a price written into a sentence ("Starter Boxes begin at...")
+  comes from the products themselves. A figure typed into the theme editor is a
+  second copy of a price, and a second copy of a price is one that eventually
+  disagrees with the checkout.
+
+  Out of stock products are skipped: a price nobody can pay is not a price the
+  shop should be advertising.
+
+  It walks the collection, so it is not free. Callers guard it behind a
+  condition rather than running it on every page.
+
+  @param {string} handle - the collection handle to look in
+  @param {number} [max] - how many products to walk, default 50
+
+  @example
+  {% capture pence %}{% render 'collection-min-price', handle: 'starter-boxes' %}{% endcapture %}
+{% enddoc %}
+
+{%- liquid
+  assign walk = max | default: 50
+  assign source = collections[handle]
+  assign lowest = 0
+
+  for item in source.products limit: walk
+    if item.available
+      if lowest == 0 or item.price < lowest
+        assign lowest = item.price
+      endif
+    endif
+  endfor
+
+  echo lowest
+-%}

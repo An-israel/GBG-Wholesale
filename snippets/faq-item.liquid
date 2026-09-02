@@ -40,7 +40,15 @@
         {% when 'dispatch_timeframe' %}
           <p>{{ settings.dispatch_timeframe }}</p>
         {% when 'starter_box_min_price' %}
-          <p>Starter Boxes begin at £{{ settings.starter_box_min_price }}.</p>
+          {%- capture from_pence -%}
+            {%- render 'collection-min-price', handle: 'starter-boxes' -%}
+          {%- endcapture -%}
+          {%- assign from_pence = from_pence | plus: 0 -%}
+          {%- if from_pence > 0 -%}
+            <p>Starter Boxes begin at {{ from_pence | money }}.</p>
+          {%- elsif settings.starter_box_min_price != blank -%}
+            <p>Starter Boxes begin at £{{ settings.starter_box_min_price }}.</p>
+          {%- endif -%}
         {% when 'next_live_date' %}
           <p>Next live session: {{ settings.next_live_date | default: 'announced inside the group' }}.</p>
       {% endcase %}

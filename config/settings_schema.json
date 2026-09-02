@@ -287,7 +287,8 @@
         "type": "text",
         "id": "stat_price_text",
         "label": "Hero stat - starting price",
-        "default": "Packs from £50"
+        "default": "Packs from {price}",
+        "info": "Write {price} where the figure should go and it fills itself from the cheapest product on sale, so it cannot go stale. Type a figure instead and it stays exactly as typed."
       },
       {
         "type": "text",
@@ -298,8 +299,8 @@
       {
         "type": "text",
         "id": "starter_box_min_price",
-        "label": "Starter Box minimum price (number only, in pounds)",
-        "info": "Used in the FAQ and on the Start Here page.",
+        "label": "Starter Box minimum price (fallback only)",
+        "info": "Only used when no Starter Box is in stock. Normally the figure comes from the cheapest Starter Box on sale, so it updates itself when you change a price in Products.",
         "default": "50"
       },
       {

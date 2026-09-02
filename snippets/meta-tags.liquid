@@ -170,10 +170,11 @@
     strings is case sensitive and "GBG Wholesale Hub" against a shop named
     "GBG wholesale" would not match.
   endcomment
-  assign custom_title = collection.metafields.global.title_tag
-    | default: page.metafields.global.title_tag
-    | default: product.metafields.global.title_tag
-    | default: article.metafields.global.title_tag
+  comment
+    One statement per line: inside a liquid tag an assign cannot be wrapped
+    across lines the way it can inside an output tag.
+  endcomment
+  assign custom_title = collection.metafields.global.title_tag | default: page.metafields.global.title_tag | default: product.metafields.global.title_tag | default: article.metafields.global.title_tag
 -%}
 <title>
   {{ page_title }}
