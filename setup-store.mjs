@@ -179,31 +179,67 @@ const CATEGORY_HANDLES = new Set([
 
 const COLLECTIONS = [
   { handle: "jewellery-accessories", title: "Wholesale Jewellery & Accessories UK", menuLabel: "Jewellery & Accessories",
-    body: "<p>Wholesale jewellery and accessories for UK resellers, sold in small packs rather than by the hundred. Necklaces, earrings, bracelets, rings and sets, held in the UK and dispatched in 3 working days.</p><p>The fastest category to start in. It photographs well on a phone, posts for the price of a large letter, and sits at an impulse price on Vinted and TikTok Shop. Minimum order quantities are kept low so you can test a style before committing to it.</p>",
+    body: "<p>Shop jewellery and accessories selected for resellers who want flexible starting quantities, easy-to-handle stock and products that can work across online and physical selling. From mixed jewellery packs to starter options and everyday accessories, this category is built to help you start small, test demand and restock what performs.</p><p>Choose a manageable starting quantity so you can test what your audience responds to.</p><p>Use clear, accurate product photos and price each style based on the item, platform and your costs.</p><p>Mixed packs can help you test several designs before committing to a larger restock.</p>",
+    cta: "Shop Jewellery & Accessories",
+    needs: "best-sellers,low-moq,under-100,best-for-vinted,best-for-ebay",
+    metaTitle: "Wholesale Jewellery & Accessories UK | GBG Wholesale Hub",
+    metaDesc: "Shop wholesale jewellery and accessories in the UK, including mixed jewellery packs, starter options and low-MOQ stock for resellers.",
     rule: "jewellery-accessories" },
-  { handle: "bags", title: "Wholesale Bags UK for Resellers", menuLabel: "Bags",
-    body: "<p>Wholesale bags for UK resellers. Fashion bags, handbags, school bags, wallets and travel bags at trade prices, shipped from the UK in 3 working days.</p><p>Bags carry a higher price per unit than jewellery, so fewer sales are needed to make a pack worth it. They photograph well on a plain background and sell year round, with school and travel styles peaking seasonally.</p>",
+  { handle: "bags", title: "Wholesale Bags UK", menuLabel: "Bags",
+    body: "<p>Browse wholesale bags for resellers looking for practical, giftable and fashion-led stock. GBG currently carries wallets, mixed fashion bags and school bags, with options suited to different budgets, selling channels and seasonal demand.</p><p>Choose stock based on where you plan to sell and the customer you want to reach.</p><p>For seasonal products such as school bags, list early enough to catch demand before the peak.</p><p>For branded or logo-bearing items, make sure your listing is accurate and follows the marketplace rules you use.</p>",
+    cta: "Shop Wholesale Bags",
+    needs: "new-arrivals,under-100,best-for-vinted,best-for-ebay,back-to-school",
+    metaTitle: "Wholesale Bags UK | Fashion Bags, Wallets & School Bags | GBG",
+    metaDesc: "Shop wholesale bags in the UK, including fashion bags, wallets and school bags for resale across online and physical channels.",
     rule: "bags" },
-  { handle: "clothing", title: "Wholesale Clothing UK for Resellers", menuLabel: "Clothing",
-    body: "<p>Wholesale clothing for UK resellers, sold in mixed-size packs at genuine trade prices. Womenswear, casualwear, knitwear and seasonal ranges, shipped from the UK.</p><p>Vinted is the fashion platform in Britain and it rewards sellers who list consistently. Packs arrive in mixed sizes so you cover a realistic size curve instead of guessing one.</p>",
+  { handle: "clothing", title: "Wholesale Clothing UK", menuLabel: "Clothing",
+    body: "<p>Shop wholesale clothing for resale with a focus on affordable stock, testable quantities and products you can take to the platforms where your customers already shop. This category will grow as new clothing drops are added.</p><p>Start with styles and quantities you can realistically photograph, list and sell.</p><p>Include accurate sizing and product details in every listing.</p><p>Use demand and sell-through to decide what to restock rather than buying heavily on instinct.</p>",
+    cta: "Shop Wholesale Clothing",
+    needs: "new-arrivals,under-100,best-for-vinted,best-for-ebay",
+    metaTitle: "Wholesale Clothing UK | Reseller Stock | GBG Wholesale Hub",
+    metaDesc: "Browse wholesale clothing for UK resellers, with affordable stock and practical options for online and physical selling.",
     rule: "clothing" },
   { handle: "beauty-fragrance", title: "Wholesale Beauty & Fragrance UK", menuLabel: "Beauty & Fragrance",
-    body: "<p>Wholesale beauty and fragrance for UK resellers. Perfumes, mini perfumes, beauty accessories and personal care, held in the UK.</p><p>Fragrance has one of the strongest gifting curves in the shop, climbing sharply from October. Mini perfumes work well as add-ons that lift an order value without lifting postage.</p>",
+    body: "<p>Discover wholesale beauty, fragrance and personal-care accessories selected for resellers. The range includes hair-care sets, lash products, nail tools, perfume accessories and selected fragrance products, with low-cost and low-MOQ options available across the category.</p><p>Check the product page for platform, shipping and stock information before listing.</p><p>Factor packaging and platform fees into your selling price, especially for low-cost products.</p><p>Use clear product information and avoid making claims that are not supported by the item or packaging.</p>",
+    cta: "Shop Beauty & Fragrance",
+    needs: "best-sellers,selling-fast,higher-margin,under-50,low-moq",
+    metaTitle: "Wholesale Beauty & Fragrance UK | GBG Wholesale Hub",
+    metaDesc: "Shop wholesale beauty, fragrance and personal-care accessories in the UK, including perfume, hair-care, lash, nail and travel products.",
     rule: "beauty-fragrance" },
   { handle: "electronics", title: "Wholesale Electronics & Gadgets UK", menuLabel: "Electronics & Gadgets",
-    body: "<p>Wholesale consumer electronics and gadgets for UK resellers. Fans, speakers, phone accessories, small electronics and home gadgets, boxed and ready to list.</p><p>People search electronics by name rather than browsing, which makes eBay the strongest first platform. Anything you can demonstrate on video does well on TikTok Shop. Description accuracy matters more here than anywhere else in the shop.</p>",
+    body: "<p>Shop affordable electronics and gadgets for resale, including speakers, gaming headsets, chargers, fans and useful small devices. Our electronics range includes low-MOQ options that let you test demand without committing to large quantities.</p><p>Understand what the product does and what is included before you list it.</p><p>Check charging, power or compatibility details where relevant.</p><p>Use accurate photos and descriptions to reduce avoidable customer questions and returns.</p>",
+    cta: "Shop Electronics & Gadgets",
+    needs: "low-moq,under-50,under-100,new-arrivals",
+    metaTitle: "Wholesale Electronics & Gadgets UK | GBG Wholesale Hub",
+    metaDesc: "Shop wholesale electronics and gadgets in the UK, including speakers, headsets, chargers, fans and reseller-friendly small tech.",
     rule: "electronics" },
   { handle: "home-lifestyle", title: "Wholesale Home & Lifestyle UK", menuLabel: "Home & Lifestyle",
-    body: "<p>Wholesale homeware and lifestyle products for UK resellers. Kitchenware, home accessories, humidifiers, storage and lifestyle products, dispatched from the UK.</p><p>Bulkier items do better with local collection on Facebook Marketplace, where postage is not eating your margin. Smaller giftable pieces sell steadily on eBay all year.</p>",
+    body: "<p>Browse practical home, kitchen and lifestyle products chosen for resellers who want useful everyday stock alongside seasonal and giftable products. Current lines include kitchen sets, cookware, cutlery, heating products, pet accessories, travel bottles and other home essentials.</p><p>For functional products, show clearly what is included, the size and how the item is used.</p><p>Remember that larger products may carry higher packaging and delivery costs.</p><p>Everyday-use products can sell year-round, while seasonal products need more careful timing.</p>",
+    cta: "Shop Home & Lifestyle",
+    needs: "under-50,under-100,low-moq,higher-margin,selling-fast",
+    metaTitle: "Wholesale Home & Lifestyle UK | Kitchen & Everyday Products | GBG",
+    metaDesc: "Shop wholesale home and lifestyle products in the UK, including kitchenware, cookware, travel accessories, pet items and everyday essentials.",
     rule: "home-lifestyle" },
-  { handle: "kids-school", title: "Wholesale Kids & School Supplies UK", menuLabel: "Kids & School",
-    body: "<p>Wholesale kids and school products for UK resellers. School bags, school shoes, kids accessories, toys and feeding sets, held in the UK.</p><p>This category is the most seasonal in the shop. Demand climbs from July and peaks in the fortnight before term, so buying early is worth more here than anywhere else.</p>",
+  { handle: "kids-school", title: "Wholesale Kids & School Products UK", menuLabel: "Kids & School",
+    body: "<p>Shop wholesale kids, baby and school products for resale, including baby blankets, feeding items, toys, hooded towels, school shoes and school bags. Use this category for both everyday family products and seasonal back-to-school opportunities.</p><p>Seasonal school products are easier to plan when you list before peak demand.</p><p>Include accurate size, age-use and product details where relevant.</p><p>Avoid overbuying seasonal products until you understand your own customer demand.</p>",
+    cta: "Shop Kids & School",
+    needs: "new-arrivals,back-to-school,under-100,best-for-ebay",
+    metaTitle: "Wholesale Kids & School Products UK | GBG Wholesale Hub",
+    metaDesc: "Shop wholesale kids, baby and school products in the UK, including blankets, toys, school bags, school shoes and back-to-school stock.",
     rule: "kids-school" },
-  { handle: "drinkware", title: "Wholesale Drinkware UK for Resellers", menuLabel: "Drinkware",
-    body: "<p>Wholesale drinkware for UK resellers. Tumblers, cups, bottles and travel cups at trade prices, shipped from the UK in 3 working days.</p><p>Drinkware is light for its size and sells on repeat, because people buy a second one as a gift. It photographs cleanly and needs almost no explanation in a listing.</p>",
+  { handle: "drinkware", title: "Wholesale Drinkware UK", menuLabel: "Drinkware",
+    body: "<p>Shop wholesale tumblers, cups and giftable drinkware for resale. This category includes popular cup styles in multiple colours and is designed for sellers looking for practical lifestyle products that can work online, on social media and through physical selling.</p><p>Different colours can perform differently, so use your sales data to guide restocks.</p><p>Factor packaging and delivery into your pricing because drinkware can be bulkier than small accessories.</p><p>Use accurate product names and descriptions, especially where a style resembles a known branded design.</p>",
+    cta: "Shop Drinkware",
+    needs: "best-sellers,back-in-stock,selling-fast,under-100,low-moq",
+    metaTitle: "Wholesale Drinkware UK | Tumblers & Cups | GBG Wholesale Hub",
+    metaDesc: "Shop wholesale drinkware in the UK, including tumblers, cups and giftable reseller stock in multiple colours and styles.",
     rule: "drinkware" },
   { handle: "starter-boxes", title: "Wholesale Starter Boxes UK", menuLabel: "Starter Boxes",
-    body: "<p>The cheapest way to start reselling in the UK. Small mixed boxes chosen so a first-time reseller has a varied batch to list rather than fifty of one thing.</p><p>A Starter Box is really an experiment. Split it across two platforms, list everything the same week, and see what sells to your audience before you spend more. That is real data on your own buyers.</p>",
+    body: "<p>Starter Boxes are designed to make your first stock decision easier. Instead of choosing every product individually, you can start with a prepared mix, learn what your customers respond to and use those results to guide your next order.</p><p>Choose a starter box that fits your budget and the kind of customer you want to reach.</p><p>Treat your first box as a test: list, track what gets attention and restock what performs.</p><p>Starter boxes simplify product selection, but they do not guarantee sales.</p>",
+    cta: "Shop Starter Boxes",
+    needs: "low-moq,under-100,best-sellers",
+    metaTitle: "Wholesale Starter Boxes UK | Start Reselling with GBG",
+    metaDesc: "Start your product business with wholesale starter boxes from GBG, including jewellery and mixed-stock options designed to make choosing easier.",
     rule: "starter-boxes" },
   { handle: "necklaces", title: "Wholesale Necklaces UK", menuLabel: "Necklaces",
     body: "<p>Wholesale Necklaces for UK resellers, sold in small packs and dispatched from the UK in 3 working days.</p><p>Part of our <a href=\"/collections/jewellery-accessories\">Jewellery & Accessories</a> range. Minimum order quantities are shown on every product.</p>",
@@ -370,8 +406,12 @@ const COLLECTIONS = [
   { handle: "best-for-tiktok-shop", title: "Wholesale Products to Sell on TikTok Shop UK", menuLabel: "Best for TikTok Shop",
     body: "<p>Wholesale products suited to TikTok Shop, where anything demonstrable sells.</p><p>If you can show it working in fifteen seconds, it belongs here. Results depend on your content, your pricing and demand.</p>",
     rule: "platform-tiktok" },
-  { handle: "dropshipping", title: "Dropshipping Products UK, No Minimum Order", menuLabel: "Dropshipping Products",
-    body: "<p>Products you can order one at a time. No pack, no minimum order quantity, dispatched from our UK warehouse in 3 working days.</p><p>Dropshipping suits you if you would rather list first and buy once something sells. Everything here ships from us in the UK, so your customer gets the same 3 working day delivery.</p>",
+  { handle: "dropshipping", title: "Dropshipping Products UK", menuLabel: "Dropshipping Products",
+    body: "<p>Selected GBG products may be available for dropshipping, allowing you to sell eligible items without holding the stock yourself. Availability can change quickly, so only products clearly marked as dropshipping eligible should be advertised using this fulfilment option.</p><p>Only list items clearly marked as dropshipping eligible.</p><p>Check stock availability before promising an item to your customer.</p><p>You remain responsible for your pricing, listings, marketing and customer communication.</p>",
+    cta: "Browse Dropshipping Products",
+    needs: "low-moq,best-sellers,new-arrivals",
+    metaTitle: "Dropshipping Products UK | GBG Wholesale Hub",
+    metaDesc: "Browse selected GBG products available for dropshipping in the UK. Eligibility and stock availability are shown on qualifying products.",
     rule: "dropship" },
   { handle: "back-to-school", title: "Wholesale Back to School Products UK", menuLabel: "Back to School",
     body: "<p>Wholesale school bags, shoes, stationery and kit for the back-to-school run.</p><p>Demand climbs from July and peaks in the fortnight before term. Buy early: this is the one category where late stock is dead stock.</p>",
@@ -648,6 +688,73 @@ async function doCollections() {
   }
 }
 
+/**
+ * The four things a category page needs that are not a title or a description.
+ *
+ * They go on the collection as metafields rather than into the theme, because
+ * one template serves all ten categories: a setting in the theme editor would
+ * be one value for all ten, and the whole point is that each category says its
+ * own thing.
+ *
+ * title_tag and description_tag are Shopify's own SEO fields, so writing them
+ * here is the same as typing them into the Search engine listing box.
+ */
+async function doCollectionCopy() {
+  console.log('\n📝  CATEGORY COPY');
+
+  const withCopy = COLLECTIONS.filter((c) => c.cta || c.metaTitle);
+  if (!withCopy.length) return;
+
+  const idOf = {};
+  let cursor = null;
+  do {
+    const data = await gql(
+      `query($cursor: String) {
+         collections(first: 250, after: $cursor) {
+           nodes { id handle }
+           pageInfo { hasNextPage endCursor }
+         }
+       }`,
+      { cursor }
+    );
+    for (const n of data.collections.nodes) idOf[n.handle] = n.id;
+    cursor = data.collections.pageInfo.hasNextPage ? data.collections.pageInfo.endCursor : null;
+  } while (cursor);
+
+  for (const c of withCopy) {
+    const id = idOf[c.handle];
+    if (!id) {
+      console.log(`   · ${c.handle.padEnd(38)} skipped   (collection not found)`);
+      skipped++;
+      continue;
+    }
+
+    const fields = [];
+    const text = (ns, key, value) =>
+      fields.push({ ownerId: id, namespace: ns, key, type: 'single_line_text_field', value });
+
+    if (c.metaTitle) text('global', 'title_tag', c.metaTitle);
+    if (c.metaDesc) text('global', 'description_tag', c.metaDesc);
+    if (c.cta) text('custom', 'cta_label', c.cta);
+    if (c.needs) text('custom', 'shop_by_need', c.needs);
+
+    const res = await gql(
+      `mutation($metafields: [MetafieldsSetInput!]!) {
+         metafieldsSet(metafields: $metafields) {
+           userErrors { field message }
+         }
+       }`,
+      { metafields: fields }
+    );
+    const errs = res.metafieldsSet.userErrors;
+    if (errs.length) throw new Error(`${c.handle}: ${errs.map((e) => e.message).join('; ')}`);
+
+    console.log(`   ✓ ${c.handle.padEnd(38)} ${String(fields.length).padStart(2)} fields written`);
+    created++;
+    await sleep(300);
+  }
+}
+
 async function doMenus() {
   console.log('\n🧭  NAVIGATION');
 
@@ -834,6 +941,7 @@ async function doProducts() {
   try {
     await doPages();
     await doCollections();
+    await doCollectionCopy();
     await doMenus();
     await doProducts();
   } catch (e) {

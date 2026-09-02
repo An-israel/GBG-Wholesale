@@ -1,11 +1,22 @@
 {%- comment -%}
-  Related collections.
+  Related collections, the "shop by need" band.
 
-  Links out to four to six other collections, so a category page is never a
-  dead end for someone who arrived in the wrong one. Each tile shows the
-  collection's own image and product count, so nobody clicks into an empty
-  page.
+  Links out to other collections, so a category page is never a dead end for
+  someone who arrived in the wrong one. Each tile shows the collection's own
+  image and product count, so nobody clicks into an empty page.
+
+  Which collections appear is per category, because "what else might suit you"
+  is a different answer on Drinkware than on Kids and School. The list is held
+  on the collection itself, as a metafield of handles written by the setup
+  script, so one template can give ten categories ten different sets.
+
+  The blocks below are the fallback, used on any collection that has no list
+  of its own.
 {%- endcomment -%}
+
+{%- liquid
+  assign need_handles = collection.metafields.custom.shop_by_need | split: ','
+-%}
 
 <section class="section section--{{ section.settings.background }} rel-collections">
   <div class="container">
@@ -17,6 +28,43 @@
     </div>
 
     <ul class="rel-collections__grid">
+      {% if need_handles.size > 0 %}
+        {% for handle in need_handles %}
+          {%- liquid
+            # A filter cannot go inside a bracket lookup, so the handle is
+            # trimmed into its own variable first.
+            assign want = handle | strip
+            assign target = collections[want]
+            assign is_current = false
+            if collection != blank and target.handle == collection.handle
+              assign is_current = true
+            endif
+          -%}
+          {%- comment -%}
+            A tile for a collection that does not exist would be a dead link,
+            so an unknown handle is simply left out.
+          {%- endcomment -%}
+          {% unless is_current or target == empty or target.handle == blank %}
+            <li class="rel-collections__item reveal">
+              <a href="{{ target.url }}" class="rel-collections__tile">
+                <span class="rel-collections__media">
+                  {% if target.image %}
+                    <img src="{{ target.image | image_url: width: 500 }}" alt="" width="500" height="500" loading="lazy">
+                  {% elsif target.products.first.featured_image %}
+                    <img src="{{ target.products.first.featured_image | image_url: width: 500 }}" alt="" width="500" height="500" loading="lazy">
+                  {% else %}
+                    <span class="rel-collections__placeholder" aria-hidden="true"></span>
+                  {% endif %}
+                </span>
+                <span class="rel-collections__body">
+                  <span class="rel-collections__title">{{ target.title }}</span>
+                  <span class="rel-collections__count">{{ target.products_count }} products</span>
+                </span>
+              </a>
+            </li>
+          {% endunless %}
+        {% endfor %}
+      {% else %}
       {% for block in section.blocks %}
         {%- liquid
           assign target = block.settings.collection
@@ -46,6 +94,7 @@
           </li>
         {% endunless %}
       {% endfor %}
+      {% endif %}
     </ul>
   </div>
 </section>

@@ -15,6 +15,13 @@
   if collection.image
     assign has_image = true
   endif
+
+  comment
+    One template serves ten categories, so a button label typed in here would
+    be the same on all ten. Lami wrote a different call to action for each, so
+    the collection carries its own and this is only the fallback.
+  endcomment
+  assign cta = collection.metafields.custom.cta_label | default: section.settings.cta_label
 -%}
 
 <section class="collection-hero{% if has_image and section.settings.show_image %} collection-hero--image{% endif %}{% if section.settings.compact %} collection-hero--compact{% endif %}">
@@ -58,9 +65,9 @@
       </div>
     {% endif %}
 
-    {% if section.settings.cta_label != blank %}
+    {% if cta != blank %}
     <div class="collection-hero__actions">
-      <a href="#products" class="btn btn--primary">{{ section.settings.cta_label }}</a>
+      <a href="#products" class="btn btn--primary">{{ cta }}</a>
       {% if section.settings.secondary_label != blank %}
         <a href="{{ section.settings.secondary_url }}" class="btn btn--secondary">{{ section.settings.secondary_label }}</a>
       {% endif %}
@@ -211,7 +218,7 @@
     { "type": "checkbox", "id": "compact", "label": "Compact", "info": "Shorter hero for demand collections, where products need to appear immediately.", "default": false },
     { "type": "checkbox", "id": "show_image", "label": "Show the collection image behind the heading", "default": true },
     { "type": "checkbox", "id": "show_breadcrumb", "label": "Show breadcrumb", "default": true },
-    { "type": "text", "id": "cta_label", "label": "Main button label", "info": "Leave blank to hide both buttons, which suits a compact hero.", "default": "Shop this category" },
+    { "type": "text", "id": "cta_label", "label": "Main button label", "info": "Only used when the collection has no button label of its own. Leave blank to hide both buttons, which suits a compact hero.", "default": "Shop this category" },
     { "type": "text", "id": "secondary_label", "label": "Second button label", "default": "See best sellers" },
     { "type": "url", "id": "secondary_url", "label": "Second button link" }
   ]
