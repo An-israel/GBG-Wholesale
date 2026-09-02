@@ -54,12 +54,37 @@ straight back afterwards, including if the command fails.
 
 ## If images are lost again
 
-Shopify keeps a version history of the theme. Nothing is gone.
+Shopify keeps a per-file history, but it is not on the Themes menu where you
+would expect it. It lives inside the code editor, one file at a time:
 
-**Online Store > Themes > ... > Version history**, find the version from
-before the push, and click to restore it. The image files themselves live in
-**Content > Files** and are never touched by a theme push at all, so the worst
-case is placing them again rather than re-uploading them.
+1. **Online Store > Themes > ... > Edit code**
+2. Open the file that holds what was lost. Home page images are in
+   `templates/index.json`; logo and colours are in `config/settings_data.json`
+3. In the Timeline panel, right-click an entry from before the push and choose
+   **Restore contents**
+
+It restores one file at a time, it cannot bring back a deleted file, and the
+history is finite, so this is a rescue rather than a guarantee.
+
+The image files themselves live in **Content > Files** and are never touched
+by a theme push at all. So the worst case is placing them again, not
+re-uploading them.
+
+## Omnisend and other email apps
+
+Shopify's own signup forms create a customer. They only make that customer
+emailable if the form sends `contact[accepts_marketing]`, which both the
+footer form and the SYPB gate now do. Without it the address is stored but
+nobody is allowed to email it, and an email app inherits a list it cannot use.
+
+Omnisend syncs subscribed Shopify customers, so the built-in forms feed it
+with nothing extra to place. Its popups and flyouts are switched on under
+**Theme settings > App embeds** and configured inside Omnisend rather than in
+the theme.
+
+If you would rather collect straight into Omnisend, add its block to the
+Footer section. That replaces the built-in form, so addresses land in one list
+instead of two that disagree.
 
 ## Making apps work
 

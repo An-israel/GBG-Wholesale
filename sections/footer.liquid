@@ -58,6 +58,13 @@
           {%- endfor -%}
         {% else %}
         {% form 'customer', id: 'FooterNewsletterForm' %}
+          {%- comment -%}
+            Without this the customer record is created but not subscribed, so
+            an email app has a contact it is not allowed to email. The form is
+            a newsletter signup and says so, which is what makes ticking it
+            here honest rather than presumed.
+          {%- endcomment -%}
+          <input type="hidden" name="contact[accepts_marketing]" value="true">
           <input type="hidden" name="contact[tags]" value="newsletter">
           <div class="site-footer__newsletter-row {% if form.errors %}has-error{% endif %}">
             <label class="visually-hidden" for="FooterNewsletterEmail">{{ 'newsletter.placeholder' | t }}</label>

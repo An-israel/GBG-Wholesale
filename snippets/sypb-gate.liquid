@@ -65,6 +65,13 @@
       <p>Tell us where to send it and it plays right here. You'll also get the group link and the odd email when something worth knowing lands. No spam, unsubscribe any time.</p>
 
       {% form 'customer', id: 'SypbGateForm' %}
+        {%- comment -%}
+          The copy above this form says plainly that joining means the odd
+          email and that it can be unsubscribed from, so consent is asked for
+          rather than assumed. Without this the address is stored but cannot
+          be emailed, which makes the whole gate pointless.
+        {%- endcomment -%}
+        <input type="hidden" name="contact[accepts_marketing]" value="true">
         <input type="hidden" name="contact[tags]" value="sypb,video-watched">
 
         <div class="field">
