@@ -1,7 +1,12 @@
 # The Shop menu
 
-Build this once in **Shopify admin > Content > Navigation**, then pick it in the
-theme editor under **Header > Shop > Menu to show**.
+> **The setup script builds this now.** `node setup-store.mjs` creates all four
+> menus, and the theme already names `shop-menu` in code, so neither step below
+> has to be done by hand any more. Kept as the reference for what the menu
+> contains and why the labels differ from the page headings.
+
+Originally: build this in **Shopify admin > Content > Navigation**, then pick it
+in the theme editor under **Header > Shop > Menu to show**.
 
 Two things are deliberately different here, and both matter for search:
 

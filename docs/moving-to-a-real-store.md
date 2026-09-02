@@ -1,5 +1,10 @@
 # Moving to a store that can take payments
 
+> **Done, on 1 September 2026.** The store is now
+> `gbg-wholesale-ufn6121g.myshopify.com`, a client transfer store, owned by
+> Lami. Kept as a record of why the first store had to be abandoned. Nothing
+> below needs doing again.
+
 The current store is a **Dev store**. Shopify's own rule: a Dev store supports
 feature previews and test data and **cannot be transferred to a client**. That
 is why Settings > Plan has no upgrade button and why the dev dashboard has no
