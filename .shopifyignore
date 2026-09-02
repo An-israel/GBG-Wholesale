@@ -31,3 +31,19 @@ config/settings_data.json
 # A pulled-down copy of the live theme, used to rescue content the shop's
 # own editor created before a push overwrites it. Never pushed back up.
 live-snapshot/*
+
+# Everything the theme editor owns.
+#
+# Uploaded images, app blocks, section reordering and every value chosen in
+# the theme editor live in these files, not in code. A push that includes them
+# replaces whatever someone spent an afternoon adding with whatever this repo
+# last happened to hold. That is how the home page images were lost, twice.
+#
+# node push.mjs <store>.myshopify.com  pushes code and skips all of this.
+# node push.mjs <store>.myshopify.com --pull  brings it back down into git.
+templates/*.json
+templates/customers/*.json
+sections/*.json
+
+# The push wrapper itself is local tooling, not part of the theme.
+push.mjs

@@ -1,0 +1,113 @@
+{%- comment -%}
+  App section.
+
+  An empty frame that accepts blocks from any installed app, so an app that
+  ships a block has somewhere to be placed without the theme needing to know
+  anything about it. Email capture, reviews, countdowns, upsells, trust
+  badges: whatever is installed shows up under Add block.
+
+  With no block in it the section hides on the live site rather than leaving a
+  gap, but stays visible in the theme editor, because a section you cannot see
+  is a section you cannot add a block to.
+{%- endcomment -%}
+
+{%- liquid
+  assign app_blocks = 0
+  for block in section.blocks
+    if block.type == '@app'
+      assign app_blocks = app_blocks | plus: 1
+    endif
+  endfor
+-%}
+
+{% if app_blocks > 0 or request.design_mode %}
+  <section
+    id="{{ section.settings.custom_id | default: section.id }}"
+    class="app-blocks section section--{{ section.settings.background }}"
+  >
+    <div class="container{% if section.settings.narrow %} app-blocks__narrow{% endif %}">
+      {% if section.settings.eyebrow != blank or section.settings.heading != blank %}
+        <div class="section-intro reveal">
+          {% if section.settings.eyebrow != blank %}
+            <span class="route-label route-label--amber">{{ section.settings.eyebrow }}</span>
+          {% endif %}
+          {% if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif %}
+          {% if section.settings.body != blank %}<p>{{ section.settings.body }}</p>{% endif %}
+        </div>
+      {% endif %}
+
+      {% if app_blocks > 0 %}
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              <div class="app-blocks__item" {{ block.shopify_attributes }}>{%- render block -%}</div>
+          {%- endcase -%}
+        {%- endfor -%}
+      {% elsif request.design_mode %}
+        <div class="app-blocks__setup">
+          <p><strong>Nothing added here yet.</strong></p>
+          <p>
+            Click <em>Add block</em> below and pick the app you want on this
+            page. Anything installed that offers a block will be listed, such
+            as Judge.me or an email signup app.
+          </p>
+          <p>
+            An app that has no block in the list is probably an app embed
+            instead. Those are switched on under
+            <em>Theme settings &rsaquo; App embeds</em> and appear on the site
+            on their own.
+          </p>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
+
+{% stylesheet %}
+  .app-blocks__narrow {
+    max-width: 46rem;
+  }
+
+  .app-blocks__item + .app-blocks__item {
+    margin-top: var(--space-5);
+  }
+
+  /* Only ever seen inside the theme editor. */
+  .app-blocks__setup {
+    border: 1px dashed color-mix(in srgb, var(--color-navy) 35%, transparent);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    padding: var(--space-5);
+    font-size: 0.9rem;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+
+  .app-blocks__setup p:last-child {
+    margin-bottom: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "App section",
+  "settings": [
+    { "type": "paragraph", "content": "Add a block from any installed app. Use this to place an email signup, a reviews widget or anything else an app provides, on any page." },
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
+    { "type": "select", "id": "background", "label": "Section background", "info": "Vary this down a page so each band reads as its own.", "options": [
+        { "value": "white", "label": "White" },
+        { "value": "paper", "label": "Paper (light grey)" },
+        { "value": "mist", "label": "Mist (pale navy)" },
+        { "value": "amber", "label": "Amber tint" },
+        { "value": "aqua", "label": "Aqua tint" },
+        { "value": "navy", "label": "Navy (dark)" }
+      ], "default": "paper" },
+    { "type": "checkbox", "id": "narrow", "label": "Narrow column", "info": "Good for a signup form. Switch off for anything wide, such as a reviews grid.", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow / route label" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "textarea", "id": "body", "label": "Body" }
+  ],
+  "blocks": [{ "type": "@app" }],
+  "presets": [{ "name": "App section" }]
+}
+{% endschema %}

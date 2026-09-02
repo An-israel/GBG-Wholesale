@@ -35,6 +35,28 @@
 
       <div class="site-footer__newsletter">
         <h3>{{ 'newsletter.heading' | t }}</h3>
+        {%- comment -%}
+          An email app placed here replaces the built-in form, so a shop using
+          Klaviyo or similar collects into that rather than into two lists that
+          disagree with each other.
+        {%- endcomment -%}
+        {%- liquid
+          assign email_app = 0
+          for block in section.blocks
+            if block.type == '@app'
+              assign email_app = email_app | plus: 1
+            endif
+          endfor
+        -%}
+
+        {% if email_app > 0 %}
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when '@app' -%}
+                <div class="site-footer__app" {{ block.shopify_attributes }}>{%- render block -%}</div>
+            {%- endcase -%}
+          {%- endfor -%}
+        {% else %}
         {% form 'customer', id: 'FooterNewsletterForm' %}
           <input type="hidden" name="contact[tags]" value="newsletter">
           <div class="site-footer__newsletter-row {% if form.errors %}has-error{% endif %}">
@@ -58,6 +80,7 @@
             {% endif %}
           </div>
         {% endform %}
+        {% endif %}
       </div>
     </div>
 
@@ -221,6 +244,10 @@
   "name": "Footer",
   "settings": [
     {
+      "type": "paragraph",
+      "content": "Using an email app such as Klaviyo? Add its block here and it replaces the built-in signup form, so addresses collect into one list rather than two."
+    },
+    {
       "type": "textarea",
       "id": "brand_blurb",
       "label": "Short brand line",
@@ -232,22 +259,86 @@
       "type": "link_group",
       "name": "Link group",
       "settings": [
-        { "type": "text", "id": "heading", "label": "Heading", "default": "Shop" },
-        { "type": "text", "id": "link1_label", "label": "Link 1 label" },
-        { "type": "url", "id": "link1_url", "label": "Link 1 URL" },
-        { "type": "text", "id": "link2_label", "label": "Link 2 label" },
-        { "type": "url", "id": "link2_url", "label": "Link 2 URL" },
-        { "type": "text", "id": "link3_label", "label": "Link 3 label" },
-        { "type": "url", "id": "link3_url", "label": "Link 3 URL" },
-        { "type": "text", "id": "link4_label", "label": "Link 4 label" },
-        { "type": "url", "id": "link4_url", "label": "Link 4 URL" },
-        { "type": "text", "id": "link5_label", "label": "Link 5 label" },
-        { "type": "url", "id": "link5_url", "label": "Link 5 URL" },
-        { "type": "text", "id": "link6_label", "label": "Link 6 label" },
-        { "type": "url", "id": "link6_url", "label": "Link 6 URL" },
-        { "type": "text", "id": "link7_label", "label": "Link 7 label" },
-        { "type": "url", "id": "link7_url", "label": "Link 7 URL" }
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Shop"
+        },
+        {
+          "type": "text",
+          "id": "link1_label",
+          "label": "Link 1 label"
+        },
+        {
+          "type": "url",
+          "id": "link1_url",
+          "label": "Link 1 URL"
+        },
+        {
+          "type": "text",
+          "id": "link2_label",
+          "label": "Link 2 label"
+        },
+        {
+          "type": "url",
+          "id": "link2_url",
+          "label": "Link 2 URL"
+        },
+        {
+          "type": "text",
+          "id": "link3_label",
+          "label": "Link 3 label"
+        },
+        {
+          "type": "url",
+          "id": "link3_url",
+          "label": "Link 3 URL"
+        },
+        {
+          "type": "text",
+          "id": "link4_label",
+          "label": "Link 4 label"
+        },
+        {
+          "type": "url",
+          "id": "link4_url",
+          "label": "Link 4 URL"
+        },
+        {
+          "type": "text",
+          "id": "link5_label",
+          "label": "Link 5 label"
+        },
+        {
+          "type": "url",
+          "id": "link5_url",
+          "label": "Link 5 URL"
+        },
+        {
+          "type": "text",
+          "id": "link6_label",
+          "label": "Link 6 label"
+        },
+        {
+          "type": "url",
+          "id": "link6_url",
+          "label": "Link 6 URL"
+        },
+        {
+          "type": "text",
+          "id": "link7_label",
+          "label": "Link 7 label"
+        },
+        {
+          "type": "url",
+          "id": "link7_url",
+          "label": "Link 7 URL"
+        }
       ]
+    },
+    {
+      "type": "@app"
     }
   ]
 }
