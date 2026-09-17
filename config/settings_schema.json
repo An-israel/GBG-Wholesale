@@ -203,6 +203,12 @@
       },
       {
         "type": "text",
+        "id": "reseller_community_link",
+        "label": "Reseller community link",
+        "info": "The free WhatsApp group the landing page sends people to after the questionnaire. Separate from SYPB and from the Wholesale Hub."
+      },
+      {
+        "type": "text",
         "id": "sypb_video_url",
         "label": "SYPB video link",
         "info": "Paste the share link. A Google Drive link plays inside the pop-up, as long as the file is shared as \"Anyone with the link can view\". For YouTube or Vimeo use the setting below instead."

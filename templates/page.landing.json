@@ -1,0 +1,131 @@
+{
+  "sections": {
+    "hero": {
+      "type": "lead-hero",
+      "settings": {
+        "background": "white",
+        "show_logo": true,
+        "heading": "Find products to start or grow your reseller business",
+        "body": "<p>Want to start selling products in the UK, or grow what you are already selling?</p><p>GBG Wholesale Hub helps aspiring and existing resellers access reseller-ready stock, wholesale opportunities, business education and a supportive reseller community.</p><p>Whether you are just starting out, already selling on TikTok Shop, eBay, Vinted, Facebook Marketplace, Instagram or your own website, or simply looking for better products to sell, we would like to understand what you need.</p><p><strong>Your answers help us understand:</strong></p>",
+        "cta_label": "Start the questionnaire",
+        "target": "questionnaire",
+        "note": "It takes about two minutes. Finish it and you also get into the free GBG Reseller Community."
+      },
+      "blocks": {
+        "b1": {
+          "type": "point",
+          "settings": {
+            "text": "What stage you are at"
+          }
+        },
+        "b2": {
+          "type": "point",
+          "settings": {
+            "text": "What products you are interested in"
+          }
+        },
+        "b3": {
+          "type": "point",
+          "settings": {
+            "text": "How much you are looking to invest"
+          }
+        },
+        "b4": {
+          "type": "point",
+          "settings": {
+            "text": "How soon you are ready to start"
+          }
+        },
+        "b5": {
+          "type": "point",
+          "settings": {
+            "text": "Whether you need stock, education, or both"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5"
+      ]
+    },
+    "how-we-help": {
+      "type": "content-cards",
+      "settings": {
+        "background": "mist",
+        "eyebrow": "HOW GBG CAN HELP YOU",
+        "heading": "We support product businesses at different stages",
+        "body": "Wherever you are now, there is a way in."
+      },
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "label": "WHOLESALE STOCK",
+            "heading": "Wholesale stock",
+            "body": "<p>Products and stock opportunities you can buy in bulk and resell online or offline.</p>"
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "label": "STARTER STOCK",
+            "heading": "Starter stock",
+            "body": "<p>Smaller quantities, mixed products and reseller-ready options, for starting without committing to very large quantities.</p>"
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "label": "PRODUCT OPPORTUNITIES",
+            "heading": "Product opportunities",
+            "body": "<p>New arrivals, trending products, clearance stock, overstock opportunities and selected bulk-buying deals.</p>"
+          }
+        },
+        "c4": {
+          "type": "card",
+          "settings": {
+            "label": "BUSINESS EDUCATION",
+            "heading": "Business education",
+            "body": "<p>How to choose products, price correctly, sell online, market what you have and build a business that lasts.</p>"
+          }
+        },
+        "c5": {
+          "type": "card",
+          "settings": {
+            "label": "COMMUNITY",
+            "heading": "Community",
+            "body": "<p>Other aspiring and existing resellers building product businesses in the UK.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5"
+      ]
+    },
+    "questionnaire": {
+      "type": "lead-form",
+      "settings": {
+        "custom_id": "questionnaire",
+        "background": "paper",
+        "eyebrow": "TELL US WHAT YOU ARE LOOKING FOR",
+        "heading": "A few questions, then we can point you at the right stock",
+        "body": "Your answers help us recommend products, stock opportunities and business support that are actually relevant to you. It takes about two minutes.",
+        "thanks_url": "/pages/thank-you",
+        "consent": "<p>By submitting this form, you agree that GBG Wholesale Hub may contact you with relevant product opportunities, educational content, business support and promotional offers. You can unsubscribe at any time.</p>",
+        "reassurance": "No pressure and no obligation to buy."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "how-we-help",
+    "questionnaire"
+  ]
+}

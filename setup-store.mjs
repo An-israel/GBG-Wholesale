@@ -158,6 +158,8 @@ const PAGES = [
   ['terms-of-service',           'Terms of Service',     'page.terms-of-service'],
   ['track-your-order',           'Track Your Order',     'page.track-your-order'],
   ['reviews',                    'Reviews',              'page.reviews'],
+  ['start',                      'Start',                'page.landing'],
+  ['thank-you',                  'Thank You',            'page.thanks'],
 ];
 
 /* ------------------------------------------------------------------ */

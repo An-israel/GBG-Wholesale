@@ -1,0 +1,113 @@
+{
+  "sections": {
+    "thanks": {
+      "type": "lead-thanks",
+      "settings": {
+        "background": "white",
+        "show_logo": true,
+        "heading": "Thank you, we have got your details",
+        "body": "<p>From what you have told us we can work out the products, stock opportunities and support most likely to be useful to you.</p><p>Your next step is the free GBG Reseller Community. Inside it you can:</p>",
+        "cta_label": "Join the free WhatsApp community",
+        "community_link": "",
+        "note": "Free to join. Leave whenever you like."
+      },
+      "blocks": {
+        "b1": {
+          "type": "point",
+          "settings": {
+            "text": "Connect with other aspiring and existing resellers"
+          }
+        },
+        "b2": {
+          "type": "point",
+          "settings": {
+            "text": "Ask questions about starting and growing a product business"
+          }
+        },
+        "b3": {
+          "type": "point",
+          "settings": {
+            "text": "Learn how to choose products and avoid common beginner mistakes"
+          }
+        },
+        "b4": {
+          "type": "point",
+          "settings": {
+            "text": "Watch helpful training videos"
+          }
+        },
+        "b5": {
+          "type": "point",
+          "settings": {
+            "text": "Get selected stock opportunities and GBG updates"
+          }
+        },
+        "b6": {
+          "type": "point",
+          "settings": {
+            "text": "Learn from people who are already selling online"
+          }
+        },
+        "b7": {
+          "type": "point",
+          "settings": {
+            "text": "Find opportunities that suit your budget and business stage"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7"
+      ]
+    },
+    "next": {
+      "type": "numbered-steps",
+      "settings": {
+        "background": "paper",
+        "eyebrow": "WHAT HAPPENS NEXT",
+        "heading": "Once you are inside the community"
+      },
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "text": "Introduce yourself. Tell us where you are based and whether you are already selling or just getting started."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "text": "Watch the getting-started videos. They explain how the reseller business works and whether it suits you."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "text": "Keep an eye on stock opportunities. Products, wholesale opportunities and reseller offers get shared regularly."
+          }
+        },
+        "s4": {
+          "type": "step",
+          "settings": {
+            "text": "Ask questions. If you are unsure about products, platforms, pricing or getting started, that is what the group is for."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ]
+    }
+  },
+  "order": [
+    "thanks",
+    "next"
+  ]
+}

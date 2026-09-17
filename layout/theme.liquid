@@ -19,24 +19,43 @@
     {% render 'analytics' %}
   </head>
 
-  <body>
+  {%- comment -%}
+    A landing page is a page with one job and no way off it except the button.
+    Menu, footer, cart, search and the floating WhatsApp button are all ways
+    off it, so a template ending in .landing gets none of them.
+
+    The page still lives on the shop, so it keeps the pixels, the fonts and the
+    brand, and Lami still edits it in the theme editor like any other page.
+  {%- endcomment -%}
+  {%- liquid
+    assign bare = false
+    if template.suffix == 'landing' or template.suffix == 'thanks'
+      assign bare = true
+    endif
+  -%}
+
+  <body{% if bare %} class="is-landing"{% endif %}>
     <a class="skip-link" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
 
-    {% sections 'header-group' %}
+    {% unless bare %}
+      {% sections 'header-group' %}
+    {% endunless %}
 
     <main id="MainContent">
       {{ content_for_layout }}
     </main>
 
-    {% sections 'footer-group' %}
+    {% unless bare %}
+      {% sections 'footer-group' %}
 
-    {% section 'cart-drawer' %}
-    {% render 'predictive-search' %}
-    {% render 'waitlist-modal' %}
-    {% render 'sypb-gate' %}
-    {% if settings.show_whatsapp_float %}
-      {% render 'whatsapp-float' %}
-    {% endif %}
+      {% section 'cart-drawer' %}
+      {% render 'predictive-search' %}
+      {% render 'waitlist-modal' %}
+      {% render 'sypb-gate' %}
+      {% if settings.show_whatsapp_float %}
+        {% render 'whatsapp-float' %}
+      {% endif %}
+    {% endunless %}
 
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'cart.js' | asset_url }}" defer></script>
