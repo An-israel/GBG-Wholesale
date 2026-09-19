@@ -27,6 +27,7 @@
   var backBtn = form.querySelector('[data-lead-back]');
   var nextBtn = form.querySelector('[data-lead-next]');
   var submitBtn = form.querySelector('[data-lead-submit]');
+  var closing = form.querySelector('[data-lead-closing]');
   var liveError = form.querySelector('[data-lead-error]');
   var thanksUrl = form.getAttribute('data-thanks-url') || '/';
 
@@ -80,6 +81,9 @@
     var last = index === steps.length - 1;
     if (nextBtn) nextBtn.hidden = last;
     if (submitBtn) submitBtn.hidden = !last;
+    /* The closing pitch belongs beside the button that submits, not halfway
+       up a questionnaire. */
+    if (closing) closing.hidden = !last;
 
     if (liveError) liveError.textContent = '';
 

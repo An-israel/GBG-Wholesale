@@ -121,11 +121,21 @@
         "consent": "<p>By submitting this form, you agree that GBG Wholesale Hub may contact you with relevant product opportunities, educational content, business support and promotional offers. You can unsubscribe at any time.</p>",
         "reassurance": "No pressure and no obligation to buy."
       }
+    },
+    "signoff": {
+      "type": "lead-signoff",
+      "settings": {
+        "background": "navy",
+        "brand": "GBG Wholesale Hub",
+        "tagline": "Stock. Build. Scale.",
+        "body": "Helping aspiring and existing resellers find products, learn how to sell and build sustainable product businesses."
+      }
     }
   },
   "order": [
     "hero",
     "how-we-help",
-    "questionnaire"
+    "questionnaire",
+    "signoff"
   ]
 }

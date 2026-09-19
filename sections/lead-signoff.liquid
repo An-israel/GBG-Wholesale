@@ -1,0 +1,119 @@
+{%- comment -%}
+  Landing page sign-off.
+
+  The landing templates strip the real footer, which also strips the privacy
+  policy link. A page collecting a name, an email, a phone number and a budget
+  needs one within reach, and the ad platforms check for it before they will
+  run traffic to a lead form. So this is the sign-off and the small print in
+  one band.
+
+  The policy link is not a setting. A page that collects personal data and
+  does not link to how that data is handled is a page that should not be
+  running ads, and a link somebody can switch off is one that ends up off.
+{%- endcomment -%}
+
+<section class="lead-signoff section section--{{ section.settings.background }}">
+  <div class="container lead-signoff__inner">
+    <p class="lead-signoff__name">{{ section.settings.brand }}</p>
+
+    {% if section.settings.tagline != blank %}
+      <p class="lead-signoff__tagline">{{ section.settings.tagline }}</p>
+    {% endif %}
+
+    {% if section.settings.body != blank %}
+      <p class="lead-signoff__body">{{ section.settings.body }}</p>
+    {% endif %}
+
+    <p class="lead-signoff__legal">
+      <a href="/pages/privacy-policy">Privacy policy</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/pages/terms-of-service">Terms</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="{{ routes.root_url }}">The full shop</a>
+    </p>
+
+    <p class="lead-signoff__copy">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
+  </div>
+</section>
+
+{% stylesheet %}
+  .lead-signoff__inner {
+    max-width: 40rem;
+    text-align: center;
+    padding-block: var(--space-7);
+  }
+
+  .lead-signoff__name {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-2);
+  }
+
+  .lead-signoff__tagline {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-amber-text);
+    margin-bottom: var(--space-4);
+  }
+
+  .lead-signoff__body {
+    font-size: 0.94rem;
+    color: var(--color-muted);
+    max-width: 34rem;
+    margin-inline: auto;
+    margin-bottom: var(--space-5);
+  }
+
+  .lead-signoff__legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: 0.84rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .lead-signoff__legal a {
+    color: var(--color-ink);
+  }
+
+  .lead-signoff__legal span {
+    color: var(--color-border);
+  }
+
+  .lead-signoff__copy {
+    font-size: 0.78rem;
+    color: var(--color-muted);
+    margin: 0;
+  }
+
+  .section--navy .lead-signoff__legal a,
+  .section--navy .lead-signoff__name {
+    color: #ffffff;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Landing sign-off",
+  "settings": [
+    { "type": "paragraph", "content": "The bottom of a landing page. The privacy policy link is fixed rather than optional: a page collecting personal data needs one, and the ad platforms check for it." },
+    { "type": "select", "id": "background", "label": "Section background", "options": [
+        { "value": "navy", "label": "Navy (dark)" },
+        { "value": "white", "label": "White" },
+        { "value": "paper", "label": "Paper (light grey)" },
+        { "value": "mist", "label": "Mist (pale navy)" }
+      ], "default": "navy" },
+    { "type": "text", "id": "brand", "label": "Brand name", "default": "GBG Wholesale Hub" },
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "Stock. Build. Scale." },
+    { "type": "textarea", "id": "body", "label": "Line underneath", "default": "Helping aspiring and existing resellers find products, learn how to sell and build sustainable product businesses." }
+  ],
+  "presets": [{ "name": "Landing sign-off" }]
+}
+{% endschema %}

@@ -69,6 +69,19 @@ leadFormStarted  leadFormCompleted
 So "everyone ready to start now with £500 to £1,000 who wants help choosing
 products" is a segment, not a spreadsheet exercise.
 
+## The sign-off band
+
+The landing templates strip the real footer, which also strips the privacy
+policy link. A page collecting a name, an email, a phone number and a budget
+needs one within reach, and the ad platforms check for it before they will run
+traffic to a lead form.
+
+So both pages end with a sign-off carrying the brand, the tagline and links to
+the privacy policy, the terms and the full shop. The policy link is fixed
+rather than a setting: a page that collects personal data and does not say how
+that data is handled should not be running ads, and a link somebody can switch
+off is one that ends up off.
+
 ## Two things to set before running traffic
 
 **1. Omnisend has to be switched on.** Theme settings > App embeds > Omnisend.

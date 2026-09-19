@@ -318,6 +318,23 @@
 
       <p class="lead-form__error" data-lead-error role="alert"></p>
 
+      {%- comment -%}
+        Lami's closing pitch. It belongs beside the button that submits, not
+        halfway up a questionnaire, so the script reveals it with the submit
+        button on the last question. Without the script it is simply always
+        there, at the bottom, which is where it would be on a single long form.
+      {%- endcomment -%}
+      {% if section.settings.closing_heading != blank or section.settings.closing_body != blank %}
+        <div class="lead-form__closing" data-lead-closing hidden>
+          {% if section.settings.closing_heading != blank %}
+            <h3>{{ section.settings.closing_heading }}</h3>
+          {% endif %}
+          {% if section.settings.closing_body != blank %}
+            <div class="lead-form__closing-body">{{ section.settings.closing_body }}</div>
+          {% endif %}
+        </div>
+      {% endif %}
+
       {% if section.settings.consent != blank %}
         <div class="lead-form__consent">{{ section.settings.consent }}</div>
       {% endif %}
@@ -493,6 +510,31 @@
     display: none;
   }
 
+  .lead-form__closing {
+    margin-top: var(--space-6);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .lead-form__closing h3 {
+    font-size: 1.05rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .lead-form__closing-body {
+    font-size: 0.94rem;
+    color: var(--color-muted);
+  }
+
+  .lead-form__closing-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* No script, no stepping, so the closing copy is simply always shown. */
+  .lead-form:not(.lead-form--stepped) .lead-form__closing[hidden] {
+    display: block;
+  }
+
   .lead-form__reassure {
     text-align: center;
     font-size: 0.84rem;
@@ -576,6 +618,22 @@
       "id": "thanks_url",
       "label": "Thank-you page",
       "info": "Where people land once they finish. Leave blank and they go to /pages/thank-you."
+    },
+    {
+      "type": "header",
+      "content": "Shown on the last question"
+    },
+    {
+      "type": "text",
+      "id": "closing_heading",
+      "label": "Closing heading",
+      "default": "Let us help you find the right next step"
+    },
+    {
+      "type": "richtext",
+      "id": "closing_body",
+      "label": "Closing text",
+      "default": "<p>We want to understand where you are, so we can show you opportunities that actually fit your goals, your budget and your level of experience.</p>"
     },
     {
       "type": "header",

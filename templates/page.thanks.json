@@ -104,10 +104,20 @@
         "s3",
         "s4"
       ]
+    },
+    "signoff": {
+      "type": "lead-signoff",
+      "settings": {
+        "background": "navy",
+        "brand": "GBG Wholesale Hub",
+        "tagline": "Stock. Build. Scale.",
+        "body": "Helping aspiring and existing resellers find products, learn how to sell and build sustainable product businesses."
+      }
     }
   },
   "order": [
     "thanks",
-    "next"
+    "next",
+    "signoff"
   ]
 }
