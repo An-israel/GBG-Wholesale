@@ -35,18 +35,34 @@ const store = args.find((a) => !a.startsWith('--'));
 const wantPull = args.includes('--pull');
 const wantContent = args.includes('--with-content');
 
+/* --only takes the paths after it, so a single new template can go up without
+   dragging every other template with it. This is the gap that mattered: the
+   ignore rules protect the home page, and they protect a brand new template
+   just as thoroughly, which means a new page would never arrive. Reaching for
+   --with-content to solve that is how the images were lost. */
+const onlyAt = args.indexOf('--only');
+const onlyPaths =
+  onlyAt === -1 ? [] : args.slice(onlyAt + 1).filter((a) => !a.startsWith('--'));
+
 if (!store) {
   console.error(`
-Usage:  node push.mjs <store>.myshopify.com [--pull | --with-content]
+Usage:  node push.mjs <store>.myshopify.com [--pull | --only <paths> | --with-content]
 
   (no flag)        Push code only. Images, app blocks and section settings in
                    the theme editor are left exactly as they are. Use this.
 
+  --only <paths>   Push just the files you name, and nothing else. This is how
+                   a new page template goes up without touching the home page.
+
+                     node push.mjs <store> --only templates/page.landing.json
+
   --pull           Pull the store's content files into this repo, so the
                    images and app blocks someone added are saved in git.
 
-  --with-content   Push content files as well. Pull first, or you will
-                   overwrite whatever the theme editor holds.
+  --with-content   Push every content file. This replaces the home page and
+                   every other template with whatever this repo holds. Pull
+                   first, or use --only instead, which is almost always what
+                   you actually want.
 `);
   process.exit(1);
 }
@@ -113,6 +129,28 @@ If the images are in there, commit them so they are never lost again:
   process.exit(0);
 }
 
+if (onlyPaths.length) {
+  console.log('\nPushing only these files. Nothing else is sent:\n');
+  onlyPaths.forEach((f) => console.log('    ' + f));
+
+  const missing = onlyPaths.filter((f) => !existsSync(f));
+  if (missing.length) {
+    console.error(`\n✗ Not found, so nothing was pushed:\n    ${missing.join('\n    ')}\n`);
+    process.exit(1);
+  }
+
+  const only = onlyPaths.flatMap((f) => ['--only', f]);
+  withoutContentIgnores(() =>
+    run('shopify', ['theme', 'push', '--store', store, ...only])
+  );
+
+  console.log(`
+Done. Only the files listed above were sent. Every other template, and every
+image and app block in the theme editor, is exactly as it was.
+`);
+  process.exit(0);
+}
+
 if (wantContent) {
   console.log(`
 About to push content files as well as code.
@@ -137,8 +175,10 @@ console.log(`
 Pushed. Images, app blocks and section settings are untouched.
 
 If a change you expected is missing, it probably lives in a template rather
-than in code. Pull first, then push with content:
+than in code, and templates are not sent by a normal push. Send just that one:
 
-    node push.mjs ${store} --pull
-    node push.mjs ${store} --with-content
+    node push.mjs ${store} --only templates/page.example.json
+
+Only reach for --with-content when you genuinely mean every template at once,
+and pull first if you do.
 `);

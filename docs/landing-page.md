@@ -96,6 +96,35 @@ Until it is set, the thank-you page shows no button, and every lead stops
 there. In the theme editor it says so; on the live site it just quietly has no
 button.
 
+## Deploying it
+
+Two commands, and the second one matters.
+
+```
+node push.mjs gbg-wholesale-ufn6121g.myshopify.com
+node push.mjs gbg-wholesale-ufn6121g.myshopify.com --only templates/page.landing.json templates/page.thanks.json
+```
+
+The first sends the code: the sections, the script, the styles. It cannot
+touch a template, an image or an app block, which is the point of it.
+
+That protection applies to a brand new template just as thoroughly, so the
+second command is what actually puts the two landing templates on the store.
+It sends those two files and nothing else. Every other template, including the
+home page, is untouched.
+
+Do not use `--with-content` for this. It pushes every template at once,
+including the home page, and that is how the images were lost.
+
+Then create the pages themselves:
+
+```
+node setup-store.mjs gbg-wholesale-ufn6121g.myshopify.com shpat_xxx
+```
+
+Without that, both URLs are 404s: the theme has the layouts, but Shopify still
+needs a Page record before /pages/start resolves.
+
 ## Checking it works
 
 Fill the form in yourself and watch the contact appear in Omnisend under

@@ -28,6 +28,22 @@ is. There is no flag to remember and nothing to get wrong.
 `shopify theme push` typed by hand cannot wipe them any more. Two layers,
 because one clearly was not enough.
 
+## Putting up a new page
+
+The ignore rules protect the templates that exist, and they protect one that
+has just been written just as thoroughly, so a new page would be pushed to the
+store and never arrive. Send it by name:
+
+```
+node push.mjs <store>.myshopify.com --only templates/page.example.json
+```
+
+That file and nothing else. Every other template, and every image and app
+block in the theme editor, stays as it is.
+
+This is the command to reach for. `--with-content` sends every template at
+once and is almost never what is wanted.
+
 ## When a template genuinely has to change
 
 Adding a new section to a page, or reordering one, does mean changing a
