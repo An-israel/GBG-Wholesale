@@ -16,13 +16,28 @@ furniture.
 Shopify cannot serve different content on a subdomain. A subdomain added to
 the store redirects to the primary domain: it cannot be pointed at a page.
 
-If a short link matters for advertising, add `start.gbgwholesalehub.com` in
-Settings > Domains and set it to redirect to `/pages/start`. People get the
-short link, and the address bar shows the full one after the redirect.
+**A subdomain connected in Shopify lands on the home page, not on a page you
+choose.** Shopify redirects every non-primary domain to the root of the
+primary one, and its URL redirects only fire on broken URLs within the primary
+domain, so they cannot be keyed to a subdomain either. Connecting
+`start.gbgwholesalehub.com` in Settings > Domains therefore sends people to
+the shop, not to the questionnaire.
 
-A genuine subdomain would mean hosting the page somewhere else entirely, and
-that means a second deploy, a second pixel install and a form with nowhere to
-post. Not worth it for one page.
+Three ways to get a short link that actually reaches the page:
+
+1. **Forward the subdomain at the registrar instead of connecting it to
+   Shopify.** Most registrars offer URL forwarding to a full path, and
+   Cloudflare does it with a redirect rule. Point it at
+   `gbgwholesalehub.com/pages/start`. The subdomain must be removed from
+   Shopify first, or Shopify's DNS wins.
+2. **A link shortener.** Points anywhere, and gives click counts the ad
+   platforms do not.
+3. **Use the long URL.** It works, and nobody types a link out of an advert
+   anyway.
+
+A genuine subdomain serving its own content would mean hosting the page
+somewhere else entirely: a second deploy, a second pixel install, and a form
+with nowhere to post. Not worth it for one page.
 
 ## No way off the page
 
