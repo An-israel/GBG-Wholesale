@@ -28,7 +28,7 @@
  */
 
 import { spawnSync } from 'node:child_process';
-import { readFileSync, writeFileSync, existsSync, unlinkSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 
 const args = process.argv.slice(2);
 const store = args.find((a) => !a.startsWith('--'));
@@ -64,6 +64,84 @@ Usage:  node push.mjs <store>.myshopify.com [--pull | --only <paths> | --with-co
                    first, or use --only instead, which is almost always what
                    you actually want.
 `);
+  process.exit(1);
+}
+
+/**
+ * Shopify checks richtext settings on the way in, and rejects the whole file
+ * if any top level node is not a paragraph, a list or a heading. The error
+ * arrives mid-push, names only the setting, and leaves the file unwritten
+ * while the rest of the push claims success, which is a confusing way to
+ * lose a page.
+ *
+ * So the same rule is applied here first, where the message can say which
+ * template, which section and what to do about it.
+ */
+const TOP_LEVEL_OK = /^\s*(?:<(p|ul|ol|h[1-6])\b[^>]*>[\s\S]*?<\/\1>\s*)+$/i;
+
+function schemaOf(type) {
+  const file = `sections/${type}.liquid`;
+  if (!existsSync(file)) return null;
+  const m = readFileSync(file, 'utf8').match(/\{%\s*schema\s*%\}([\s\S]*?)\{%\s*endschema\s*%\}/);
+  if (!m) return null;
+  try {
+    return JSON.parse(m[1]);
+  } catch {
+    return null;
+  }
+}
+
+function richtextIds(schema, blockType) {
+  const pool = blockType
+    ? (schema.blocks || []).find((b) => b.type === blockType)?.settings || []
+    : schema.settings || [];
+  return new Set(pool.filter((x) => x.type === 'richtext' && x.id).map((x) => x.id));
+}
+
+function checkTemplates() {
+  const bad = [];
+
+  for (const file of readdirSync('templates').filter((f) => f.endsWith('.json'))) {
+    const path = `templates/${file}`;
+    let data;
+    try {
+      data = JSON.parse(readFileSync(path, 'utf8').replace(/^\s*\/\*[\s\S]*?\*\//, ''));
+    } catch {
+      continue;
+    }
+    if (!data.sections) continue;
+
+    for (const [sid, section] of Object.entries(data.sections)) {
+      const schema = schemaOf(section.type);
+      if (!schema) continue;
+
+      const flag = (where, key, value) => {
+        if (value && !TOP_LEVEL_OK.test(String(value))) {
+          bad.push({ path, where: `${sid}${where}.${key}`, value: String(value).slice(0, 70) });
+        }
+      };
+
+      const ids = richtextIds(schema);
+      for (const [k, v] of Object.entries(section.settings || {})) if (ids.has(k)) flag('', k, v);
+
+      for (const [bid, block] of Object.entries(section.blocks || {})) {
+        const bids = richtextIds(schema, block.type);
+        for (const [k, v] of Object.entries(block.settings || {})) if (bids.has(k)) flag(`.${bid}`, k, v);
+      }
+    }
+  }
+
+  if (!bad.length) return;
+
+  console.error('\n✗ Shopify will reject these, so nothing was pushed.\n');
+  console.error('  A richtext setting must have every top level node wrapped in');
+  console.error('  <p>, <ul>, <ol> or <h1> to <h6>. Bare text is not allowed.\n');
+  for (const b of bad) {
+    console.error(`    ${b.path}`);
+    console.error(`      ${b.where}`);
+    console.error(`      currently: ${b.value}`);
+    console.error(`      should be: <p>${b.value}</p>\n`);
+  }
   process.exit(1);
 }
 
@@ -130,6 +208,7 @@ If the images are in there, commit them so they are never lost again:
 }
 
 if (onlyPaths.length) {
+  checkTemplates();
   console.log('\nPushing only these files. Nothing else is sent:\n');
   onlyPaths.forEach((f) => console.log('    ' + f));
 
@@ -152,6 +231,7 @@ image and app block in the theme editor, is exactly as it was.
 }
 
 if (wantContent) {
+  checkTemplates();
   console.log(`
 About to push content files as well as code.
 
@@ -166,6 +246,8 @@ Run this first if you are not certain:
   withoutContentIgnores(() => run('shopify', ['theme', 'push', '--store', store]));
   process.exit(0);
 }
+
+checkTemplates();
 
 console.log('\nPushing code only. Nothing the theme editor owns will be touched.\n');
 const ignore = CONTENT.flatMap((p) => ['--ignore', p]);
