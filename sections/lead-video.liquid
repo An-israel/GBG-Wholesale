@@ -1,0 +1,175 @@
+{%- comment -%}
+  The landing page video.
+
+  Takes a video uploaded in the theme editor, or a YouTube or Vimeo link. An
+  uploaded file wins, because it plays without a third party's branding, its
+  suggested videos at the end, or its cookie banner on a page whose only job
+  is a form.
+
+  It does not autoplay with sound, which browsers block anyway and which makes
+  people close the tab. A poster frame and a play button is the whole design.
+
+  With nothing uploaded the section hides on the live site rather than leaving
+  a grey box, and says what is missing in the theme editor.
+{%- endcomment -%}
+
+{%- liquid
+  assign file = section.settings.video
+  assign link = section.settings.video_url
+  assign has_video = false
+  if file != blank or link != blank
+    assign has_video = true
+  endif
+-%}
+
+{% if has_video or request.design_mode %}
+  <section
+    id="{{ section.settings.custom_id | default: section.id }}"
+    class="lead-video section section--{{ section.settings.background }}"
+  >
+    <div class="container lead-video__inner">
+      {% if section.settings.eyebrow != blank or section.settings.heading != blank %}
+        <div class="lead-video__intro">
+          {% if section.settings.eyebrow != blank %}
+            <span class="route-label route-label--amber">{{ section.settings.eyebrow }}</span>
+          {% endif %}
+          {% if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif %}
+        </div>
+      {% endif %}
+
+      {% if file != blank %}
+        <div class="lead-video__frame">
+          {{
+            file
+            | video_tag:
+              image_size: '1200x',
+              controls: true,
+              muted: false,
+              autoplay: false,
+              loop: false,
+              preload: 'metadata'
+          }}
+        </div>
+      {% elsif link != blank %}
+        <div class="lead-video__frame lead-video__frame--embed">
+          <iframe
+            src="{% if link.type == 'youtube' %}https://www.youtube.com/embed/{{ link.id }}?rel=0{% else %}https://player.vimeo.com/video/{{ link.id }}{% endif %}"
+            title="{{ section.settings.heading | default: 'Watch this first' | escape }}"
+            frameborder="0"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      {% elsif request.design_mode %}
+        <div class="lead-video__setup">
+          <p><strong>No video yet.</strong></p>
+          <p>
+            Upload the file under <em>Video file</em>, or paste a YouTube or
+            Vimeo link. An uploaded file is better here: no third-party
+            branding, no suggested videos at the end, and nothing else on the
+            page to click.
+          </p>
+        </div>
+      {% endif %}
+
+      {% if section.settings.caption != blank %}
+        <p class="lead-video__caption">{{ section.settings.caption }}</p>
+      {% endif %}
+
+      {% if section.settings.cta_label != blank %}
+        <div class="lead-video__actions">
+          <a href="#{{ section.settings.target }}" class="btn btn--primary btn--lg">
+            {{ section.settings.cta_label }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
+
+{% stylesheet %}
+  .lead-video__inner {
+    max-width: 46rem;
+  }
+
+  .lead-video__intro {
+    text-align: center;
+    margin-bottom: var(--space-5);
+  }
+
+  .lead-video__intro h2 {
+    font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2rem);
+    margin-top: var(--space-3);
+  }
+
+  .lead-video__frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--color-navy);
+    box-shadow: 0 18px 50px rgba(0, 26, 63, 0.22);
+  }
+
+  .lead-video__frame video,
+  .lead-video__frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+  }
+
+  .lead-video__caption {
+    text-align: center;
+    font-size: 0.88rem;
+    color: var(--color-muted);
+    margin: var(--space-4) 0 0;
+  }
+
+  .lead-video__actions {
+    text-align: center;
+    margin-top: var(--space-5);
+  }
+
+  /* Only ever seen inside the theme editor. */
+  .lead-video__setup {
+    border: 1px dashed color-mix(in srgb, var(--color-navy) 35%, transparent);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    padding: var(--space-5);
+    font-size: 0.9rem;
+  }
+
+  .lead-video__setup p:last-child {
+    margin-bottom: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Landing video",
+  "settings": [
+    { "type": "paragraph", "content": "Upload the video here. An uploaded file plays with no third-party branding and nothing else to click, which matters on a page whose only job is the form." },
+    { "type": "text", "id": "custom_id", "label": "Anchor ID (optional)" },
+    { "type": "select", "id": "background", "label": "Section background", "options": [
+        { "value": "mist", "label": "Mist (pale navy)" },
+        { "value": "white", "label": "White" },
+        { "value": "paper", "label": "Paper (light grey)" },
+        { "value": "navy", "label": "Navy (dark)" }
+      ], "default": "mist" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "WATCH THIS FIRST" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Two minutes on what GBG actually does" },
+    { "type": "header", "content": "The video" },
+    { "type": "video", "id": "video", "label": "Video file", "info": "Uploaded here. Used in preference to a link." },
+    { "type": "video_url", "id": "video_url", "accept": ["youtube", "vimeo"], "label": "Or a YouTube or Vimeo link" },
+    { "type": "text", "id": "caption", "label": "Line under the video" },
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Start the questionnaire" },
+    { "type": "text", "id": "target", "label": "Button jumps to", "default": "questionnaire" }
+  ],
+  "presets": [{ "name": "Landing video" }]
+}
+{% endschema %}
