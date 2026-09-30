@@ -2,37 +2,52 @@
 
 Two minutes, on `/pages/start`, between the hero and the five service cards.
 
-## Before generating anything: the tool is wrong for the talking parts
+## The method: images first, then image to video
 
-The plan was fifteen 8-second Veo 3 clips of Lami, cut together. That will not
-work, for two reasons.
+Veo 3 for the whole thing, talking parts included. The risk is consistency:
+fifteen independent text-to-video generations will not produce the same face,
+clothes or light twice, and end to end that reads as fifteen near-misses
+rather than one woman in one room.
 
-**Veo 3 will not reliably produce a specific real person.** Feeding it a photo
-of Lami and asking for Lami is not what it is for, and generating an
-identifiable real person is restricted on most video models.
+So do not generate the talking clips from text. Do this instead:
 
-**Fifteen independent generations will not match.** Her face, her clothes, the
-light and the voice all drift between clips. Watched end to end it does not
-read as one person in one room, it reads as fifteen near-misses. This is the
-single most common way an AI talking-head video gets thrown away.
+1. **Generate four still images first**, one per camera setup, from the same
+   character description. Regenerate until all four look like the same person
+   on the same day.
+2. **Feed each image into Veo as the first frame** and let it animate from
+   there, with the spoken line in the prompt.
+3. Every talking clip then starts from a face you have already approved,
+   rather than from Veo's imagination.
 
-### What to use instead
+That is the difference between a usable video and a wasted afternoon.
 
-| Part of the video | Tool | Why |
-| --- | --- | --- |
-| Lami speaking | HeyGen, Synthesia or Argil | Built for exactly this: consent footage once, then any script, one consistent face and voice |
-| Or better, Lami speaking | A phone on a tripod | Free, takes twenty minutes, and looks like a person rather than an avatar |
-| The cutaway shots | Veo 3 | Genuinely good at this, and nobody's face has to match |
+### Five rules that hold it together
 
-The avatar tools need Lami to record a short consent clip. That is deliberate
-on their part, and it is the thing that makes an AI video of a real person
-legitimate rather than a deepfake.
+**Paste the character block verbatim.** Identical wording in every prompt.
+One changed adjective is a different person.
 
-**Recommendation: film her on a phone.** Two minutes of a real person outsells
-a good avatar, this script is written to be spoken rather than performed, and
-the whole thing is one take plus retries rather than a pipeline.
+**Fix the wardrobe and the room once**, in the character block, and never vary
+them. Not per shot. Not slightly.
 
-Either way, Veo 3 does the cutaways.
+**Same seed where the tool offers one.** If yours does, use one number for the
+whole set.
+
+**Generate three takes of every clip and keep the one that matches**, not the
+one that is best on its own. A brilliant clip that does not match is a clip
+you cannot use.
+
+**Grade at the end.** Put all fifteen through the same colour adjustment in
+the edit. It hides a surprising amount of drift.
+
+### What will still go wrong
+
+Hands, teeth and earrings are where these models fail. Keep her hands out of
+frame in the character block, keep the framing no tighter than chest up, and
+avoid detailed jewellery.
+
+Lip sync on longer lines can slip. If a clip looks off, cut to a B-roll shot
+over that line rather than fighting it. That is what the six cutaways are for,
+and it is also why they are hands only: nothing there has to match her.
 
 ## Format
 
@@ -77,23 +92,81 @@ The line that matters most is shot 10. It is the one that separates this from
 every get-rich advert the viewer has already scrolled past, so it should be
 said plainly, without apology and without a smile.
 
-## Shooting it on a phone
+## Step one: the character block
 
-Four setups cover all nine of her shots.
+Everything below depends on this. Fill it in from her photo, then paste it
+into every prompt **exactly as written, every time**.
 
-| Setup | Used for | How |
+> **[LAMI]** = a [AGE] year old Black British woman, [BUILD], [HAIR: length,
+> style, colour], [GLASSES: yes and what kind, or no], wearing a well-cut navy
+> blazer over a cream top, small plain gold studs, no other jewellery.
+
+> **[ROOM]** = a bright modern workspace, pale wooden desk, shelving of neatly
+> boxed and bagged stock softly out of focus behind her, warm daylight from a
+> large window camera left, soft shadow, navy and warm amber tones in the room.
+
+Do not vary a word of either between shots. The wardrobe especially: if the
+blazer becomes a jacket in one prompt, it becomes a different blazer on screen.
+
+## Step two: four still images
+
+Generate these four first. Do not move on until all four look like the same
+woman photographed on the same afternoon. Expect to regenerate.
+
+**Image A, medium, straight on** (used by shots 1, 2, 10, 15)
+> Editorial portrait of [LAMI], seated in [ROOM]. Framed from the waist up,
+> centred, looking directly into the lens, composed and approachable, lips
+> closed in a slight smile. Hands out of frame. Shot on 85mm at f/2, shallow
+> depth of field, natural colour, photorealistic, editorial quality.
+> Landscape 16:9.
+
+**Image B, closer, angled left** (shots 4, 8)
+> Editorial portrait of [LAMI], seated in [ROOM]. Framed from mid-chest up,
+> camera about 30 degrees to her left, she is looking into the lens. Hands out
+> of frame. Shot on 85mm at f/2, shallow depth of field, natural colour,
+> photorealistic. Landscape 16:9.
+
+**Image C, medium wide, angled right** (shot 6)
+> Editorial portrait of [LAMI], seated in [ROOM]. Wider framing with room
+> around her, the shelving of stock more visible behind, camera about 30
+> degrees to her right, she is looking into the lens. Hands out of frame. Shot
+> on 50mm at f/2.8, natural colour, photorealistic. Landscape 16:9.
+
+**Image D, three-quarter, warmer** (shots 12, 14)
+> Editorial portrait of [LAMI], seated in [ROOM], body turned slightly away
+> and head turned back to the lens, warmer expression, softer light. Framed
+> from mid-chest up. Hands out of frame. Shot on 85mm at f/1.8, shallow depth
+> of field, natural colour, photorealistic. Landscape 16:9.
+
+## Step three: the nine talking clips
+
+Each one takes its **image as the first frame**, then this prompt. Eight
+seconds, 16:9.
+
+Prefix every one of them with:
+> Animate from the provided image. The subject and setting must remain exactly
+> as in the image.
+
+And end every one of them with:
+> Natural ambient room tone. No music, no text overlays, no logos, no
+> on-screen graphics. Photorealistic, subtle natural movement, the camera
+> almost still.
+
+| Shot | Image | Prompt |
 | --- | --- | --- |
-| A. Medium, straight on | 1, 2, 10, 15 | Phone at chest height, her framed from the waist up, a third of the frame as headroom |
-| B. Closer, angled left | 4, 8 | Step in, turn the phone about 30 degrees off her eyeline |
-| C. Medium wide, angled right | 6 | Back off, other side, more room around her |
-| D. Three-quarter, warm | 12, 14 | Turned slightly away, looking back to camera |
+| 1 | A | She speaks directly to camera, calm and level, small natural head movement, one unhurried blink. She says: "Most people who want to start reselling get stuck in the same place. Not on effort. On what to actually buy." |
+| 2 | A | She continues speaking to camera, slightly warmer, a small nod on her own name. She says: "I am Lami. I run GBG Wholesale Hub. We help people in the UK find stock they can genuinely sell." |
+| 4 | B | She speaks to camera, more direct, a slight lean in on the second sentence. She says: "Because the problem was never wanting it enough. It is that nobody tells you what is worth buying." |
+| 6 | C | She speaks to camera, a small rueful shake of the head on the last phrase. She says: "Then you try it. And you are sat on stock nobody wants, working out what you got wrong." |
+| 8 | B | She speaks to camera, brisker, listing. She says: "Jewellery, bags, clothing, beauty, electronics, homeware, kids, drinkware. Starter boxes if choosing it all feels like too much." |
+| 10 | A | She speaks to camera, serious, no smile, holds the look after the first sentence. She says: "I am not going to promise you profit. Nobody honest can. What you make depends on what you pay and how you sell it." |
+| 12 | D | She speaks to camera, warmer, head tilting slightly. She says: "So before I send you anything, I would rather know where you actually are." |
+| 14 | D | She speaks to camera, light and easy, a small open gesture suggested by the shoulders only. She says: "Your budget, what you are drawn to, how soon you want to start. No pressure, and nothing to buy." |
+| 15 | A | She speaks to camera, settles, finishes with a small closed-lip smile and holds it as the clip ends. She says: "Fill it in and I will point you at what actually fits. And you are in the free community either way." |
 
-Shoot the whole script four times, once per setup, then cut between them. That
-is how one person in one room becomes a video with pace.
-
-Practical notes: a window in front of her and nothing bright behind her. Phone
-on anything steady. Record in the quietest room in the building, because bad
-sound reads as amateur far faster than bad picture does.
+Shot 10 is the one to regenerate until it is right. No smile, no apology. It
+is the line that separates this from every get-rich advert the viewer has
+already scrolled past.
 
 ## Veo 3 prompts for the six cutaways
 
@@ -137,23 +210,24 @@ Add to every one of them, as Veo tends to score otherwise:
 > No text overlays. No logos. No on-screen graphics. Natural ambient sound only,
 > no music.
 
-## Still image of Lami, for an avatar tool or a poster frame
+## Assembling it
 
-This needs her actual appearance, which is not something to invent. Fill the
-brackets in from a photo before using it:
+Fifteen clips, in script order, cut hard with no transitions. Total 2:00.
 
-> Professional editorial portrait of a [AGE] year old [DESCRIPTION: build,
-> hair, complexion, any glasses] Black British woman, wearing [OUTFIT: for
-> example a well-cut navy blazer over a cream top]. Seated at a light wooden
-> desk in a bright modern workspace, shelves of neatly boxed stock softly out
-> of focus behind her. Warm daylight from a large window camera left, soft
-> shadow. Direct eye contact, composed, approachable, a slight smile. Shot on
-> 85mm, f/2, shallow depth of field, natural colour, editorial quality.
-> Landscape 16:9.
+Three things to do in the edit:
 
-Two things to get right, because they are what make it look like a real
-business rather than a stock photo: **navy and amber somewhere in frame**, and
-**real stock visible behind her**, blurred. Not a plain grey studio wall.
+**One colour grade over everything.** Same adjustment on all fifteen. This is
+what makes generations from different runs read as one shoot.
+
+**Cut to B-roll over any line where the lip sync slips.** The audio keeps
+running underneath. Nobody notices a cutaway; everybody notices bad sync.
+
+**Keep the last frame on her face for a beat** after she stops talking, then
+cut. Ending on a cut mid-breath feels abrupt.
+
+If any talking clip refuses to match no matter how many takes, drop it and
+extend the B-roll either side over the audio. Losing one of nine angles costs
+nothing. One face that does not match costs the whole video.
 
 ## Where it goes
 
