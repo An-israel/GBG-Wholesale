@@ -94,49 +94,83 @@ said plainly, without apology and without a smile.
 
 ## Step one: the character block
 
-Everything below depends on this. Fill it in from her photo, then paste it
-into every prompt **exactly as written, every time**.
+Paste this into every prompt **exactly as written, every time**. One changed
+adjective is a different woman.
 
-> **[LAMI]** = a [AGE] year old Black British woman, [BUILD], [HAIR: length,
-> style, colour], [GLASSES: yes and what kind, or no], wearing a well-cut navy
-> blazer over a cream top, small plain gold studs, no other jewellery.
+> **[LAMI]** = a Black woman in her late thirties, deep rich brown skin, an
+> oval face with high cheekbones, full lips, strong well-defined eyebrows and
+> warm dark brown eyes. Shoulder-length dark brown hair, side parted, in soft
+> loose waves falling past her collarbone. Polished natural makeup: soft
+> bronze smoky eye, defined brows, a warm berry lip. Small round gold stud
+> earrings and a fine gold chain necklace, no other jewellery. Wearing a
+> tailored ivory cream blazer with a subtle woven texture over a matching
+> cream top, shoulders squared. Calm, composed, quietly confident.
 
-> **[ROOM]** = a bright modern workspace, pale wooden desk, shelving of neatly
-> boxed and bagged stock softly out of focus behind her, warm daylight from a
-> large window camera left, soft shadow, navy and warm amber tones in the room.
+> **[ROOM]** = a bright modern workspace. Pale wooden desk in the foreground.
+> Shelving of neatly boxed and bagged wholesale stock softly out of focus
+> behind her, deep navy and warm amber accents in the room. Warm daylight from
+> a large window camera left, soft shadow on the right of her face. Clean,
+> uncluttered, real.
 
-Do not vary a word of either between shots. The wardrobe especially: if the
-blazer becomes a jacket in one prompt, it becomes a different blazer on screen.
+### Why ivory and not the pink gele
+
+Her pink gele look is the more striking of the two photographs, and on a still
+image I would use it.
+
+For fifteen AI generations it is the wrong choice. A gele is layered fabric
+with sequins, and sequins and complex folds are precisely what these models
+reinvent on every run. It would be a visibly different headwrap in every clip.
+The hair-down ivory look has far fewer moving parts and will hold.
+
+If she wants the gele, use it for the poster frame only, and keep the video in
+the ivory blazer.
+
+### Two things to keep out
+
+**Her hands.** Both photographs have her arms folded, which is her natural
+pose, but hands are where these models fail hardest and folded arms read as
+closed in a video meant to feel warm. Frame chest up, hands below frame.
+
+**Detailed jewellery.** Plain gold studs and the fine chain only. Anything
+patterned will drift.
 
 ## Step two: four still images
 
 Generate these four first. Do not move on until all four look like the same
-woman photographed on the same afternoon. Expect to regenerate.
+woman photographed on the same afternoon. Expect to regenerate, and judge them
+side by side rather than one at a time.
 
-**Image A, medium, straight on** (used by shots 1, 2, 10, 15)
-> Editorial portrait of [LAMI], seated in [ROOM]. Framed from the waist up,
-> centred, looking directly into the lens, composed and approachable, lips
-> closed in a slight smile. Hands out of frame. Shot on 85mm at f/2, shallow
-> depth of field, natural colour, photorealistic, editorial quality.
-> Landscape 16:9.
+**Image A, medium, straight on** (shots 1, 2, 10, 15)
+> Photorealistic editorial portrait of [LAMI], seated at the desk in [ROOM].
+> Framed from mid-chest up, centred, shoulders square to camera, looking
+> directly into the lens. Hands below the frame, not visible. Neutral composed
+> expression, lips closed. Shot on 85mm at f/2, shallow depth of field,
+> natural colour. Landscape 16:9.
 
 **Image B, closer, angled left** (shots 4, 8)
-> Editorial portrait of [LAMI], seated in [ROOM]. Framed from mid-chest up,
-> camera about 30 degrees to her left, she is looking into the lens. Hands out
-> of frame. Shot on 85mm at f/2, shallow depth of field, natural colour,
-> photorealistic. Landscape 16:9.
+> Photorealistic editorial portrait of [LAMI], seated at the desk in [ROOM].
+> Tighter framing from the shoulders up, camera positioned 30 degrees to her
+> left, her head turned back to look directly into the lens. Hands below the
+> frame, not visible. Shot on 85mm at f/2, shallow depth of field, natural
+> colour. Landscape 16:9.
 
 **Image C, medium wide, angled right** (shot 6)
-> Editorial portrait of [LAMI], seated in [ROOM]. Wider framing with room
-> around her, the shelving of stock more visible behind, camera about 30
-> degrees to her right, she is looking into the lens. Hands out of frame. Shot
-> on 50mm at f/2.8, natural colour, photorealistic. Landscape 16:9.
+> Photorealistic editorial portrait of [LAMI], seated at the desk in [ROOM].
+> Wider framing with clear space around her and the shelving of stock more
+> visible behind, camera positioned 30 degrees to her right, her head turned
+> back to look directly into the lens. Hands below the frame, not visible.
+> Shot on 50mm at f/2.8, natural colour. Landscape 16:9.
 
 **Image D, three-quarter, warmer** (shots 12, 14)
-> Editorial portrait of [LAMI], seated in [ROOM], body turned slightly away
-> and head turned back to the lens, warmer expression, softer light. Framed
-> from mid-chest up. Hands out of frame. Shot on 85mm at f/1.8, shallow depth
-> of field, natural colour, photorealistic. Landscape 16:9.
+> Photorealistic editorial portrait of [LAMI], seated at the desk in [ROOM].
+> Framed from mid-chest up, her body turned three-quarters away and her head
+> turned back to the lens, a warmer and more open expression, the faintest
+> smile. Slightly softer light. Hands below the frame, not visible. Shot on
+> 85mm at f/1.8, shallow depth of field, natural colour. Landscape 16:9.
+
+Add to all four:
+> No text, no logos, no watermarks. Skin texture natural and unretouched, not
+> plastic or airbrushed.
 
 ## Step three: the nine talking clips
 
@@ -209,6 +243,25 @@ nothing has to match Lami.
 Add to every one of them, as Veo tends to score otherwise:
 > No text overlays. No logos. No on-screen graphics. Natural ambient sound only,
 > no music.
+
+## The poster frame
+
+The still that sits on the video before anyone presses play. Worth generating
+even though the section does not require one, because a good first frame is
+most of whether someone bothers.
+
+This is the one place the gele earns its keep:
+
+> Editorial portrait of a Black woman in her late thirties, deep rich brown
+> skin, oval face with high cheekbones, full lips, strong defined eyebrows,
+> warm dark brown eyes. Wearing a dusty rose pink sequinned gele headwrap and
+> a matching dusty rose textured blazer, small gold stud earrings, fine gold
+> chain. Polished natural makeup with a pink lip. Arms folded, composed, a
+> direct and confident look into the lens, the faintest smile. Standing in a
+> bright modern workspace, shelving of neatly boxed wholesale stock softly out
+> of focus behind her, navy and amber accents. Warm daylight from camera left.
+> Shot on 85mm at f/2, shallow depth of field, natural colour, photorealistic,
+> editorial quality. Landscape 16:9.
 
 ## Assembling it
 
