@@ -2,6 +2,10 @@
 
 Two minutes, on `/pages/start`, between the hero and the five service cards.
 
+Once the still images exist, the prompts to paste into Veo 3 are in
+[veo3-prompts.md](veo3-prompts.md) — fifteen blocks in shot order, nothing else.
+This file is the reasoning behind them.
+
 ## The method: images first, then image to video
 
 Veo 3 for the whole thing, talking parts included. The risk is consistency:
