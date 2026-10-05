@@ -44,6 +44,12 @@ const onlyAt = args.indexOf('--only');
 const onlyPaths =
   onlyAt === -1 ? [] : args.slice(onlyAt + 1).filter((a) => !a.startsWith('--'));
 
+/* Which theme to send to. Without it the CLI asks. A Theme Access password
+   can see every theme in the store, so naming one is safer than picking from
+   a list in a hurry. */
+const themeAt = args.indexOf('--theme');
+const themeArg = themeAt === -1 ? [] : ['--theme', args[themeAt + 1]];
+
 if (!store) {
   console.error(`
 Usage:  node push.mjs <store>.myshopify.com [--pull | --only <paths> | --with-content]
@@ -55,6 +61,8 @@ Usage:  node push.mjs <store>.myshopify.com [--pull | --only <paths> | --with-co
                    a new page template goes up without touching the home page.
 
                      node push.mjs <store> --only templates/page.landing.json
+
+  --theme <id>     Send to a particular theme instead of being asked which.
 
   --pull           Pull the store's content files into this repo, so the
                    images and app blocks someone added are saved in git.
@@ -154,9 +162,40 @@ const CONTENT = [
 ];
 
 function run(cmd, cmdArgs) {
+  if (process.env.SHOPIFY_CLI_THEME_TOKEN) {
+    console.log('Using the Theme Access password from SHOPIFY_CLI_THEME_TOKEN.');
+  }
   console.log(`\n$ ${cmd} ${cmdArgs.join(' ')}\n`);
   const res = spawnSync(cmd, cmdArgs, { stdio: 'inherit', shell: process.platform === 'win32' });
-  if (res.status !== 0) process.exit(res.status ?? 1);
+  if (res.status !== 0) {
+    accessHint();
+    process.exit(res.status ?? 1);
+  }
+}
+
+/**
+ * The CLI logs in as whoever owns the Partner account on this machine. Once a
+ * store is transferred to the client, that account is no longer on it, and
+ * every command fails with "you don't have access to this dev store" however
+ * correct the command was. The fix is a Theme Access password, which belongs
+ * to the store rather than to a Partner account.
+ */
+function accessHint() {
+  if (process.env.SHOPIFY_CLI_THEME_TOKEN) return;
+  console.error(`
+If that said you do not have access to the store, nothing is wrong with the
+push. The CLI is signed in as a Partner account that is no longer on this
+store, which is what happens after a store is transferred to its owner.
+
+Ask the store owner to install the free **Theme Access** app, add you, and
+send you the password it generates. Then, in this window:
+
+    $env:SHOPIFY_CLI_THEME_TOKEN = "shptka_the_password_they_sent"   (PowerShell)
+    export SHOPIFY_CLI_THEME_TOKEN=shptka_the_password_they_sent      (Mac/Linux)
+
+and run the same command again. The variable lasts until you close the
+window, so set it again next time.
+`);
 }
 
 /**
@@ -192,7 +231,7 @@ if (wantPull) {
   console.log('Images and app blocks added in the theme editor will be saved here.\n');
   const only = CONTENT.flatMap((p) => ['--only', p]);
   withoutContentIgnores(() =>
-    run('shopify', ['theme', 'pull', '--store', store, '--live', ...only])
+    run('shopify', ['theme', 'pull', '--store', store, ...themeArg, '--live', ...only])
   );
   console.log(`
 Done. Check what came back before committing it:
@@ -220,7 +259,7 @@ if (onlyPaths.length) {
 
   const only = onlyPaths.flatMap((f) => ['--only', f]);
   withoutContentIgnores(() =>
-    run('shopify', ['theme', 'push', '--store', store, ...only])
+    run('shopify', ['theme', 'push', '--store', store, ...themeArg, ...only])
   );
 
   console.log(`
@@ -243,7 +282,7 @@ Run this first if you are not certain:
 
     node push.mjs ${store} --pull
 `);
-  withoutContentIgnores(() => run('shopify', ['theme', 'push', '--store', store]));
+  withoutContentIgnores(() => run('shopify', ['theme', 'push', '--store', store, ...themeArg]));
   process.exit(0);
 }
 
@@ -251,7 +290,7 @@ checkTemplates();
 
 console.log('\nPushing code only. Nothing the theme editor owns will be touched.\n');
 const ignore = CONTENT.flatMap((p) => ['--ignore', p]);
-run('shopify', ['theme', 'push', '--store', store, ...ignore]);
+run('shopify', ['theme', 'push', '--store', store, ...themeArg, ...ignore]);
 
 console.log(`
 Pushed. Images, app blocks and section settings are untouched.
