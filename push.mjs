@@ -31,9 +31,6 @@ import { spawnSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 
 const args = process.argv.slice(2);
-const store = args.find((a) => !a.startsWith('--'));
-const wantPull = args.includes('--pull');
-const wantContent = args.includes('--with-content');
 
 /* --only takes the paths after it, so a single new template can go up without
    dragging every other template with it. This is the gap that mattered: the
@@ -50,9 +47,51 @@ const onlyPaths =
 const themeAt = args.indexOf('--theme');
 const themeArg = themeAt === -1 ? [] : ['--theme', args[themeAt + 1]];
 
+/**
+ * The store address is recorded in .store, so it never has to be typed or
+ * remembered. It was a guessed address, not a login problem, that produced
+ * "Looks like you don't have access to this dev store" and cost an afternoon:
+ * every command was correct and pointed at a store that was not this one.
+ *
+ * Typing one is still allowed, for a second store or a test theme, but if it
+ * disagrees with .store the push stops and says so rather than failing in the
+ * CLI with a message about access.
+ */
+const RECORDED = existsSync('.store') ? readFileSync('.store', 'utf8').trim() : '';
+/* A path after --only, and the id after --theme, are values belonging to
+   those flags. Neither is the store, and reading one as the store is how a
+   file path ends up in an error message about store addresses. */
+const flagValues = new Set(onlyPaths);
+if (themeAt !== -1) flagValues.add(args[themeAt + 1]);
+const typed = args.find((a) => !a.startsWith('--') && !flagValues.has(a));
+
+if (typed && RECORDED && typed !== RECORDED) {
+  console.error(`
+✗ That is not the store this repo belongs to, so nothing was pushed.
+
+    you typed:   ${typed}
+    this repo:   ${RECORDED}
+
+If you meant the usual store, leave the address off entirely:
+
+    node push.mjs
+
+If you really do mean ${typed}, change .store first.
+`);
+  process.exit(1);
+}
+
+const store = typed || RECORDED;
+const wantPull = args.includes('--pull');
+const wantContent = args.includes('--with-content');
+
+
+
 if (!store) {
   console.error(`
-Usage:  node push.mjs <store>.myshopify.com [--pull | --only <paths> | --with-content]
+Usage:  node push.mjs [store] [--pull | --only <paths> | --with-content]
+
+  The store address is read from .store, so you do not need to type one.
 
   (no flag)        Push code only. Images, app blocks and section settings in
                    the theme editor are left exactly as they are. Use this.
@@ -168,33 +207,31 @@ function run(cmd, cmdArgs) {
   console.log(`\n$ ${cmd} ${cmdArgs.join(' ')}\n`);
   const res = spawnSync(cmd, cmdArgs, { stdio: 'inherit', shell: process.platform === 'win32' });
   if (res.status !== 0) {
-    accessHint();
+    failureHint();
     process.exit(res.status ?? 1);
   }
 }
 
 /**
- * The CLI logs in as whoever owns the Partner account on this machine. Once a
- * store is transferred to the client, that account is no longer on it, and
- * every command fails with "you don't have access to this dev store" however
- * correct the command was. The fix is a Theme Access password, which belongs
- * to the store rather than to a Partner account.
+ * Anything the CLI refuses. The first thing to rule out is the store address,
+ * because a wrong one fails with a message about access that reads like a
+ * permissions problem and sends you off chasing logins.
  */
-function accessHint() {
-  if (process.env.SHOPIFY_CLI_THEME_TOKEN) return;
+function failureHint() {
   console.error(`
-If that said you do not have access to the store, nothing is wrong with the
-push. The CLI is signed in as a Partner account that is no longer on this
-store, which is what happens after a store is transferred to its owner.
+Before anything else, check the address above is the right store:
 
-Ask the store owner to install the free **Theme Access** app, add you, and
-send you the password it generates. Then, in this window:
+    ${store}
 
-    $env:SHOPIFY_CLI_THEME_TOKEN = "shptka_the_password_they_sent"   (PowerShell)
-    export SHOPIFY_CLI_THEME_TOKEN=shptka_the_password_they_sent      (Mac/Linux)
+A wrong store address fails with "you don't have access to this dev store",
+which sounds like a login problem and is not one.
 
-and run the same command again. The variable lasts until you close the
-window, so set it again next time.
+If the address is right and it still refuses, your CLI login has expired or
+belongs to an account that is no longer on the store:
+
+    shopify auth logout
+
+then run the command again and sign in when it asks.
 `);
 }
 

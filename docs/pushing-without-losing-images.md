@@ -18,7 +18,7 @@ That is how the home page images were lost. Twice.
 ## The command to use from now on
 
 ```
-node push.mjs gbg-wholesale-ufn6121g.myshopify.com
+node push.mjs
 ```
 
 Pushes code. Leaves every image, app block and section setting exactly as it
@@ -28,6 +28,19 @@ is. There is no flag to remember and nothing to get wrong.
 `shopify theme push` typed by hand cannot wipe them any more. Two layers,
 because one clearly was not enough.
 
+
+## The store address
+
+It is in `.store` at the top of the repo, so you never type it:
+
+```
+gbg-wholesale-ufn6121g.myshopify.com
+```
+
+Type a different one and the push stops and tells you, rather than letting
+the CLI fail with "you don't have access to this dev store" — which is what a
+wrong address looks like, and it reads like a login problem when it is not.
+
 ## Putting up a new page
 
 The ignore rules protect the templates that exist, and they protect one that
@@ -35,7 +48,7 @@ has just been written just as thoroughly, so a new page would be pushed to the
 store and never arrive. Send it by name:
 
 ```
-node push.mjs <store>.myshopify.com --only templates/page.example.json
+node push.mjs --only templates/page.example.json
 ```
 
 That file and nothing else. Every other template, and every image and app
@@ -53,7 +66,7 @@ template. That is a deliberate act, in two steps.
 blocks someone added, so they are not lost in the next step.
 
 ```
-node push.mjs gbg-wholesale-ufn6121g.myshopify.com --pull
+node push.mjs --pull
 git diff --stat
 git add templates sections config
 git commit -m "Save the content added in the theme editor"
@@ -62,7 +75,7 @@ git commit -m "Save the content added in the theme editor"
 **Then, once the change is merged on top of that:**
 
 ```
-node push.mjs gbg-wholesale-ufn6121g.myshopify.com --with-content
+node push.mjs --with-content
 ```
 
 Both of those lift the ignore rules for the length of one command and put them

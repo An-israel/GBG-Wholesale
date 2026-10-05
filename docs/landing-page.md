@@ -116,8 +116,8 @@ button.
 Two commands, and the second one matters.
 
 ```
-node push.mjs gbg-wholesale-ufn6121g.myshopify.com
-node push.mjs gbg-wholesale-ufn6121g.myshopify.com --only templates/page.landing.json templates/page.thanks.json
+node push.mjs
+node push.mjs --only templates/page.landing.json templates/page.thanks.json
 ```
 
 The first sends the code: the sections, the script, the styles. It cannot
