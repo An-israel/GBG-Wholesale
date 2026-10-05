@@ -288,8 +288,31 @@ nothing. One face that does not match costs the whole video.
 
 ## Where it goes
 
-Theme editor > the Start page > **Landing video** > upload the file.
+Once the theme is pushed:
+
+1. Theme editor > the **Start** page > **Landing video**
+2. **Video file** > upload the finished MP4
+3. **Poster frame** > upload the gele still
 
 Upload rather than YouTube. A YouTube embed brings its branding, its suggested
 videos at the end and its cookie banner onto a page whose only job is the
 form.
+
+Set the poster frame. Shopify otherwise shows the video's own first frame,
+which is the first frame of a talking clip, so it is Lami with her mouth half
+open.
+
+### Export settings
+
+Shopify accepts MP4, MOV and WEBM up to **1 GB**, 10 minutes and 4096px wide,
+so a two minute video is nowhere near any limit. Export:
+
+- **MP4, H.264**, 1920 x 1080, 16:9
+- 8 to 12 Mbps, which lands around 100 to 180 MB
+- AAC audio
+
+Shopify transcodes it and streams it from their CDN, so the file size does not
+slow the page down the way a large image would.
+
+If an upload is refused for being over 20 MB, that is an image field, not the
+video field. Videos go in **Video file**.

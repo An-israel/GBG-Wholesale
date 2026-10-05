@@ -9,6 +9,10 @@
   It does not autoplay with sound, which browsers block anyway and which makes
   people close the tab. A poster frame and a play button is the whole design.
 
+  The poster frame can be chosen, because Shopify otherwise shows the video's
+  own first frame, and the first frame of a talking clip is a woman with her
+  mouth half open.
+
   With nothing uploaded the section hides on the live site rather than leaving
   a grey box, and says what is missing in the theme editor.
 {%- endcomment -%}
@@ -39,16 +43,34 @@
 
       {% if file != blank %}
         <div class="lead-video__frame">
-          {{
-            file
-            | video_tag:
-              image_size: '1200x',
-              controls: true,
-              muted: false,
-              autoplay: false,
-              loop: false,
-              preload: 'metadata'
-          }}
+          {%- liquid
+            assign poster = section.settings.poster
+            if poster == blank
+              assign poster = file.preview_image
+            endif
+          -%}
+          <video
+            controls
+            preload="metadata"
+            playsinline
+            {% if poster != blank %}poster="{{ poster | image_url: width: 1600 }}"{% endif %}
+          >
+            {%- comment -%}
+              mp4 first. Shopify also serves an HLS playlist, which only Safari
+              reads natively, so a browser that cannot use it falls through to
+              the progressive file rather than showing nothing.
+            {%- endcomment -%}
+            {% for source in file.sources %}
+              {% if source.format == 'mp4' %}
+                <source src="{{ source.url }}" type="{{ source.mime_type }}">
+              {% endif %}
+            {% endfor %}
+            {% for source in file.sources %}
+              {% if source.format != 'mp4' %}
+                <source src="{{ source.url }}" type="{{ source.mime_type }}">
+              {% endif %}
+            {% endfor %}
+          </video>
         </div>
       {% elsif link != blank %}
         <div class="lead-video__frame lead-video__frame--embed">
@@ -164,6 +186,7 @@
     { "type": "text", "id": "heading", "label": "Heading", "default": "Two minutes on what GBG actually does" },
     { "type": "header", "content": "The video" },
     { "type": "video", "id": "video", "label": "Video file", "info": "Uploaded here. Used in preference to a link." },
+    { "type": "image_picker", "id": "poster", "label": "Poster frame (optional)", "info": "The still shown before anyone presses play. Without one, the video's own first frame is used." },
     { "type": "video_url", "id": "video_url", "accept": ["youtube", "vimeo"], "label": "Or a YouTube or Vimeo link" },
     { "type": "text", "id": "caption", "label": "Line under the video" },
     { "type": "header", "content": "Button" },
