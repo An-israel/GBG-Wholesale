@@ -1,0 +1,33 @@
+{%- comment -%}
+  A bar that appears at the bottom of a phone screen once the real Add to
+  cart button has scrolled away.
+
+  Most people arriving from an ad land on a phone, read down the page, and by
+  the time they have decided the button is several screens above them. This
+  puts it back without duplicating the form: the button here clicks the one
+  already on the page, so quantity, variant and the minimum order check all
+  still apply and there is only ever one source of truth.
+
+  Hidden until the real button leaves the top of the viewport, so it never
+  covers the page while the button is still in reach.
+{%- endcomment -%}
+
+{%- if settings.sticky_atc and product != blank -%}
+  {%- assign variant = product.selected_or_first_available_variant -%}
+  <div class="sticky-atc" data-sticky-atc hidden aria-hidden="true">
+    <div class="sticky-atc__inner">
+      <div class="sticky-atc__info">
+        <span class="sticky-atc__title">{{ product.title | truncate: 38 }}</span>
+        <span class="sticky-atc__price" data-sticky-atc-price>{{ variant.price | money }}</span>
+      </div>
+      <button
+        type="button"
+        class="btn btn--primary sticky-atc__btn"
+        data-sticky-atc-button
+        {% unless variant.available %}disabled aria-disabled="true"{% endunless %}
+      >
+        {% if variant.available %}{{ 'products.add_to_cart' | t }}{% else %}{{ 'products.sold_out' | t }}{% endif %}
+      </button>
+    </div>
+  </div>
+{%- endif -%}

@@ -886,3 +886,72 @@ textarea.input {
 .account-page__hub-banner h2 {
   color: var(--color-amber-text);
 }
+
+/* ---------------------------------------------------------------------------
+   Sticky Add to cart (phones only)
+
+   Desktop keeps the button in reach without help, and a fixed bar there eats
+   screen for no gain.
+--------------------------------------------------------------------------- */
+.sticky-atc {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  background: var(--color-surface, #fff);
+  border-top: 1px solid var(--color-border, #e3e6ec);
+  box-shadow: 0 -6px 24px rgba(0, 26, 63, 0.12);
+  padding: 0.6rem 1rem calc(0.6rem + env(safe-area-inset-bottom));
+}
+
+/* Explicit, because a display rule on .btn once beat the hidden attribute
+   elsewhere in this theme and the bar must never show before its cue. */
+.sticky-atc[hidden] {
+  display: none;
+}
+
+.sticky-atc__inner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.sticky-atc__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.sticky-atc__title {
+  font-size: 0.78rem;
+  color: var(--color-muted, #5b6472);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sticky-atc__price {
+  font-weight: 700;
+}
+
+.sticky-atc__btn {
+  margin-left: auto;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* The WhatsApp button sits in the same corner, so it steps up out of the way
+   rather than covering the one thing on the page that takes money. */
+body.has-sticky-atc .whatsapp-float {
+  bottom: 5.5rem;
+}
+
+@media (min-width: 750px) {
+  .sticky-atc {
+    display: none;
+  }
+}

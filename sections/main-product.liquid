@@ -112,6 +112,8 @@
         <p class="field__error" data-cart-add-error hidden></p>
       {% endform %}
 
+      {% render 'sticky-atc', product: product %}
+
       {% render 'product-moq-note', product: product %}
 
       {% render 'product-shipping', product: product %}
