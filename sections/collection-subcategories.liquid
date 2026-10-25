@@ -40,6 +40,9 @@
             assign child_handle = child.url | split: '/collections/' | last
             assign child_collection = collections[child_handle]
           -%}
+          {% if settings.hide_empty_collections and child_collection.products_count == 0 %}
+            {% continue %}
+          {% endif %}
           <li class="subcats__item reveal">
             <a href="{{ child.url }}" class="subcats__tile">
               <span class="subcats__media">

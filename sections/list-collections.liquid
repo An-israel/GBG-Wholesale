@@ -6,6 +6,14 @@
 
   <div class="grid grid--4">
     {% for collection in collections %}
+      {%- comment -%}
+        An empty category is a dead end for someone who arrived from an ad, so
+        it is left out unless the shop asks to see everything while stock is
+        still being loaded.
+      {%- endcomment -%}
+      {% if settings.hide_empty_collections and collection.products_count == 0 %}
+        {% continue %}
+      {% endif %}
       <a class="list-collections__card card reveal" href="{{ collection.url }}">
         <div class="list-collections__image">
           {% if collection.featured_image %}

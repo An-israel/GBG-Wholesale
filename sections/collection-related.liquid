@@ -39,12 +39,18 @@
             if collection != blank and target.handle == collection.handle
               assign is_current = true
             endif
+            # An empty category is a dead end for ad traffic, so it is skipped
+            # on the same setting that governs the category grids.
+            assign is_empty = false
+            if settings.hide_empty_collections and target.products_count == 0
+              assign is_empty = true
+            endif
           -%}
           {%- comment -%}
             A tile for a collection that does not exist would be a dead link,
             so an unknown handle is simply left out.
           {%- endcomment -%}
-          {% unless is_current or target == empty or target.handle == blank %}
+          {% unless is_current or is_empty or target == empty or target.handle == blank %}
             <li class="rel-collections__item reveal">
               <a href="{{ target.url }}" class="rel-collections__tile">
                 <span class="rel-collections__media">

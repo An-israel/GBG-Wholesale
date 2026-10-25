@@ -171,6 +171,24 @@
         "unit": "px",
         "label": "Card / button corner radius",
         "default": 10
+      },
+      {
+        "type": "header",
+        "content": "Catalogue"
+      },
+      {
+        "type": "checkbox",
+        "id": "hide_empty_collections",
+        "label": "Hide collections with no products",
+        "default": true,
+        "info": "Keeps empty categories out of the category grids and the related links. Turn this off while stock is still being loaded if you want to see every collection."
+      },
+      {
+        "type": "checkbox",
+        "id": "sticky_atc",
+        "label": "Sticky Add to cart on mobile",
+        "default": true,
+        "info": "Shows a bar with the price and an Add to cart button once the main button has scrolled out of view."
       }
     ]
   },
@@ -470,13 +488,17 @@
     "settings": [
       {
         "type": "paragraph",
+        "content": "These load a pixel from the theme, for a store with no sales channel app installed. The sales channel apps are better: they also send events server side and cover the checkout, which a theme cannot reach. Use one route or the other, never both."
+      },
+      {
+        "type": "paragraph",
         "content": "Storefront tracking. Paste an ID and the tag goes live; leave it blank and nothing is loaded. Shopify's own analytics needs no setup. Checkout and purchase events are NOT covered here, because Shopify blocks third-party scripts on checkout: add those in Settings > Customer events, or by installing the Google and TikTok sales channels."
       },
       {
         "type": "text",
         "id": "ga4_measurement_id",
         "label": "Google Analytics 4 measurement ID",
-        "info": "Looks like G-XXXXXXXXXX. Found in GA4 under Admin > Data streams."
+        "info": "Leave this BLANK if that platform's Shopify sales channel app is installed. The app already loads its pixel, so filling this in as well makes every event fire twice and the ad platform count two purchases for one order. Looks like G-XXXXXXXXXX. Found in GA4 under Admin > Data streams."
       },
       {
         "type": "text",
@@ -488,13 +510,13 @@
         "type": "text",
         "id": "tiktok_pixel_id",
         "label": "TikTok pixel ID",
-        "info": "Found in TikTok Ads Manager under Assets > Events > Web events. Installing the TikTok sales channel instead is the better route, because it also covers checkout."
+        "info": "Leave this BLANK if that platform's Shopify sales channel app is installed. The app already loads its pixel, so filling this in as well makes every event fire twice and the ad platform count two purchases for one order. Found in TikTok Ads Manager under Assets > Events > Web events. Installing the TikTok sales channel instead is the better route, because it also covers checkout."
       },
       {
         "type": "text",
         "id": "meta_pixel_id",
         "label": "Meta (Facebook) pixel ID",
-        "info": "Optional. Leave blank if you are not running Meta ads."
+        "info": "Leave this BLANK if that platform's Shopify sales channel app is installed. The app already loads its pixel, so filling this in as well makes every event fire twice and the ad platform count two purchases for one order. Optional. Leave blank if you are not running Meta ads."
       },
       {
         "type": "header",
