@@ -106,6 +106,67 @@
 {%- endif -%}
 
 {%- comment -%}
+  Reaching the checkout is the last event a theme can see. Shopify serves the
+  checkout itself and blocks third-party scripts there, so Purchase cannot be
+  sent from here by any means: it comes from a sales channel app or from
+  Settings > Customer events. See docs/q4-ads-readiness.md.
+{%- endcomment -%}
+{%- if settings.ga4_measurement_id != blank or settings.tiktok_pixel_id != blank or settings.meta_pixel_id != blank -%}
+  <script>
+    window.GBGCart = {{ cart | json }};
+    document.addEventListener('gbg:cart:update', function (event) {
+      window.GBGCart = event.detail || window.GBGCart;
+    });
+
+    document.addEventListener('click', function (event) {
+      var link = event.target.closest('a[href*="/checkout"], button[name="checkout"]');
+      if (!link) return;
+
+      var cart = window.GBGCart || {};
+      var items = cart.items || [];
+      if (!items.length) return;
+
+      var value = (cart.total_price || 0) / 100;
+      var currency = cart.currency || {{ cart.currency.iso_code | json }};
+      var ids = items.map(function (i) { return i.handle; });
+
+      if (window.gtag) {
+        gtag('event', 'begin_checkout', {
+          currency: currency,
+          value: value,
+          items: items.map(function (i) {
+            return {
+              item_id: i.handle,
+              item_name: i.product_title || i.title,
+              price: (i.price || 0) / 100,
+              quantity: i.quantity
+            };
+          })
+        });
+      }
+      if (window.ttq) {
+        ttq.track('InitiateCheckout', {
+          contents: items.map(function (i) {
+            return { content_id: i.handle, content_type: 'product', quantity: i.quantity, price: (i.price || 0) / 100 };
+          }),
+          currency: currency,
+          value: value
+        });
+      }
+      if (window.fbq) {
+        fbq('track', 'InitiateCheckout', {
+          content_ids: ids,
+          content_type: 'product',
+          num_items: cart.item_count,
+          currency: currency,
+          value: value
+        });
+      }
+    });
+  </script>
+{%- endif -%}
+
+{%- comment -%}
   Add to cart happens over AJAX, so nothing reloads and no page view fires.
   theme.js raises a `gbg:cart:add` event on every successful add, and this
   forwards it to whichever tags are switched on.

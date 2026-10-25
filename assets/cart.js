@@ -79,6 +79,12 @@
       })
       .then(function (cart) {
         updateCartCount(cart.item_count);
+        /* Keep a current snapshot of the cart on the page. The checkout
+           button navigates away the moment it is clicked, which leaves no
+           time to go and ask what is in the cart, so the answer has to be
+           here already for the checkout event to carry a real value. */
+        window.GBGCart = cart;
+        document.dispatchEvent(new CustomEvent('gbg:cart:update', { detail: cart }));
       });
   }
 

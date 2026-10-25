@@ -16,6 +16,27 @@
 (function () {
   'use strict';
 
+  /* Carry the ad campaign across to the thank you page.
+
+     Without this the redirect lands on a bare URL, so the thank you page is
+     recorded as its own session with no source. The questionnaire is the
+     conversion the ads are paying for, which makes it the one page where
+     losing the campaign matters most. */
+  function withCampaign(url) {
+    var qs = window.location.search;
+    if (!qs || qs.length < 2) return url;
+
+    var keep = [];
+    new URLSearchParams(qs).forEach(function (value, key) {
+      if (/^(utm_|gclid$|fbclid$|ttclid$|msclkid$)/i.test(key)) {
+        keep.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      }
+    });
+    if (!keep.length) return url;
+
+    return url + (url.indexOf('?') === -1 ? '?' : '&') + keep.join('&');
+  }
+
   var form = document.querySelector('[data-lead-form]');
   if (!form) return;
 
@@ -225,7 +246,7 @@
     /* A short wait so the Omnisend call leaves the page before it unloads,
        then on regardless: a lead is not worth losing to a slow third party. */
     window.setTimeout(function () {
-      window.location.href = thanksUrl;
+      window.location.href = withCampaign(thanksUrl);
     }, 600);
   });
 
